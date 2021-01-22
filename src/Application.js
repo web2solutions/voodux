@@ -127,7 +127,7 @@ const _API = {
  * @param  {string} config.name - Application name
  * @param  {string} config.dataStrategy - Data strategy. Recognized values: offlineFirst, onlineFirst, offline, online
  * @param  {boolean} config.useWorker - Use a ServiceWorker in Background
- * @example {@lang javascript} <caption>Application constructor usage.</caption>
+ * @example {@lang javascript}
   const _myApp = new Application({
     name: 'My App',
     useWorker: true,

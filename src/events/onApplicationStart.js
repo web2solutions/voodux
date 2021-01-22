@@ -2,10 +2,10 @@
 export default function (eventObj) {
   console.error('application:start::::::::', eventObj)
   const { /* application, data, */ error } = eventObj
-  // for (const [key, value] of _myApp.models) {
-  //  console.log(key)
-  //  console.log(value)
-  // }
+  for (const [key, value] of this.models) {
+    console.log(key)
+    console.log(value)
+  }
 
   if (error) {
     throw new Error(`Error starting application stack: ${error}`)
