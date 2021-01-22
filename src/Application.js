@@ -138,7 +138,7 @@ const _API = {
       }
     })
 
-    const _myApp = new Application({
+    const foundation = new Application({
       name: 'My App',
       useWorker: true,
       dataStrategy: 'offlineFirst',
@@ -147,7 +147,7 @@ const _API = {
       }
     })
 
-    _myApp.on('application:start', function (eventObj){
+    foundation.on('application:start', function (eventObj){
       const { application, data, error } = eventObj
  
       if (error) {
@@ -160,7 +160,7 @@ const _API = {
 
     })
 
-    await _myApp.start()
+    await foundation.start()
  */
 export default class Application extends EventSystem {
   #schemas
@@ -248,7 +248,14 @@ export default class Application extends EventSystem {
     }
     return this.getGuidStorage()
   }
-
+  /**
+   * @async
+   * @Method Application.registerWorker
+   * @description Setup and Register a Service worker and get it ready for usage
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error
+   * @return  {object} signature.data - Worker Registration Object
+   */
   registerWorker (workerFile) {
     const self = this
     return new Promise((resolve, reject) => {
@@ -277,7 +284,14 @@ export default class Application extends EventSystem {
     })
   }
 
-  startVitals () {
+  /**
+   * @Private
+   * @description Starts application stack required items
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error
+   * @return  {object} signature.data - Application data
+   */
+  #startVitals () {
     let _error = null
     let _data = null
     try {
@@ -302,12 +316,19 @@ export default class Application extends EventSystem {
 
     return createMethodSignature(_error, _data)
   }
-
+  /**
+   * @async
+   * @Method Application.start
+   * @description Starts application stack and get it ready to use. <br> it calls this.#startVitals() internally 
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error
+   * @return  {object} signature.data - Application data
+   */
   async start () {
     let _error = null
     let _data = null
     try {
-      const vitals = this.startVitals()
+      const vitals = this.#startVitals()
 
       if (this.useWorker) {
         await this.registerWorker('ServiceWorker.js')

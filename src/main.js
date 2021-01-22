@@ -8,7 +8,7 @@ import onApplicationStart from './events/onApplicationStart'
 import onWorkerResponseClientId from './events/onWorkerResponseClientId'
 
 (async () => {
-  const _myApp = new Application({
+  const foundation = new Application({
     name: 'My App',
     useWorker: true,
     dataStrategy: 'offlineFirst',
@@ -18,11 +18,11 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
 
   })
 
-  _myApp.on('application:start', onApplicationStart.bind(_myApp))
+  foundation.on('application:start', onApplicationStart.bind(foundation))
 
-  _myApp.on('worker:responseClientId', onWorkerResponseClientId.bind(_myApp))
+  foundation.on('worker:responseClientId', onWorkerResponseClientId.bind(foundation))
 
-  await _myApp.start()
+  await foundation.start()
 
-  return _myApp
+  return foundation
 })()

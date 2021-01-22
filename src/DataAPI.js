@@ -59,6 +59,7 @@ export default class DataAPI extends DataTransportLocal(Data) {
   }
 
   /**
+   * @async
    * @Method DataAPI.add
    * @description add a new document to the storage
    * @param  {object} doc - A valid document validated against mongoose model
@@ -72,6 +73,7 @@ export default class DataAPI extends DataTransportLocal(Data) {
   }
 
   /**
+   * @async
    * @Method DataAPI.edit
    * @description Edit a document on the storage
    * @param  {string|number} identifier - The primary key value of the desired document
@@ -86,6 +88,7 @@ export default class DataAPI extends DataTransportLocal(Data) {
   }
 
   /**
+   * @async
    * @Method DataAPI.delete
    * @description delete a document from the storage
    * @param  {string|number} identifier - The primary key value of the desired document
@@ -99,6 +102,7 @@ export default class DataAPI extends DataTransportLocal(Data) {
   }
 
   /**
+   * @async
    * @Method DataAPI.findById
    * @description find a document from the storage by ID
    * @param  {string|number} identifier - The primary key value of the desired document
@@ -112,6 +116,7 @@ export default class DataAPI extends DataTransportLocal(Data) {
   }
 
   /**
+   * @async
    * @Method DataAPI.findAll
    * @description find all documents
    * @return  {object} signature - Default methods signature format { error, data }
@@ -124,6 +129,7 @@ export default class DataAPI extends DataTransportLocal(Data) {
   }
 
   /**
+   * @async
    * @Method DataAPI.find
    * @description find all documents based on the given query
    * @param  {object|null} query - The query object to search documents

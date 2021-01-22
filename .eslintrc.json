@@ -1,5 +1,5 @@
 {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "env": {
         "node": true,
         "es6": true
@@ -55,9 +55,9 @@
         "curly": ["error", "all"]
     },
     "extends": ["plugin:prettier/recommended"],
-    "plugins": ["prettier"],
+    "plugins": ["prettier"], // classPrivateProperties and classPrivateMethods
     
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "@babel/eslint-parser"
     }
 }
