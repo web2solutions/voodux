@@ -1,6 +1,8 @@
 // application class
 import Application from './Application'
 
+import UserSchema from './schemas/User'
+
 // application event handlers
 import onApplicationStart from './events/onApplicationStart'
 import onWorkerResponseClientId from './events/onWorkerResponseClientId'
@@ -9,15 +11,18 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
   const _myApp = new Application({
     name: 'My App',
     useWorker: true,
-    dataStrategy: 'offlineFirst'
+    dataStrategy: 'offlineFirst',
+    schemas: {
+      User: UserSchema
+    }
+
   })
 
   _myApp.on('application:start', onApplicationStart.bind(_myApp))
 
   _myApp.on('worker:responseClientId', onWorkerResponseClientId.bind(_myApp))
 
-  const isStarted = await _myApp.start()
-  console.log('isStarted', isStarted)
-  console.log(_myApp)
+  await _myApp.start()
+
   return _myApp
 })()

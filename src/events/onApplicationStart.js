@@ -1,7 +1,7 @@
 /* global document */
-export default function (eventObj) {
+export default async function (eventObj) {
   console.error('application:start::::::::', eventObj)
-  const { /* application, data, */ error } = eventObj
+  const { /* data, */ application, error } = eventObj
   for (const [key, value] of this.models) {
     console.log(key)
     console.log(value)
@@ -10,6 +10,13 @@ export default function (eventObj) {
   if (error) {
     throw new Error(`Error starting application stack: ${error}`)
   }
+
+  console.log(application)
+  console.log(application.models)
+  console.log(application.models.get('User'))
+  const userCollection = application.models.get('User')
+  console.log(userCollection)
+  await userCollection.add()
 
   document.getElementById('guid').innerText = 'Aplication GUID -> ' + this.guid
 

@@ -4,10 +4,6 @@ import { createMethodSignature, GUID } from './utils'
 import DataAPI from './DataAPI'
 import EventSystem from './EventSystem'
 
-import UserSchema from './schemas/User'
-const allModels = {
-  User: UserSchema
-}
 
 /**
  * Private properties
@@ -89,15 +85,14 @@ const _API = {
     }
     return createMethodSignature(_error, _data)
   },
-  _mapModels (allModels, application) {
+  _mapModels (schemas, application) {
     let _error = null
     let _data = null
     try {
-      for (const entity in allModels) {
-        if (Object.prototype.hasOwnProperty.call(allModels, entity)) {
-          console.debug(entity)
+      for (const entity in schemas) {
+        if (Object.prototype.hasOwnProperty.call(schemas, entity)) {
           const strategy = 'offlineFirst'
-          const model = allModels[entity]
+          const model = schemas[entity]
           const dataAPI = new DataAPI({
             application,
             entity,
@@ -127,26 +122,33 @@ const _API = {
  * @param  {string} config.name - Application name
  * @param  {string} config.dataStrategy - Data strategy. Recognized values: offlineFirst, onlineFirst, offline, online
  * @param  {boolean} config.useWorker - Use a ServiceWorker in Background
+ * @param  {object}  config.schemas - map of data schemas
  * @example {@lang javascript}
   const _myApp = new Application({
     name: 'My App',
     useWorker: true,
-    dataStrategy: 'offlineFirst'
+    dataStrategy: 'offlineFirst',
+    schemas: {
+      User: UserSchema
+    }
   })
  * _myApp.on('application:start', onApplicationStart.bind(_myApp))
  * _myApp.on('worker:responseClientId', onWorkerResponseClientId.bind(_myApp))
  * await _myApp.start()
  */
 export default class Application extends EventSystem {
+  #schemas
   constructor ({
     name,
     dataStrategy = 'offlineFirst',
-    useWorker = false
+    useWorker = false,
+    schemas = {}
   } = {}) {
     super()
     _name = name
     _dataStrategy = dataStrategy || 'offlineFirst'
     _useWorker = useWorker
+    this.#schemas = schemas
   }
 
   get dataStrategy () {
@@ -254,7 +256,7 @@ export default class Application extends EventSystem {
     let _data = null
     try {
       this.setupAppGuid()
-      const mapModels = _API._mapModels(allModels, this)
+      const mapModels = _API._mapModels(this.#schemas, this)
       // start all here
       _data = {
         status: {
