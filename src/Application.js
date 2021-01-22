@@ -124,17 +124,20 @@ const _API = {
  * @param  {boolean} config.useWorker - Use a ServiceWorker in Background
  * @param  {object}  config.schemas - map of data schemas
  * @example {@lang javascript}
-  const _myApp = new Application({
-    name: 'My App',
-    useWorker: true,
-    dataStrategy: 'offlineFirst',
-    schemas: {
-      User: UserSchema
-    }
-  })
- * _myApp.on('application:start', onApplicationStart.bind(_myApp))
- * _myApp.on('worker:responseClientId', onWorkerResponseClientId.bind(_myApp))
- * await _myApp.start()
+    const _myApp = new Application({
+      name: 'My App',
+      useWorker: true,
+      dataStrategy: 'offlineFirst',
+      schemas: {
+        User: UserSchema
+      }
+    })
+
+    _myApp.on('application:start', onApplicationStart.bind(_myApp))
+
+    _myApp.on('worker:responseClientId', onWorkerResponseClientId.bind(_myApp))
+
+    await _myApp.start()
  */
 export default class Application extends EventSystem {
   #schemas
