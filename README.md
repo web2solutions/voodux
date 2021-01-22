@@ -39,11 +39,15 @@ They are likely the `V` in on the `MVC` acronym. And in terms of `Project Standa
 
 They usualy try to solve `application data` issues, but their proposed solutions are not like the `M` on the `MVC` acronym, because they are mostly focused in the `application state` rather than the `application data`. They mainly rely on browser memory to persist data.
 
-By mistake, most developers and teams are mostly focusing on the `V` layer and ignoring a `possibly required` underlying foundation architecture. What finally increases the code complexity of those `View` or `Component` layers, because they are trying to resolve problems that should not being handled in that domain.
+There is no problem on those solutions, not at least in a `project standard` perspective, because they ain't try to solve `M` and `C` problems necessarily. They might being over estimated, or people is still under estimating the web capabilities.
+
+By mistake, developers and teams are mostly focusing on the `V` layer and ignoring a `possibly required` underlying foundation architecture. Which finally increases the code complexity of those `View` or `Component` layers, because they are trying to resolve problems that should not being handled in that domain.
 
 In another side, Angular and Backbone provide `MVC` based driven development, but they don't care about scaling `data storage` and `data handling` and support to `offline scenarios`.
 
-By the way, there is a powerful web technology which still not being widely used and, in my opinion, is a game changer in web based software development: IndexedDB. A NoSQL database that runs on browsers at least since 2005. IndexedDB can also be used in Electron and mobile applications.
+It feels like they fits very good for `non-complex` scenarios and let you take your own decisions when complex data requirements and scalability start knocking at your doors.
+
+By the way, there is a powerful web technology which still not being widely used and, in my opinion, is a game changer in web based software development: IndexedDB. A NoSQL database shipped with every modern browsers at least since 2005. IndexedDB can also be used in Electron and mobile applications.
 
 
 ### Non Functional requirements might completely differs
