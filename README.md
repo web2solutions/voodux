@@ -118,7 +118,7 @@ Based on those 2 groups, I'm going to hypothetically describe 2 list of requirem
 
 ## Developers are mistakenly looking to write code first
 
-The commom reasons for failing software projects could me enumerated as:
+The commom reasons of failing software projects could be enumerated as follow:
 
 1. Lack of clear goals and paths
 2. Lack of Non Functional requirements scope
