@@ -7,7 +7,6 @@ Agnostic Foundation for Web Applications - DRAFT
 > "The use of data modeling standards is strongly recommended for all projects requiring a standard means of defining and analyzing data within an organization"
 
 
-
 ## The Problem
 
 Paradigms like `SPA (Single Page Application)`, `PWA (Personal Web Applications)` and `Serverless Applications` are, in fact, at least 10 years old. But the "enterprise web" advent is relatively younger.
@@ -147,13 +146,15 @@ It provides a underlying architecture offering resources like:
 
 - Generic `Data Schema` and `Data Model` driven design
 - A proxy like `Data API` supporting different transports and asynchronous and event driven architecture.
-- `Data Schema` generators based on OpenAPI specifications (Swaggger)
-- CRUD generators
+- `Data Schema` generators leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
+- CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
 - Enforced Data Modeling and Data Entities driven design
 - Application session
 - Realtime Data Sync
 - Plugin based `Data Transport` to give you the freedom to back your web software with any kind of `back end technology`
 - Trully multi threaded architecture by leveraging web workers. Web applications are originally single threaded applications.
+- 100% offline capable applications
+
 
 
 Despite the fact there are available MVC frameworks out there for some years already
