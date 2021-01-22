@@ -1,0 +1,37 @@
+{
+  "name": "agnostic-foundation",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "webpack": "webpack",
+    "test": "npm run lint && mocha --recursive --exit --require @babel/register",
+    "lint": "eslint src --ext .js",
+    "eslint-fix": "eslint src/**/**/**/**/**/*.js --fix",
+    "format-code": "prettier-eslint --write \"src/**/*.js\" \"src/**/*.vue\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/register": "^7.12.10",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "mocha": "^8.2.1",
+    "prettier": "^2.2.1",
+    "webpack": "^5.14.0",
+    "webpack-cli": "^4.3.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "core-js": "^2.6.12",
+    "mongoose": "^5.11.12"
+  },
+  "description": ""
+}

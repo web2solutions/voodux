@@ -1,0 +1,30 @@
+.DS_Store
+nbproject/
+node_modules/
+data/
+node_modules copy/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/build.css
+dist/build.js
+dist/index.html
+
+.env
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+/HTML5Application/nbproject/private/
+/HTML5Application1/nbproject/private/
+/nbproject/private/
+package-lock.json
+
+log/
+logs/
+dist/
+
+sequelize-meta\.json

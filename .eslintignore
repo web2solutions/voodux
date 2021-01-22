@@ -1,0 +1,9 @@
+src/lib/swagger/ui
+src/views/default
+
+/build/
+/config/
+/dist/
+/*.js
+/test/unit/coverage/
+

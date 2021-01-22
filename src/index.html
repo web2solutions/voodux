@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>JumentiX agnostic UI Foundation</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Jumentix UI Foundation">
+    <meta name="apple-mobile-web-app-title" content="Jumentix UI Foundation">
+    <meta name="msapplication-starturl" content="/index.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<body>
+      <dialog id="favDialog">
+        <form method="dialog">
+          <section>
+            <p><label for="favAnimal">Favorite animal:</label>
+            <select id="favAnimal" name="favAnimal">
+              <option></option>
+              <option>Brine shrimp</option>
+              <option>Red panda</option>
+              <option>Spider monkey</option>
+            </select></p>
+          </section>
+          <menu>
+            <button id="cancel" type="reset">Cancel</button>
+            <button type="submit">Confirm</button>
+          </menu>
+        </form>
+      </dialog>
+      <p id="guid"></p>
+      <p id="worker_guid"></p>
+      <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.8/pwacompat.min.js"  
+        integrity="sha384-uONtBTCBzHKF84F6XvyC8S0gL8HTkAPeCyBNvfLfsqHh+Kd6s/kaS4BdmNQ5ktp1" 
+        crossorigin="anonymous"></script>
+      <script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
