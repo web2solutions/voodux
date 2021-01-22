@@ -21,6 +21,13 @@ class Data {}
  * @param  {string} config.entity - Data entity which the created object is handling
  * @param  {boolean} config.strategy - Data transport strategy
  * @param  {boolean} config.model - Access to related data model
+ * @example
+    const dataAPI = new DataAPI({
+      application ,   // Application instance, object
+      entity,         // entity name, string
+      strategy,       // data strategy, string
+      model           // data model, mongoose model
+    })
  */
 
 export default class DataAPI extends DataTransportLocal(Data) {

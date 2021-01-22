@@ -66,7 +66,7 @@ const _workerOnMessage = function (event) {
 // private API
 /**
  * @namespace API
- * @description Private API for Public DataAPI
+ * @description Private API for Public Application
  * @property {function}  _setModel            - Create an entry on Models Map
  * @property {function}  _mapModels           - Map all models into application namespace and create an associated DataAPI instance
  * @property {function}  _setStarted - Set Application _started flag
@@ -127,6 +127,15 @@ const _API = {
  * @param  {string} config.name - Application name
  * @param  {string} config.dataStrategy - Data strategy. Recognized values: offlineFirst, onlineFirst, offline, online
  * @param  {boolean} config.useWorker - Use a ServiceWorker in Background
+ * @example <caption>Application constructor usage.</caption>
+  const _myApp = new Application({
+    name: 'My App',
+    useWorker: true,
+    dataStrategy: 'offlineFirst'
+  })
+ * _myApp.on('application:start', onApplicationStart.bind(_myApp))
+ * _myApp.on('worker:responseClientId', onWorkerResponseClientId.bind(_myApp))
+ * await _myApp.start()
  */
 export default class Application extends EventSystem {
   constructor ({
