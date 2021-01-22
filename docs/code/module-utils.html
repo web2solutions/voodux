@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Agnostic Web Foundation Class: Application</title>
+	<title>Agnostic Web Foundation Module: utils</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -79,15 +79,10 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: Application</h1>
+	<h1 class="page-title">Module: utils</h1>
 <section>
 
 <header>
-    
-        <h2>
-        Application
-        </h2>
-        
     
 </header>
 
@@ -96,19 +91,81 @@
     <div class="container-overview">
     
         
+
+        
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
 <hr>
 <dt>
-    <h4 class="name" id="Application"><span class="type-signature"></span>new Application(config)</h4>
+    <h4 class="name" id=".createMethodSignature"><span class="type-signature">&lt;static> </span>createMethodSignature(error, data)</h4>
     
     
-    <p class="summary">Application boostrap class.</p>
+    <p class="summary">Create default signature method object.</p>
     
 </dt>
 <dd>
 
     
     <div class="description">
-        Application boostrap class
+        Create default signature method object
     </div>
     
 
@@ -143,12 +200,15 @@
 
         <tr>
             
-                <td class="name"><code>config</code></td>
+                <td class="name"><code>error</code></td>
             
 
             <td class="type">
             
                 
+<span class="param-type">string</span>
+|
+
 <span class="param-type">object</span>
 
 
@@ -160,86 +220,31 @@
 
             
 
-            <td class="description last">Application configuration
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
-                
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Application name</td>
+            <td class="description last">The string or error object if have any</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>dataStrategy</code></td>
+                <td class="name"><code>data</code></td>
             
 
             <td class="type">
             
                 
+<span class="param-type">object</span>
+|
+
+<span class="param-type">array</span>
+|
+
+<span class="param-type">number</span>
+|
+
 <span class="param-type">string</span>
+|
 
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Data strategy. Recognized values: offlineFirst, onlineFirst, offline, online</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>useWorker</code></td>
-            
-
-            <td class="type">
-            
-                
 <span class="param-type">boolean</span>
 
 
@@ -251,14 +256,7 @@
 
             
 
-            <td class="description last">Use a ServiceWorker in Background</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last">Information about method execution</td>
         </tr>
 
     
@@ -318,135 +316,108 @@
     
 
     
-
-    
-        <h5>Example</h5>
-        
-        <p class="code-caption">Application constructor usage.</p>
-    
-    <pre class="sunlight-highlight-javascript">const _myApp = new Application({
-    name: &#x27;My App&#x27;,
-    useWorker: true,
-    dataStrategy: &#x27;offlineFirst&#x27;
-  })
-_myApp.on(&#x27;application:start&#x27;, onApplicationStart.bind(_myApp))
-_myApp.on(&#x27;worker:responseClientId&#x27;, onWorkerResponseClientId.bind(_myApp))
-await _myApp.start()</pre>
-
-
-    
-</dd>
-
-    
-    </div>
-
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
+    <h5>Returns:</h5>
     <ul>
-        <li>EventSystem</li>
-    </ul>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<hr>
-<dt class="name" id=".useWorker">
-    <h4 id=".useWorker"><span class="type-signature">&lt;static> </span>useWorker<span class="type-signature"></span></h4>
-
-    
-    <p class="summary">flag if is there ServiceWorker being used.</p>
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        flag if is there ServiceWorker being used
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
+            <li>
+<div class="param-desc">
+    signature - Default methods signature format { error, data }
+</div>
 
 
 
-	
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
 
-	
 
-	
 
-	
+    </dd>
 </dl>
 
+</li>
+        
+            <li>
+<div class="param-desc">
+    signature.error - Execution error
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        
+            <li>
+<div class="param-desc">
+    signature.data - Execution data
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+|
+
+<span class="param-type">array</span>
+|
+
+<span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
+|
+
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        </ul>
 
     
 </dd>
 
-        </dl>
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
+        
             
 <hr>
 <dt>
-    <h4 class="name" id=".getGuidStorage"><span class="type-signature">&lt;static> </span>getGuidStorage()</h4>
+    <h4 class="name" id=".GUID"><span class="type-signature">&lt;static> </span>GUID()</h4>
     
     
-    <p class="summary">get Application GUID saved on sessionStorage.</p>
+    <p class="summary">generates a Universally unique identifier string - alias to uuid().</p>
     
 </dt>
 <dd>
 
     
     <div class="description">
-        get Application GUID saved on sessionStorage
+        generates a Universally unique identifier string - alias to uuid()
     </div>
     
 
@@ -512,151 +483,23 @@ await _myApp.start()</pre>
     
             
 <div class="param-desc">
-    Application GUID saved on sessionStorage
+    guid / uuid
 </div>
 
 
 
-
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
         
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".setGuidStorage"><span class="type-signature">&lt;static> </span>setGuidStorage(guid)</h4>
-    
-    
-    <p class="summary">save Application GUID to sessionStorage.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        save Application GUID to sessionStorage
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>guid</code></td>
-            
-
-            <td class="type">
-            
-                
 <span class="param-type">string</span>
 
 
 
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
+    </dd>
 </dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    Application GUID saved on sessionStorage
-</div>
-
-
 
 
         
@@ -668,17 +511,17 @@ await _myApp.start()</pre>
             
 <hr>
 <dt>
-    <h4 class="name" id=".setupAppGuid"><span class="type-signature">&lt;static> </span>setupAppGuid()</h4>
+    <h4 class="name" id=".uuid"><span class="type-signature">&lt;static> </span>uuid()</h4>
     
     
-    <p class="summary">check if Application has a GUID saved o.</p>
+    <p class="summary">generates a Universally unique identifier string.</p>
     
 </dt>
 <dd>
 
     
     <div class="description">
-        check if Application has a GUID saved o
+        generates a Universally unique identifier string
     </div>
     
 
@@ -744,10 +587,23 @@ await _myApp.start()</pre>
     
             
 <div class="param-desc">
-    Application GUID saved on sessionStorage
+    guid / uuid
 </div>
 
 
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
 
 
         
