@@ -161,6 +161,3 @@ It provides a underlying architecture offering resources like:
 - 100% offline capable applications
 - Asynchronous and `event driven` architecture.
 
-
-
-Despite the fact there are available MVC frameworks out there for some years already
