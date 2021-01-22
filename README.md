@@ -39,7 +39,7 @@ They are likely the `V` in on the `MVC` acronym. And in terms of `Project Standa
 
 They usualy try to solve `application data` issues, but their proposed solutions are not like the `M` on the `MVC` acronym, because they are mostly focused in the `application state` rather than the `application data`. They mainly rely on browser memory to persist data.
 
-By mistake, most developers and teams are mostly focusing on the `V` layer and ignoring a `possibly required` underlying foundation architecture.
+By mistake, most developers and teams are mostly focusing on the `V` layer and ignoring a `possibly required` underlying foundation architecture. What finally increases the code complexity of those `View` or `Component` layers, because they are trying to resolve problems that should not being handled in that domain.
 
 In another side, Angular and Backbone provide `MVC` based driven development, but they don't care about scaling `data storage` and `data handling` and support to `offline scenarios`.
 
@@ -145,15 +145,16 @@ The proposal is about to cover the common lacks and mistakes in modern web appli
 It provides a underlying architecture offering resources like:
 
 - Generic `Data Schema` and `Data Model` driven design
-- A proxy like `Data API` supporting different transports and asynchronous and event driven architecture.
+- A proxy like `Data API` supporting different transports
 - `Data Schema` generators leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
 - CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
 - Enforced Data Modeling and Data Entities driven design
 - Application session
 - Realtime Data Sync
 - Plugin based `Data Transport` to give you the freedom to back your web software with any kind of `back end technology`
-- Trully multi threaded architecture by leveraging web workers. Web applications are originally single threaded applications.
+- `Trully multi threaded` architecture by leveraging web workers. Web applications are originally single threaded applications.
 - 100% offline capable applications
+- Asynchronous and `event driven` architecture.
 
 
 
