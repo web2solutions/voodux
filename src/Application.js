@@ -124,6 +124,20 @@ const _API = {
  * @param  {boolean} config.useWorker - Use a ServiceWorker in Background
  * @param  {object}  config.schemas - map of data schemas
  * @example {@lang javascript}
+    import Application from './Application'
+    import mongoose from 'mongoose'
+
+    const UserSchema = new mongoose.Schema({
+      name: {
+        type: String,
+        required: true
+      },
+      username: {
+        type: String,
+        required: true
+      }
+    })
+
     const _myApp = new Application({
       name: 'My App',
       useWorker: true,
@@ -133,9 +147,18 @@ const _API = {
       }
     })
 
-    _myApp.on('application:start', onApplicationStart.bind(_myApp))
+    _myApp.on('application:start', function (eventObj){
+      const { application, data, error } = eventObj
+ 
+      if (error) {
+        throw new Error(`Error starting application stack: ${error}`)
+      }
 
-    _myApp.on('worker:responseClientId', onWorkerResponseClientId.bind(_myApp))
+      const userCollection = application.models.get('User')
+      console.log(userCollection)
+      await userCollection.add()
+
+    })
 
     await _myApp.start()
  */
