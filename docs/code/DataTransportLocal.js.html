@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Agnostic Web Foundation Modules</title>
+	<title>Agnostic Web Foundation Source: DataTransportLocal.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -74,116 +74,112 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Modules</h1>
+		<h1 class="page-title">Source: DataTransportLocal.js</h1>
+    
 <section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">'use strict'
 
-<header>
-    
-        <h2>
-        
-        </h2>
-        
-    
-</header>
+// mixin
+const DataTransportLocal = (DataTransportLocal) =>
+  /**
+   * @Class DataTransportLocal
+   * @description Local transport for DataAPI saving data to IndexedDB
+   */
 
+  class extends DataTransportLocal {
+    /**
+     * @Method DataTransportLocal.addLocal
+     * @description addLocal a new document to the storage
+     * @param  {object} doc - A valid document validated against mongoose model
+     * @return  {object} signature - Default methods signature format { error, data }
+     * @return  {string|object} signature.error - Execution error
+     * @return  {object} signature.data - Created document
+    */
+    #strategy
+    #entity
+    async addLocal (doc) {
+      // xxxx
+      console.log(this.#entity, this.#strategy)
+    }
 
-<article>
-    <div class="container-overview">
-    
-        
+    /**
+     * @Method DataTransportLocal.editLocal
+     * @description Edit a document on the storage
+     * @param  {string|number} identifier - The primary key value of the desired document
+     * @param  {object} doc - A valid document validated against mongoose model
+     * @return  {object} signature - Default methods signature format { error, data }
+     * @return  {string|object} signature.error - Execution error
+     * @return  {object} signature.data - Edited document
+     */
+    async editLocal (identifier, doc) {
+      // todo
+      console.log(this.#entity, this.#strategy)
+    }
 
-        
-<dl class="details">
-    
+    /**
+     * @Method DataTransportLocal.deleteLocal
+     * @description deleteLocal a document from the storage
+     * @param  {string|number} identifier - The primary key value of the desired document
+     * @return  {object} signature - Default methods signature format { error, data }
+     * @return  {string|object} signature.error - Execution error
+     * @return  {object} signature.data - Deleted document
+     */
+    async deleteLocal (identifier) {
+      // todo
+      console.log(this.#entity, this.#strategy)
+    }
 
-	
+    /**
+     * @Method DataTransportLocal.findByIdLocal
+     * @description find a document from the storage by ID
+     * @param  {string|number} identifier - The primary key value of the desired document
+     * @return  {object} signature - Default methods signature format { error, data }
+     * @return  {string|object} signature.error - Execution error
+     * @return  {object} signature.data - Found document
+     */
+    async findByIdLocal (identifier) {
+      // todo
+      console.log(this.#entity, this.#strategy)
+    }
 
-	
+    /**
+     * @Method DataTransportLocal.findAllLocal
+     * @description find all documents
+     * @return  {object} signature - Default methods signature format { error, data }
+     * @return  {string|object} signature.error - Execution error
+     * @return  {array} signature.data - Array of Found documents
+     */
+    async findAllLocal () {
+      // todo
+      console.log(this.#entity, this.#strategy)
+    }
 
-	
+    /**
+     * @Method DataTransportLocal.findLocal
+     * @description find all documents based on the given query
+     * @param  {object|null} query - The query object to search documents
+     * @return  {object} signature - Default methods signature format { error, data }
+     * @return  {string|object} signature.error - Execution error
+     * @return  {array} signature.data - Array of Found documents
+     */
+    async findLocal (query) {
+      // todo
+      console.log(this.#entity, this.#strategy)
+    }
+  }
 
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="Application.html">Application</a></dt>
-            <dd>Application boostrap class.</dd>
-        
-            <dt><a href="Data.html">Data</a></dt>
-            <dd>Bootstrap class data for DataAPI.</dd>
-        
-            <dt><a href="DataAPI.html">DataAPI</a></dt>
-            <dd>Models Data API.</dd>
-        
-            <dt><a href="DataTransportLocal.html">DataTransportLocal</a></dt>
-            <dd>Local transport for DataAPI saving data to IndexedDB.</dd>
-        </dl>
-    
-
-    
-
-    
-        <h3 class="subsection-title">Namespaces</h3>
-
-        <dl>
-            <dt><a href="namespaces.html#API"><a href="API.html">API</a></a></dt>
-            <dd>Private API for Public Application.</dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
+export default DataTransportLocal
+</pre>
+    </article>
 </section>
+
 
 
 
@@ -193,10 +189,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

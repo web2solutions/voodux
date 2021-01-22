@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Agnostic Web Foundation Modules</title>
+	<title>Agnostic Web Foundation Source: utils.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -74,116 +74,66 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Modules</h1>
+		<h1 class="page-title">Source: utils.js</h1>
+    
 <section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/** @module utils */
 
-<header>
-    
-        <h2>
-        
-        </h2>
-        
-    
-</header>
+/**
+ * Create default signature method object
+ * @function
+ * @param {string|object} error - The string or error object if have any
+ * @param {object|array|number|string|boolean} data - Information about method execution
+ * @return  {object} signature - Default methods signature format { error, data }
+ * @return  {string|object} signature.error - Execution error
+ * @return  {object|array|number|string|boolean} signature.data - Execution data
+ */
+export const createMethodSignature = (error = null, data = null) => {
+  return { error, data }
+}
 
+/**
+ * Create default signature method object
+ * @private
+ * @param {string|object} error - The string or error object if have any
+ * @param {object|array|number|string|boolean} data - Information about method execution
+ * @return  {object} signature - Default methods signature format { error, data }
+ * @return  {string|object} signature.error - Execution error
+ * @return  {object|array|number|string|boolean} signature.data - Execution data
+ */
 
-<article>
-    <div class="container-overview">
-    
-        
+/**
+ * generates a Universally unique identifier string - alias to uuid()
+ * @function
+ * @return  {string} guid / uuid
+ */
+export const GUID = () => {
+  return uuid()
+}
 
-        
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="Application.html">Application</a></dt>
-            <dd>Application boostrap class.</dd>
-        
-            <dt><a href="Data.html">Data</a></dt>
-            <dd>Bootstrap class data for DataAPI.</dd>
-        
-            <dt><a href="DataAPI.html">DataAPI</a></dt>
-            <dd>Models Data API.</dd>
-        
-            <dt><a href="DataTransportLocal.html">DataTransportLocal</a></dt>
-            <dd>Local transport for DataAPI saving data to IndexedDB.</dd>
-        </dl>
-    
-
-    
-
-    
-        <h3 class="subsection-title">Namespaces</h3>
-
-        <dl>
-            <dt><a href="namespaces.html#API"><a href="API.html">API</a></a></dt>
-            <dd>Private API for Public Application.</dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
+/**
+ * generates a Universally unique identifier string
+ * @function
+ * @return  {string} guid / uuid
+ */
+export function uuid () {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0
+    const v = c === 'x' ? r : (r &amp; 0x3) | 0x8
+    return v.toString(16)
+  })
+}
+</pre>
+    </article>
 </section>
+
 
 
 
@@ -193,10 +143,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Agnostic Web Foundation Modules</title>
+	<title>Agnostic Web Foundation Source: DataAPI.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -74,116 +74,158 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Modules</h1>
+		<h1 class="page-title">Source: DataAPI.js</h1>
+    
 <section>
-
-<header>
-    
-        <h2>
-        
-        </h2>
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">import DataTransportLocal from './DataTransportLocal'
 
 
 
-	
 
-	
-
-	
-
-	
-</dl>
+/**
+ * @Class Data
+ * @description Bootstrap class data for DataAPI
+ */
+class Data {}
 
 
-        
-    
-    </div>
 
-    
+/**
+ * @Class DataAPI
+ * @description Models Data API
+ * @extends Data
+ * @extends DataTransportLocal
+ * @param  {object} config - Configuration factory
+ * @param  {string} config.application - Provide Accesss to Application scope
+ * @param  {string} config.entity - Data entity which the created object is handling
+ * @param  {boolean} config.strategy - Data transport strategy
+ * @param  {boolean} config.model - Access to related data model
+ * @example
+    const dataAPI = new DataAPI({
+      application ,   // Application instance, object
+      entity,         // entity name, string
+      strategy,       // data strategy, string
+      model           // data model, mongoose model
+    })
+ */
 
-    
+export default class DataAPI extends DataTransportLocal(Data) {
 
-    
-        <h3 class="subsection-title">Classes</h3>
+  #application
+  #entity
+  #strategy
+  #model
+  
+  constructor ({ application, entity, strategy, model } = {}) {
+    super()
+    this.#entity = entity
+    this.#strategy = strategy // offlineFirst, onlineFirst, offline, online
+    this.#model = model
+    this.#application = application
 
-        <dl>
-            <dt><a href="Application.html">Application</a></dt>
-            <dd>Application boostrap class.</dd>
-        
-            <dt><a href="Data.html">Data</a></dt>
-            <dd>Bootstrap class data for DataAPI.</dd>
-        
-            <dt><a href="DataAPI.html">DataAPI</a></dt>
-            <dd>Models Data API.</dd>
-        
-            <dt><a href="DataTransportLocal.html">DataTransportLocal</a></dt>
-            <dd>Local transport for DataAPI saving data to IndexedDB.</dd>
-        </dl>
-    
+  }
 
-    
+  get entity () {
+    return this.#entity
+  }
 
-    
-        <h3 class="subsection-title">Namespaces</h3>
+  get model () {
+    return this.#model
+  }
 
-        <dl>
-            <dt><a href="namespaces.html#API"><a href="API.html">API</a></a></dt>
-            <dd>Private API for Public Application.</dd>
-        </dl>
-    
+  get strategy () {
+    return this.#strategy
+  }
 
-    
+  /**
+   * @Method DataAPI.add
+   * @description add a new document to the storage
+   * @param  {object} doc - A valid document validated against mongoose model
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error
+   * @return  {object} signature.data - Created document
+  */
+  async add (doc) {
+    // xxxx
+    console.log(this.#entity, this.#strategy)
+  }
 
-    
+  /**
+   * @Method DataAPI.edit
+   * @description Edit a document on the storage
+   * @param  {string|number} identifier - The primary key value of the desired document
+   * @param  {object} doc - A valid document validated against mongoose model
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error
+   * @return  {object} signature.data - Edited document
+   */
+  async edit (identifier, doc) {
+    // todo
+    console.log(this.#entity, this.#strategy)
+  }
 
-    
+  /**
+   * @Method DataAPI.delete
+   * @description delete a document from the storage
+   * @param  {string|number} identifier - The primary key value of the desired document
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error
+   * @return  {object} signature.data - Deleted document
+   */
+  async delete (identifier) {
+    // todo
+    console.log(this.#entity, this.#strategy)
+  }
 
-    
-</article>
+  /**
+   * @Method DataAPI.findById
+   * @description find a document from the storage by ID
+   * @param  {string|number} identifier - The primary key value of the desired document
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error
+   * @return  {object} signature.data - Found document
+   */
+  async findById (identifier) {
+    // todo
+    console.log(this.#entity, this.#strategy)
+  }
 
+  /**
+   * @Method DataAPI.findAll
+   * @description find all documents
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error
+   * @return  {array} signature.data - Array of Found documents
+   */
+  async findAll () {
+    // todo
+    console.log(this.#entity, this.#strategy)
+  }
+
+  /**
+   * @Method DataAPI.find
+   * @description find all documents based on the given query
+   * @param  {object|null} query - The query object to search documents
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error
+   * @return  {array} signature.data - Array of Found documents
+   */
+  async find (query) {
+    // todo
+    console.log(this.#entity, this.#strategy)
+  }
+}
+</pre>
+    </article>
 </section>
+
 
 
 
@@ -193,10 +235,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

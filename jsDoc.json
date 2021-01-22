@@ -21,7 +21,8 @@
     "footer": "Sponsored by WEB2 Solutions",
     "copyright": "Eduardo Almeida",
     "navType" : "{inline}",
-    "linenums": true
+    "linenums": true,
+    "outputSourceFiles": true
   },
   "opts": {
     "destination": "./docs/code/", // same as -d ./out/
