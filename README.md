@@ -152,6 +152,8 @@ It provides a underlying architecture offering resources like:
 - Enforced Data Modeling and Data Entities driven design
 - Application session
 - Realtime Data Sync
+- Plugin based `Data Transport` to give you the freedom to back your web software with any kind of `back end technology`
+- Trully multi threaded architecture by leveraging web workers. Web applications are originally single threaded applications.
 
 
 Despite the fact there are available MVC frameworks out there for some years already
