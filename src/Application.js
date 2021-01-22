@@ -14,21 +14,21 @@ const allModels = {
  */
 /**
  * Application name
- * @Private Property
+ * @Private
  * @type  {String}
  */
 let _name = 'My Application Name'
 
 /**
  * Models map
- * @Private Property
+ * @Private
  * @type  {Map}
  */
 const _models = new Map()
 
 /**
  * Is application started
- * @Private Property
+ * @Private
  * @type  {Boolean}
  */
 
@@ -37,7 +37,7 @@ let _started = false
 /**
  * Data strategy
  * recognized values: offlineFirst, onlineFirst, offline, online
- * @Private Property
+ * @Private
  * @type {String}
  */
 let _dataStrategy = 'offlineFirst'
@@ -66,14 +66,18 @@ const _workerOnMessage = function (event) {
 // private API
 /**
  * @namespace API
+ * @description Private API for Public DataAPI
  * @property {function}  _setModel            - Create an entry on Models Map
- * @property {number}  defaults.players       - The default number of players.
- * @property {string}  defaults.level         - The default level for the party.
- * @property {object}  defaults.treasure      - The default treasure.
- * @property {number}  defaults.treasure.gold - How much gold the party starts with.
+ * @property {function}  _mapModels           - Map all models into application namespace and create an associated DataAPI instance
+ * @property {function}  _setStarted - Set Application _started flag
  */
 
 const _API = {
+  /**
+   * @Method _API._setModel
+   * @param  {string} entity='' - Data Entity Name for model being set
+   * @param  {object} dataAPI={} - DataAPI Instance related to model being set
+   */
   _setModel (entity = '', dataAPI = {}) {
     let _error = null
     let _data = null
@@ -85,7 +89,7 @@ const _API = {
     }
     return createMethodSignature(_error, _data)
   },
-  _mapModels (allModels) {
+  _mapModels (allModels, application) {
     let _error = null
     let _data = null
     try {
@@ -95,6 +99,7 @@ const _API = {
           const strategy = 'offlineFirst'
           const model = allModels[entity]
           const dataAPI = new DataAPI({
+            application,
             entity,
             strategy,
             model
@@ -240,7 +245,7 @@ export default class Application extends EventSystem {
     let _data = null
     try {
       this.setupAppGuid()
-      const mapModels = _API._mapModels(allModels)
+      const mapModels = _API._mapModels(allModels, this)
       // start all here
       _data = {
         status: {

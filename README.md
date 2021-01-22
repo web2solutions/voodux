@@ -9,7 +9,8 @@ Agnostic Foundation for Web Applications - DRAFT
 
 ## The Problem
 
-Paradigms like `SPA (Single Page Application)`, `PWA (Personal Web Applications)` and `Serverless Applications` are, in fact, at least 10 years old. But the "enterprise web" advent is relatively younger.
+Paradigms like `SPA (Single Page Application)`, `PWA (Personal Web Applications)` and `Serverless Applications` are, in fact, at least 10 years old. Not least, the "enterprise web" advent is nothing something new too.
+
 
 The web based softwares are in hype as it ever have been before. 
 
@@ -52,7 +53,7 @@ By the way, there is a powerful web technology which still not being widely used
 
 ### Non Functional requirements might completely differs
 
-Web based softwares may differs a lot to each other in terms of `non Functional Requirements` and if we divide those in 2 main groups, such as `enterprise` and `non enterprise`, we could easily realize the commom differences.
+Web based softwares may differs a lot to each other in terms of `non Functional Requirements` and if we divide those in 2 main groups, such as `enterprise` and `non enterprise`, we could easily realize the common differences.
 
 Based on those 2 groups, I'm going to hypothetically describe 2 list of requirements which are mainly related to my proposal:
 
@@ -118,7 +119,7 @@ Based on those 2 groups, I'm going to hypothetically describe 2 list of requirem
 
 ## Developers are mistakenly looking to write code first
 
-The commom reasons of failing software projects could be enumerated as follow:
+The common reasons of failing software projects could be enumerated as follow:
 
 1. Lack of clear goals and paths
 2. Lack of Non Functional requirements scope
@@ -145,7 +146,7 @@ Except for the item #3, which always will be a new problem to solve on every new
 
 In resume: To focus on a solid `Software development lifecycle` and to rely more on modern web technologies already available on the play ground.
 
-The proposal is about to cover the common lacks and mistakes in modern web applications development by heavly opinionating on how to define a strong foundation for most commom types of web based softwares which relies mostly in `V-*` libraries and frameworks like `Vue` and `React`.
+The proposal is about to cover the common lacks and mistakes in modern web applications development by heavly opinionating on how to define a strong foundation for most common types of web based softwares which relies mostly in `V-*` libraries and frameworks like `Vue` and `React`.
 
 It provides a underlying architecture offering resources like:
 
