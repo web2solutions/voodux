@@ -31,13 +31,6 @@
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
-				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="API.html">API</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
 					<li><a href="module-utils.html">utils</a></li>
@@ -48,6 +41,13 @@
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
 					<li><a href="Application.html">Application</a></li><li><a href="Data.html">Data</a></li><li><a href="DataAPI.html">DataAPI</a></li><li><a href="DataTransportLocal.html">DataTransportLocal</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#applicationWorker">applicationWorker</a></li><li><a href="global.html#dataStrategy">dataStrategy</a></li><li><a href="global.html#guid">guid</a></li><li><a href="global.html#models">models</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#started">started</a></li>
 				</ul>
 			</li>
 			
@@ -327,7 +327,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-117">line 117</a>
+				 <a href="Application.js.html#sunlight-1-line-28">line 28</a>
 			</li>
 		</ul>
 	</dd>
@@ -481,7 +481,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-208">line 208</a>
+				 <a href="Application.js.html#sunlight-1-line-216">line 216</a>
 			</li>
 		</ul>
 	</dd>
@@ -508,108 +508,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".getGuidStorage"><span class="type-signature">&lt;static> </span>getGuidStorage()</h4>
-    
-    
-    <p class="summary">get Application GUID saved on sessionStorage.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        get Application GUID saved on sessionStorage
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-228">line 228</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    Application GUID saved on sessionStorage
-</div>
-
-
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".registerWorker"><span class="type-signature">&lt;async, static> </span>registerWorker()</h4>
+    <h4 class="name" id=".registerApplicationWorker"><span class="type-signature">&lt;async, static> </span>registerApplicationWorker()</h4>
     
     
     <p class="summary">Setup and Register a Service worker and get it ready for usage.</p>
@@ -666,7 +565,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-251">line 251</a>
+				 <a href="Application.js.html#sunlight-1-line-296">line 296</a>
 			</li>
 		</ul>
 	</dd>
@@ -762,6 +661,268 @@
 
 </li>
         </ul>
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".registerApplicationWorker"><span class="type-signature">&lt;async, static> </span>registerApplicationWorker()</h4>
+    
+    
+    <p class="summary">Setup and Register a Service worker and get it ready for usage.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Setup and Register a Service worker and get it ready for usage
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-260">line 260</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    <ul>
+            <li>
+<div class="param-desc">
+    signature - Default methods signature format { error, data }
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        
+            <li>
+<div class="param-desc">
+    signature.error - Execution error
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        
+            <li>
+<div class="param-desc">
+    signature.data - Worker Registration Object
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        </ul>
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".getGuidStorage"><span class="type-signature">&lt;static> </span>getGuidStorage()</h4>
+    
+    
+    <p class="summary">get Application GUID saved on sessionStorage.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get Application GUID saved on sessionStorage
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-236">line 236</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Application GUID saved on sessionStorage
+</div>
+
+
+
+
+        
 
     
 </dd>
@@ -877,7 +1038,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-217">line 217</a>
+				 <a href="Application.js.html#sunlight-1-line-225">line 225</a>
 			</li>
 		</ul>
 	</dd>
@@ -978,7 +1139,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-237">line 237</a>
+				 <a href="Application.js.html#sunlight-1-line-245">line 245</a>
 			</li>
 		</ul>
 	</dd>
@@ -1079,7 +1240,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-319">line 319</a>
+				 <a href="Application.js.html#sunlight-1-line-364">line 364</a>
 			</li>
 		</ul>
 	</dd>
@@ -1235,7 +1396,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-01-22T20:13:38-03:00
+		on 2021-01-23T00:05:44-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

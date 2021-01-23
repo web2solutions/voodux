@@ -18,6 +18,8 @@ export default async function (eventObj) {
   console.log(userCollection)
   await userCollection.add()
 
+  console.log('application.applicationWorker', application.applicationWorker)
+
   document.getElementById('guid').innerText = 'Aplication GUID -> ' + this.guid
 
   const dialog = document.getElementById('favDialog')

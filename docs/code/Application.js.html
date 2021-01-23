@@ -31,13 +31,6 @@
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
-				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="API.html">API</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
 					<li><a href="module-utils.html">utils</a></li>
@@ -48,6 +41,13 @@
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
 					<li><a href="Application.html">Application</a></li><li><a href="Data.html">Data</a></li><li><a href="DataAPI.html">DataAPI</a></li><li><a href="DataTransportLocal.html">DataTransportLocal</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#applicationWorker">applicationWorker</a></li><li><a href="global.html#dataStrategy">dataStrategy</a></li><li><a href="global.html#guid">guid</a></li><li><a href="global.html#models">models</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#started">started</a></li>
 				</ul>
 			</li>
 			
@@ -91,44 +91,9 @@ import DataAPI from './DataAPI'
 import EventSystem from './EventSystem'
 
 
-/**
- * Private properties
- */
-/**
- * Application name
- * @Private
- * @type  {String}
- */
-let _name = 'My Application Name'
-
-/**
- * Models map
- * @Private
- * @type  {Map}
- */
-const _models = new Map()
-
-/**
- * Is application started
- * @Private
- * @type  {Boolean}
- */
-
-let _started = false
-
-/**
- * Data strategy
- * recognized values: offlineFirst, onlineFirst, offline, online
- * @Private
- * @type {String}
- */
-let _dataStrategy = 'offlineFirst'
-
-let _guid = GUID()
-let _useWorker = false
-let _serviceWorker = false
 
 const _workerOnMessage = function (event) {
+  console.error('_workerOnMessage')
   const {
     cmd /* , message */
   } = event.data
@@ -136,7 +101,7 @@ const _workerOnMessage = function (event) {
     case 'responseClientId':
       this.triggerEvent('worker:responseClientId', {
         application: this,
-        worker: _serviceWorker,
+        worker: this.applicationWorker,
         ...event.data
       })
       break
@@ -145,60 +110,6 @@ const _workerOnMessage = function (event) {
   }
 }
 
-// private API
-/**
- * @namespace API
- * @description Private API for Public Application
- * @property {function}  _setModel            - Create an entry on Models Map
- * @property {function}  _mapModels           - Map all models into application namespace and create an associated DataAPI instance
- * @property {function}  _setStarted - Set Application _started flag
- */
-
-const _API = {
-  /**
-   * @Method _API._setModel
-   * @param  {string} entity='' - Data Entity Name for model being set
-   * @param  {object} dataAPI={} - DataAPI Instance related to model being set
-   */
-  _setModel (entity = '', dataAPI = {}) {
-    let _error = null
-    let _data = null
-    try {
-      _models.set(entity, dataAPI)
-      _data = _models.get(entity)
-    } catch (error) {
-      _error = error
-    }
-    return createMethodSignature(_error, _data)
-  },
-  _mapModels (schemas, application) {
-    let _error = null
-    let _data = null
-    try {
-      for (const entity in schemas) {
-        if (Object.prototype.hasOwnProperty.call(schemas, entity)) {
-          const strategy = 'offlineFirst'
-          const model = schemas[entity]
-          const dataAPI = new DataAPI({
-            application,
-            entity,
-            strategy,
-            model
-          })
-          this._setModel(entity, dataAPI)
-        }
-      }
-      _data = _models
-    } catch (error) {
-      _error = error
-    }
-    return createMethodSignature(_error, _data)
-  },
-  _setStarted: (started = false) => {
-    _started = started
-    return createMethodSignature(null, started)
-  }
-}
 
 /**
  * @Class Application
@@ -249,46 +160,143 @@ const _API = {
     await foundation.start()
  */
 export default class Application extends EventSystem {
-  #schemas
+  #_schemas
+  #_name
+  #_dataStrategy
+  #_started
+  #_models
+  #_guid
+  #_useWorker
+  #_workers
   constructor ({
-    name,
+    name = 'My Application Name',
     dataStrategy = 'offlineFirst',
     useWorker = false,
     schemas = {}
   } = {}) {
     super()
-    _name = name
-    _dataStrategy = dataStrategy || 'offlineFirst'
-    _useWorker = useWorker
-    this.#schemas = schemas
+    this.#_name = name
+    this.#_dataStrategy = dataStrategy
+    this.#_useWorker = useWorker
+    this.#_schemas = schemas
+    this.#_started = false
+    this.#_guid = GUID()
+    this.#_models = new Map()
+    this.#_useWorker = useWorker || false
+    this.#_workers = {}
   }
 
+  /**
+   * @Property Application.dataStrategy
+   * @description Get the data strategy being used.&lt;br> Possible values are: offlineFirst, onlineFirst, offline, online. &lt;br> Default: offlineFirst
+   * @return this.#_dataStrategy
+   */
   get dataStrategy () {
-    return _dataStrategy
+    return this.#_dataStrategy
   }
 
+  /**
+   * @Property Application.guid
+   * @description Get the Application Session guid currently being used.
+   * @return this.#_guid
+   */
   get guid () {
-    return _guid
+    return this.#_guid
   }
 
+  /**
+   * @Property Application.models
+   * @description Get the Application models API(DataAPI)
+   * @return this.#_models
+   */
   get models () {
-    return _models
+    return this.#_models
   }
 
+  /**
+   * @Property Application.name
+   * @description Get the Application name
+   * @return this.#_name
+   */
   get name () {
-    return _name
+    return this.#_name
   }
 
+  /**
+   * @Property Application.name
+   * @description Set the Application name
+   * @param  {string} name - Application name
+   * @return this.#_name
+   */
   set name (name) {
-    _name = name
+    this.#_name = name
+    return this.#_name
   }
 
+  /**
+   * @Property Application.started
+   * @description Get the start state
+   * @return this.#_started
+   */
   get started () {
-    return _started
+    return this.#_started
   }
 
-  get serviceWorker () {
-    return _serviceWorker
+  /**
+   * @Property Application.applicationWorker
+   * @description Get the Application worker
+   * @return this.#_workers.application
+   */
+  get applicationWorker() {
+    console.error(this.#_workers.application)
+    return this.#_workers.application
+  }
+  /**
+   * @Property Application.applicationWorker
+   * @description Set the Application worker
+   * @param  {string} worker - worker name
+   * @return this.#_workers.application
+   */
+  set applicationWorker(worker) {
+    console.error(this.#_workers.application)
+    this.#_workers.application = worker
+    return this.#_workers.application
+  }
+
+  #setModel (entity = '', dataAPI = {}) {
+    let _error = null
+    let _data = null
+    try {
+      this.#_models.set(entity, dataAPI)
+      _data = this.#_models.get(entity)
+    } catch (error) {
+      _error = error
+    }
+    return createMethodSignature(_error, _data)
+  }
+
+  #mapModels (schemas) {
+    let _error = null
+    let _data = null
+    try {
+      for (const entity in schemas) {
+        if (Object.prototype.hasOwnProperty.call(schemas, entity)) {
+          const strategy = 'offlineFirst'
+          const model = schemas[entity]
+          const dataAPI = new DataAPI({
+            application: this,
+            entity,
+            strategy,
+            model
+          })
+          this.#setModel(entity, dataAPI)
+        }
+      }
+      _data = this.#_models
+    } catch (error) {
+      _error = error
+    }
+    return createMethodSignature(_error, _data)
   }
 
   /**
@@ -297,7 +305,7 @@ export default class Application extends EventSystem {
    * @return  {boolean}
    */
   get useWorker () {
-    return _useWorker
+    return this.#_useWorker
   }
 
   /**
@@ -328,21 +336,22 @@ export default class Application extends EventSystem {
   setupAppGuid () {
     const guidCache = this.getGuidStorage() || false
     if (guidCache) {
-      _guid = guidCache
+      this.#_guid = guidCache
     } else {
-      this.setGuidStorage(_guid)
+      this.setGuidStorage(this.#_guid)
     }
     return this.getGuidStorage()
   }
+  
   /**
    * @async
-   * @Method Application.registerWorker
+   * @Method Application.#registerApplicationWorker
    * @description Setup and Register a Service worker and get it ready for usage
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
    * @return  {object} signature.data - Worker Registration Object
    */
-  registerWorker (workerFile) {
+  #registerApplicationWorker (workerFile = 'ServiceWorker.js') {
     const self = this
     return new Promise((resolve, reject) => {
       if ('serviceWorker' in navigator) {
@@ -354,11 +363,47 @@ export default class Application extends EventSystem {
             // registration worked
             navigator.serviceWorker.addEventListener('message', _workerOnMessage.bind(self))
             if (reg.installing) {
-              _serviceWorker = reg.installing
-              _serviceWorker.postMessage({ cmd: 'getClientId', message: null })
+              self.#_workers['application'] = reg.installing
+              self.#_workers['application'].postMessage({ cmd: 'getClientId', message: null })
             } else if (reg.active) {
-              _serviceWorker = reg.active
-              _serviceWorker.postMessage({ cmd: 'getClientId', message: null })
+              self.#_workers['application'] = reg.active
+              self.#_workers['application'].postMessage({ cmd: 'getClientId', message: null })
+            }
+            resolve(createMethodSignature(null, reg))
+          })
+          .catch(function (error) {
+            // registration failed
+            resolve(createMethodSignature(error, null))
+          })
+      }
+    })
+  }
+
+  /**
+   * @async
+   * @Method Application.#registerApplicationWorker
+   * @description Setup and Register a Service worker and get it ready for usage
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error
+   * @return  {object} signature.data - Worker Registration Object
+   */
+  #registerWorker (name = '', workerFile = 'ServiceWorker.js') {
+    const self = this
+    return new Promise((resolve, reject) => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+          .register('/' + workerFile, {
+            // scope: '/'
+          })
+          .then(function (reg) {
+            // registration worked
+            navigator.serviceWorker.addEventListener('message', _workerOnMessage.bind(self))
+            if (reg.installing) {
+              self.#_workers[name] = reg.installing
+              self.#_workers[name].postMessage({ cmd: 'getClientId', message: null })
+            } else if (reg.active) {
+              self.#_workers[name] = reg.active
+              self.#_workers[name].postMessage({ cmd: 'getClientId', message: null })
             }
             resolve(createMethodSignature(null, reg))
           })
@@ -382,7 +427,7 @@ export default class Application extends EventSystem {
     let _data = null
     try {
       this.setupAppGuid()
-      const mapModels = _API._mapModels(this.#schemas, this)
+      const mapModels = this.#mapModels(this.#_schemas)
       // start all here
       _data = {
         status: {
@@ -417,14 +462,14 @@ export default class Application extends EventSystem {
       const vitals = this.#startVitals()
 
       if (this.useWorker) {
-        await this.registerWorker('ServiceWorker.js')
+        await this.#registerApplicationWorker()
       }
 
-      _API._setStarted(true)
+     this.#_started = true
 
       _data = {
         ...vitals.data,
-        started: this.started
+        started: this.#_started
 
       }
     } catch (error) {
@@ -488,7 +533,7 @@ export default class Application extends EventSystem {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-01-22T20:13:38-03:00
+		on 2021-01-23T00:05:43-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
