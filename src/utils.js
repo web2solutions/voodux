@@ -51,7 +51,7 @@ export function toJSON (obj = {}) {
  * All columns inside returned configuration are indexed at IndexedDB
  * prepend __id as local primary key and _id for remote primary key
  * @function
- * @return  {string} guid / uuid
+ * @return  {string} Dexie table configuration string
  */
 export function mongooseToDexieTableString (schema) {
   const cols = []
@@ -65,6 +65,9 @@ export function mongooseToDexieTableString (schema) {
       } = property
       // console.debug(propertyName, property)
       if (propertyName === '_id' || propertyName === '__id') {
+        continue
+      }
+      if (!_index) {
         continue
       }
       cols.push(propertyName)
