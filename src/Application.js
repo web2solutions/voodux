@@ -104,14 +104,14 @@ export default class Application extends EventSystem {
     this.#_models = {}
     this.#_useWorker = useWorker || false
     this.#_workers = {}
-    console.error(1 , this.#_schemas)
     this.localDatabaseTransport = new LocalDatabaseTransport()
   }
 
   /**
    * @member {getter} Application.dataStrategy
    * @Description Get the data strategy being used.<br> Possible values are: offlineFirst, onlineFirst, offline, online. <br> Default: offlineFirst
-   * @return this.#_dataStrategy
+   * @example console.log(Application.dataStrategy)
+   * @return {string} this.#_dataStrategy
    */
   get dataStrategy () {
     return this.#_dataStrategy
@@ -120,7 +120,7 @@ export default class Application extends EventSystem {
   /**
    * @member {getter} Application.guid
    * @description Get the Application Session guid currently being used.
-   * @return this.#_guid
+   * @example console.log(Application.guid)
    */
   get guid () {
     return this.#_guid
@@ -129,7 +129,17 @@ export default class Application extends EventSystem {
   /**
    * @member {getter} Application.data
    * @description Get the Application data API(DataAPI)
-   * @return this.#_models
+   * @example 
+      const { User, Product } = application.data
+      const Eduardo = await User.add({
+        name: 'Eduardo Almeida',
+        username: 'web2'
+      })
+      console.debug(Eduardo)
+      // {  
+      //    data: {__id: 1, _id: "600e0ae8d9d7f50000e1444b", name: "Eduardo Almeida", username: "web2", id: "600e0ae8d9d7f50000e1444b"}
+      //    error: null
+      // }
    */
   get data() {
     console.debug('get DATA', this.#_models)
@@ -141,7 +151,6 @@ export default class Application extends EventSystem {
    * @name Application.name
    * @description Get the Application name
    * @example console.log(Application.name)
-   * @return this.#_name
    */
   get name () {
     return this.#_name
@@ -153,17 +162,15 @@ export default class Application extends EventSystem {
    * @description Set the Application name
    * @example Application.name = 'Provide the name here'
    * @param  {string} name - Application name
-   * @return this.#_name
    */
   set name (name) {
     this.#_name = name
-    return this.#_name
   }
 
   /**
    * @member {getter} Application.started
    * @description Get the start state
-   * @return this.#_started
+   * @example console.log(Application.started)
    */
   get started () {
     return this.#_started
@@ -172,8 +179,8 @@ export default class Application extends EventSystem {
   /**
    * @memberof Application
    * @member {getter} Application.applicationWorker
+   * @example Application.applicationWorker.postMessage()
    * @description Get the Application worker
-   * @return this.#_workers.application
    */
   get applicationWorker() {
     return this.#_workers.application

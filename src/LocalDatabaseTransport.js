@@ -10,7 +10,7 @@ import { createMethodSignature, mongooseToDexieTableString } from './utils'
  * @param  {number} config.version - Database version. <br>Same as IndexedDB database version.
  * @param  {object} config.tables - Database tables. <br>Dexie tables configuration.
  * @param  {string} config.dbName - Database name. <br>Same as IndexedDB database name.
- * @example {@lang javascript}
+ * @example
     import LocalDatabaseTransport from './LocalDatabaseTransport'
 
     const UserSchema = new mongoose.Schema({
@@ -46,7 +46,7 @@ import { createMethodSignature, mongooseToDexieTableString } from './utils'
     await foundation.start()
  */
 
-export class LocalDatabaseTransport extends Dexie {
+export default class LocalDatabaseTransport extends Dexie {
   #_version
   #_tables
   #_connected
