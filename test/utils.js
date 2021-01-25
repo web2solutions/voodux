@@ -57,6 +57,34 @@ describe('#--- Utils module Test Suite', () => {
     })
   })
 
+  describe('toJSON: utils.toJSON(string|object) -> stringify and parse an object', () => {
+    it('toJSON() must support Strings', (done) => {
+      const obj = '{ "name": "eduardo" }'
+      const json = utils.toJSON(obj)
+      assert.equal(json.name, 'eduardo')
+      done()
+    })
+
+    it('toJSON() Strings must be valid JSON string', (done) => {
+      const obj = '{ name: "eduardo" }'
+      let json = {}
+      try {
+        json = utils.toJSON(obj)
+      } catch (error) {
+        json = {}
+      }
+      assert.notEqual(json.name, 'eduardo')
+      done()
+    })
+
+    it('toJSON() must support Object', (done) => {
+      const obj = { name: 'eduardo' }
+      const json = utils.toJSON(obj)
+      assert.equal(json.name, 'eduardo')
+      done()
+    })
+  })
+
   describe('Mongoose 2 Dexie: utils.mongooseToDexieTableString(schema) -> Mongoose schema conversion to Dexie table config', () => {
     it('Table config must have __id as Primary Key', (done) => {
       const schema = new mongoose.Schema({

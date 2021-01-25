@@ -40,11 +40,15 @@ export function uuid () {
 }
 
 /**
- * toJSON
+ * toJSON -  stringify and parse an object<br> It uses native JSON internally.
  * @function
- * @return  {object} stringify and parse an object
+ * @param {string|object} obj - Valid JSON object or string
+ * @return  {object} new JSON object
  */
-export function toJSON (obj = {}) {
+export function toJSON (obj) {
+  if (typeof obj === 'string') {
+    return JSON.parse(obj)
+  }
   return JSON.parse(JSON.stringify(obj))
 }
 
