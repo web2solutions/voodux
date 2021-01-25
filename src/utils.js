@@ -44,3 +44,40 @@ export function uuid () {
     return v.toString(16)
   })
 }
+
+/**
+ * toJSON
+ * @function
+ * @return  {object} stringify and parse an object
+ */
+export function toJSON (obj = {}) {
+  return JSON.parse(JSON.stringify(obj))
+}
+
+/**
+ * mongooseToDexieTableString
+ * convert given Mongoose schema to a Dexie Table columns configuration. <br>
+ * All columns inside returned configuration are indexed at IndexedDB
+ * prepend __id as local primary key and _id for remote primary key
+ * @function
+ * @return  {string} guid / uuid
+ */
+export function mongooseToDexieTableString (schema) {
+  const cols = []
+  for (const propertyName in schema.paths) {
+    if (Object.prototype.hasOwnProperty.call(schema.paths, propertyName)) {
+      const property = schema.paths[propertyName]
+      const {
+        instance,
+        _index,
+        isRequired
+      } = property
+      // console.debug(propertyName, property)
+      if (propertyName === '_id' || propertyName === '__id') {
+        continue
+      }
+      cols.push(propertyName)
+    }
+  }
+  return `++__id,_id,${cols.join(',')}`
+}

@@ -1,24 +1,24 @@
 /* global document */
 export default async function (eventObj) {
-  console.error('application:start::::::::', eventObj)
   const { /* data, */ application, error } = eventObj
-  for (const [key, value] of this.models) {
-    console.log(key)
-    console.log(value)
-  }
-
   if (error) {
     throw new Error(`Error starting application stack: ${error}`)
   }
+  const { User, Product } = application.data
+  const Eduardo = await User.add({
+    name: 'Eduardo Almeida',
+    username: 'web2'
+  })
+  console.debug('Eduardo', Eduardo)
 
-  console.log(application)
-  console.log(application.models)
-  console.log(application.models.get('User'))
-  const userCollection = application.models.get('User')
-  console.log(userCollection)
-  await userCollection.add()
+  const Volvo = await Product.add({
+    name: 'Volvo XC90',
+    vendor: 'Volvo',
+    price_cost: 150000
+  })
+  console.debug('Volvo', Volvo)
 
-  console.log('application.applicationWorker', application.applicationWorker)
+  // console.log('application.applicationWorker', application.applicationWorker)
 
   document.getElementById('guid').innerText = 'Aplication GUID -> ' + this.guid
 

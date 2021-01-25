@@ -40,14 +40,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Application.html">Application</a></li><li><a href="Data.html">Data</a></li><li><a href="DataAPI.html">DataAPI</a></li><li><a href="DataTransportLocal.html">DataTransportLocal</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="global.html#applicationWorker">applicationWorker</a></li><li><a href="global.html#dataStrategy">dataStrategy</a></li><li><a href="global.html#guid">guid</a></li><li><a href="global.html#models">models</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#started">started</a></li>
+					<li><a href="Application.html">Application</a></li><li><a href="DataAPI.html">DataAPI</a></li>
 				</ul>
 			</li>
 			
@@ -327,7 +320,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-28">line 28</a>
+				 <a href="Application.js.html#sunlight-1-line-84">line 84</a>
 			</li>
 		</ul>
 	</dd>
@@ -387,7 +380,7 @@
         throw new Error(&#x60;Error starting application stack: ${error}&#x60;)
       }
 
-      const userCollection = application.models.get(&#x27;User&#x27;)
+      const userCollection = application.data.get(&#x27;User&#x27;)
       console.log(userCollection)
       await userCollection.add()
 
@@ -429,20 +422,31 @@
         <dl>
             
 <hr>
-<dt class="name" id=".useWorker">
-    <h4 id=".useWorker"><span class="type-signature">&lt;static> </span>useWorker<span class="type-signature"></span></h4>
+<dt class="name" id=".applicationWorker">
+    <h4 id=".applicationWorker"><span class="type-signature">&lt;static> </span>applicationWorker<span class="type-signature"> :getter</span></h4>
 
     
-    <p class="summary">flag if is there ServiceWorker being used.</p>
+    <p class="summary">Get the Application worker.</p>
     
 </dt>
 <dd>
     
     <div class="description">
-        flag if is there ServiceWorker being used
+        Get the Application worker
     </div>
     
 
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">getter</span>
+
+
+
+            </li>
+        </ul>
     
 
     
@@ -481,7 +485,600 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-216">line 216</a>
+				 <a href="Application.js.html#sunlight-1-line-224">line 224</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".data">
+    <h4 id=".data"><span class="type-signature">&lt;static> </span>data<span class="type-signature"> :getter</span></h4>
+
+    
+    <p class="summary">Get the Application data API(DataAPI).</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Get the Application data API(DataAPI)
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">getter</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-181">line 181</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".dataStrategy">
+    <h4 id=".dataStrategy"><span class="type-signature">&lt;static> </span>dataStrategy<span class="type-signature"> :getter</span></h4>
+
+    
+    <p class="summary">Get the data strategy being used.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Get the data strategy being used.<br> Possible values are: offlineFirst, onlineFirst, offline, online. <br> Default: offlineFirst
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">getter</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-163">line 163</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".guid">
+    <h4 id=".guid"><span class="type-signature">&lt;static> </span>guid<span class="type-signature"> :getter</span></h4>
+
+    
+    <p class="summary">Get the Application Session guid currently being used.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Get the Application Session guid currently being used.
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">getter</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-172">line 172</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".name">
+    <h4 id=".name"><span class="type-signature">&lt;static> </span>name<span class="type-signature"> :getter</span></h4>
+
+    
+    <p class="summary">Get the Application name.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Get the Application name
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">getter</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-191">line 191</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">console.log(Application.name)</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".name">
+    <h4 id=".name"><span class="type-signature">&lt;static> </span>name<span class="type-signature"> :setter</span></h4>
+
+    
+    <p class="summary">Set the Application name.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the Application name
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">setter</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-202">line 202</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">Application.name = &#x27;Provide the name here&#x27;</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".started">
+    <h4 id=".started"><span class="type-signature">&lt;static> </span>started<span class="type-signature"> :getter</span></h4>
+
+    
+    <p class="summary">Get the start state.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Get the start state
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">getter</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-215">line 215</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".useWorker">
+    <h4 id=".useWorker"><span class="type-signature">&lt;static> </span>useWorker<span class="type-signature"> :getter</span></h4>
+
+    
+    <p class="summary">flag if is there ServiceWorker being used.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        flag if is there ServiceWorker being used
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">getter</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-274">line 274</a>
 			</li>
 		</ul>
 	</dd>
@@ -565,7 +1162,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-296">line 296</a>
+				 <a href="Application.js.html#sunlight-1-line-318">line 318</a>
 			</li>
 		</ul>
 	</dd>
@@ -726,7 +1323,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-260">line 260</a>
+				 <a href="Application.js.html#sunlight-1-line-354">line 354</a>
 			</li>
 		</ul>
 	</dd>
@@ -887,7 +1484,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-236">line 236</a>
+				 <a href="Application.js.html#sunlight-1-line-294">line 294</a>
 			</li>
 		</ul>
 	</dd>
@@ -1038,7 +1635,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-225">line 225</a>
+				 <a href="Application.js.html#sunlight-1-line-283">line 283</a>
 			</li>
 		</ul>
 	</dd>
@@ -1139,7 +1736,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-245">line 245</a>
+				 <a href="Application.js.html#sunlight-1-line-303">line 303</a>
 			</li>
 		</ul>
 	</dd>
@@ -1240,7 +1837,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-364">line 364</a>
+				 <a href="Application.js.html#sunlight-1-line-428">line 428</a>
 			</li>
 		</ul>
 	</dd>
@@ -1396,7 +1993,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-01-23T00:05:44-03:00
+		on 2021-01-24T23:29:02-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -3,8 +3,8 @@
 import * as utils from '../src/utils'
 import assert from 'assert'
 
-describe('#--- Utils Test Suite', () => {
-  describe('Method Signatures', () => {
+describe('#--- Utils module Test Suite', () => {
+  describe('Method Signatures: utils.createMethodSignature(error: string|object, data: string|object|array|boolean) -> Create default signature method object', () => {
     it('method signatures should have at least 2 data properties', (done) => {
       const _error = 'fake error'
       const _data = 'fake data'

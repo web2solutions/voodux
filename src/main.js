@@ -2,6 +2,7 @@
 import Application from './Application'
 
 import UserSchema from './schemas/User'
+import ProductSchema from './schemas/Product'
 
 // application event handlers
 import onApplicationStart from './events/onApplicationStart'
@@ -13,7 +14,8 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
     useWorker: true,
     dataStrategy: 'offlineFirst',
     schemas: {
-      User: UserSchema
+      User: UserSchema,
+      Product: ProductSchema
     }
 
   })

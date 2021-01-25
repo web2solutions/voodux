@@ -40,14 +40,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Application.html">Application</a></li><li><a href="Data.html">Data</a></li><li><a href="DataAPI.html">DataAPI</a></li><li><a href="DataTransportLocal.html">DataTransportLocal</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="global.html#applicationWorker">applicationWorker</a></li><li><a href="global.html#dataStrategy">dataStrategy</a></li><li><a href="global.html#guid">guid</a></li><li><a href="global.html#models">models</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#started">started</a></li>
+					<li><a href="Application.html">Application</a></li><li><a href="DataAPI.html">DataAPI</a></li>
 				</ul>
 			</li>
 			
@@ -85,15 +78,15 @@
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">/* global sessionStorage, navigator */
-
-import { createMethodSignature, GUID } from './utils'
+import Dexie from 'dexie'
+import { createMethodSignature, GUID, mongooseToDexieTableString } from './utils'
 import DataAPI from './DataAPI'
 import EventSystem from './EventSystem'
 
 
 
 const _workerOnMessage = function (event) {
-  console.error('_workerOnMessage')
+  // console.error('_workerOnMessage')
   const {
     cmd /* , message */
   } = event.data
@@ -109,6 +102,62 @@ const _workerOnMessage = function (event) {
       console.log(`Sorry, we are out of ${cmd}.`)
   }
 }
+
+export class LocalDatabaseTransport extends Dexie {
+  #_version
+  #_tables
+  #_connected
+  #_schemas
+  #_dbName
+  constructor({ version = 1, tables = {}, dbName = 'DatabaseName' } = {}) {
+    console.error('STARTED LocalDatabaseTransport')
+    // run the super constructor Dexie(databaseName) to create the IndexedDB
+    // database.
+    super(dbName)
+    this.#_dbName = dbName
+    this.#_version = version
+    this.#_tables = tables
+    this.#_connected = false
+    this.#_schemas = {}
+  }
+
+  // schema name, mongoose schema
+  addSchema(schemaName, schema) {
+    this.#_schemas[schemaName] = schema
+  }
+
+  
+
+  async connect() {
+
+    for (const entity in this.#_schemas) {
+      if (Object.prototype.hasOwnProperty.call(this.#_schemas, entity)) {
+        console.error(entity)
+        this.#_tables[entity] = mongooseToDexieTableString(this.#_schemas[entity])
+      }
+      
+    }
+    console.log(this.#_schemas)
+    console.log(this.#_tables)
+    console.error('         CONNECTED           ')
+    this
+      .version(this.#_version)
+        .stores(this.#_tables)
+
+    // we can retrieve our todos store with Dexie.table, and then use it as a
+    // field on our Database class for convenience; we can now write code such
+    // as "this.todos.add(...)" rather than "this.table('todos').add(...)"
+    // this.todos = this.table('todos')
+    for (const tableName in this.#_tables)
+    {
+      this[tableName] = this.table(tableName)  
+    }
+
+    const open = await this.open()
+    console.debug('open', open)
+  }
+}
+
 
 
 /**
@@ -151,7 +200,7 @@ const _workerOnMessage = function (event) {
         throw new Error(`Error starting application stack: ${error}`)
       }
 
-      const userCollection = application.models.get('User')
+      const userCollection = application.data.get('User')
       console.log(userCollection)
       await userCollection.add()
 
@@ -160,6 +209,7 @@ const _workerOnMessage = function (event) {
     await foundation.start()
  */
 export default class Application extends EventSystem {
+  
   #_schemas
   #_name
   #_dataStrategy
@@ -168,6 +218,7 @@ export default class Application extends EventSystem {
   #_guid
   #_useWorker
   #_workers
+
   constructor ({
     name = 'My Application Name',
     dataStrategy = 'offlineFirst',
@@ -181,14 +232,16 @@ export default class Application extends EventSystem {
     this.#_schemas = schemas
     this.#_started = false
     this.#_guid = GUID()
-    this.#_models = new Map()
+    this.#_models = {}
     this.#_useWorker = useWorker || false
     this.#_workers = {}
+    console.error(1 , this.#_schemas)
+    this.localDatabaseTransport = new LocalDatabaseTransport()
   }
 
   /**
-   * @Property Application.dataStrategy
-   * @description Get the data strategy being used.&lt;br> Possible values are: offlineFirst, onlineFirst, offline, online. &lt;br> Default: offlineFirst
+   * @member {getter} Application.dataStrategy
+   * @Description Get the data strategy being used.&lt;br> Possible values are: offlineFirst, onlineFirst, offline, online. &lt;br> Default: offlineFirst
    * @return this.#_dataStrategy
    */
   get dataStrategy () {
@@ -196,7 +249,7 @@ export default class Application extends EventSystem {
   }
 
   /**
-   * @Property Application.guid
+   * @member {getter} Application.guid
    * @description Get the Application Session guid currently being used.
    * @return this.#_guid
    */
@@ -205,17 +258,20 @@ export default class Application extends EventSystem {
   }
 
   /**
-   * @Property Application.models
-   * @description Get the Application models API(DataAPI)
+   * @member {getter} Application.data
+   * @description Get the Application data API(DataAPI)
    * @return this.#_models
    */
-  get models () {
+  get data() {
+    console.debug('get DATA', this.#_models)
     return this.#_models
   }
 
   /**
-   * @Property Application.name
+   * @member {getter} Application.name
+   * @name Application.name
    * @description Get the Application name
+   * @example console.log(Application.name)
    * @return this.#_name
    */
   get name () {
@@ -223,8 +279,10 @@ export default class Application extends EventSystem {
   }
 
   /**
-   * @Property Application.name
+   * @member {setter} Application.name
+   * @name Application.name
    * @description Set the Application name
+   * @example Application.name = 'Provide the name here'
    * @param  {string} name - Application name
    * @return this.#_name
    */
@@ -234,7 +292,7 @@ export default class Application extends EventSystem {
   }
 
   /**
-   * @Property Application.started
+   * @member {getter} Application.started
    * @description Get the start state
    * @return this.#_started
    */
@@ -243,64 +301,57 @@ export default class Application extends EventSystem {
   }
 
   /**
-   * @Property Application.applicationWorker
+   * @member {getter} Application.applicationWorker
    * @description Get the Application worker
    * @return this.#_workers.application
    */
   get applicationWorker() {
-    console.error(this.#_workers.application)
-    return this.#_workers.application
-  }
-  /**
-   * @Property Application.applicationWorker
-   * @description Set the Application worker
-   * @param  {string} worker - worker name
-   * @return this.#_workers.application
-   */
-  set applicationWorker(worker) {
-    console.error(this.#_workers.application)
-    this.#_workers.application = worker
     return this.#_workers.application
   }
 
-  #setModel (entity = '', dataAPI = {}) {
+  #setModel(entity = '', dataAPI = {}) {
+    console.error('#setModel', {entity, dataAPI})
     let _error = null
     let _data = null
     try {
-      this.#_models.set(entity, dataAPI)
-      _data = this.#_models.get(entity)
+      this.#_models[entity] =  dataAPI
+      _data = this.#_models[entity]
     } catch (error) {
+      console.error('EROROR', error)
       _error = error
     }
     return createMethodSignature(_error, _data)
   }
 
-  #mapModels (schemas) {
+  #mapModels(schemas) {
+    console.error('#mapModels', schemas)
     let _error = null
     let _data = null
     try {
       for (const entity in schemas) {
         if (Object.prototype.hasOwnProperty.call(schemas, entity)) {
+          console.debug('for (const entity in schemas)', entity)
           const strategy = 'offlineFirst'
-          const model = schemas[entity]
+          const schema = schemas[entity]
           const dataAPI = new DataAPI({
             application: this,
             entity,
             strategy,
-            model
+            schema
           })
           this.#setModel(entity, dataAPI)
         }
       }
       _data = this.#_models
     } catch (error) {
+      console.error(error)
       _error = error
     }
     return createMethodSignature(_error, _data)
   }
 
   /**
-   * @member Application.useWorker
+   * @member {getter} Application.useWorker
    * @Description flag if is there ServiceWorker being used
    * @return  {boolean}
    */
@@ -422,12 +473,18 @@ export default class Application extends EventSystem {
    * @return  {string|object} signature.error - Execution error
    * @return  {object} signature.data - Application data
    */
-  #startVitals () {
+  async #startVitals () {
     let _error = null
     let _data = null
     try {
       this.setupAppGuid()
       const mapModels = this.#mapModels(this.#_schemas)
+      console.error('#startVitals this.#_schemas', this.#_schemas)
+      console.error('#startVitals this.data', this.data)
+
+      
+      await this.localDatabaseTransport.connect()
+      // start database
       // start all here
       _data = {
         status: {
@@ -459,7 +516,7 @@ export default class Application extends EventSystem {
     let _error = null
     let _data = null
     try {
-      const vitals = this.#startVitals()
+      const vitals = await this.#startVitals()
 
       if (this.useWorker) {
         await this.#registerApplicationWorker()
@@ -533,7 +590,7 @@ export default class Application extends EventSystem {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-01-23T00:05:43-03:00
+		on 2021-01-24T23:29:02-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

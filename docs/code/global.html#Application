@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Agnostic Web Foundation Class: DataAPI</title>
+	<title>Agnostic Web Foundation Class: Application</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -40,7 +40,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Application.html">Application</a></li><li><a href="DataAPI.html">DataAPI</a></li>
+					<li><a href="global.html#Application">Application</a></li><li><a href="Data.html">Data</a></li><li><a href="DataAPI.html">DataAPI</a></li><li><a href="DataTransportLocal.html">DataTransportLocal</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#applicationWorker">applicationWorker</a></li><li><a href="global.html#guid">guid</a></li><li><a href="global.html#models">models</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#started">started</a></li>
 				</ul>
 			</li>
 			
@@ -72,13 +79,13 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: DataAPI</h1>
+	<h1 class="page-title">Class: Application</h1>
 <section>
 
 <header>
     
         <h2>
-        DataAPI
+        Application
         </h2>
         
     
@@ -91,17 +98,17 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="DataAPI"><span class="type-signature"></span>new DataAPI(config)</h4>
+    <h4 class="name" id="Application"><span class="type-signature"></span>new Application(config)</h4>
     
     
-    <p class="summary">Models Data API.</p>
+    <p class="summary">Application boostrap class.</p>
     
 </dt>
 <dd>
 
     
     <div class="description">
-        Models Data API
+        Application boostrap class
     </div>
     
 
@@ -153,7 +160,7 @@
 
             
 
-            <td class="description last">Configuration factory
+            <td class="description last">Application configuration
                 <h6 class="method-params-label method-subparams-label">Properties</h6>
                 
 
@@ -179,7 +186,7 @@
 
         <tr>
             
-                <td class="name"><code>application</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
@@ -196,14 +203,14 @@
 
             
 
-            <td class="description last">Provide Accesss to Application scope</td>
+            <td class="description last">Application name</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>entity</code></td>
+                <td class="name"><code>dataStrategy</code></td>
             
 
             <td class="type">
@@ -220,14 +227,14 @@
 
             
 
-            <td class="description last">Data entity which the created object is handling</td>
+            <td class="description last">Data strategy. Recognized values: offlineFirst, onlineFirst, offline, online</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>strategy</code></td>
+                <td class="name"><code>useWorker</code></td>
             
 
             <td class="type">
@@ -244,20 +251,20 @@
 
             
 
-            <td class="description last">Data transport strategy</td>
+            <td class="description last">Use a ServiceWorker in Background</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>schema</code></td>
+                <td class="name"><code>schemas</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">object</span>
 
 
 
@@ -268,7 +275,7 @@
 
             
 
-            <td class="description last">Access to related data schema</td>
+            <td class="description last">map of data schemas</td>
         </tr>
 
     
@@ -319,8 +326,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-5">line 5</a>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-28">line 28</a>
 			</li>
 		</ul>
 	</dd>
@@ -349,12 +356,44 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">const dataAPI = new DataAPI({
-      application ,   // Application instance, object
-      entity,         // entity name, string
-      strategy,       // data strategy, string
-      schema           // data schema, mongoose schema
-    })</pre>
+    <pre class="sunlight-highlight-javascript">
+    import Application from &#x27;./Application&#x27;
+    import mongoose from &#x27;mongoose&#x27;
+
+    const UserSchema = new mongoose.Schema({
+      name: {
+        type: String,
+        required: true
+      },
+      username: {
+        type: String,
+        required: true
+      }
+    })
+
+    const foundation = new Application({
+      name: &#x27;My App&#x27;,
+      useWorker: true,
+      dataStrategy: &#x27;offlineFirst&#x27;,
+      schemas: {
+        User: UserSchema
+      }
+    })
+
+    foundation.on(&#x27;application:start&#x27;, function (eventObj){
+      const { application, data, error } = eventObj
+ 
+      if (error) {
+        throw new Error(&#x60;Error starting application stack: ${error}&#x60;)
+      }
+
+      const userCollection = application.models.get(&#x27;User&#x27;)
+      console.log(userCollection)
+      await userCollection.add()
+
+    })
+
+    await foundation.start()</pre>
 
 
     
@@ -370,9 +409,7 @@
 
 
     <ul>
-        <li>Data</li>
-    
-        <li>DataTransportLocal</li>
+        <li>EventSystem</li>
     </ul>
 
 
@@ -387,6 +424,82 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id=".useWorker">
+    <h4 id=".useWorker"><span class="type-signature">&lt;static> </span>useWorker<span class="type-signature"></span></h4>
+
+    
+    <p class="summary">flag if is there ServiceWorker being used.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        flag if is there ServiceWorker being used
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-219">line 219</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -395,17 +508,440 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".add"><span class="type-signature">&lt;async, static> </span>add(doc)</h4>
+    <h4 class="name" id=".registerApplicationWorker"><span class="type-signature">&lt;async, static> </span>registerApplicationWorker()</h4>
     
     
-    <p class="summary">add a new document to the storage.</p>
+    <p class="summary">Setup and Register a Service worker and get it ready for usage.</p>
     
 </dt>
 <dd>
 
     
     <div class="description">
-        add a new document to the storage
+        Setup and Register a Service worker and get it ready for usage
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-263">line 263</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    <ul>
+            <li>
+<div class="param-desc">
+    signature - Default methods signature format { error, data }
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        
+            <li>
+<div class="param-desc">
+    signature.error - Execution error
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        
+            <li>
+<div class="param-desc">
+    signature.data - Worker Registration Object
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        </ul>
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".registerApplicationWorker"><span class="type-signature">&lt;async, static> </span>registerApplicationWorker()</h4>
+    
+    
+    <p class="summary">Setup and Register a Service worker and get it ready for usage.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Setup and Register a Service worker and get it ready for usage
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-299">line 299</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    <ul>
+            <li>
+<div class="param-desc">
+    signature - Default methods signature format { error, data }
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        
+            <li>
+<div class="param-desc">
+    signature.error - Execution error
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        
+            <li>
+<div class="param-desc">
+    signature.data - Worker Registration Object
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        </ul>
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".getGuidStorage"><span class="type-signature">&lt;static> </span>getGuidStorage()</h4>
+    
+    
+    <p class="summary">get Application GUID saved on sessionStorage.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        get Application GUID saved on sessionStorage
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-239">line 239</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Application GUID saved on sessionStorage
+</div>
+
+
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".setGuidStorage"><span class="type-signature">&lt;static> </span>setGuidStorage(guid)</h4>
+    
+    
+    <p class="summary">save Application GUID to sessionStorage.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        save Application GUID to sessionStorage
     </div>
     
 
@@ -440,13 +976,13 @@
 
         <tr>
             
-                <td class="name"><code>doc</code></td>
+                <td class="name"><code>guid</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">string</span>
 
 
 
@@ -457,7 +993,7 @@
 
             
 
-            <td class="description last">A valid document validated against mongoose schema</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -501,8 +1037,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-94">line 94</a>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-228">line 228</a>
 			</li>
 		</ul>
 	</dd>
@@ -528,76 +1064,16 @@
 
     
     <h5>Returns:</h5>
-    <ul>
-            <li>
+    
+            
 <div class="param-desc">
-    signature - Default methods signature format { error, data }
+    Application GUID saved on sessionStorage
 </div>
 
 
 
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
+
         
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        
-            <li>
-<div class="param-desc">
-    signature.error - Execution error
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-|
-
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        
-            <li>
-<div class="param-desc">
-    signature.data - Created document
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        </ul>
 
     
 </dd>
@@ -606,683 +1082,17 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".delete"><span class="type-signature">&lt;async, static> </span>delete(identifier)</h4>
+    <h4 class="name" id=".setupAppGuid"><span class="type-signature">&lt;static> </span>setupAppGuid()</h4>
     
     
-    <p class="summary">delete a document from the storage.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        delete a document from the storage
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>identifier</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The primary key value of the desired document</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-140">line 140</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    <ul>
-            <li>
-<div class="param-desc">
-    signature - Default methods signature format { error, data }
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        
-            <li>
-<div class="param-desc">
-    signature.error - Execution error
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-|
-
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        
-            <li>
-<div class="param-desc">
-    signature.data - Deleted document
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        </ul>
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".edit"><span class="type-signature">&lt;async, static> </span>edit(identifier, doc)</h4>
-    
-    
-    <p class="summary">Edit a document on the storage.</p>
+    <p class="summary">check if Application has a GUID saved o.</p>
     
 </dt>
 <dd>
 
     
     <div class="description">
-        Edit a document on the storage
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>identifier</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The primary key value of the desired document</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>doc</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">A valid document validated against mongoose schema</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-125">line 125</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    <ul>
-            <li>
-<div class="param-desc">
-    signature - Default methods signature format { error, data }
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        
-            <li>
-<div class="param-desc">
-    signature.error - Execution error
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-|
-
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        
-            <li>
-<div class="param-desc">
-    signature.data - Edited document
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        </ul>
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".find"><span class="type-signature">&lt;async, static> </span>find(query)</h4>
-    
-    
-    <p class="summary">find all documents based on the given query.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        find all documents based on the given query
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>query</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-|
-
-<span class="param-type">null</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The query object to search documents</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-181">line 181</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    <ul>
-            <li>
-<div class="param-desc">
-    signature - Default methods signature format { error, data }
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        
-            <li>
-<div class="param-desc">
-    signature.error - Execution error
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-|
-
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        
-            <li>
-<div class="param-desc">
-    signature.data - Array of Found documents
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">array</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        </ul>
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id=".findAll"><span class="type-signature">&lt;async, static> </span>findAll()</h4>
-    
-    
-    <p class="summary">find all documents.</p>
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        find all documents
+        check if Application has a GUID saved o
     </div>
     
 
@@ -1328,8 +1138,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-168">line 168</a>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-248">line 248</a>
 			</li>
 		</ul>
 	</dd>
@@ -1355,76 +1165,16 @@
 
     
     <h5>Returns:</h5>
-    <ul>
-            <li>
+    
+            
 <div class="param-desc">
-    signature - Default methods signature format { error, data }
+    Application GUID saved on sessionStorage
 </div>
 
 
 
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
+
         
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        
-            <li>
-<div class="param-desc">
-    signature.error - Execution error
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-|
-
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        
-            <li>
-<div class="param-desc">
-    signature.data - Array of Found documents
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">array</span>
-
-
-
-    </dd>
-</dl>
-
-</li>
-        </ul>
 
     
 </dd>
@@ -1433,17 +1183,17 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".findById"><span class="type-signature">&lt;async, static> </span>findById(identifier)</h4>
+    <h4 class="name" id=".start"><span class="type-signature">&lt;async, static> </span>start()</h4>
     
     
-    <p class="summary">find a document from the storage by ID.</p>
+    <p class="summary">Starts application stack and get it ready to use.</p>
     
 </dt>
 <dd>
 
     
     <div class="description">
-        find a document from the storage by ID
+        Starts application stack and get it ready to use. <br> it calls this.#startVitals() internally
     </div>
     
 
@@ -1452,59 +1202,6 @@
     
 
     
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>identifier</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The primary key value of the desired document</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -1542,8 +1239,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-154">line 154</a>
+				<a href="Application.js.html">Application.js</a>,
+				 <a href="Application.js.html#sunlight-1-line-367">line 367</a>
 			</li>
 		</ul>
 	</dd>
@@ -1619,7 +1316,7 @@
         
             <li>
 <div class="param-desc">
-    signature.data - Found document
+    signature.data - Application data
 </div>
 
 
@@ -1699,7 +1396,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-01-24T23:29:02-03:00
+		on 2021-01-23T00:16:23-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

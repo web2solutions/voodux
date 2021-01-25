@@ -8,16 +8,23 @@ const schema = new mongoose.Schema({
   }, */
   __id: {
     type: mongoose.Schema.Types.ObjectId,
-    unique: true
+    unique: true,
+    // required: true
   },
   name: {
     type: String,
     required: true,
     index: true
   },
-  username: {
+  vendor: {
     type: String,
     required: true,
+    index: true
+  },
+  price_cost: {
+    type: Number,
+    required: true,
+    default: 0,
     index: true
   }
 })
