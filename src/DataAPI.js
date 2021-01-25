@@ -78,6 +78,10 @@ export default class DataAPI {
     return this.#entity
   }
 
+  static mongoose() {
+    return mongoose;
+  }
+
   get schema () {
     return this.#schema
   }

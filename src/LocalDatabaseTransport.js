@@ -12,7 +12,8 @@ import { createMethodSignature, mongooseToDexieTableString } from './utils'
  * @param  {string} config.dbName - Database name. <br>Same as IndexedDB database name.
  * @example {@lang javascript}
     import LocalDatabaseTransport from './LocalDatabaseTransport'
-
+    import mongoose from 'mongoose'
+    
     const UserSchema = new mongoose.Schema({
       name: {
         type: String,
@@ -24,15 +25,25 @@ import { createMethodSignature, mongooseToDexieTableString } from './utils'
       }
     })
 
+    const ProductSchema = new mongoose.Schema({
+      // ...
+    })
+
     const localDataTransport = new LocalDatabaseTransport({
       version: 1,
       tables: {},
       dbName: 'MyDatabaseName'
     })
+    
+    localDataTransport.addSchema('User', UserSchema)
+
+    localDataTransport.addSchema('Product', ProductSchema)
 
     await localDataTransport.connect()
     
-    await localDataTransport.table('User').add({ name: 'Joe Biden', username: 'biden'})
+    const Biden = await localDataTransport.table('User').add({ name: 'Joe Biden', username: 'biden'})
+    
+    const Ferrari = await localDataTransport.table('Product').add({ name: 'Ferrari', vendor: 'Ferrari', price_cost: 3000000})
  */
 
 export default class LocalDatabaseTransport extends Dexie {
