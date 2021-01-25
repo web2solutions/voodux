@@ -1,6 +1,6 @@
 /* global sessionStorage, navigator */
 
-import { createMethodSignature, GUID, mongooseToDexieTableString } from './utils'
+import { createMethodSignature, GUID } from './utils'
 import DataAPI from './DataAPI'
 import LocalDatabaseTransport from './LocalDatabaseTransport'
 import EventSystem from './EventSystem'
@@ -170,6 +170,7 @@ export default class Application extends EventSystem {
   }
 
   /**
+   * @memberof Application
    * @member {getter} Application.applicationWorker
    * @description Get the Application worker
    * @return this.#_workers.application

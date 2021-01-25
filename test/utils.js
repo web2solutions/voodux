@@ -2,6 +2,7 @@
 
 import * as utils from '../src/utils'
 import assert from 'assert'
+import mongoose from 'mongoose'
 
 describe('#--- Utils module Test Suite', () => {
   describe('Method Signatures: utils.createMethodSignature(error: string|object, data: string|object|array|boolean) -> Create default signature method object', () => {
@@ -26,6 +27,58 @@ describe('#--- Utils module Test Suite', () => {
       const signature = utils.createMethodSignature()
       assert.equal(signature.data, null)
       assert.equal(signature.error, null)
+      done()
+    })
+  })
+
+  describe('UUID: utils.uuid() -> Generate an Universally unique identifier string', () => {
+    it('uuid() must have 36 length', (done) => {
+      const uuid1 = utils.uuid()
+      const uuid2 = utils.uuid()
+      assert.equal(uuid1.length, 36)
+      assert.equal(uuid2.length, 36)
+      done()
+    })
+
+    it('Generates 10,000 uuids and check collisions', (done) => {
+      const arr = []
+      for (let x = 0; x <= 10000; x++) {
+        const uuid = utils.uuid()
+        arr.push(uuid)
+      }
+      // console.log(arr.reduce((prev, curr) => (prev[curr] = ++prev[curr] || 1, prev), {}))
+      const map = arr.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map())
+
+      // console.info([...map.keys()])
+      const oneOcurrency = 1
+      const similars = [...map.values()].filter(value => value > oneOcurrency).length
+      assert.equal(similars, 0)
+      done()
+    })
+  })
+
+  describe('Mongoose 2 Dexie: utils.mongooseToDexieTableString(schema) -> Mongoose schema conversion to Dexie table config', () => {
+    it('Table config must have __id as Primary Key', (done) => {
+      const schema = new mongoose.Schema({
+        __id: {
+          type: mongoose.Schema.Types.ObjectId,
+          unique: true
+        },
+        name: {
+          type: String,
+          required: true,
+          index: true
+        },
+        username: {
+          type: String,
+          required: true,
+          index: true
+        }
+      })
+      const tableConfig = utils.mongooseToDexieTableString(schema)
+      const tableConfigArray = tableConfig.split(',')
+      // console.log(tableConfigArray)
+      assert.equal(tableConfigArray[0], '++__id')
       done()
     })
   })
