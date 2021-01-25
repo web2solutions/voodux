@@ -30,6 +30,7 @@ const _workerOnMessage = function (event) {
 
 
 /**
+ * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
  * @Class Application
  * @description Application boostrap class
  * @extends EventSystem

@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import { createMethodSignature, GUID, toJSON } from './utils'
 
 /**
+ * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
  * @Class DataAPI
  * @description Models Data API
  * @extends Data

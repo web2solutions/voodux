@@ -1,4 +1,7 @@
-/** @module utils */
+/**
+ * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
+ * @module utils
+ * */
 
 /**
  * Create default signature method object

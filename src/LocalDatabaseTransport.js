@@ -3,6 +3,7 @@ import Dexie from 'dexie'
 import { createMethodSignature, mongooseToDexieTableString } from './utils'
 
 /**
+ * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
  * @Class LocalDatabaseTransport
  * @description Database transport for IndexedDB
  * @extends dexie
