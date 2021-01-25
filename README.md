@@ -2,6 +2,10 @@
 
 Agnostic Foundation for Web Applications - DRAFT
 
+> `CI status` [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/master.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/master)
+
+
+
 > ˜Web based software development is serious˜
 
 > "The use of data modeling standards is strongly recommended for all projects requiring a standard means of defining and analyzing data within an organization"
