@@ -6,6 +6,8 @@ import { createMethodSignature, mongooseToDexieTableString } from './utils'
  * @Class LocalDatabaseTransport
  * @description Database transport for IndexedDB
  * @extends dexie
+ * @see The Data Transport is set into the {@link Application} stack and it is consumed inside {@link DataAPI} to persist data locally. 
+ * @see {@link LocalDatabaseTransport} extends {@link https://dexie.org/docs/Dexie/Dexie|Dexie} as database handler for IndexedDB. See {@link https://dexie.org/docs/Dexie/Dexie|Dexie}
  * @param  {object} config - Transport configuration
  * @param  {number} config.version - Database version. <br>Same as IndexedDB database version.
  * @param  {object} config.tables - Database tables. <br>Dexie tables configuration.
@@ -29,11 +31,17 @@ import { createMethodSignature, mongooseToDexieTableString } from './utils'
       // ...
     })
 
+    const dbName = 'MyDatabaseName'
+
     const localDataTransport = new LocalDatabaseTransport({
-      version: 1,
-      tables: {},
-      dbName: 'MyDatabaseName'
+      version: 1,   // default 1
+      tables: {},   // default {}
+      dbName
     })
+
+    // or 
+
+    const localDataTransport = new LocalDatabaseTransport({ dbName })
     
     localDataTransport.addSchema('User', UserSchema)
 
