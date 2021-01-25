@@ -353,6 +353,25 @@
     import Application from &#x27;./Application&#x27;
     import mongoose from &#x27;mongoose&#x27;
 
+    const ProductSchema = new mongoose.Schema({
+      name: {
+        type: String,
+        required: true,
+        index: true
+      },
+      vendor: {
+        type: String,
+        required: true,
+        index: true
+      },
+      price_cost: {
+        type: Number,
+        required: true,
+        default: 0,
+        index: true
+      }
+    })
+
     const UserSchema = new mongoose.Schema({
       name: {
         type: String,
@@ -369,23 +388,32 @@
       useWorker: true,
       dataStrategy: &#x27;offlineFirst&#x27;,
       schemas: {
-        User: UserSchema
+        User: UserSchema,
+        Product: ProductSchema
       }
     })
 
     foundation.on(&#x27;application:start&#x27;, function (eventObj){
-      const { application, data, error } = eventObj
- 
+      const { application, error } = eventObj
       if (error) {
         throw new Error(&#x60;Error starting application stack: ${error}&#x60;)
       }
+      const { User, Product } = application.data
+      const Eduardo = await User.add({
+        name: &#x27;Eduardo Almeida&#x27;,
+        username: &#x27;web2&#x27;
+      })
+      console.debug(&#x27;Eduardo&#x27;, Eduardo)
 
-      const userCollection = application.data.get(&#x27;User&#x27;)
-      console.log(userCollection)
-      await userCollection.add()
-
+      const Volvo = await Product.add({
+        name: &#x27;Volvo XC90&#x27;,
+        vendor: &#x27;Volvo&#x27;,
+        price_cost: 150000
+      })
+      console.debug(&#x27;Volvo&#x27;, Volvo)
     })
-
+    
+    // start foundation and get it ready to be used
     await foundation.start()</pre>
 
 
@@ -485,7 +513,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-179">line 179</a>
+				 <a href="Application.js.html#sunlight-1-line-207">line 207</a>
 			</li>
 		</ul>
 	</dd>
@@ -574,7 +602,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-129">line 129</a>
+				 <a href="Application.js.html#sunlight-1-line-157">line 157</a>
 			</li>
 		</ul>
 	</dd>
@@ -672,7 +700,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-110">line 110</a>
+				 <a href="Application.js.html#sunlight-1-line-138">line 138</a>
 			</li>
 		</ul>
 	</dd>
@@ -761,7 +789,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-120">line 120</a>
+				 <a href="Application.js.html#sunlight-1-line-148">line 148</a>
 			</li>
 		</ul>
 	</dd>
@@ -850,7 +878,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-159">line 159</a>
+				 <a href="Application.js.html#sunlight-1-line-187">line 187</a>
 			</li>
 		</ul>
 	</dd>
@@ -939,7 +967,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-149">line 149</a>
+				 <a href="Application.js.html#sunlight-1-line-177">line 177</a>
 			</li>
 		</ul>
 	</dd>
@@ -1028,7 +1056,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-170">line 170</a>
+				 <a href="Application.js.html#sunlight-1-line-198">line 198</a>
 			</li>
 		</ul>
 	</dd>
@@ -1117,7 +1145,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-230">line 230</a>
+				 <a href="Application.js.html#sunlight-1-line-258">line 258</a>
 			</li>
 		</ul>
 	</dd>
@@ -1201,7 +1229,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-310">line 310</a>
+				 <a href="Application.js.html#sunlight-1-line-338">line 338</a>
 			</li>
 		</ul>
 	</dd>
@@ -1362,7 +1390,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-274">line 274</a>
+				 <a href="Application.js.html#sunlight-1-line-302">line 302</a>
 			</li>
 		</ul>
 	</dd>
@@ -1523,7 +1551,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-250">line 250</a>
+				 <a href="Application.js.html#sunlight-1-line-278">line 278</a>
 			</li>
 		</ul>
 	</dd>
@@ -1674,7 +1702,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-239">line 239</a>
+				 <a href="Application.js.html#sunlight-1-line-267">line 267</a>
 			</li>
 		</ul>
 	</dd>
@@ -1775,7 +1803,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-259">line 259</a>
+				 <a href="Application.js.html#sunlight-1-line-287">line 287</a>
 			</li>
 		</ul>
 	</dd>
@@ -1876,7 +1904,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="Application.js.html">Application.js</a>,
-				 <a href="Application.js.html#sunlight-1-line-384">line 384</a>
+				 <a href="Application.js.html#sunlight-1-line-412">line 412</a>
 			</li>
 		</ul>
 	</dd>
@@ -2032,7 +2060,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-01-25T02:00:38-03:00
+		on 2021-01-25T02:10:57-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

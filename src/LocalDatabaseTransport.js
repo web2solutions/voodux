@@ -10,7 +10,7 @@ import { createMethodSignature, mongooseToDexieTableString } from './utils'
  * @param  {number} config.version - Database version. <br>Same as IndexedDB database version.
  * @param  {object} config.tables - Database tables. <br>Dexie tables configuration.
  * @param  {string} config.dbName - Database name. <br>Same as IndexedDB database name.
- * @example
+ * @example {@lang javascript}
     import LocalDatabaseTransport from './LocalDatabaseTransport'
 
     const UserSchema = new mongoose.Schema({
@@ -30,20 +30,9 @@ import { createMethodSignature, mongooseToDexieTableString } from './utils'
       dbName: 'MyDatabaseName'
     })
 
-    foundation.on('application:start', function (eventObj){
-      const { application, data, error } = eventObj
- 
-      if (error) {
-        throw new Error(`Error starting application stack: ${error}`)
-      }
-
-      const userCollection = application.data.get('User')
-      console.log(userCollection)
-      await userCollection.add()
-
-    })
-
-    await foundation.start()
+    await localDataTransport.connect()
+    
+    await localDataTransport.table('User').add({ name: 'Joe Biden', username: 'biden'})
  */
 
 export default class LocalDatabaseTransport extends Dexie {
