@@ -1,11 +1,19 @@
 /* globals document */
 
+// import React
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+// import Bootstrap
+import 'bootstrap/dist/css/bootstrap.css'
+
+// import React app
 import App from './App'
 
-// application class
-import Application from './Application'
+// import agnostic application foundation class
+import Application from './foundation/Application'
+
+// import mongoose like data schemas
 import UserSchema from './schemas/User'
 import ProductSchema from './schemas/Product'
 
@@ -22,11 +30,10 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
       User: UserSchema,
       Product: ProductSchema
     }
-
   })
 
-  foundation.on('application:start', async function (eventObj) {
-    const { /* data, application, */ error } = eventObj
+  /* foundation.on('application:start', async function (eventObj) {
+    const { data, application, error } = eventObj
     if (error) {
       throw new Error(`Error starting application stack: ${error}`)
     }
@@ -35,11 +42,19 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
       <App application={foundation} />,
       document.getElementById('root')
     )
-  })
+  }) */
 
   foundation.on('worker:responseClientId', onWorkerResponseClientId.bind(foundation))
 
-  await foundation.start()
+  const start = await foundation.start()
+  if (start.error) {
+    throw new Error(`Error starting application stack: ${start.error}`)
+  }
+
+  ReactDOM.render(
+    <App foundation={foundation} />,
+    document.getElementById('root')
+  )
 
   return foundation
 })()

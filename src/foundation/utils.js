@@ -1,9 +1,11 @@
+import lunr from 'lunr'
 /**
  * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
  * @module utils
  * */
 
 /**
+ * createMethodSignature
  * Create default signature method object
  * @function
  * @param {string|object} error - The string or error object if have any
@@ -16,8 +18,8 @@ export const createMethodSignature = (error = null, data = null) => {
   return { error, data }
 }
 
-
 /**
+ * GUID
  * generates a Universally unique identifier string - alias to uuid()
  * @function
  * @return  {string} guid / uuid
@@ -27,6 +29,7 @@ export const GUID = () => {
 }
 
 /**
+ * uuid
  * generates a Universally unique identifier string
  * @function
  * @return  {string} guid / uuid
@@ -81,4 +84,15 @@ export function mongooseToDexieTableString (schema) {
     }
   }
   return `++__id,_id,${cols.join(',')}`
+}
+
+/**
+ * getSearchTokenStream
+ * generates a lunr search token. See {@link https://lunrjs.com/guides/searching.html|lunr search}
+ * @function
+ * @return {array} token
+ */
+export function getSearchTokenStream (text = '') {
+  const index = lunr()
+  return index.pipeline.run(lunr.tokenizer(text))
 }

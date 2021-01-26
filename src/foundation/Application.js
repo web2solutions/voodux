@@ -419,7 +419,7 @@ export default class Application extends EventSystem {
       const vitals = await this.#startVitals()
 
       if (this.useWorker) {
-        // await this.#registerApplicationWorker()
+        await this.#registerApplicationWorker()
       }
 
      this.#_started = true
