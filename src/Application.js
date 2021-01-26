@@ -171,7 +171,6 @@ export default class Application extends EventSystem {
       // }
    */
   get data() {
-    console.debug('get DATA', this.#_models)
     return this.#_models
   }
 
@@ -216,7 +215,6 @@ export default class Application extends EventSystem {
   }
 
   #setModel(entity = '', dataAPI = {}) {
-    console.error('#setModel', {entity, dataAPI})
     let _error = null
     let _data = null
     try {
@@ -230,13 +228,12 @@ export default class Application extends EventSystem {
   }
 
   #mapModels(schemas) {
-    console.error('#mapModels', schemas)
     let _error = null
     let _data = null
     try {
       for (const entity in schemas) {
         if (Object.prototype.hasOwnProperty.call(schemas, entity)) {
-          console.debug('for (const entity in schemas)', entity)
+          // console.debug('for (const entity in schemas)', entity)
           const strategy = 'offlineFirst'
           const schema = schemas[entity]
           const dataAPI = new DataAPI({
@@ -385,9 +382,6 @@ export default class Application extends EventSystem {
     try {
       this.setupAppGuid()
       const mapModels = this.#mapModels(this.#_schemas)
-      console.error('#startVitals this.#_schemas', this.#_schemas)
-      console.error('#startVitals this.data', this.data)
-
       
       await this.localDatabaseTransport.connect()
       // start database
@@ -425,7 +419,7 @@ export default class Application extends EventSystem {
       const vitals = await this.#startVitals()
 
       if (this.useWorker) {
-        await this.#registerApplicationWorker()
+        // await this.#registerApplicationWorker()
       }
 
      this.#_started = true
