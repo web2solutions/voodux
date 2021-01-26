@@ -1,11 +1,19 @@
 /* globals document */
 
+// import React
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+// import Bootstrap
+import 'bootstrap/dist/css/bootstrap.css'
+
+// import React app
 import App from './App'
 
-// application class
-import Application from './Application'
+// import agnostic application foundation class
+import Application from './foundation/Application'
+
+// import mongoose like data schemas
 import UserSchema from './schemas/User'
 import ProductSchema from './schemas/Product'
 
@@ -22,7 +30,6 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
       User: UserSchema,
       Product: ProductSchema
     }
-
   })
 
   /* foundation.on('application:start', async function (eventObj) {
@@ -45,7 +52,7 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
   }
 
   ReactDOM.render(
-    <App application={foundation} />,
+    <App foundation={foundation} />,
     document.getElementById('root')
   )
 
