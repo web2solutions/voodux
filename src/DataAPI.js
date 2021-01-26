@@ -117,9 +117,6 @@ export default class DataAPI {
       }
       const rawObj = toJSON(model)
       const __id = await this.#application.localDatabaseTransport.table(this.#entity).add({...rawObj})
-      console.log(this.#application.localDatabaseTransport)
-      console.log(this.#entity, this.#application.localDatabaseTransport[this.#entity])
-      console.log(this.#entity, this.#application.localDatabaseTransport.table(this.#entity))
       data = { __id, ...rawObj }
     } catch (e) {
       error = e
@@ -192,8 +189,19 @@ export default class DataAPI {
    * @return  {string|object} signature.error - Execution error
    * @return  {array} signature.data - Array of Found documents
    */
-  async find (query) {
-    // todo
-    console.log(this.#entity, this.#strategy)
+  async find(query = {}) {
+    let data = null
+    let error = null
+    try {
+      const documents = await this.#application
+          .localDatabaseTransport
+            .collection(this.#entity)
+              .find(query)
+                .toArray()       
+      data = documents
+    } catch (e) {
+      error = e
+    }
+    return createMethodSignature(error, data)
   }
 }

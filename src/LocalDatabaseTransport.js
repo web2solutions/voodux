@@ -1,5 +1,6 @@
 
-import Dexie from 'dexie'
+import dexie from 'dexie'
+import 'dexie-mongoify'
 import { createMethodSignature, mongooseToDexieTableString } from './utils'
 
 /**
@@ -55,7 +56,7 @@ import { createMethodSignature, mongooseToDexieTableString } from './utils'
     const Ferrari = await localDataTransport.table('Product').add({ name: 'Ferrari', vendor: 'Ferrari', price_cost: 3000000})
  */
 
-export default class LocalDatabaseTransport extends Dexie {
+export default class LocalDatabaseTransport extends dexie {
   #_version
   #_tables
   #_connected
@@ -81,14 +82,14 @@ export default class LocalDatabaseTransport extends Dexie {
   async connect () {
     for (const entity in this.#_schemas) {
       if (Object.prototype.hasOwnProperty.call(this.#_schemas, entity)) {
-        console.error(entity)
+        // console.error(entity)
         this.#_tables[entity] = mongooseToDexieTableString(
           this.#_schemas[entity]
         )
       }
     }
-    console.log(this.#_schemas)
-    console.log(this.#_tables)
+    // console.log(this.#_schemas)
+    // console.log(this.#_tables)
     console.error('         CONNECTED           ')
     this.version(this.#_version).stores(this.#_tables)
 
@@ -101,6 +102,6 @@ export default class LocalDatabaseTransport extends Dexie {
     }
 
     const open = await this.open()
-    console.debug('open', open)
+    // console.debug('open', open)
   }
 }

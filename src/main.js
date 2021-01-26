@@ -1,6 +1,11 @@
+/* globals document */
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+
 // application class
 import Application from './Application'
-
 import UserSchema from './schemas/User'
 import ProductSchema from './schemas/Product'
 
@@ -20,7 +25,17 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
 
   })
 
-  foundation.on('application:start', onApplicationStart.bind(foundation))
+  foundation.on('application:start', async function (eventObj) {
+    const { /* data, application, */ error } = eventObj
+    if (error) {
+      throw new Error(`Error starting application stack: ${error}`)
+    }
+
+    ReactDOM.render(
+      <App application={foundation} />,
+      document.getElementById('root')
+    )
+  })
 
   foundation.on('worker:responseClientId', onWorkerResponseClientId.bind(foundation))
 
