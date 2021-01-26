@@ -1,6 +1,6 @@
 /* global describe, it */
 
-import * as utils from '../src/utils'
+import * as utils from '../src/foundation/utils'
 import assert from 'assert'
 import mongoose from 'mongoose'
 
