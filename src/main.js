@@ -25,8 +25,8 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
 
   })
 
-  foundation.on('application:start', async function (eventObj) {
-    const { /* data, application, */ error } = eventObj
+  /* foundation.on('application:start', async function (eventObj) {
+    const { data, application, error } = eventObj
     if (error) {
       throw new Error(`Error starting application stack: ${error}`)
     }
@@ -35,11 +35,19 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
       <App application={foundation} />,
       document.getElementById('root')
     )
-  })
+  }) */
 
   foundation.on('worker:responseClientId', onWorkerResponseClientId.bind(foundation))
 
-  await foundation.start()
+  const start = await foundation.start()
+  if (start.error) {
+    throw new Error(`Error starting application stack: ${start.error}`)
+  }
+
+  ReactDOM.render(
+    <App application={foundation} />,
+    document.getElementById('root')
+  )
 
   return foundation
 })()

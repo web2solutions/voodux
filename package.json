@@ -11,8 +11,8 @@
     "doc": "npx jsdoc -c ./jsDoc.json -t ./node_modules/ink-docstrap/template ",
     "build": "npm run lint && npm run webpack && npm run doc"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Eduardo Perotta de Almeida",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
