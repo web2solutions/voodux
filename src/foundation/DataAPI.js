@@ -219,9 +219,10 @@ export default class DataAPI {
           .localDatabaseTransport
             .collection(this.#entity)
               .find(query)
-                .offset(offset)
-                  .limit(limit)
-                    .toArray()       
+                .reverse() 
+                  .offset(offset)
+                    .limit(limit)
+                      .toArray()       
       data = documents
     } catch (e) {
       error = e
