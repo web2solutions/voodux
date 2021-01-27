@@ -2,6 +2,11 @@
 
 Agnostic Foundation for Web Applications - DRAFT
 
+> ˜Web based software development is serious˜
+
+> "The use of data modeling standards is strongly recommended for all projects requiring a standard means of defining and analyzing data within an organization"
+
+
 [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main) Main branch at Circle CI
 
 [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release) Release branch at Circle CI
@@ -10,11 +15,15 @@ Agnostic Foundation for Web Applications - DRAFT
 [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop) Develop branch at Circle CI
 
 
+### Demo app (DRAFT)
+
+https://agnostic-web-foundation.web2solutions.vercel.app/
 
 
-> ˜Web based software development is serious˜
+### Docs (DRAFT)
 
-> "The use of data modeling standards is strongly recommended for all projects requiring a standard means of defining and analyzing data within an organization"
+https://web2solutions.github.io/agnostic-web-foundation/
+
 
 
 ## The Problem
