@@ -5,6 +5,7 @@
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#3763ab",
+  "background_color": "#ffffff",
   "prefer_related_applications": false,
   "icons": [
     {
@@ -17,7 +18,8 @@
     },
     {
       "src": "static/icon_x128.png",
-      "sizes": "128x128"
+      "sizes": "128x128",
+      "purpose": "maskable"
     },
     {
       "src": "static/icon_x144.png",
@@ -30,6 +32,10 @@
     {
       "src": "static/icon_x256.png",
       "sizes": "256x256"
+    },
+    {
+      "src": "static/icon_x512.png",
+      "sizes": "512x512"
     }
   ]
 }

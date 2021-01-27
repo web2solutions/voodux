@@ -74,11 +74,18 @@ class Crud extends React.Component {
 
   render () {
     return (
-      <div className='game'>
-        <ul>
-          {this.state.users.map(({ __id, name }) => (<li key={__id}>{__id} - {name}</li>))}
-        </ul>
-        <button type='button' className='btn btn-success' onClick={this.handleAddDocument}>add user</button>
+      <div className='card'>
+        <div className='card-header'>
+          <button type='button' className='btn btn-success' onClick={this.handleAddDocument}>add user</button>
+        </div>
+        <div className='card-body' style={{ overflow: 'auto' }}>
+          <ul style={{ overflow: 'auto' }}>
+            {this.state.users.map(({ __id, name }) => (<li key={__id}>{__id} - {name}</li>))}
+          </ul>
+        </div>
+        <div className='card-footer'>
+          xxxxx
+        </div>
       </div>
     )
   }
