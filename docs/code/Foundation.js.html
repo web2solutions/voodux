@@ -1,4 +1,83 @@
-/* global sessionStorage, navigator */
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Agnostic Web Application Foundation Source: Foundation.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Agnostic Web Application Foundation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-utils.html">utils</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="DataAPI.html">DataAPI</a></li><li><a href="Foundation.html">Foundation</a></li><li><a href="LocalDatabaseTransport.html">LocalDatabaseTransport</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: Foundation.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/* global sessionStorage, navigator */
 
 import { createMethodSignature, GUID } from './utils'
 import DataAPI from './DataAPI'
@@ -15,7 +94,7 @@ const _workerOnMessage = function (event) {
   switch (cmd) {
     case 'responseClientId':
       this.triggerEvent('worker:responseClientId', {
-        application: this,
+        foundation: this,
         worker: this.applicationWorker,
         ...event.data
       })
@@ -30,17 +109,17 @@ const _workerOnMessage = function (event) {
 
 
 /**
- * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
- * @Class Application
- * @description Application boostrap class
+ * @author Eduardo Perotta de Almeida &lt;web2solucoes@gmail.com>
+ * @Class Foundation
+ * @description Foundation boostrap class
  * @extends EventSystem
- * @param  {object} config - Application configuration
- * @param  {string} config.name - Application name
+ * @param  {object} config - Foundation configuration
+ * @param  {string} config.name - Foundation name
  * @param  {string} config.dataStrategy - Data strategy. Recognized values: offlineFirst, onlineFirst, offline, online
  * @param  {boolean} config.useWorker - Use a ServiceWorker in Background
  * @param  {object}  config.schemas - map of data schemas
  * @example {@lang javascript}
-    import Application from './Application'
+    import Foundation from './Foundation'
     import mongoose from 'mongoose'
 
     const ProductSchema = new mongoose.Schema({
@@ -73,7 +152,7 @@ const _workerOnMessage = function (event) {
       }
     })
 
-    const foundation = new Application({
+    const foundation = new Foundation({
       name: 'My App',
       useWorker: true,
       dataStrategy: 'offlineFirst',
@@ -83,12 +162,12 @@ const _workerOnMessage = function (event) {
       }
     })
 
-    foundation.on('application:start', function (eventObj){
-      const { application, error } = eventObj
+    foundation.on('foundation:start', function (eventObj){
+      const { foundation, error } = eventObj
       if (error) {
-        throw new Error(`Error starting application stack: ${error}`)
+        throw new Error(`Error starting foundation stack: ${error}`)
       }
-      const { User, Product } = application.data
+      const { User, Product } = foundation.data
       const Eduardo = await User.add({
         name: 'Eduardo Almeida',
         username: 'web2'
@@ -106,7 +185,7 @@ const _workerOnMessage = function (event) {
     // start foundation and get it ready to be used
     await foundation.start()
  */
-export default class Application extends EventSystem {
+export default class Foundation extends EventSystem {
   
   #_schemas
   #_name
@@ -118,7 +197,7 @@ export default class Application extends EventSystem {
   #_workers
 
   constructor ({
-    name = 'My Application Name',
+    name = 'My Foundation Name',
     dataStrategy = 'offlineFirst',
     useWorker = false,
     schemas = {}
@@ -137,9 +216,9 @@ export default class Application extends EventSystem {
   }
 
   /**
-   * @member {getter} Application.dataStrategy
-   * @Description Get the data strategy being used.<br> Possible values are: offlineFirst, onlineFirst, offline, online. <br> Default: offlineFirst
-   * @example console.log(Application.dataStrategy)
+   * @member {getter} Foundation.dataStrategy
+   * @Description Get the data strategy being used.&lt;br> Possible values are: offlineFirst, onlineFirst, offline, online. &lt;br> Default: offlineFirst
+   * @example console.log(Foundation.dataStrategy)
    * @return {string} this.#_dataStrategy
    */
   get dataStrategy () {
@@ -147,19 +226,19 @@ export default class Application extends EventSystem {
   }
 
   /**
-   * @member {getter} Application.guid
-   * @description Get the Application Session guid currently being used.
-   * @example console.log(Application.guid)
+   * @member {getter} Foundation.guid
+   * @description Get the Foundation Session guid currently being used.
+   * @example console.log(Foundation.guid)
    */
   get guid () {
     return this.#_guid
   }
 
   /**
-   * @member {getter} Application.data
-   * @description Get the Application data API(DataAPI)
+   * @member {getter} Foundation.data
+   * @description Get the Foundation data API(DataAPI)
    * @example 
-      const { User, Product } = application.data
+      const { User, Product } = foundation.data
       const Eduardo = await User.add({
         name: 'Eduardo Almeida',
         username: 'web2'
@@ -175,43 +254,43 @@ export default class Application extends EventSystem {
   }
 
   /**
-   * @member {getter} Application.name
-   * @name Application.name
-   * @description Get the Application name
-   * @example console.log(Application.name)
+   * @member {getter} Foundation.name
+   * @name Foundation.name
+   * @description Get the Foundation name
+   * @example console.log(Foundation.name)
    */
   get name () {
     return this.#_name
   }
 
   /**
-   * @member {setter} Application.name
-   * @name Application.name
-   * @description Set the Application name
-   * @example Application.name = 'Provide the name here'
-   * @param  {string} name - Application name
+   * @member {setter} Foundation.name
+   * @name Foundation.name
+   * @description Set the Foundation name
+   * @example Foundation.name = 'Provide the name here'
+   * @param  {string} name - Foundation name
    */
   set name (name) {
     this.#_name = name
   }
 
   /**
-   * @member {getter} Application.started
+   * @member {getter} Foundation.started
    * @description Get the start state
-   * @example console.log(Application.started)
+   * @example console.log(Foundation.started)
    */
   get started () {
     return this.#_started
   }
 
   /**
-   * @memberof Application
-   * @member {getter} Application.applicationWorker
-   * @example Application.applicationWorker.postMessage()
-   * @description Get the Application worker
+   * @memberof Foundation
+   * @member {getter} Foundation.applicationWorker
+   * @example Foundation.applicationWorker.postMessage()
+   * @description Get the Foundation worker
    */
   get applicationWorker() {
-    return this.#_workers.application
+    return this.#_workers.foundation
   }
 
   #setModel(entity = '', dataAPI = {}) {
@@ -237,7 +316,7 @@ export default class Application extends EventSystem {
           const strategy = 'offlineFirst'
           const schema = schemas[entity]
           const dataAPI = new DataAPI({
-            application: this,
+            foundation: this,
             entity,
             strategy,
             schema
@@ -254,7 +333,7 @@ export default class Application extends EventSystem {
   }
 
   /**
-   * @member {getter} Application.useWorker
+   * @member {getter} Foundation.useWorker
    * @Description flag if is there ServiceWorker being used
    * @return  {boolean}
    */
@@ -263,10 +342,10 @@ export default class Application extends EventSystem {
   }
 
   /**
-   * @Method Application.setGuidStorage
-   * @description save Application GUID to sessionStorage
+   * @Method Foundation.setGuidStorage
+   * @description save Foundation GUID to sessionStorage
    * @param  {string} guid
-   * @return Application GUID saved on sessionStorage
+   * @return Foundation GUID saved on sessionStorage
    */
   setGuidStorage (guid) {
     sessionStorage.setItem('guid', guid)
@@ -274,18 +353,18 @@ export default class Application extends EventSystem {
   }
 
   /**
-   * @Method Application.getGuidStorage
-   * @description get Application GUID saved on sessionStorage
-   * @return Application GUID saved on sessionStorage
+   * @Method Foundation.getGuidStorage
+   * @description get Foundation GUID saved on sessionStorage
+   * @return Foundation GUID saved on sessionStorage
    */
   getGuidStorage () {
     return sessionStorage.getItem('guid') || false
   }
 
   /**
-   * @Method Application.setupAppGuid
-   * @description check if Application has a GUID saved o
-   * @return Application GUID saved on sessionStorage
+   * @Method Foundation.setupAppGuid
+   * @description check if Foundation has a GUID saved o
+   * @return Foundation GUID saved on sessionStorage
    */
   setupAppGuid () {
     const guidCache = this.getGuidStorage() || false
@@ -299,7 +378,7 @@ export default class Application extends EventSystem {
   
   /**
    * @async
-   * @Method Application.#registerApplicationWorker
+   * @Method Foundation.#registerApplicationWorker
    * @description Setup and Register a Service worker and get it ready for usage
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
@@ -317,11 +396,11 @@ export default class Application extends EventSystem {
             // registration worked
             navigator.serviceWorker.addEventListener('message', _workerOnMessage.bind(self))
             if (reg.installing) {
-              self.#_workers['application'] = reg.installing
-              self.#_workers['application'].postMessage({ cmd: 'getClientId', message: null })
+              self.#_workers['foundation'] = reg.installing
+              self.#_workers['foundation'].postMessage({ cmd: 'getClientId', message: null })
             } else if (reg.active) {
-              self.#_workers['application'] = reg.active
-              self.#_workers['application'].postMessage({ cmd: 'getClientId', message: null })
+              self.#_workers['foundation'] = reg.active
+              self.#_workers['foundation'].postMessage({ cmd: 'getClientId', message: null })
             }
             resolve(createMethodSignature(null, reg))
           })
@@ -335,7 +414,7 @@ export default class Application extends EventSystem {
 
   /**
    * @async
-   * @Method Application.#registerApplicationWorker
+   * @Method Foundation.#registerApplicationWorker
    * @description Setup and Register a Service worker and get it ready for usage
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
@@ -371,10 +450,10 @@ export default class Application extends EventSystem {
 
   /**
    * @Private
-   * @description Starts application stack required items
+   * @description Starts foundation stack required items
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
-   * @return  {object} signature.data - Application data
+   * @return  {object} signature.data - Foundation data
    */
   async #startVitals () {
     let _error = null
@@ -396,8 +475,8 @@ export default class Application extends EventSystem {
       _error = error
     }
 
-    this.triggerEvent('application:startVitals', {
-      application: this,
+    this.triggerEvent('foundation:startVitals', {
+      foundation: this,
       error: _error,
       data: _data
     })
@@ -406,11 +485,11 @@ export default class Application extends EventSystem {
   }
   /**
    * @async
-   * @Method Application.start
-   * @description Starts application stack and get it ready to use. <br> it calls this.#startVitals() internally 
+   * @Method Foundation.start
+   * @description Starts foundation stack and get it ready to use. &lt;br> it calls this.#startVitals() internally 
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
-   * @return  {object} signature.data - Application data
+   * @return  {object} signature.data - Foundation data
    */
   async start () {
     let _error = null
@@ -422,7 +501,8 @@ export default class Application extends EventSystem {
         await this.#registerApplicationWorker()
       }
 
-     this.#_started = true
+      this.#_started = true
+      
 
       _data = {
         ...vitals.data,
@@ -434,12 +514,151 @@ export default class Application extends EventSystem {
       _error = error
     }
 
-    this.triggerEvent('application:start', {
-      application: this,
+    this.triggerEvent('foundation:start', {
+      foundation: this,
       error: _error,
       data: _data
     })
-
+    console.warn('STARTED>>>>>>>>>>>', this)
     return createMethodSignature(_error, _data)
   }
 }
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+	<br><br><br><br>Sponsored by WEB2 Solutions
+
+
+	<span class="copyright">
+	Eduardo Almeida
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
+	
+		on 2021-01-27T04:32:47-03:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
