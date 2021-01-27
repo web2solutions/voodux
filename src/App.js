@@ -13,7 +13,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <crud foundation={this.foundation} />
+      <crud entity='User' foundation={this.foundation} />
     )
   }
 }
