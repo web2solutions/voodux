@@ -113,6 +113,7 @@ export default class DataAPI {
   async add(doc = {}) {
     let data = null
     let error = null
+    let rawObj = {}
     try {
       const model = new this.Model(doc, this.#schema)
       const invalid = model.validateSync()
@@ -120,12 +121,21 @@ export default class DataAPI {
       {
         throw invalid
       }
-      const rawObj = toJSON(model)
+      rawObj = toJSON(model)
       const __id = await this.#foundation.localDatabaseTransport.table(this.#entity).add({...rawObj})
       data = { __id, ...rawObj }
     } catch (e) {
       error = e
     }
+
+    this.triggerEvent(`collection:add:${this.#entity}`, {
+      foundation: this.#foundation,
+      entity: this.#entity,
+      document: rawObj,
+      data,
+      error,
+    })
+
     return createMethodSignature(error, data)
   }
 
@@ -194,10 +204,9 @@ export default class DataAPI {
    * @param  {number} pagination.offset - Offset. Default 0.
    * @param  {number} pagination.limit - Limit. Default 30.
    * @example
-        db.collection('people').find({
+        User.find({
           $or: [{ age: { $lt: 23, $ne: 20 } }, { lastname: { $in: ['Fox'] } }]
         })
-
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
    * @return  {array} signature.data - Array of Found documents
@@ -217,6 +226,35 @@ export default class DataAPI {
                 .skip(offset).limit(limit)
                 .toArray()       
       data = documents
+    } catch (e) {
+      error = e
+    }
+    return createMethodSignature(error, data)
+  }
+
+  /**
+   * @async
+   * @Method DataAPI.count
+   * @description count all documents based on the given query
+   * @param  {object} query - The query object to count documents
+   * @example
+        User.count({
+          $or: [{ age: { $lt: 23, $ne: 20 } }, { lastname: { $in: ['Fox'] } }]
+        })
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error
+   * @return  {number} signature.data - Documents counter
+   */
+  async count (query = {}) {
+    let data = null
+    let error = null
+    try {
+      const counter = await this.#foundation
+          .localDatabaseTransport
+            .collection(this.#entity)
+              .count(query)
+                .toArray()       
+      data = counter
     } catch (e) {
       error = e
     }

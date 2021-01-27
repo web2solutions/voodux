@@ -50,7 +50,7 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
   if (start.error) {
     throw new Error(`Error starting foundation stack: ${start.error}`)
   }
-
+  console.debug('start', start)
   ReactDOM.render(
     <App foundation={foundation} />,
     document.getElementById('root')

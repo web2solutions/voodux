@@ -422,7 +422,8 @@ export default class Foundation extends EventSystem {
         await this.#registerApplicationWorker()
       }
 
-     this.#_started = true
+      this.#_started = true
+      
 
       _data = {
         ...vitals.data,
@@ -439,7 +440,7 @@ export default class Foundation extends EventSystem {
       error: _error,
       data: _data
     })
-
+    console.warn('STARTED>>>>>>>>>>>', this)
     return createMethodSignature(_error, _data)
   }
 }

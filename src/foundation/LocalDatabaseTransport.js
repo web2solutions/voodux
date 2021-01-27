@@ -90,7 +90,7 @@ export default class LocalDatabaseTransport extends dexie {
     }
     // console.log(this.#_schemas)
     // console.log(this.#_tables)
-    console.error('         CONNECTED           ')
+    
     this.version(this.#_version).stores(this.#_tables)
 
     // we can retrieve our todos store with Dexie.table, and then use it as a
@@ -102,6 +102,7 @@ export default class LocalDatabaseTransport extends dexie {
     }
 
     const open = await this.open()
+    console.error('         CONNECTED           ')
     // console.debug('open', open)
   }
 }

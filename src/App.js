@@ -1,6 +1,6 @@
 /* globals document, window */
 import React from 'react'
-import crud from './components/crud/'
+import Crud from './components/Crud/Crud'
 
 class App extends React.Component {
   constructor (props) {
@@ -9,11 +9,13 @@ class App extends React.Component {
     this.state = {
       users: []
     }
+    console.error('START APP')
   }
 
   render () {
+    console.error('App render ')
     return (
-      <crud entity='User' foundation={this.foundation} />
+      <Crud entity='User' foundation={this.foundation} />
     )
   }
 }
