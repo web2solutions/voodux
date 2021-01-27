@@ -1,6 +1,6 @@
 /* globals document, window */
 import React from 'react'
-import Crud from './components/Crud/Crud'
+import Crud from './components/crud/Crud'
 
 class App extends React.Component {
   constructor (props) {
