@@ -1,8 +1,9 @@
 /* globals document, window */
 import React from 'react'
-import collectionOnAdd from './events/collectionOnAdd'
-import collectionOnUpdate from './events/collectionOnUpdate'
-import collectionOnDelete from './events/collectionOnDelete'
+import { collectionOnAdd } from './events/collectionOnAdd'
+import { collectionOnUpdate } from './events/collectionOnUpdate'
+import { collectionOnDelete } from './events/collectionOnDelete'
+
 class Crud extends React.Component {
   constructor (props) {
     super(props)
@@ -20,6 +21,8 @@ class Crud extends React.Component {
     } catch (error) {
       console.error(error)
     }
+
+    this.handleAddDocument = this.handleAddDocument.bind(this)
   }
 
   async componentDidMount () {
@@ -57,35 +60,28 @@ class Crud extends React.Component {
       })
     }
 
-    /* window.setInterval(async () => {
-      await User.add({
-        name: 'Eduardo Almeida',
-        username: 'web2'
-      })
-      users = await User.find({})
-      if (users.data) {
-        this.setState({ users: users.data })
-      }
-    }, 1) */
-
     document.getElementById('guid').innerText = 'Aplication GUID -> ' + this.foundation.guid
   }
 
+  async handleAddDocument (e) {
+    e.preventDefault()
+    const { User } = this.foundation.data
+    await User.add({
+      name: 'Eduardo Almeida',
+      username: 'web2'
+    })
+  }
+
   render () {
-    console.error('crud render ')
     return (
       <div className='game'>
-        <div className='game-board'>I'm react caralhooooooo</div>
         <ul>
-          {this.state.users
-            .map(({ __id, name }) =>
-              <li key={__id}>{__id} - {name}</li>)}
+          {this.state.users.map(({ __id, name }) => (<li key={__id}>{__id} - {name}</li>))}
         </ul>
+        <button type='button' className='btn btn-success' onClick={this.handleAddDocument}>add user</button>
       </div>
     )
   }
 }
-
-// ========================================
 
 export default Crud

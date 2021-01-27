@@ -110,7 +110,7 @@ export default class DataAPI {
    * @return  {string|object} signature.error - Execution error
    * @return  {object} signature.data - Created document
   */
-  async add(doc = {}) {
+  async add (doc = {}) {
     let data = null
     let error = null
     let rawObj = {}
@@ -127,8 +127,7 @@ export default class DataAPI {
     } catch (e) {
       error = e
     }
-
-    this.triggerEvent(`collection:add:${this.#entity}`, {
+    this.#foundation.triggerEvent(`collection:add:${this.#entity.toLowerCase()}`, {
       foundation: this.#foundation,
       entity: this.#entity,
       document: rawObj,
@@ -211,10 +210,7 @@ export default class DataAPI {
    * @return  {string|object} signature.error - Execution error
    * @return  {array} signature.data - Array of Found documents
    */
-  async find(query = {}, pagination = false) {
-    if (!pagination) {
-      pagination = this.#pagination
-    }
+  async find(query = {}, pagination = this.#pagination) {
     let { offset, limit } = pagination
     let data = null
     let error = null
@@ -223,8 +219,9 @@ export default class DataAPI {
           .localDatabaseTransport
             .collection(this.#entity)
               .find(query)
-                .skip(offset).limit(limit)
-                .toArray()       
+                .offset(offset)
+                  .limit(limit)
+                    .toArray()       
       data = documents
     } catch (e) {
       error = e
@@ -252,8 +249,7 @@ export default class DataAPI {
       const counter = await this.#foundation
           .localDatabaseTransport
             .collection(this.#entity)
-              .count(query)
-                .toArray()       
+              .count(query)     
       data = counter
     } catch (e) {
       error = e
