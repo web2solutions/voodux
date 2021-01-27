@@ -300,7 +300,7 @@ export default class Foundation extends EventSystem {
   /**
    * @async
    * @Method Foundation.#registerApplicationWorker
-   * @description Setup and Register a Service worker and get it ready for usage
+   * @description Setup and Register the main Service worker used by foundation core
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
    * @return  {object} signature.data - Worker Registration Object
@@ -335,8 +335,10 @@ export default class Foundation extends EventSystem {
 
   /**
    * @async
-   * @Method Foundation.#registerApplicationWorker
-   * @description Setup and Register a Service worker and get it ready for usage
+   * @Method Foundation.#registerWorker
+   * @description Setup and Register a Service worker and get it ready for usage into your application scope
+   * @param  {string} name - Worker name. Used to access it from the namespace
+   * @param  {string} workerFile - Worker file name
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
    * @return  {object} signature.data - Worker Registration Object
