@@ -1,10 +1,10 @@
 /* global document */
 export default async function (eventObj) {
-  const { /* data, */ application, error } = eventObj
+  const { /* data, */ foundation, error } = eventObj
   if (error) {
-    throw new Error(`Error starting application stack: ${error}`)
+    throw new Error(`Error starting foundation stack: ${error}`)
   }
-  const { User, Product } = application.data
+  const { User, Product } = foundation.data
   const Eduardo = await User.add({
     name: 'Eduardo Almeida',
     username: 'web2'
@@ -18,7 +18,7 @@ export default async function (eventObj) {
   })
   console.debug('Volvo', Volvo)
 
-  // console.log('application.applicationWorker', application.applicationWorker)
+  // console.log('foundation.applicationWorker', foundation.applicationWorker)
 
   document.getElementById('guid').innerText = 'Aplication GUID -> ' + this.guid
 

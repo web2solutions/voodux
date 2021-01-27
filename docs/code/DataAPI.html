@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Application.html">Application</a></li><li><a href="DataAPI.html">DataAPI</a></li><li><a href="LocalDatabaseTransport.html">LocalDatabaseTransport</a></li>
+					<li><a href="DataAPI.html">DataAPI</a></li><li><a href="Foundation.html">Foundation</a></li><li><a href="LocalDatabaseTransport.html">LocalDatabaseTransport</a></li>
 				</ul>
 			</li>
 			
@@ -179,7 +179,7 @@
 
         <tr>
             
-                <td class="name"><code>application</code></td>
+                <td class="name"><code>foundation</code></td>
             
 
             <td class="type">
@@ -196,7 +196,7 @@
 
             
 
-            <td class="description last">Provide Accesss to Application scope</td>
+            <td class="description last">Provide Accesss to Foundation scope</td>
         </tr>
 
     
@@ -357,7 +357,7 @@
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-javascript">const dataAPI = new DataAPI({
-      application ,   // Application instance, object
+      foundation ,   // Foundation instance, object
       entity,         // entity name, string
       strategy,       // data strategy, string
       schema           // data schema, mongoose schema
@@ -509,7 +509,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-99">line 99</a>
+				 <a href="DataAPI.js.html#sunlight-1-line-104">line 104</a>
 			</li>
 		</ul>
 	</dd>
@@ -723,7 +723,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-142">line 142</a>
+				 <a href="DataAPI.js.html#sunlight-1-line-147">line 147</a>
 			</li>
 		</ul>
 	</dd>
@@ -961,7 +961,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-127">line 127</a>
+				 <a href="DataAPI.js.html#sunlight-1-line-132">line 132</a>
 			</li>
 		</ul>
 	</dd>
@@ -1065,7 +1065,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".find"><span class="type-signature">&lt;async, static> </span>find(query)</h4>
+    <h4 class="name" id=".find"><span class="type-signature">&lt;async, static> </span>find(query, pagination)</h4>
     
     
     <p class="summary">find all documents based on the given query.</p>
@@ -1134,6 +1134,104 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>pagination</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Pagination object. If not provided will assume internaly set pagination.
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Offset. Default 0.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>limit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Limit. Default 30.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -1175,7 +1273,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-183">line 183</a>
+				 <a href="DataAPI.js.html#sunlight-1-line-188">line 188</a>
 			</li>
 		</ul>
 	</dd>
@@ -1273,6 +1371,14 @@
         </ul>
 
     
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">db.collection(&#x27;people&#x27;).find({
+          $or: [{ age: { $lt: 23, $ne: 20 } }, { lastname: { $in: [&#x27;Fox&#x27;] } }]
+        })</pre>
+
+
+    
 </dd>
 
         
@@ -1336,7 +1442,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-170">line 170</a>
+				 <a href="DataAPI.js.html#sunlight-1-line-175">line 175</a>
 			</li>
 		</ul>
 	</dd>
@@ -1550,7 +1656,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="DataAPI.js.html">DataAPI.js</a>,
-				 <a href="DataAPI.js.html#sunlight-1-line-156">line 156</a>
+				 <a href="DataAPI.js.html#sunlight-1-line-161">line 161</a>
 			</li>
 		</ul>
 	</dd>
@@ -1706,7 +1812,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-01-26T16:02:56-03:00
+		on 2021-01-26T22:39:31-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

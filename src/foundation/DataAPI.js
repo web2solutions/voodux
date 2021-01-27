@@ -9,13 +9,13 @@ import { createMethodSignature, GUID, toJSON } from './utils'
  * @extends Data
  * @extends DataTransportLocal
  * @param  {object} config - Configuration factory
- * @param  {string} config.application - Provide Accesss to Application scope
+ * @param  {string} config.foundation - Provide Accesss to Foundation scope
  * @param  {string} config.entity - Data entity which the created object is handling
  * @param  {boolean} config.strategy - Data transport strategy
  * @param  {boolean} config.schema - Access to related data schema
  * @example
     const dataAPI = new DataAPI({
-      application ,   // Application instance, object
+      foundation ,   // Foundation instance, object
       entity,         // entity name, string
       strategy,       // data strategy, string
       schema           // data schema, mongoose schema
@@ -24,20 +24,25 @@ import { createMethodSignature, GUID, toJSON } from './utils'
 
 export default class DataAPI {
 
-  #application
+  #foundation
   #database
   #entity
   #strategy
   #schema
-  
-  constructor ({ application, entity, strategy, schema } = {}) {
+  #pagination
+
+  constructor ({ foundation, entity, strategy, schema } = {}) {
     
     this.#entity = entity
     this.#strategy = strategy // offlineFirst, onlineFirst, offline, online
     this.#schema = schema
-    this.#application = application
-    
-    // this.#database = this.#application.database
+    this.#foundation = foundation
+    this.#pagination = {
+      offset: 0,
+      limit: 30
+    }
+
+    // this.#database = this.#foundation.database
 
     /* console.error(this.#schema)
     console.error(this.#schema.obj)
@@ -53,7 +58,7 @@ export default class DataAPI {
       [this.#entity]: this.mongooseToDexieTableString(),
     }); */
 
-    application.localDatabaseTransport.addSchema(this.#entity, this.#schema)
+    foundation.localDatabaseTransport.addSchema(this.#entity, this.#schema)
 
   }
 
@@ -116,7 +121,7 @@ export default class DataAPI {
         throw invalid
       }
       const rawObj = toJSON(model)
-      const __id = await this.#application.localDatabaseTransport.table(this.#entity).add({...rawObj})
+      const __id = await this.#foundation.localDatabaseTransport.table(this.#entity).add({...rawObj})
       data = { __id, ...rawObj }
     } catch (e) {
       error = e
@@ -185,18 +190,31 @@ export default class DataAPI {
    * @Method DataAPI.find
    * @description find all documents based on the given query
    * @param  {object|null} query - The query object to search documents
+   * @param  {object} pagination - Pagination object. If not provided will assume internaly set pagination.
+   * @param  {number} pagination.offset - Offset. Default 0.
+   * @param  {number} pagination.limit - Limit. Default 30.
+   * @example
+        db.collection('people').find({
+          $or: [{ age: { $lt: 23, $ne: 20 } }, { lastname: { $in: ['Fox'] } }]
+        })
+
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
    * @return  {array} signature.data - Array of Found documents
    */
-  async find(query = {}) {
+  async find(query = {}, pagination = false) {
+    if (!pagination) {
+      pagination = this.#pagination
+    }
+    let { offset, limit } = pagination
     let data = null
     let error = null
     try {
-      const documents = await this.#application
+      const documents = await this.#foundation
           .localDatabaseTransport
             .collection(this.#entity)
               .find(query)
+                .skip(offset).limit(limit)
                 .toArray()       
       data = documents
     } catch (e) {

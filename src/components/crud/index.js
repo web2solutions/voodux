@@ -1,11 +1,21 @@
 /* globals document, window */
 import React from 'react'
 
+import collectionOnAddUser from './events/collectionOnAddUser'
+import collectionOnUpdateUser from './events/collectionOnUpdateUser'
+import collectionOnDeleteUser from './events/collectionOnDeleteUser'
+
+
 class CRUD extends React.Component {
   constructor (props) {
     super(props)
     console.error('------>', props)
+    this.entity = props.entity
     this.foundation = props.foundation
+    this.pagination = {
+      offset: 0,
+      limit: 30
+    }
     this.state = {
       users: []
     }
@@ -14,27 +24,14 @@ class CRUD extends React.Component {
   async componentDidMount () {
     const { User, Product } = this.foundation.data
 
-    this.foundation.on('collection:add:user', async function (eventObj) {
-      const { data, application, error } = eventObj
-      if (error) {
-        throw new Error(`Error adding user: ${error}`)
-      }
-    })
+    // listen to add User event on Data API
+    this.foundation.on('collection:add:user', collectionOnAddUser.bind(this))
+    // listen to update User event on Data API
+    this.foundation.on('collection:update:user', collectionOnUpdateUser.bind(this))
+    // listen to delete User event on Data API
+    this.foundation.on('collection:delete:user', collectionOnDeleteUser.bind(this))
 
-    this.foundation.on('collection:update:user', async function (eventObj) {
-      const { data, application, error } = eventObj
-      if (error) {
-        throw new Error(`Error updating user: ${error}`)
-      }
-    })
-
-    this.foundation.on('collection:delete:user', async function (eventObj) {
-      const { data, application, error } = eventObj
-      if (error) {
-        throw new Error(`Error deleting user: ${error}`)
-      }
-    })
-    let users = await User.find({})
+    let users = await User.find({}, { ...this.pagination })
     console.warn(users)
 
     if (users.data.length === 0) {
@@ -50,7 +47,7 @@ class CRUD extends React.Component {
       })
     }
 
-    users = await User.find({})
+    users = await User.find({}, { ...this.pagination })
     console.warn(users)
 
     if (users.data) {

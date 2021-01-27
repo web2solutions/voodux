@@ -10,19 +10,19 @@ import 'bootstrap/dist/css/bootstrap.css'
 // import React app
 import App from './App'
 
-// import agnostic application foundation class
-import Application from './foundation/Application'
+// import agnostic foundation foundation class
+import Foundation from './foundation/Foundation'
 
 // import mongoose like data schemas
 import UserSchema from './schemas/User'
 import ProductSchema from './schemas/Product'
 
-// application event handlers
+// foundation event handlers
 import onApplicationStart from './events/onApplicationStart'
 import onWorkerResponseClientId from './events/onWorkerResponseClientId'
 
 (async () => {
-  const foundation = new Application({
+  const foundation = new Foundation({
     name: 'My App',
     useWorker: true,
     dataStrategy: 'offlineFirst',
@@ -32,23 +32,23 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
     }
   })
 
-  /* foundation.on('application:start', async function (eventObj) {
-    const { data, application, error } = eventObj
+  /* foundation.on('foundation:start', async function (eventObj) {
+    const { data, foundation, error } = eventObj
     if (error) {
-      throw new Error(`Error starting application stack: ${error}`)
+      throw new Error(`Error starting foundation stack: ${error}`)
     }
 
     ReactDOM.render(
-      <App application={foundation} />,
+      <App foundation={foundation} />,
       document.getElementById('root')
     )
   }) */
 
-  foundation.on('worker:responseClientId', onWorkerResponseClientId.bind(foundation))
+  // foundation.on('worker:responseClientId', onWorkerResponseClientId.bind(foundation))
 
   const start = await foundation.start()
   if (start.error) {
-    throw new Error(`Error starting application stack: ${start.error}`)
+    throw new Error(`Error starting foundation stack: ${start.error}`)
   }
 
   ReactDOM.render(
