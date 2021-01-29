@@ -1,11 +1,10 @@
-/* globals document */
+/* globals document window */
 
 // import React
 import React from 'react'
 import ReactDOM from 'react-dom'
 
 // import Bootstrap
-import 'bootstrap/dist/css/bootstrap.css'
 
 // import React app
 import App from './App'
@@ -16,6 +15,7 @@ import Foundation from './foundation/Foundation'
 // import mongoose like data schemas
 import UserSchema from './schemas/User'
 import ProductSchema from './schemas/Product'
+import OrderSchema from './schemas/Order'
 
 // foundation event handlers
 import onApplicationStart from './events/onApplicationStart'
@@ -28,7 +28,8 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
     dataStrategy: 'offlineFirst',
     schemas: {
       User: UserSchema,
-      Product: ProductSchema
+      Product: ProductSchema,
+      Order: OrderSchema
     }
   })
 
@@ -55,6 +56,12 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
     <App foundation={foundation} />,
     document.getElementById('root')
   )
+
+  /* window.setInterval(() => {
+    console.log('savinf on storage')
+    window.localStorage.setItem('internalMessage', 'aaaaaa')
+  }, 1000)
+  */
 
   return foundation
 })()

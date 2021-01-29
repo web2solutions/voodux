@@ -1,4 +1,4 @@
-/* global sessionStorage, navigator */
+/* global localStorage, navigator, window */
 
 import { createMethodSignature, GUID } from './utils'
 import DataAPI from './DataAPI'
@@ -116,6 +116,7 @@ export default class Foundation extends EventSystem {
   #_guid
   #_useWorker
   #_workers
+  #_tabId
 
   constructor ({
     name = 'My Foundation Name',
@@ -134,6 +135,7 @@ export default class Foundation extends EventSystem {
     this.#_useWorker = useWorker || false
     this.#_workers = {}
     this.localDatabaseTransport = new LocalDatabaseTransport()
+    this.#_tabId = GUID() // assume new Id on every refresh
   }
 
   /**
@@ -172,6 +174,16 @@ export default class Foundation extends EventSystem {
    */
   get data() {
     return this.#_models
+  }
+
+  /**
+   * @member {getter} Foundation.tabId
+   * @description Get the Browser tab ID
+   * @example 
+      console.log(foundation.tabId)
+   */
+  get tabId() {
+    return this.#_tabId
   }
 
   /**
@@ -227,6 +239,8 @@ export default class Foundation extends EventSystem {
     return createMethodSignature(_error, _data)
   }
 
+  
+
   #mapModels(schemas) {
     let _error = null
     let _data = null
@@ -264,28 +278,28 @@ export default class Foundation extends EventSystem {
 
   /**
    * @Method Foundation.setGuidStorage
-   * @description save Foundation GUID to sessionStorage
+   * @description save Foundation GUID to localStorage
    * @param  {string} guid
-   * @return Foundation GUID saved on sessionStorage
+   * @return Foundation GUID saved on localStorage
    */
   setGuidStorage (guid) {
-    sessionStorage.setItem('guid', guid)
-    return sessionStorage.getItem('guid')
+    localStorage.setItem('guid', guid)
+    return localStorage.getItem('guid')
   }
 
   /**
    * @Method Foundation.getGuidStorage
-   * @description get Foundation GUID saved on sessionStorage
-   * @return Foundation GUID saved on sessionStorage
+   * @description get Foundation GUID saved on localStorage
+   * @return Foundation GUID saved on localStorage
    */
   getGuidStorage () {
-    return sessionStorage.getItem('guid') || false
+    return localStorage.getItem('guid') || false
   }
 
   /**
    * @Method Foundation.setupAppGuid
    * @description check if Foundation has a GUID saved o
-   * @return Foundation GUID saved on sessionStorage
+   * @return Foundation GUID saved on localStorage
    */
   setupAppGuid () {
     const guidCache = this.getGuidStorage() || false
