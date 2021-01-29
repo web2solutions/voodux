@@ -1,3 +1,5 @@
+/* global localStorage, navigator, window */
+
 // import Dexie from 'dexie'
 import mongoose from 'mongoose'
 import { createMethodSignature, GUID, toJSON } from './utils'
@@ -24,50 +26,36 @@ import { createMethodSignature, GUID, toJSON } from './utils'
 
 export default class DataAPI {
 
-  #foundation
-  #database
-  #entity
-  #strategy
-  #schema
-  #pagination
+  #_foundation
+  #_entity
+  #_strategy
+  #_schema
+  #_pagination
+  #_stateChangeStorageName
 
   constructor ({ foundation, entity, strategy, schema } = {}) {
     
-    this.#entity = entity
-    this.#strategy = strategy // offlineFirst, onlineFirst, offline, online
-    this.#schema = schema
-    this.#foundation = foundation
-    this.#pagination = {
+    this.#_entity = entity
+    this.#_strategy = strategy // offlineFirst, onlineFirst, offline, online
+    this.#_schema = schema
+    this.#_foundation = foundation
+    this.#_pagination = {
       offset: 0,
       limit: 30
     }
-
-    // this.#database = this.#foundation.database
-
-    /* console.error(this.#schema)
-    console.error(this.#schema.obj)
-    console.error(this.#schema.obj.name.type)
-    console.error(this.#schema.obj.name.type())
-    console.error(this.#schema.obj.name.type().name) */
-    // console.error(this.#schema.paths)
-
-
-    // console.error(Object.keys(this.#schema.paths))
-    // console.error(this.mongooseToDexieTableString())
-    /* this.version(1).stores({
-      [this.#entity]: this.mongooseToDexieTableString(),
-    }); */
-
-    foundation.localDatabaseTransport.addSchema(this.#entity, this.#schema)
-
+    this.#_stateChangeStorageName = `__$tabEntityStateChange_${this.#_entity}`
+    
+    this.#_foundation.localDatabaseTransport.addSchema(this.#_entity, this.#_schema)
+    
+    this.#_listenToAllOtherTabsStateChanges()
   }
 
 
   /* mongooseToDexieTableString () {
     const cols = []
-    for (const propertyName in this.#schema.paths) {
-      if (Object.prototype.hasOwnProperty.call(this.#schema.paths, propertyName)) {
-        const property = this.#schema.paths[propertyName]
+    for (const propertyName in this.#_schema.paths) {
+      if (Object.prototype.hasOwnProperty.call(this.#_schema.paths, propertyName)) {
+        const property = this.#_schema.paths[propertyName]
         const { instance, _index, isRequired } =  property
         // console.debug(propertyName, property)
         if (propertyName === '_id' || propertyName === '__id')
@@ -81,7 +69,7 @@ export default class DataAPI {
   } */
 
   get entity () {
-    return this.#entity
+    return this.#_entity
   }
 
   static mongoose() {
@@ -89,11 +77,11 @@ export default class DataAPI {
   }
 
   get schema () {
-    return this.#schema
+    return this.#_schema
   }
 
   get strategy () {
-    return this.#strategy
+    return this.#_strategy
   }
 
   Model(doc, schema) {
@@ -115,25 +103,29 @@ export default class DataAPI {
     let error = null
     let rawObj = {}
     try {
-      const model = new this.Model(doc, this.#schema)
+      const model = new this.Model(doc, this.#_schema)
       const invalid = model.validateSync()
       if (invalid)
       {
         throw invalid
       }
       rawObj = toJSON(model)
-      const __id = await this.#foundation.localDatabaseTransport.table(this.#entity).add({...rawObj})
+      const __id = await this.#_foundation.localDatabaseTransport
+        .table(this.#_entity)
+          .add({ ...rawObj })
       data = { __id, ...rawObj }
     } catch (e) {
       error = e
     }
-    this.#foundation.triggerEvent(`collection:add:${this.#entity.toLowerCase()}`, {
-      foundation: this.#foundation,
-      entity: this.#entity,
+    this.#_foundation.triggerEvent(`collection:add:${this.#_entity.toLowerCase()}`, {
+      foundation: this.#_foundation,
+      entity: this.#_entity,
       document: rawObj,
       data,
       error,
     })
+    const state = { action: 'add', data, error, document: rawObj }
+    this.#_sendStateChangeToAllOtherTabs(state)
 
     return createMethodSignature(error, data)
   }
@@ -142,43 +134,116 @@ export default class DataAPI {
    * @async
    * @Method DataAPI.edit
    * @description Edit a document on the storage
-   * @param  {string|number} identifier - The primary key value of the desired document
+   * @param  {string|number} primaryKey - The primary key value of the desired document
    * @param  {object} doc - A valid document validated against mongoose schema
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
    * @return  {object} signature.data - Edited document
    */
-  async edit (identifier, doc) {
-    // todo
-    console.log(this.#entity, this.#strategy)
+  async edit (primaryKey, doc) {
+    let data = null
+    let error = null
+    let rawObj = {}
+    try {
+      const model = new this.Model(doc, this.#_schema)
+      const invalid = model.validateSync()
+      if (invalid) {
+        throw invalid
+      }
+      rawObj = toJSON(model)
+      const __id = await this.#_foundation.localDatabaseTransport
+        .table(this.#_entity)
+          .update(primaryKey, { ...rawObj })
+      console.error({ __id, ...rawObj })
+      data = { __id, ...rawObj }
+    } catch (e) {
+      error = e
+    }
+    this.#_foundation.triggerEvent(
+      `collection:edit:${this.#_entity.toLowerCase()}`,
+      {
+        foundation: this.#_foundation,
+        entity: this.#_entity,
+        primaryKey,
+        document: rawObj,
+        data,
+        error
+      }
+    )
+    const state = { action: 'edit', data, error, document: rawObj, primaryKey }
+    this.#_sendStateChangeToAllOtherTabs(state)
+
+    return createMethodSignature(error, data)
+
   }
 
   /**
    * @async
    * @Method DataAPI.delete
    * @description delete a document from the storage
-   * @param  {string|number} identifier - The primary key value of the desired document
+   * @param  {string|number} primaryKey - The primary key value of the desired document
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
    * @return  {object} signature.data - Deleted document
    */
-  async delete (identifier) {
-    // todo
-    console.log(this.#entity, this.#strategy)
+  async delete (primaryKey) {
+    let data = null
+    let error = null
+    let rawObj = {}
+    try {
+      const __id = await this.#_foundation.localDatabaseTransport
+        .table(this.#_entity)
+         .delete(primaryKey)
+      console.error({ __id })
+      data = { __id: primaryKey }
+    } catch (e) {
+      error = e
+    }
+    this.#_foundation.triggerEvent(
+      `collection:delete:${this.#_entity.toLowerCase()}`,
+      {
+        foundation: this.#_foundation,
+        entity: this.#_entity,
+        primaryKey,
+        data,
+        error
+      }
+    )
+    const state = { action: 'delete', data, error, primaryKey }
+    this.#_sendStateChangeToAllOtherTabs(state)
+
+    return createMethodSignature(error, data)
   }
 
   /**
    * @async
    * @Method DataAPI.findById
    * @description find a document from the storage by ID
-   * @param  {string|number} identifier - The primary key value of the desired document
+   * @param  {string|number} primaryKey - The primary key value of the desired document
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
    * @return  {object} signature.data - Found document
    */
-  async findById (identifier) {
-    // todo
-    console.log(this.#entity, this.#strategy)
+  async findById (primaryKey) {
+    let data = null
+    let error = null
+    try {
+      primaryKey = parseInt(primaryKey)
+      const doc = await this.#_foundation.localDatabaseTransport
+        .collection(this.#_entity)
+          .findOne({ __id: primaryKey })
+      console.debug({ __id: primaryKey, doc })
+      if (doc)
+      {
+        if (doc.__id === primaryKey) {
+          data = { __id: primaryKey, ...doc }
+        }
+      }
+    } catch (e) {
+      console.error('error', error)
+      error = e
+    }
+    return createMethodSignature(error, data)
   }
 
   /**
@@ -191,7 +256,7 @@ export default class DataAPI {
    */
   async findAll () {
     // todo
-    console.log(this.#entity, this.#strategy)
+    console.log(this.#_entity, this.#_strategy)
   }
 
   /**
@@ -210,14 +275,14 @@ export default class DataAPI {
    * @return  {string|object} signature.error - Execution error
    * @return  {array} signature.data - Array of Found documents
    */
-  async find(query = {}, pagination = this.#pagination) {
+  async find(query = {}, pagination = this.#_pagination) {
     let { offset, limit } = pagination
     let data = null
     let error = null
     try {
-      const documents = await this.#foundation
+      const documents = await this.#_foundation
           .localDatabaseTransport
-            .collection(this.#entity)
+            .collection(this.#_entity)
               .find(query)
                 .reverse() 
                   .offset(offset)
@@ -247,14 +312,50 @@ export default class DataAPI {
     let data = null
     let error = null
     try {
-      const counter = await this.#foundation
+      const counter = await this.#_foundation
           .localDatabaseTransport
-            .collection(this.#entity)
+            .collection(this.#_entity)
               .count(query)     
       data = counter
     } catch (e) {
       error = e
     }
     return createMethodSignature(error, data)
+  }
+
+
+  #_listenToAllOtherTabsStateChanges() {
+    window.addEventListener('storage', (event) => {
+      if (event.key === this.#_stateChangeStorageName)
+      {
+        const { key, newValue, oldValue } = event
+        if (newValue)
+        {
+          // console.log('DATAAPI -> got new state change', { key, newValue, oldValue })
+          const jsonState = JSON.parse(newValue)
+          const { error, data, entity, action, source, document } = jsonState
+          // console.error({ error, data, entity, action, source, document })
+          const eventObj = {
+            foundation: this.#_foundation,
+            entity: entity,
+            document: document,
+            data,
+            error
+          }
+          const eventName = `collection:${action}:${entity.toLowerCase()}`
+          // console.log(eventName, eventObj)
+          this.#_foundation.triggerEvent(eventName, eventObj)
+        }
+        // oldValue
+      }
+    })
+  }
+
+  #_sendStateChangeToAllOtherTabs(state = { action: '', data: null, error: null, document: {} }) {
+    state.source = this.#_foundation.tabId
+    state.entity = this.#_entity
+    const stateChange = JSON.stringify(state)
+    window.localStorage.setItem(this.#_stateChangeStorageName, stateChange)
+    window.localStorage.removeItem(this.#_stateChangeStorageName)
   }
 }

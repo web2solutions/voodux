@@ -60,7 +60,7 @@ class Crud extends React.Component {
       })
     }
 
-    document.getElementById('guid').innerText = 'Aplication GUID -> ' + this.foundation.guid
+    document.getElementById('guid').innerText = 'Aplication GUID -> ' + this.foundation.guid + ' / ' + this.foundation.tabId
   }
 
   async handleAddDocument (e) {
