@@ -32,7 +32,7 @@ export default function Customers (props) {
 
   const handleDeleteCustomer = async (e, ___id) => {
     e.preventDefault()
-    console.error(___id)
+    // console.error(___id)
     swal({
       title: 'Are you sure?',
       text: 'Once deleted, you will not be able to recover this!',
@@ -42,7 +42,7 @@ export default function Customers (props) {
     }).then(async (willDelete) => {
       if (willDelete) {
         const r = await Customer.delete(___id)
-        console.error(r)
+        // console.error(r)
         if (r.error) {
           swal('Database error', e.error.message, 'error')
           return
@@ -60,7 +60,7 @@ export default function Customers (props) {
   props.foundation.on(`collection:add:${props.entity.toLowerCase()}`, function (eventObj) {
     const { error, /* document, foundation, */ data } = eventObj
     if (error) {
-      console.error(`Error adding user: ${error}`)
+      // console.error(`Error adding user: ${error}`)
       return
     }
     setCustomers([data, ...customers])
@@ -70,7 +70,7 @@ export default function Customers (props) {
   props.foundation.on(`collection:edit:${props.entity.toLowerCase()}`, function (eventObj) {
     const { data, primaryKey, /* document, foundation, */ error } = eventObj
     if (error) {
-      console.error(`Error updating user: ${error}`)
+      // console.error(`Error updating user: ${error}`)
       return
     }
     const newData = customers.map(customer => {
@@ -87,7 +87,7 @@ export default function Customers (props) {
   props.foundation.on(`collection:delete:${props.entity.toLowerCase()}`, function (eventObj) {
     const { error, /* document, foundation, */ data } = eventObj
     if (error) {
-      console.error(`Error deleting user: ${error}`)
+      // console.error(`Error deleting user: ${error}`)
       return
     }
     const allCustomers = [...customers]

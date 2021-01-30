@@ -7,9 +7,26 @@ import TextField from '@material-ui/core/TextField'
 // import FormControlLabel from '@material-ui/core/FormControlLabel'
 // import Checkbox from '@material-ui/core/Checkbox'
 // import Link from '@material-ui/core/Link'
+import InputLabel from '@material-ui/core/InputLabel'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import Chip from '@material-ui/core/Chip'
 import Button from '@material-ui/core/Button'
+import Input from '@material-ui/core/Input'
 import useStyles from './useStyles'
 import swal from 'sweetalert'
+
+const ITEM_HEIGHT = 48
+const ITEM_PADDING_TOP = 8
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250
+    }
+  }
+}
+
 export default function CustomerEdit (props) {
   const [customer, setCustomer] = useState({
     name: null,
@@ -17,6 +34,8 @@ export default function CustomerEdit (props) {
     cards: [],
     email: null
   })
+
+  const [cards, setCards] = useState(['VISA ⠀*** 3719'])
 
   const history = useHistory()
 
@@ -29,7 +48,7 @@ export default function CustomerEdit (props) {
   const handleChangeFieldValue = e => {
     // e.preventDefault()
     const newHash = { ...customer }
-    newHash[e.target.id] = e.target.value
+    newHash[e.target.id || e.target.name] = e.target.value
     setCustomer(newHash)
   }
 
@@ -42,8 +61,9 @@ export default function CustomerEdit (props) {
     }
 
     const doc = { ...customer }
-
-    const { error } = await Customer.edit(customer.__id, doc)
+    // console.error(doc)
+    const { error, data } = await Customer.edit(customer.__id, doc)
+    // console.error({ error, data })
     if (error) {
       swal('Database error', error.message, 'error')
       return
@@ -55,7 +75,7 @@ export default function CustomerEdit (props) {
   props.foundation.on(`collection:edit:${props.entity.toLowerCase()}`, function (eventObj) {
     const { error } = eventObj
     if (error) {
-      throw new Error(`Error updating user: ${error}`)
+      // console.error(error)
     }
     // update form
     // manage state by setting users avoiding race conditions
@@ -66,9 +86,10 @@ export default function CustomerEdit (props) {
   props.foundation.on(`collection:delete:${props.entity.toLowerCase()}`, function (eventObj) {
     const { error } = eventObj
     if (error) {
-      throw new Error(`Error deleting user: ${error}`)
+      // console.error(error)
     }
     // close form
+    history.push('/Customers')
   })
 
   useEffect(async () => {
@@ -91,7 +112,6 @@ export default function CustomerEdit (props) {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete='aname'
                     name='name'
                     variant='outlined'
                     required
@@ -111,7 +131,6 @@ export default function CustomerEdit (props) {
                     id='address'
                     label='Address'
                     name='address'
-                    autoComplete='aaddress'
                     onChange={handleChangeFieldValue}
                     value={customer.address}
                   />
@@ -124,23 +143,38 @@ export default function CustomerEdit (props) {
                     id='email'
                     label='E-mail'
                     name='email'
-                    autoComplete='apaymentmethod'
                     onChange={handleChangeFieldValue}
                     value={customer.email}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <InputLabel id='cards-label'>Registered Payment Methods</InputLabel>
+                  <Select
                     variant='outlined'
+                    labelId='cards-label'
+                    id='cards'
+                    name='cards'
+                    multiple
                     required
                     fullWidth
-                    name='cards'
-                    label='Cards'
-                    id='cards'
-                    autoComplete='acards'
-                    onChange={handleChangeFieldValue}
                     value={customer.cards}
-                  />
+                    onChange={handleChangeFieldValue}
+                    input={<Input id='select-multiple-chip' />}
+                    renderValue={(selected) => (
+                      <div className={classes.chips}>
+                        {selected.map((value) => (
+                          <Chip key={value} label={value} className={classes.chip} />
+                        ))}
+                      </div>
+                    )}
+                    MenuProps={MenuProps}
+                  >
+                    {cards.map((card) => (
+                      <MenuItem key={card} value={card}>
+                        {card}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </Grid>
               </Grid>
               <Button

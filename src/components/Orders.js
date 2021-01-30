@@ -146,7 +146,7 @@ export default function Orders (props) {
                     <TableCell>{order.paymentMethod}</TableCell>
                     <TableCell align='right'>USD {formatter.format(order.amount)}</TableCell>
                     <TableCell align='right'>
-                      <Link color='primary' to={`/OrdersEdit/${order.__id}`}>[edit]</Link> | <Link color='primary' href='#' onClick={e => handleDeleteOrder(e, order.__id)}>[delete]</Link>
+                      <Link color='primary' to={`/OrdersEdit/${order.__id}`}>[edit]</Link> | <Link color='primary' href='#' style={{ display: 'none' }} onClick={e => handleDeleteOrder(e, order.__id)}>[delete]</Link>
                     </TableCell>
                   </TableRow>
                 ))}

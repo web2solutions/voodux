@@ -4,19 +4,35 @@ import { /* Link as RouterLink, */ useHistory } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
-// import FormControlLabel from '@material-ui/core/FormControlLabel'
-// import Checkbox from '@material-ui/core/Checkbox'
-// import Link from '@material-ui/core/Link'
+import Select from '@material-ui/core/Select'
+import Chip from '@material-ui/core/Chip'
+import InputLabel from '@material-ui/core/InputLabel'
+import Input from '@material-ui/core/Input'
+import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import useStyles from './useStyles'
 import swal from 'sweetalert'
+
+const ITEM_HEIGHT = 48
+const ITEM_PADDING_TOP = 8
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250
+    }
+  }
+}
+
 export default function CustomerAdd (props) {
   const [customer, setCustomer] = useState({
     name: null,
     address: 'Seminole, FL',
-    cards: ['VISA ⠀*** 3719'],
+    cards: [],
     email: null
   })
+
+  const [cards, setCards] = useState(['VISA ⠀*** 3719'])
 
   const history = useHistory()
 
@@ -26,8 +42,9 @@ export default function CustomerAdd (props) {
 
   const handleChangeFieldValue = e => {
     // e.preventDefault()
+    // console.error(e)
     const newHash = { ...customer }
-    newHash[e.target.id] = e.target.value
+    newHash[e.target.id || e.target.name] = e.target.value
     setCustomer(newHash)
   }
 
@@ -58,7 +75,6 @@ export default function CustomerAdd (props) {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete='aname'
                     name='name'
                     variant='outlined'
                     required
@@ -75,12 +91,11 @@ export default function CustomerAdd (props) {
                     variant='outlined'
                     required
                     fullWidth
-                    id='shipTo'
-                    label='Ship to'
-                    name='shipTo'
-                    autoComplete='ashipto'
+                    id='address'
+                    label='Address'
+                    name='address'
                     onChange={handleChangeFieldValue}
-                    value={customer.shipTo}
+                    value={customer.address}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -88,27 +103,41 @@ export default function CustomerAdd (props) {
                     variant='outlined'
                     required
                     fullWidth
-                    id='paymentMethod'
-                    label='Payment method'
-                    name='paymentMethod'
-                    autoComplete='apaymentmethod'
+                    id='email'
+                    label='E-mail'
+                    name='email'
                     onChange={handleChangeFieldValue}
-                    value={customer.paymentMethod}
+                    value={customer.email}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  <InputLabel id='cards-label'>Registered Payment Methods</InputLabel>
+                  <Select
                     variant='outlined'
+                    labelId='cards-label'
+                    id='cards'
+                    name='cards'
+                    multiple
                     required
                     fullWidth
-                    name='amount'
-                    label='Sale Amount'
-                    id='amount'
-                    autoComplete='aamount'
-                    type='number'
+                    value={customer.cards}
                     onChange={handleChangeFieldValue}
-                    value={customer.amount}
-                  />
+                    input={<Input id='select-multiple-chip' />}
+                    renderValue={(selected) => (
+                      <div className={classes.chips}>
+                        {selected.map((value) => (
+                          <Chip key={value} label={value} className={classes.chip} />
+                        ))}
+                      </div>
+                    )}
+                    MenuProps={MenuProps}
+                  >
+                    {cards.map((card) => (
+                      <MenuItem key={card} value={card}>
+                        {card}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </Grid>
               </Grid>
               <Button
