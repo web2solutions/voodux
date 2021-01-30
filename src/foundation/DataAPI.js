@@ -151,12 +151,15 @@ export default class DataAPI {
         return createMethodSignature(invalid, data)
       }
       rawObj = toJSON(model)
-      // console.debug('query', {primaryKey, rawObj})
+      rawObj.__id = primaryKey
+      console.debug('query', {primaryKey, rawObj})
       const response = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
-        .update({ __id: primaryKey }, { ...rawObj })
-      // console.debug('response', response)
-      if (response.modifiedCount === 1) {
+        .put({ ...rawObj })
+        // .update({ __id: primaryKey }, { ...rawObj })
+      console.debug('response', response)
+      data = { __id: primaryKey, ...rawObj }
+      /* if (response.modifiedCount === 1) {
         data = { __id: primaryKey, ...rawObj }
       } else {
         data = null
@@ -164,8 +167,9 @@ export default class DataAPI {
           message: 'Critical query error on update',
           response
         }
-      }
+      } */
     } catch (e) {
+      console.log(e)
       error = e
     }
     this.#_foundation.triggerEvent(

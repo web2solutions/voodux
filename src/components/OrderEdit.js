@@ -4,32 +4,68 @@ import { /* Link as RouterLink, */ useParams, useHistory } from 'react-router-do
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
+import InputLabel from '@material-ui/core/InputLabel'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+
 // import FormControlLabel from '@material-ui/core/FormControlLabel'
 // import Checkbox from '@material-ui/core/Checkbox'
 // import Link from '@material-ui/core/Link'
 import Button from '@material-ui/core/Button'
 import useStyles from './useStyles'
 import swal from 'sweetalert'
+
+const orderObj = {
+  name: null,
+  shipTo: null,
+  paymentMethod: null,
+  amount: null,
+  customerId: null
+}
+
 export default function OrderEdit (props) {
-  const [order, setOrder] = useState({
-    name: '',
-    shipTo: '',
-    paymentMethod: '',
-    amount: 0
-  })
+  const [order, setOrder] = useState(orderObj)
+  const [customers, setCustomers] = useState([])
 
   const history = useHistory()
 
-  const { Order } = props.foundation.data
+  const { Order, Customer } = props.foundation.data
 
   const { __id } = useParams()
 
   const classes = useStyles()
 
-  const handleChangeFieldValue = e => {
+  const handleChangeFieldValue = async e => {
     // e.preventDefault()
+    // console.debug(e)
+    if (e.target) {
+      if (e.target.value === null || e.target.value === 'null') {
+        const copy = { ...orderObj }
+        delete copy.amount
+        // console.debug(copy)
+        setOrder(copy)
+        return
+      }
+    }
     const newHash = { ...order }
-    newHash[e.target.id] = e.target.value
+    if (e.target.id) {
+      if (e.target.id === 'amount') {
+        newHash[e.target.id] = e.target.value
+      }
+    } else {
+      const { name, value } = e.target
+      if (name === 'name') {
+        const { data, error } = await Customer.findById(value)
+        if (error) {
+          return
+        }
+        newHash.customerId = value
+        newHash.name = data.name
+        newHash.shipTo = data.address
+        newHash.paymentMethod = data.cards[0]
+      }
+    }
+    // console.error(newHash)
     setOrder(newHash)
   }
 
@@ -80,6 +116,14 @@ export default function OrderEdit (props) {
     if (findOrder.data) {
       setOrder(findOrder.data)
     }
+
+    const findCustomers = await Customer.find({})
+    if (!findCustomers) {
+      return
+    }
+    if (findCustomers.data) {
+      setCustomers(findCustomers.data)
+    }
   }, []) // run one time only
 
   return (
@@ -90,44 +134,25 @@ export default function OrderEdit (props) {
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <TextField
-                    autoComplete='aname'
-                    name='name'
+                  <InputLabel id='name-label'>Buyer</InputLabel>
+                  <Select
                     variant='outlined'
-                    required
                     fullWidth
+                    labelId='name-label'
                     id='name'
-                    label='Name'
-                    autoFocus
-                    value={order.name}
+                    name='name'
+                    value={order.customerId}
                     onChange={handleChangeFieldValue}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant='outlined'
-                    required
-                    fullWidth
-                    id='shipTo'
-                    label='Ship to'
-                    name='shipTo'
-                    autoComplete='ashipto'
-                    onChange={handleChangeFieldValue}
-                    value={order.shipTo}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant='outlined'
-                    required
-                    fullWidth
-                    id='paymentMethod'
-                    label='Payment method'
-                    name='paymentMethod'
-                    autoComplete='apaymentmethod'
-                    onChange={handleChangeFieldValue}
-                    value={order.paymentMethod}
-                  />
+                  >
+                    <MenuItem key={null} value={null}>
+                      please selecte one
+                    </MenuItem>
+                    {customers.map(({ name, __id }) => (
+                      <MenuItem key={__id} value={__id}>
+                        {name}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
