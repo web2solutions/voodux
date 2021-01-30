@@ -107,7 +107,7 @@ export default class DataAPI {
       const invalid = model.validateSync()
       if (invalid)
       {
-        throw invalid
+        return createMethodSignature(invalid, data)
       }
       rawObj = toJSON(model)
       const __id = await this.#_foundation.localDatabaseTransport
@@ -148,14 +148,23 @@ export default class DataAPI {
       const model = new this.Model(doc, this.#_schema)
       const invalid = model.validateSync()
       if (invalid) {
-        throw invalid
+        return createMethodSignature(invalid, data)
       }
       rawObj = toJSON(model)
-      const __id = await this.#_foundation.localDatabaseTransport
+      // console.debug('query', {primaryKey, rawObj})
+      const response = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
-          .update(primaryKey, { ...rawObj })
-      console.error({ __id, ...rawObj })
-      data = { __id, ...rawObj }
+        .update({ __id: primaryKey }, { ...rawObj })
+      // console.debug('response', response)
+      if (response.modifiedCount === 1) {
+        data = { __id: primaryKey, ...rawObj }
+      } else {
+        data = null
+        error = {
+          message: 'Critical query error on update',
+          response
+        }
+      }
     } catch (e) {
       error = e
     }
@@ -194,7 +203,7 @@ export default class DataAPI {
       const __id = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
          .delete(primaryKey)
-      console.error({ __id })
+      // console.error({ __id })
       data = { __id: primaryKey }
     } catch (e) {
       error = e
@@ -232,7 +241,7 @@ export default class DataAPI {
       const doc = await this.#_foundation.localDatabaseTransport
         .collection(this.#_entity)
           .findOne({ __id: primaryKey })
-      console.debug({ __id: primaryKey, doc })
+      // console.debug({ __id: primaryKey, doc })
       if (doc)
       {
         if (doc.__id === primaryKey) {

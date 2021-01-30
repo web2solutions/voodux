@@ -456,7 +456,7 @@ export default class Foundation extends EventSystem {
       error: _error,
       data: _data
     })
-    console.warn('STARTED>>>>>>>>>>>', this)
+    // console.warn('STARTED>>>>>>>>>>>', this)
     return createMethodSignature(_error, _data)
   }
 }

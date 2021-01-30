@@ -1,10 +1,11 @@
-/* globals document window */
+/* globals document */
 
 // import React
 import React from 'react'
 import ReactDOM from 'react-dom'
 
 // import Bootstrap
+import 'bootstrap/dist/css/bootstrap.css'
 
 // import React app
 import App from './App'
@@ -16,10 +17,11 @@ import Foundation from './foundation/Foundation'
 import UserSchema from './schemas/User'
 import ProductSchema from './schemas/Product'
 import OrderSchema from './schemas/Order'
+import CustomerSchema from './schemas/Customer'
 
 // foundation event handlers
-import onApplicationStart from './events/onApplicationStart'
-import onWorkerResponseClientId from './events/onWorkerResponseClientId'
+// import onApplicationStart from './events/onApplicationStart'
+// import onWorkerResponseClientId from './events/onWorkerResponseClientId'
 
 (async () => {
   const foundation = new Foundation({
@@ -29,7 +31,8 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
     schemas: {
       User: UserSchema,
       Product: ProductSchema,
-      Order: OrderSchema
+      Order: OrderSchema,
+      Customer: CustomerSchema
     }
   })
 
@@ -51,7 +54,7 @@ import onWorkerResponseClientId from './events/onWorkerResponseClientId'
   if (start.error) {
     throw new Error(`Error starting foundation stack: ${start.error}`)
   }
-  console.debug('start', start)
+  // console.debug('start', start)
   ReactDOM.render(
     <App foundation={foundation} />,
     document.getElementById('root')

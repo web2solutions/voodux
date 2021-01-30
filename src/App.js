@@ -28,6 +28,11 @@ import Dashboard from './components/Dashboard'
 import Copyright from './components/Copyright'
 import Orders from './components/Orders'
 import OrderEdit from './components/OrderEdit'
+import OrderAdd from './components/OrderAdd'
+
+import Customers from './components/Customers'
+import CustomerEdit from './components/CustomerEdit'
+import CustomerAdd from './components/CustomerAdd'
 
 export default function App (props) {
   const classes = useStyles()
@@ -94,6 +99,18 @@ export default function App (props) {
               </Route>
               <Route path='/OrdersEdit/:__id'>
                 <OrderEdit entity='Order' foundation={props.foundation} />
+              </Route>
+              <Route path='/OrdersAdd'>
+                <OrderAdd entity='Order' foundation={props.foundation} />
+              </Route>
+              <Route path='/Customers'>
+                <Customers entity='Customer' foundation={props.foundation} />
+              </Route>
+              <Route path='/CustomersEdit/:__id'>
+                <CustomerEdit entity='Customer' foundation={props.foundation} />
+              </Route>
+              <Route path='/CustomersAdd'>
+                <CustomerAdd entity='Customer' foundation={props.foundation} />
               </Route>
               <Route path='/'>
                 <Dashboard foundation={props.foundation} />

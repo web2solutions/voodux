@@ -1,8 +1,10 @@
-/* globals document, window */
+/* globals document */
 import React from 'react'
 import { collectionOnAdd } from './events/collectionOnAdd'
 import { collectionOnUpdate } from './events/collectionOnUpdate'
 import { collectionOnDelete } from './events/collectionOnDelete'
+
+import { uuid } from '../../foundation/utils'
 
 class Crud extends React.Component {
   constructor (props) {
@@ -23,6 +25,7 @@ class Crud extends React.Component {
     }
 
     this.handleAddDocument = this.handleAddDocument.bind(this)
+    this.handleEditDocument = this.handleEditDocument.bind(this)
   }
 
   async componentDidMount () {
@@ -32,7 +35,7 @@ class Crud extends React.Component {
     this.foundation.on(`collection:add:${this.entity.toLowerCase()}`, collectionOnAdd.bind(this))
 
     // listen to update User Collection event on Data API
-    this.foundation.on(`collection:update:${this.entity.toLowerCase()}`, collectionOnUpdate.bind(this))
+    this.foundation.on(`collection:edit:${this.entity.toLowerCase()}`, collectionOnUpdate.bind(this))
 
     // listen to delete User Collection event on Data API
     this.foundation.on(`collection:delete:${this.entity.toLowerCase()}`, collectionOnDelete.bind(this))
@@ -72,15 +75,25 @@ class Crud extends React.Component {
     })
   }
 
+  async handleEditDocument (e) {
+    e.preventDefault()
+    const { User } = this.foundation.data
+    await User.edit(1, {
+      name: 'Eduardo Almeida',
+      username: uuid()
+    })
+  }
+
   render () {
     return (
       <div className='card'>
         <div className='card-header'>
           <button type='button' className='btn btn-success' onClick={this.handleAddDocument}>add user</button>
+          <button type='button' className='btn btn-warning' onClick={this.handleEditDocument}>edit user</button>
         </div>
         <div className='card-body' style={{ overflow: 'auto' }}>
           <ul style={{ overflow: 'auto' }}>
-            {this.state.users.map(({ __id, name }) => (<li key={__id}>{__id} - {name}</li>))}
+            {this.state.users.map(({ __id, name, username }) => (<li key={__id}>{__id} - {name} - {username}</li>))}
           </ul>
         </div>
         <div className='card-footer'>

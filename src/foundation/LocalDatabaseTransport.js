@@ -63,7 +63,7 @@ export default class LocalDatabaseTransport extends dexie {
   #_schemas
   #_dbName
   constructor ({ version = 1, tables = {}, dbName = 'DatabaseName' } = {}) {
-    console.error('STARTED LocalDatabaseTransport')
+    // console.error('STARTED LocalDatabaseTransport')
     // run the super constructor Dexie(databaseName) to create the IndexedDB
     // database.
     super(dbName)
@@ -102,7 +102,7 @@ export default class LocalDatabaseTransport extends dexie {
     }
 
     const open = await this.open()
-    console.error('         CONNECTED           ')
+    // console.error('         CONNECTED           ')
     // console.debug('open', open)
   }
 }

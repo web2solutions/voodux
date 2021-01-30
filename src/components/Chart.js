@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTheme } from '@material-ui/core/styles'
 import {
   LineChart,
@@ -8,34 +8,74 @@ import {
   Label,
   ResponsiveContainer
 } from 'recharts'
+
+import moment from 'moment'
+
 import Title from './Title'
 
-// Generate Sales Data
-function createData (time, amount) {
-  return { time, amount }
-}
-
-const data = [
-  createData('00:00', 0),
-  createData('03:00', 300),
-  createData('06:00', 600),
-  createData('09:00', 800),
-  createData('12:00', 1500),
-  createData('15:00', 2000),
-  createData('18:00', 2400),
-  createData('21:00', 2400),
-  createData('24:00', undefined)
-]
+/* const formatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+}) */
 
 export default function Chart (props) {
+  const [series, setSeries] = useState([
+    { time: '00:00', amount: 0 },
+    { time: '24:00', amount: undefined }
+  ])
+  const { Order } = props.foundation.data
   const theme = useTheme()
+
+  const _setSeries = async () => {
+    const { data } = await Order.find({})
+    if (!data) {
+      return
+    }
+    let _total = 0
+    const series = data.reverse().map(({ date, amount }) => {
+      _total = _total + amount
+      return {
+        amount: _total,
+        time: moment(date).format('HH:mm:ss'),
+        mseconds: (new Date(date)).getTime()
+      }
+    })
+    const final = [
+      { time: '00:00', amount: 0 },
+      ...(series.slice().sort((a, b) => a.mseconds - b.mseconds)),
+      { time: '24:00', amount: undefined }
+    ]
+    // console.log(final)
+    setSeries(final)
+  }
+
+  const handlerChangeOrder = async (eventObj) => {
+    const { error } = eventObj
+    if (error) {
+      return
+    }
+    await _setSeries()
+  }
+
+  // listen to add Order Collection event on Data API
+  props.foundation.on(`collection:add:${props.entity.toLowerCase()}`, handlerChangeOrder)
+
+  // listen to edit Order Collection event on Data API
+  props.foundation.on(`collection:edit:${props.entity.toLowerCase()}`, handlerChangeOrder)
+
+  // listen to delete Order Collection event on Data API
+  props.foundation.on(`collection:delete:${props.entity.toLowerCase()}`, handlerChangeOrder)
+
+  useEffect(async () => {
+    await _setSeries()
+  }, []) // run one time only
 
   return (
     <>
       <Title>Today</Title>
       <ResponsiveContainer>
         <LineChart
-          data={data}
+          data={series}
           margin={{
             top: 16,
             right: 16,
