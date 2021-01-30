@@ -44,12 +44,7 @@ export const mainListItems = (
   <div>
     <ListItemLink to='/' primary='Dashboard' icon={<DashboardIcon />} />
     <ListItemLink to='/Orders' primary='Orders' icon={<ShoppingCartIcon />} />
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary='Customers' />
-    </ListItem>
+    <ListItemLink to='/Customers' primary='Customers' icon={<PeopleIcon />} />
     <ListItem button>
       <ListItemIcon>
         <BarChartIcon />

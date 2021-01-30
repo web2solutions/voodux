@@ -1,9 +1,10 @@
 {
-    "parser": "@babel/eslint-parser",
     "env": {
-        "node": true,
-        "es6": true
+        "browser": true,
+        "es2021": true,
+        "node": true
     },
+    "parser": "@babel/eslint-parser",
     "rules": {
         
         // Erros
@@ -58,6 +59,7 @@
     "plugins": ["prettier"], // classPrivateProperties and classPrivateMethods
     
     "parserOptions": {
-      "parser": "@babel/eslint-parser"
+      "ecmaVersion": 12,
+      "sourceType": "module"
     }
 }

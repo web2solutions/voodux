@@ -1,4 +1,4 @@
-/* globals document, window */
+/* globals document */
 import React from 'react'
 import { collectionOnAdd } from './events/collectionOnAdd'
 import { collectionOnUpdate } from './events/collectionOnUpdate'

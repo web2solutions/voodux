@@ -30,6 +30,10 @@ import Orders from './components/Orders'
 import OrderEdit from './components/OrderEdit'
 import OrderAdd from './components/OrderAdd'
 
+import Customers from './components/Customers'
+import CustomerEdit from './components/CustomerEdit'
+import CustomerAdd from './components/CustomerAdd'
+
 export default function App (props) {
   const classes = useStyles()
   const [open, setOpen] = React.useState(true)
@@ -98,6 +102,15 @@ export default function App (props) {
               </Route>
               <Route path='/OrdersAdd'>
                 <OrderAdd entity='Order' foundation={props.foundation} />
+              </Route>
+              <Route path='/Customers'>
+                <Customers entity='Customer' foundation={props.foundation} />
+              </Route>
+              <Route path='/CustomersEdit/:__id'>
+                <CustomerEdit entity='Customer' foundation={props.foundation} />
+              </Route>
+              <Route path='/CustomersAdd'>
+                <CustomerAdd entity='Customer' foundation={props.foundation} />
               </Route>
               <Route path='/'>
                 <Dashboard foundation={props.foundation} />

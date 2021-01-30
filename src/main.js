@@ -17,6 +17,7 @@ import Foundation from './foundation/Foundation'
 import UserSchema from './schemas/User'
 import ProductSchema from './schemas/Product'
 import OrderSchema from './schemas/Order'
+import CustomerSchema from './schemas/Customer'
 
 // foundation event handlers
 // import onApplicationStart from './events/onApplicationStart'
@@ -30,7 +31,8 @@ import OrderSchema from './schemas/Order'
     schemas: {
       User: UserSchema,
       Product: ProductSchema,
-      Order: OrderSchema
+      Order: OrderSchema,
+      Customer: CustomerSchema
     }
   })
 

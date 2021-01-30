@@ -203,7 +203,7 @@ export default class DataAPI {
       const __id = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
          .delete(primaryKey)
-      console.error({ __id })
+      // console.error({ __id })
       data = { __id: primaryKey }
     } catch (e) {
       error = e
@@ -241,7 +241,7 @@ export default class DataAPI {
       const doc = await this.#_foundation.localDatabaseTransport
         .collection(this.#_entity)
           .findOne({ __id: primaryKey })
-      console.debug({ __id: primaryKey, doc })
+      // console.debug({ __id: primaryKey, doc })
       if (doc)
       {
         if (doc.__id === primaryKey) {
