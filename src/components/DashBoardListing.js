@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { /* Link as RouterLink, */ useHistory } from 'react-router-dom'
 // import Link from '@material-ui/core/Link'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
@@ -7,11 +8,15 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
+
+import moment from 'moment'
+
 import Title from './Title'
 
-function preventDefault (event) {
-  event.preventDefault()
-}
+const formatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+})
 
 const useStyles = makeStyles((theme) => ({
   seeMore: {
@@ -19,63 +24,70 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+
+
 export default function DashBoardListing (props) {
   const [documents, setDocuments] = useState([])
   const DataAPI = props.foundation.data
 
+  const history = useHistory()
+
   const handleAddDocument = async (e) => {
     e.preventDefault()
-    await DataAPI[props.entity].add({
-      name: 'Elvis Presley',
-      shipTo: 'Tupelo, MS',
-      paymentMethod: 'VISA ⠀•••• 3719',
-      amount: 312.44
-    })
+    history.push('/OrdersAdd')
   }
 
-  // listen to add props.entity Collection event on Data API
-  props.foundation.on(`collection:add:${props.entity.toLowerCase()}`, function (eventObj) {
-    const { foundation, error, document, data } = eventObj
+  const handlerOnOrderAdd = (eventObj) => {
+    const { error, data } = eventObj
     if (error) {
-      throw new Error(`Error adding user: ${error}`)
+      console.error(`Error adding user: ${error}`)
     }
-    // manage state by setting users avoiding race conditions
     setDocuments([data, ...documents])
-  })
+  }
 
-  // listen to update props.entity Collection event on Data API
-  props.foundation.on(`collection:update:${props.entity.toLowerCase()}`, function (eventObj) {
-    const { foundation, error, document, data } = eventObj
+  const handlerOnOrderEdit = function (eventObj) {
+    const { error, data, primaryKey } = eventObj
     if (error) {
-      throw new Error(`Error updating user: ${error}`)
+      console.error(`Error updating user: ${error}`)
+      return
     }
-    const newData = documents.map(doc => {
-      if (doc.__id === data.__id) {
+    const newData = documents.map((doc) => {
+      if (doc.__id === primaryKey) {
         return data
       } else {
         return doc
       }
     })
-    // manage state by setting users avoiding race conditions
     setDocuments([...newData])
-  })
+  }
 
-  // listen to delete props.entity Collection event on Data API
-  props.foundation.on(`collection:delete:${props.entity.toLowerCase()}`, function (eventObj) {
-    const { foundation, error, document, data } = eventObj
+  const handlerOnOrderDelete = (eventObj) => {
+    const { error, primaryKey } = eventObj
     if (error) {
-      throw new Error(`Error deleting user: ${error}`)
+      console.error(`Error deleting user: ${error}`)
+      return
     }
     const allDocuments = [...documents]
     for (let x = 0; x < allDocuments.length; x++) {
       const doc = allDocuments[x]
-      if (doc.__id === data.__id) {
+      if (doc.__id === primaryKey) {
         allDocuments.splice(x)
       }
     }
-    // manage state by setting users avoiding race conditions
     setDocuments(allDocuments)
-  })
+  }
+
+  // listen to add props.entity Collection event on Data API
+  props.foundation
+    .on(`collection:add:${props.entity.toLowerCase()}`, handlerOnOrderAdd)
+
+  // listen to edit props.entity Collection event on Data API
+  props.foundation
+    .on(`collection:edit:${props.entity.toLowerCase()}`, handlerOnOrderEdit)
+
+  // listen to delete props.entity Collection event on Data API
+  props.foundation
+    .on(`collection:delete:${props.entity.toLowerCase()}`, handlerOnOrderDelete)
 
   useEffect(async () => {
     // got documents
@@ -102,11 +114,11 @@ export default function DashBoardListing (props) {
         <TableBody>
           {documents.map((doc) => (
             <TableRow key={doc.id}>
-              <TableCell>{doc.date}</TableCell>
+              <TableCell>{moment(doc.date).startOf('hour').fromNow()}</TableCell>
               <TableCell>{doc.name}</TableCell>
               <TableCell>{doc.shipTo}</TableCell>
               <TableCell>{doc.paymentMethod}</TableCell>
-              <TableCell align='right'>{doc.amount}</TableCell>
+              <TableCell align='right'>USD {formatter.format(doc.amount)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -1,6 +1,6 @@
-/* global window */
+/* global  */
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
@@ -12,72 +12,89 @@ import TableRow from '@material-ui/core/TableRow'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import useStyles from './useStyles'
-import Title from './Title'
-// import DashBoardListing from './DashBoardListing'
 
-function preventDefault (event) {
-  event.preventDefault()
-}
+import swal from 'sweetalert'
+import moment from 'moment'
+
+import Title from './Title'
+
+const formatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+})
 
 export default function Orders (props) {
   const [orders, setOrders] = useState([])
   const { Order } = props.foundation.data
 
+  const history = useHistory()
+
   const classes = useStyles()
 
-  const handleAddOrder = async (e) => {
-    // e.preventDefault()
-    if (e.target.disabled) {
-      return
-    }
-    console.error(e)
-    e.target.disabled = true
-    // e.target.className = e.target.className + ' Mui-disabled Mui-disabled'
-    e.target.class = e.target.class + ' Mui-disabled Mui-disabled'
-    //  disabled
-    await Order.add({
-      name: 'Elvis Presley',
-      shipTo: 'Tupelo, MS',
-      paymentMethod: 'VISA ⠀•••• 3719',
-      amount: 312.44
+  const handleAddOrder = (e) => {
+    e.preventDefault()
+    history.push('/OrdersAdd')
+  }
+
+  const handleDeleteOrder = async (e, ___id) => {
+    e.preventDefault()
+    console.error(___id)
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        const r = await Order.delete(___id)
+        console.error(r)
+        if (r.error) {
+          swal('Database error', e.error.message, 'error')
+          return
+        }
+        swal('Poof! The order has been deleted!', {
+          icon: 'success'
+        })
+      } else {
+        swal('The Order is safe!')
+      }
     })
-    e.target.disabled = false
-    // e.target.className = e.target.className.replace(/ Mui-disabled Mui-disabled/g, '')
-    e.target.class = e.target.class.replace(/ Mui-disabled Mui-disabled/g, '')
   }
 
   // listen to add Order Collection event on Data API
   props.foundation.on(`collection:add:${props.entity.toLowerCase()}`, function (eventObj) {
-    const { foundation, error, document, data } = eventObj
+    const { error, /* document, foundation, */ data } = eventObj
     if (error) {
-      throw new Error(`Error adding user: ${error}`)
+      console.error(`Error adding user: ${error}`)
+      return
     }
-    // manage state by setting users avoiding race conditions
     setOrders([data, ...orders])
   })
 
   // listen to update Order Collection event on Data API
-  props.foundation.on(`collection:update:${props.entity.toLowerCase()}`, function (eventObj) {
-    const { foundation, error, document, data } = eventObj
+  props.foundation.on(`collection:edit:${props.entity.toLowerCase()}`, function (eventObj) {
+    const { data, primaryKey, /* document, foundation, */ error } = eventObj
     if (error) {
-      throw new Error(`Error updating user: ${error}`)
+      console.error(`Error updating user: ${error}`)
+      return
     }
     const newData = orders.map(order => {
-      if (order.__id === data.__id) {
+      if (order.__id === primaryKey) {
         return data
       } else {
         return order
       }
     })
-    // manage state by setting users avoiding race conditions
     setOrders([...newData])
   })
 
   // listen to delete Order Collection event on Data API
   props.foundation.on(`collection:delete:${props.entity.toLowerCase()}`, function (eventObj) {
-    const { foundation, error, document, data } = eventObj
+    const { error, /* document, foundation, */ data } = eventObj
     if (error) {
-      throw new Error(`Error deleting user: ${error}`)
+      console.error(`Error deleting user: ${error}`)
+      return
     }
     const allOrders = [...orders]
     for (let x = 0; x < allOrders.length; x++) {
@@ -86,7 +103,6 @@ export default function Orders (props) {
         allOrders.splice(x)
       }
     }
-    // manage state by setting users avoiding race conditions
     setOrders(allOrders)
   })
 
@@ -124,13 +140,13 @@ export default function Orders (props) {
               <TableBody>
                 {orders.map((order) => (
                   <TableRow key={order.id}>
-                    <TableCell>{order.date}</TableCell>
+                    <TableCell>{moment(order.date).subtract(6, 'days').calendar()}</TableCell>
                     <TableCell>{order.name}</TableCell>
                     <TableCell>{order.shipTo}</TableCell>
                     <TableCell>{order.paymentMethod}</TableCell>
-                    <TableCell align='right'>{order.amount}</TableCell>
+                    <TableCell align='right'>USD {formatter.format(order.amount)}</TableCell>
                     <TableCell align='right'>
-                      <Link color='primary' to={`/OrdersEdit/${order.__id}`}>[edit]</Link> | <Link color='primary' href='#' onClick={preventDefault}>[delete]</Link>
+                      <Link color='primary' to={`/OrdersEdit/${order.__id}`}>[edit]</Link> | <Link color='primary' href='#' onClick={e => handleDeleteOrder(e, order.__id)}>[delete]</Link>
                     </TableCell>
                   </TableRow>
                 ))}

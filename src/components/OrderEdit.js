@@ -1,43 +1,59 @@
-/* global window */
+/* global  */
 import React, { useState, useEffect } from 'react'
-import { Link as RouterLink, useParams } from 'react-router-dom'
+import { /* Link as RouterLink, */ useParams, useHistory } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
-import Link from '@material-ui/core/Link'
+// import FormControlLabel from '@material-ui/core/FormControlLabel'
+// import Checkbox from '@material-ui/core/Checkbox'
+// import Link from '@material-ui/core/Link'
 import Button from '@material-ui/core/Button'
 import useStyles from './useStyles'
-
-function preventDefault (event) {
-  event.preventDefault()
-}
-
-
+import swal from 'sweetalert'
 export default function OrderEdit (props) {
-  console.error('OrderEdit OrderEdit')
   const [order, setOrder] = useState({
     name: '',
     shipTo: '',
     paymentMethod: '',
     amount: 0
   })
+
+  const history = useHistory()
+
   const { Order } = props.foundation.data
 
-  let { __id } = useParams()
+  const { __id } = useParams()
 
   const classes = useStyles()
 
-  const handleChangeName = async (e) => {
+  const handleChangeFieldValue = e => {
     // e.preventDefault()
-    console.error(e)
-    // this.setState({value: event.target.value});
+    const newHash = { ...order }
+    newHash[e.target.id] = e.target.value
+    setOrder(newHash)
+  }
+
+  const handleSaveForm = async e => {
+    e.preventDefault()
+    const form = e.currentTarget.form
+    const isFormValid = form.reportValidity()
+    if (!isFormValid) {
+      return
+    }
+
+    const doc = { ...order }
+
+    const { error } = await Order.edit(order.__id, doc)
+    if (error) {
+      swal('Database error', error.message, 'error')
+      return
+    }
+    history.push('/Orders')
   }
 
   // listen to update Order Collection event on Data API
-  props.foundation.on(`collection:update:${props.entity.toLowerCase()}`, function (eventObj) {
-    const { foundation, error, document, data } = eventObj
+  props.foundation.on(`collection:edit:${props.entity.toLowerCase()}`, function (eventObj) {
+    const { error } = eventObj
     if (error) {
       throw new Error(`Error updating user: ${error}`)
     }
@@ -48,7 +64,7 @@ export default function OrderEdit (props) {
 
   // listen to delete Order Collection event on Data API
   props.foundation.on(`collection:delete:${props.entity.toLowerCase()}`, function (eventObj) {
-    const { foundation, error, document, data } = eventObj
+    const { error } = eventObj
     if (error) {
       throw new Error(`Error deleting user: ${error}`)
     }
@@ -58,7 +74,6 @@ export default function OrderEdit (props) {
   useEffect(async () => {
     // got order
     const findOrder = await Order.findById(__id)
-    console.log(__id, findOrder)
     if (!findOrder) {
       return
     }
@@ -84,9 +99,8 @@ export default function OrderEdit (props) {
                     id='name'
                     label='Name'
                     autoFocus
-                    defaultValue={order.name}
                     value={order.name}
-                    onChange={handleChangeName}
+                    onChange={handleChangeFieldValue}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -98,7 +112,7 @@ export default function OrderEdit (props) {
                     label='Ship to'
                     name='shipTo'
                     autoComplete='ashipto'
-                    defaultValue={order.shipTo}
+                    onChange={handleChangeFieldValue}
                     value={order.shipTo}
                   />
                 </Grid>
@@ -111,7 +125,7 @@ export default function OrderEdit (props) {
                     label='Payment method'
                     name='paymentMethod'
                     autoComplete='apaymentmethod'
-                    defaultValue={order.paymentMethod}
+                    onChange={handleChangeFieldValue}
                     value={order.paymentMethod}
                   />
                 </Grid>
@@ -124,7 +138,8 @@ export default function OrderEdit (props) {
                     label='Sale Amount'
                     id='amount'
                     autoComplete='aamount'
-                    defaultValue={order.amount}
+                    type='number'
+                    onChange={handleChangeFieldValue}
                     value={order.amount}
                   />
                 </Grid>
@@ -135,7 +150,7 @@ export default function OrderEdit (props) {
                 variant='contained'
                 color='primary'
                 className={classes.submit}
-                onClick={preventDefault}
+                onClick={handleSaveForm}
               >
                 Save
               </Button>
