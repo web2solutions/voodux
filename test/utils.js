@@ -2,7 +2,6 @@
 
 import * as utils from '../src/foundation/utils'
 import assert from 'assert'
-import mongoose from 'mongoose'
 
 describe('#--- Utils module Test Suite', () => {
   describe('Method Signatures: utils.createMethodSignature(error: string|object, data: string|object|array|boolean) -> Create default signature method object', () => {
@@ -87,11 +86,7 @@ describe('#--- Utils module Test Suite', () => {
 
   describe('Mongoose 2 Dexie: utils.mongooseToDexieTableString(schema) -> Mongoose schema conversion to Dexie table config', () => {
     it('Table config must have __id as Primary Key', (done) => {
-      const schema = new mongoose.Schema({
-        __id: {
-          type: mongoose.Schema.Types.ObjectId,
-          unique: true
-        },
+      const schema = new utils.Schema({
         name: {
           type: String,
           required: true,
