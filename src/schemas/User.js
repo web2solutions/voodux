@@ -1,15 +1,6 @@
-import mongoose from 'mongoose'
+import Foundation from '../foundation/Foundation'
 
-const schema = new mongoose.Schema({
-  /* _id: {
-    type: mongoose.Schema.Types.ObjectId,
-    unique: true,
-    required: true
-  },
-  __id: {
-    type: mongoose.Schema.Types.ObjectId,
-    unique: true
-  }, */
+const schema = new Foundation.Schema({
   name: {
     type: String,
     required: true,

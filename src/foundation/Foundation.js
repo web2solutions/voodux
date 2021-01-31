@@ -1,6 +1,5 @@
 /* global localStorage, navigator, window */
-
-import { createMethodSignature, GUID } from './utils'
+import { createMethodSignature, GUID, Schema } from './utils'
 import DataAPI from './DataAPI'
 import LocalDatabaseTransport from './LocalDatabaseTransport'
 import EventSystem from './EventSystem'
@@ -238,8 +237,17 @@ export default class Foundation extends EventSystem {
     }
     return createMethodSignature(_error, _data)
   }
-
   
+  /**
+   * @memberof Foundation
+   * @member {getter} Foundation.Schema
+   * @example new Foundation.Schema({})
+   * @description Creates new data schema
+   * @returns schema creator
+   */
+  static get Schema() {
+    return Schema
+  }
 
   #mapModels(schemas) {
     let _error = null

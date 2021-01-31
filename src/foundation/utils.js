@@ -1,4 +1,5 @@
 import lunr from 'lunr'
+import mongoose from 'mongoose'
 /**
  * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
  * @module utils
@@ -69,9 +70,9 @@ export function mongooseToDexieTableString (schema) {
     if (Object.prototype.hasOwnProperty.call(schema.paths, propertyName)) {
       const property = schema.paths[propertyName]
       const {
-        instance,
-        _index,
-        isRequired
+        // instance,
+        _index // ,
+        // isRequired
       } = property
       // console.debug(propertyName, property)
       if (propertyName === '_id' || propertyName === '__id') {
@@ -96,3 +97,5 @@ export function getSearchTokenStream (text = '') {
   const index = lunr()
   return index.pipeline.run(lunr.tokenizer(text))
 }
+
+export const Schema = mongoose.Schema

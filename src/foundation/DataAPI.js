@@ -50,40 +50,46 @@ export default class DataAPI {
     this.#_listenToAllOtherTabsStateChanges()
   }
 
-
-  /* mongooseToDexieTableString () {
-    const cols = []
-    for (const propertyName in this.#_schema.paths) {
-      if (Object.prototype.hasOwnProperty.call(this.#_schema.paths, propertyName)) {
-        const property = this.#_schema.paths[propertyName]
-        const { instance, _index, isRequired } =  property
-        // console.debug(propertyName, property)
-        if (propertyName === '_id' || propertyName === '__id')
-        {
-          continue
-        }
-        cols.push(propertyName)
-      }
-    }
-    return `++__id,_id,${cols.join(',')}`
-  } */
-
+  /**
+   * @memberof DataAPI.entity
+   * @member {getter} DataAPI.entity
+   * @example console.log(DataAPI.entity)
+   * @description Gets the entity name which which DataAPI instance is handling out
+   * @return {object} this.#_entity
+   */
   get entity () {
     return this.#_entity
   }
 
-  static mongoose() {
-    return mongoose;
-  }
-
+  /**
+   * @memberof DataAPI.schema
+   * @member {getter} DataAPI.schema
+   * @example console.log(DataAPI.schema)
+   * @description Gets the data schema related to this Entity Data API
+   * @return {object} this.#_schema
+   */
   get schema () {
     return this.#_schema
   }
 
+  /**
+   * @memberof DataAPI
+   * @member {getter} DataAPI.strategy
+   * @example console.log(DataAPI.strategy)
+   * @description Gets the data strategy currently being used
+   * @return {string} this.#_strategy
+   */
   get strategy () {
     return this.#_strategy
   }
 
+  /**
+   * @Method DataAPI.Model
+   * @description create a Data Model based on given document
+   * @param  {object} doc - A valid document validated against mongoose schema
+   * @param  {object} schema - Mongoose based schema
+   * @return  {object} model - Mongoose document
+  */
   Model(doc, schema) {
     const modelSystem = mongoose.Document
     modelSystem.prototype.isValid = () =>  modelSystem.prototype.validateSync
@@ -267,9 +273,20 @@ export default class DataAPI {
    * @return  {string|object} signature.error - Execution error
    * @return  {array} signature.data - Array of Found documents
    */
-  async findAll () {
-    // todo
-    console.log(this.#_entity, this.#_strategy)
+  async findAll(query = {}) {
+    let data = null
+    let error = null
+    try {
+      const documents = await this.#_foundation
+          .localDatabaseTransport
+            .collection(this.#_entity)
+              .find(query)
+                  .toArray()       
+      data = documents
+    } catch (e) {
+      error = e
+    }
+    return createMethodSignature(error, data)
   }
 
   /**

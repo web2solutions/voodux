@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
+import Foundation from '../foundation/Foundation'
 
-const schema = new mongoose.Schema({
+const schema = new Foundation.Schema({
   name: {
     type: String,
     required: true,
