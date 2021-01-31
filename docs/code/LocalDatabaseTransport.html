@@ -343,9 +343,9 @@
         
     <pre class="sunlight-highlight-javascript">
     import LocalDatabaseTransport from &#x27;./LocalDatabaseTransport&#x27;
-    import mongoose from &#x27;mongoose&#x27;
+    import { Schema } from &#x27;./utils&#x27;
     
-    const UserSchema = new mongoose.Schema({
+    const UserSchema = new Schema({
       name: {
         type: String,
         required: true
@@ -356,7 +356,7 @@
       }
     })
 
-    const ProductSchema = new mongoose.Schema({
+    const ProductSchema = new Schema({
       // ...
     })
 
@@ -413,6 +413,390 @@
     
 
     
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id=".addSchema"><span class="type-signature">&lt;static> </span>addSchema(schemaName, schema)</h4>
+    
+    
+    <p class="summary">A a Data Schema into the Schema tree.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        A a Data Schema into the Schema tree
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>schemaName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The schema name. Same as Entity name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>schema</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A valid mongoose like schema</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="LocalDatabaseTransport.js.html">LocalDatabaseTransport.js</a>,
+				 <a href="LocalDatabaseTransport.js.html#sunlight-1-line-88">line 88</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    schema - The schema enty from inside the Schema tree
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">const UserSchema = new Schema({
+        name: {
+          type: String,
+          required: true
+        },
+        username: {
+          type: String,
+          required: true
+        }
+      })
+      localDataTransport.addSchema(&#x27;User&#x27;, UserSchema)</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".connect"><span class="type-signature">&lt;async, static> </span>connect()</h4>
+    
+    
+    <p class="summary">Setup connection to local database.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Setup connection to local database
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="LocalDatabaseTransport.js.html">LocalDatabaseTransport.js</a>,
+				 <a href="LocalDatabaseTransport.js.html#sunlight-1-line-112">line 112</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    <ul>
+            <li>
+<div class="param-desc">
+    Foundation GUID saved on localStorage
+</div>
+
+
+
+</li>
+        
+            <li>
+<div class="param-desc">
+    signature - Default methods signature format { error, data }
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        
+            <li>
+<div class="param-desc">
+    signature.error - Execution error information
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        
+            <li>
+<div class="param-desc">
+    signature.data - Connection information
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+
+    </dd>
+</dl>
+
+</li>
+        </ul>
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">await localDataTransport.connect()</pre>
+
+
+    
+</dd>
+
+        </dl>
+    
 
     
 
@@ -467,7 +851,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-01-31T01:05:49-03:00
+		on 2021-01-31T02:04:25-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

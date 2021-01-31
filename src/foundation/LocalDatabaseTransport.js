@@ -16,9 +16,9 @@ import { createMethodSignature, mongooseToDexieTableString } from './utils'
  * @param  {string} config.dbName - Database name. <br>Same as IndexedDB database name.
  * @example {@lang javascript}
     import LocalDatabaseTransport from './LocalDatabaseTransport'
-    import mongoose from 'mongoose'
+    import { Schema } from './utils'
     
-    const UserSchema = new mongoose.Schema({
+    const UserSchema = new Schema({
       name: {
         type: String,
         required: true
@@ -29,7 +29,7 @@ import { createMethodSignature, mongooseToDexieTableString } from './utils'
       }
     })
 
-    const ProductSchema = new mongoose.Schema({
+    const ProductSchema = new Schema({
       // ...
     })
 
@@ -74,12 +74,7 @@ export default class LocalDatabaseTransport extends dexie {
     this.#_schemas = {}
   }
 
-  // schema name, mongoose schema
-  addSchema (schemaName, schema) {
-    this.#_schemas[schemaName] = schema
-  }
-
-  async connect () {
+  #_setTables() {
     for (const entity in this.#_schemas) {
       if (Object.prototype.hasOwnProperty.call(this.#_schemas, entity)) {
         // console.error(entity)
@@ -88,21 +83,63 @@ export default class LocalDatabaseTransport extends dexie {
         )
       }
     }
-    // console.log(this.#_schemas)
-    // console.log(this.#_tables)
+  }
+
+  /**
+   * @Method LocalDatabaseTransport.addSchema
+   * @description A a Data Schema into the Schema tree
+   * @param  {string} schemaName - The schema name. Same as Entity name.
+   * @param  {object} schema - A valid mongoose like schema
+   * @example 
+      const UserSchema = new Schema({
+        name: {
+          type: String,
+          required: true
+        },
+        username: {
+          type: String,
+          required: true
+        }
+      })
+      localDataTransport.addSchema('User', UserSchema)
+   * @return  {object} schema - The schema enty from inside the Schema tree
+   */
+  addSchema (schemaName, schema) {
+    this.#_schemas[schemaName] = schema
+    return this.#_schemas[schemaName]
+  }
+
+  /**
+   * @async 
+   * @Method LocalDatabaseTransport.connect
+   * @description Setup connection to local database
+   * @return Foundation GUID saved on localStorage
+   * @example 
+        await localDataTransport.connect()
+   * @return  {object} signature - Default methods signature format { error, data }
+   * @return  {string|object} signature.error - Execution error information
+   * @return  {object} signature.data - Connection information
+   */
+  async connect() {
+    let error = null
+    let data = null
+    try {
+      this.#_setTables()
     
-    this.version(this.#_version).stores(this.#_tables)
+      this
+        .version(this.#_version)
+          .stores(this.#_tables)
 
-    // we can retrieve our todos store with Dexie.table, and then use it as a
-    // field on our Database class for convenience; we can now write code such
-    // as "this.todos.add(...)" rather than "this.table('todos').add(...)"
-    // this.todos = this.table('todos')
-    for (const tableName in this.#_tables) {
-      this[tableName] = this.table(tableName)
+      // for (const tableName in this.#_tables) {
+      //  this[tableName] = this.table(tableName)
+      // }
+
+      const open = await this.open()
+      data = open
+    } catch (e) {
+      error = e
+      data = null
     }
-
-    const open = await this.open()
-    // console.error('         CONNECTED           ')
-    // console.debug('open', open)
+    return createMethodSignature(error, data)
   }
 }
