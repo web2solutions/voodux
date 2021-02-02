@@ -1,127 +1,60 @@
+/* globals document, window */
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom'
-import clsx from 'clsx'
+import Crud from './components/crud/Crud'
 
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Drawer from '@material-ui/core/Drawer'
-import Box from '@material-ui/core/Box'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import List from '@material-ui/core/List'
-import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
-import IconButton from '@material-ui/core/IconButton'
-import Badge from '@material-ui/core/Badge'
-import Container from '@material-ui/core/Container'
-import MenuIcon from '@material-ui/icons/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import NotificationsIcon from '@material-ui/icons/Notifications'
+import './App.css'
 
-import useStyles from './components/useStyles'
-
-import { mainListItems, secondaryListItems } from './components/listItems'
-import Dashboard from './components/Dashboard'
-import Copyright from './components/Copyright'
-import Orders from './components/Orders'
-import OrderEdit from './components/OrderEdit'
-import OrderAdd from './components/OrderAdd'
-
-import Customers from './components/Customers'
-import CustomerEdit from './components/CustomerEdit'
-import CustomerAdd from './components/CustomerAdd'
-
-export default function App (props) {
-  const classes = useStyles()
-  const [open, setOpen] = React.useState(true)
-  const handleDrawerOpen = () => {
-    setOpen(true)
-  }
-  const handleDrawerClose = () => {
-    setOpen(false)
+class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.foundation = props.foundation
+    this.state = {
+      users: []
+    }
+    console.error('START APP')
   }
 
-  return (
-    <Router>
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar position='absolute' className={clsx(classes.appBar, open && classes.appBarShift)}>
-          <Toolbar className={classes.toolbar}>
-            <IconButton
-              edge='start'
-              color='inherit'
-              aria-label='open drawer'
-              onClick={handleDrawerOpen}
-              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Route>
-              {({ location }) => (
-                <Typography component='h1' variant='h6' color='inherit' noWrap className={classes.title}>
-                  {location.pathname.replace(/\//g, '')}
-                </Typography>
-              )}
-            </Route>
-            <IconButton color='inherit'>
-              <Badge badgeContent={4} color='secondary'>
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant='permanent'
-          classes={{
-            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)
-          }}
-          open={open}
-        >
-          <div className={classes.toolbarIcon}>
-            <IconButton onClick={handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </div>
-          <Divider />
-          <List>{mainListItems}</List>
-          <Divider />
-          <List>{secondaryListItems}</List>
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.appBarSpacer} />
-          <Container maxWidth='lg' className={classes.container}>
-            <Switch>
-              <Route path='/Orders'>
-                <Orders entity='Order' foundation={props.foundation} />
-              </Route>
-              <Route path='/OrdersEdit/:__id'>
-                <OrderEdit entity='Order' foundation={props.foundation} />
-              </Route>
-              <Route path='/OrdersAdd'>
-                <OrderAdd entity='Order' foundation={props.foundation} />
-              </Route>
-              <Route path='/Customers'>
-                <Customers entity='Customer' foundation={props.foundation} />
-              </Route>
-              <Route path='/CustomersEdit/:__id'>
-                <CustomerEdit entity='Customer' foundation={props.foundation} />
-              </Route>
-              <Route path='/CustomersAdd'>
-                <CustomerAdd entity='Customer' foundation={props.foundation} />
-              </Route>
-              <Route path='/'>
-                <Dashboard foundation={props.foundation} />
-              </Route>
-            </Switch>
-            <Box pt={4}>
-              <Copyright />
-            </Box>
-          </Container>
+  render () {
+    console.error('App render ')
+    return (
+      <>
+        <header>
+          <nav className='navbar navbar-expand-md navbar-dark fixed-top bg-dark'>
+            <a className='navbar-brand' href='#'>Fixed navbar</a>
+            <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation'>
+              <span className='navbar-toggler-icon' />
+            </button>
+            <div className='collapse navbar-collapse' id='navbarCollapse'>
+              <ul className='navbar-nav mr-auto'>
+                <li className='nav-item active'>
+                  <a className='nav-link' href='#'>Home <span className='sr-only'>(current)</span></a>
+                </li>
+                <li className='nav-item'>
+                  <a className='nav-link' href='#'>Link</a>
+                </li>
+                <li className='nav-item'>
+                  <a className='nav-link disabled' href='#'>Disabled</a>
+                </li>
+              </ul>
+              <form className='form-inline mt-2 mt-md-0'>
+                <input className='form-control mr-sm-2' type='text' placeholder='Search' aria-label='Search' />
+                <button className='btn btn-outline-primary my-2 my-sm-0' type='submit'>Search</button>
+              </form>
+            </div>
+          </nav>
+        </header>
+        <main role='main' className='container appDrawer'>
+          <Crud entity='User' foundation={this.foundation} />
         </main>
-      </div>
-    </Router>
-  )
+
+        <footer className='footer'>
+          <div className='container'>
+            <span id='guid' className='text-muted'>Place sticky footer content here.</span>
+          </div>
+        </footer>
+      </>
+    )
+  }
 }
+
+export default App
