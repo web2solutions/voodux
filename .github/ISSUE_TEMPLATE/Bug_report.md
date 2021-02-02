@@ -1,6 +1,9 @@
 ---
 name: Bug report
 about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 
 ---
 
@@ -28,7 +31,7 @@ If applicable, add the error stacktrace to help explain your problem.
  - Device OS: [e.g. iOS8.1, Windows 10]
  - Browser: [e.g. Chrome, Firefox, Safari]
  - Decidim Version: [e.g. 0.10]
- - Decidim installation: [e.g. MetaDecidim]
+
 
 **Additional context**
-Add any other context about the problem here. For instance, add Metadecidim link. 
+Add any other context about the problem here.
