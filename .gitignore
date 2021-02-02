@@ -22,5 +22,6 @@ package-lock.json
 
 log/
 logs/
+tests-bundle/
 
 sequelize-meta\.json

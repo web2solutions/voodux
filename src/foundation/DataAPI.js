@@ -249,8 +249,8 @@ export default class DataAPI {
     try {
       primaryKey = parseInt(primaryKey)
       const doc = await this.#_foundation.localDatabaseTransport
-        .collection(this.#_entity)
-          .findOne({ __id: primaryKey })
+        .table(this.#_entity)
+          .get(primaryKey)
       // console.debug({ __id: primaryKey, doc })
       if (doc)
       {

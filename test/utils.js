@@ -1,4 +1,4 @@
-/* global describe, it */
+/* global describe it Blob */
 
 import * as utils from '../src/foundation/utils'
 import assert from 'assert'
@@ -36,6 +36,13 @@ describe('#--- Utils module Test Suite', () => {
       const uuid2 = utils.uuid()
       assert.equal(uuid1.length, 36)
       assert.equal(uuid2.length, 36)
+      done()
+    })
+
+    it('uuid() getter must return a 36 bytes string', (done) => {
+      const uuid1 = utils.uuid()
+      const bytes = new Blob([uuid1]).size
+      assert.equal(bytes, 36)
       done()
     })
 

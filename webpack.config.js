@@ -8,8 +8,9 @@ module.exports = {
     filename: 'main.js'
   },
   devServer: {
-    inline: true,
-    port: 8001
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 5490
   },
   module: {
     rules: [
