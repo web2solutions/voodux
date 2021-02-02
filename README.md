@@ -231,3 +231,4 @@ Transpile the es6 code (src/) to es5 version at dist/ folder
 6. Vue demo
 7. DHTMLX demo
 8. VanilaJS demo
+9. textual search with lunr

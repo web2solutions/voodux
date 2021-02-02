@@ -298,6 +298,7 @@ export default class Foundation extends EventSystem {
   /**
    * @Method Foundation.getGuidStorage
    * @description get Foundation GUID saved on localStorage
+   * @example foundation.getGuidStorage()
    * @return Foundation GUID saved on localStorage
    */
   getGuidStorage () {

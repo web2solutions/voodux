@@ -3,6 +3,8 @@ import dexie from 'dexie'
 import 'dexie-mongoify'
 import { createMethodSignature, mongooseToDexieTableString } from './utils'
 
+dexie.debug = false
+
 /**
  * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
  * @Class LocalDatabaseTransport

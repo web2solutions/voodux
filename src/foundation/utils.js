@@ -84,7 +84,7 @@ export function mongooseToDexieTableString (schema) {
       cols.push(propertyName)
     }
   }
-  return `++__id,_id,${cols.join(',')}`
+  return `++__id,_id${cols.length > 0 ? (',' + cols.join(',')) : ''}`
 }
 
 /**
