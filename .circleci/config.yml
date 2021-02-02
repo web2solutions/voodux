@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:11.15.0
+      - image: circleci/node:11.15.0-browsers
 
 
     working_directory: ~/agnostic-web-foundation
