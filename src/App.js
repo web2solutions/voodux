@@ -11,11 +11,11 @@ class App extends React.Component {
     this.state = {
       users: []
     }
-    console.error('START APP')
+    // console.error('START APP')
   }
 
   render () {
-    console.error('App render ')
+    // console.error('App render ')
     return (
       <>
         <header>

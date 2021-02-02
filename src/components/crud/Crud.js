@@ -10,7 +10,7 @@ class Crud extends React.Component {
   constructor (props) {
     super(props)
     try {
-      console.error('------>', props)
+      // console.error('------>', props)
       this.entity = props.entity
       this.foundation = props.foundation
       this.pagination = {
