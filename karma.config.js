@@ -31,7 +31,11 @@ module.exports = function (config) {
     customLaunchers: {
       FirefoxHeadless: {
         base: 'Firefox',
-        flags: ['-headless']
+        flags: ['--no-sandbox', '-headless']
+      },
+      ChromeHeadless: {
+        base: 'Chrome',
+        flags: ['--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222', 'http://0.0.0.0:9876/']
       }
     }
   })
