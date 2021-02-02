@@ -2,6 +2,7 @@ module.exports = function (config) {
   config.set({
     frameworks: ['mocha'],
     retryLimit: 0,
+    logLevel: config.LOG_DEBUG,
     files: ['tests-bundle/utils/main.js', 'tests-bundle/LocalDatabaseTransport/main.js', 'tests-bundle/Foundation/main.js'],
     reporters: ['progress', 'html'],
     htmlReporter: {
