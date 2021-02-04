@@ -1,18 +1,22 @@
 /* globals document */
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap'
 import { collectionOnAdd } from './events/collectionOnAdd'
 import { collectionOnUpdate } from './events/collectionOnUpdate'
 import { collectionOnDelete } from './events/collectionOnDelete'
 
 import { uuid } from '../../foundation/utils'
 
+
 class Crud extends React.Component {
   constructor (props) {
     super(props)
     try {
-      console.error('------>', props)
+      // console.error('------>', props)
       this.entity = props.entity
       this.foundation = props.foundation
+      this.history = props.useHistory
       this.pagination = {
         offset: 0,
         limit: 30
@@ -23,7 +27,6 @@ class Crud extends React.Component {
     } catch (error) {
       console.error(error)
     }
-
     this.handleAddDocument = this.handleAddDocument.bind(this)
     this.handleEditDocument = this.handleEditDocument.bind(this)
   }
@@ -68,11 +71,12 @@ class Crud extends React.Component {
 
   async handleAddDocument (e) {
     e.preventDefault()
-    const { User } = this.foundation.data
+    this.history.push('/UsersAdd')
+    /* const { User } = this.foundation.data
     await User.add({
       name: 'Eduardo Almeida',
       username: 'web2'
-    })
+    }) */
   }
 
   async handleEditDocument (e) {
@@ -88,8 +92,12 @@ class Crud extends React.Component {
     return (
       <div className='card'>
         <div className='card-header'>
-          <button type='button' className='btn btn-success' onClick={this.handleAddDocument}>add user</button>
-          <button type='button' className='btn btn-warning' onClick={this.handleEditDocument}>edit user</button>
+          <LinkContainer to='/UsersAdd'>
+            <button type='button' className='btn btn-success'>add user</button>
+          </LinkContainer>
+          <LinkContainer to='/UsersEdit/1'>
+            <button type='button' className='btn btn-warning'>edit user</button>
+          </LinkContainer>
         </div>
         <div className='card-body' style={{ overflow: 'auto' }}>
           <ul style={{ overflow: 'auto' }}>

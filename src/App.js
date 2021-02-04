@@ -1,127 +1,125 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom'
-import clsx from 'clsx'
+/* globals document, window, feather, Chart */
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter, Switch, Route, Link, useHistory } from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap'
+import Dashboard from './components/dashboard'
+import Orders from './components/orders'
+import OrdersAdd from './components/orders/OrdersAdd'
+import Customers from './components/customers'
+import CustomersAdd from './components/customers/CustomersAdd'
+import Crud from './components/crud/Crud'
+import CrudAdd from './components/crud/CrudAdd'
+import CrudEdit from './components/crud/CrudEdit'
 
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Drawer from '@material-ui/core/Drawer'
-import Box from '@material-ui/core/Box'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import List from '@material-ui/core/List'
-import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
-import IconButton from '@material-ui/core/IconButton'
-import Badge from '@material-ui/core/Badge'
-import Container from '@material-ui/core/Container'
-import MenuIcon from '@material-ui/icons/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import NotificationsIcon from '@material-ui/icons/Notifications'
+import './App.css'
 
-import useStyles from './components/useStyles'
+function App (props) {
+  const [users, setUsers] = useState([])
 
-import { mainListItems, secondaryListItems } from './components/listItems'
-import Dashboard from './components/Dashboard'
-import Copyright from './components/Copyright'
-import Orders from './components/Orders'
-import OrderEdit from './components/OrderEdit'
-import OrderAdd from './components/OrderAdd'
+  useEffect(() => {
+    feather.replace()
+  }, [])
 
-import Customers from './components/Customers'
-import CustomerEdit from './components/CustomerEdit'
-import CustomerAdd from './components/CustomerAdd'
+  // const history = useHistory()
 
-export default function App (props) {
-  const classes = useStyles()
-  const [open, setOpen] = React.useState(true)
-  const handleDrawerOpen = () => {
-    setOpen(true)
-  }
-  const handleDrawerClose = () => {
-    setOpen(false)
-  }
+  // function handleClick () {
+  //  history.push('/Users')
+  // }
 
   return (
-    <Router>
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar position='absolute' className={clsx(classes.appBar, open && classes.appBarShift)}>
-          <Toolbar className={classes.toolbar}>
-            <IconButton
-              edge='start'
-              color='inherit'
-              aria-label='open drawer'
-              onClick={handleDrawerOpen}
-              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Route>
-              {({ location }) => (
-                <Typography component='h1' variant='h6' color='inherit' noWrap className={classes.title}>
-                  {location.pathname.replace(/\//g, '')}
-                </Typography>
-              )}
-            </Route>
-            <IconButton color='inherit'>
-              <Badge badgeContent={4} color='secondary'>
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant='permanent'
-          classes={{
-            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)
-          }}
-          open={open}
-        >
-          <div className={classes.toolbarIcon}>
-            <IconButton onClick={handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </div>
-          <Divider />
-          <List>{mainListItems}</List>
-          <Divider />
-          <List>{secondaryListItems}</List>
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.appBarSpacer} />
-          <Container maxWidth='lg' className={classes.container}>
+    <>
+      <BrowserRouter>
+        <header className='navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow'>
+          <a className='navbar-brand col-md-3 col-lg-2 me-0 px-3' href='#'>Company name</a>
+          <button className='navbar-toggler position-absolute d-md-none collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#sidebarMenu' aria-controls='sidebarMenu' aria-expanded='false' aria-label='Toggle navigation'>
+            <span className='navbar-toggler-icon' />
+          </button>
+          <input className='form-control form-control-dark w-100' type='text' placeholder='Search' aria-label='Search' />
+          <ul className='navbar-nav px-3'>
+            <li className='nav-item text-nowrap'>
+              <a className='nav-link' href='#'>Sign out</a>
+            </li>
+          </ul>
+        </header>
+
+        <div className='container-fluid'>
+          <div className='row'>
+            <nav id='sidebarMenu' className='col-md-3 col-lg-2 d-md-block bg-light sidebar collapse'>
+              <div className='position-sticky pt-3'>
+                <ul className='nav flex-column'>
+                  <li className='nav-item'>
+                    <LinkContainer to='/'>
+                      <a className='nav-link active' aria-current='page' href='#'>
+                        <span data-feather='home' />
+                        Dashboard
+                      </a>
+                    </LinkContainer>
+                  </li>
+                  <li className='nav-item active'>
+                    <LinkContainer to='/Orders'>
+                      <a className='nav-link' href='#'>
+                        <span data-feather='file' />
+                        Orders
+                      </a>
+                    </LinkContainer>
+                  </li>
+                  <li className='nav-item'>
+                    <a className='nav-link' href='#'>
+                      <span data-feather='shopping-cart' />
+                      Products
+                    </a>
+                  </li>
+                  <li className='nav-item'>
+                    <LinkContainer to='/Customers'>
+                      <a className='nav-link' href='#'>
+                        <span data-feather='users' />
+                        Customers
+                      </a>
+                    </LinkContainer>
+                  </li>
+                  <li className='nav-item'>
+                    <a className='nav-link' href='#'>
+                      <span data-feather='bar-chart-2' />
+                      Reports
+                    </a>
+                  </li>
+                  <li className='nav-item'>
+                    <a className='nav-link' href='#'>
+                      <span data-feather='layers' />
+                      Integrations
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
             <Switch>
               <Route path='/Orders'>
-                <Orders entity='Order' foundation={props.foundation} />
+                <Orders entity='Order' useHistory={useHistory()} foundation={props.foundation} />
               </Route>
               <Route path='/OrdersEdit/:__id'>
-                <OrderEdit entity='Order' foundation={props.foundation} />
+                <div>Order edit</div>
               </Route>
               <Route path='/OrdersAdd'>
-                <OrderAdd entity='Order' foundation={props.foundation} />
+                <OrdersAdd entity='Order' useHistory={useHistory()} foundation={props.foundation} />
               </Route>
               <Route path='/Customers'>
-                <Customers entity='Customer' foundation={props.foundation} />
+                <Customers entity='Customer' useHistory={useHistory()} foundation={props.foundation} />
               </Route>
               <Route path='/CustomersEdit/:__id'>
-                <CustomerEdit entity='Customer' foundation={props.foundation} />
+                <div>Customer edit</div>
               </Route>
               <Route path='/CustomersAdd'>
-                <CustomerAdd entity='Customer' foundation={props.foundation} />
+                <CustomersAdd entity='Customer' useHistory={useHistory()} foundation={props.foundation} />
               </Route>
               <Route path='/'>
-                <Dashboard foundation={props.foundation} />
+                <Dashboard useHistory={useHistory()} foundation={props.foundation} />
               </Route>
             </Switch>
-            <Box pt={4}>
-              <Copyright />
-            </Box>
-          </Container>
-        </main>
-      </div>
-    </Router>
+          </div>
+        </div>
+      </BrowserRouter>
+    </>
   )
 }
+
+export default App

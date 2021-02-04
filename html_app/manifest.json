@@ -1,0 +1,41 @@
+{
+  "name": "Agnostic Web Foundation",
+  "short_name": "Agnostic Web Foundation",
+  "lang": "en",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#3763ab",
+  "background_color": "#ffffff",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "static/icon_x72.png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "static/icon_x96.png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "static/icon_x128.png",
+      "sizes": "128x128",
+      "purpose": "maskable"
+    },
+    {
+      "src": "static/icon_x144.png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "static/icon_x152.png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "static/icon_x256.png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "static/icon_x512.png",
+      "sizes": "512x512"
+    }
+  ]
+}

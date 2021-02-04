@@ -15,12 +15,17 @@ Agnostic Foundation for Web Applications - DRAFT
 [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop) Develop branch at Circle CI
 
 
-### Demo app (DRAFT)
+### React Demo app (Functional components)
 
-https://agnostic-web-foundation.web2solutions.vercel.app/
+https://agnostic-web-foundation-react-functions-demo.vercel.app/
+
+https://github.com/web2solutions/agnostic-web-foundation-react-functions-demo
 
 
-### Docs (DRAFT)
+### React Demo app (Class based components) - todo
+### Vue Demo app - todo
+
+### Code Docs (DRAFT)
 
 https://web2solutions.github.io/agnostic-web-foundation/
 
