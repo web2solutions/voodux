@@ -15,7 +15,6 @@ class Dashboard extends React.Component {
     // console.error('------>', props)
     this.entity = 'Order'
     this.foundation = props.foundation
-    this.history = props.useHistory
     this.pagination = {
       offset: 0,
       limit: 30
@@ -29,9 +28,9 @@ class Dashboard extends React.Component {
   }
 
   componentWillUnmount () {
-    this.foundation.destroyEvent(this.onAddDocEventListener)
-    this.foundation.destroyEvent(this.onEditDocEventListener)
-    this.foundation.destroyEvent(this.onDeleteDocEventListener)
+    this.foundation.stopListenTo(this.onAddDocEventListener)
+    this.foundation.stopListenTo(this.onEditDocEventListener)
+    this.foundation.stopListenTo(this.onDeleteDocEventListener)
     this.onAddDocEventListener = null
     this.onEditDocEventListener = null
     this.onDeleteDocEventListener = null
@@ -39,8 +38,8 @@ class Dashboard extends React.Component {
 
   async componentDidMount () {
     const { Order } = this.foundation.data
-    console.log('componentDidMount', this.foundation)
     this.onAddDocEventListener = this.foundation.on(`collection:add:${this.entity.toLowerCase()}`, function (eventObj) {
+      console.error('onAddDocEventListener dashboard')
       const { error, /* document, foundation, */ data } = eventObj
       if (error) {
         console.error(`Error adding user: ${error}`)
@@ -51,6 +50,7 @@ class Dashboard extends React.Component {
 
     // listen to update Order Collection event on Data API
     this.onEditDocEventListener = this.foundation.on(`collection:edit:${this.entity.toLowerCase()}`, function (eventObj) {
+      console.error('onEditDocEventListener dashboard')
       const { data, primaryKey, /* document, foundation, */ error } = eventObj
       if (error) {
         console.error(`Error updating user: ${error}`)
@@ -68,6 +68,7 @@ class Dashboard extends React.Component {
 
     // listen to delete Order Collection event on Data API
     this.onDeleteDocEventListener = this.foundation.on(`collection:delete:${this.entity.toLowerCase()}`, function (eventObj) {
+      console.error('onDeleteDocEventListener dashboard')
       const { error, /* document, foundation, */ data } = eventObj
       if (error) {
         console.error(`Error deleting user: ${error}`)

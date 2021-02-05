@@ -35,9 +35,13 @@ class EventSystem {
     })
   }
 
+  stopListenTo (eventId) {
+    return this.destroyEvent(eventId)
+  }
+
   destroyEvent (eventId) {
-    console.log('Mediator.destroyEvent', eventId)
-    console.log('Mediator.destroyEvent', this)
+    // console.log('Mediator.destroyEvent', eventId)
+    // console.log('Mediator.destroyEvent', this)
     let removed = false
     for (let x = 0; x < this.eventBus.length; x++) {
       const event = this.eventBus[x]

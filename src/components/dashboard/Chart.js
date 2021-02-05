@@ -47,6 +47,7 @@ export default function Chart (props) {
   }
 
   const handlerChangeOrder = async (eventObj) => {
+    console.error('handlerChangeOrder chart')
     const { error } = eventObj
     if (error) {
       return

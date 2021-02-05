@@ -33,9 +33,9 @@ class Orders extends React.Component {
   }
 
   componentWillUnmount () {
-    this.foundation.destroyEvent(this.onAddDocEventListener)
-    this.foundation.destroyEvent(this.onEditDocEventListener)
-    this.foundation.destroyEvent(this.onDeleteDocEventListener)
+    this.foundation.stopListenTo(this.onAddDocEventListener)
+    this.foundation.stopListenTo(this.onEditDocEventListener)
+    this.foundation.stopListenTo(this.onDeleteDocEventListener)
     this.onAddDocEventListener = null
     this.onEditDocEventListener = null
     this.onDeleteDocEventListener = null

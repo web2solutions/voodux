@@ -1,4 +1,4 @@
-/* globals document */
+/* globals */
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -10,7 +10,8 @@ const formatter = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2
 }) */
 
-const handlerOnAddDocEventListener = (eventObj) => {
+const handlerOnAddDocEventListener = function (eventObj) {
+  console.error('handlerOnAddDocEventListener customer index.js')
   const { error, /* document, foundation, */ data } = eventObj
   if (error) {
     console.error(`Error adding user: ${error}`)
@@ -18,9 +19,10 @@ const handlerOnAddDocEventListener = (eventObj) => {
   }
   console.debug([data, ...this.state.customers])
   this.setState({ customers: [data, ...this.state.customers] })
-
 }
-const handlerOnEditDocEventListener = (eventObj) => {
+
+const handlerOnEditDocEventListener = function (eventObj) {
+  console.error('handlerOnEditDocEventListener customer index.js')
   const { data, primaryKey, /* document, foundation, */ error } = eventObj
   if (error) {
     console.error(`Error updating user: ${error}`)
@@ -35,9 +37,10 @@ const handlerOnEditDocEventListener = (eventObj) => {
   })
   console.debug([...newData])
   this.setState({ customers: [...newData] })
-
 }
-const handlerOnDeleteDocEventListener = (eventObj) => {
+
+const handlerOnDeleteDocEventListener = function (eventObj) {
+  console.error('handlerOnDeleteDocEventListener customer index.js')
   const { error, /* document, foundation, */ data } = eventObj
   if (error) {
     console.error(`Error deleting user: ${error}`)
@@ -51,7 +54,6 @@ const handlerOnDeleteDocEventListener = (eventObj) => {
     }
   }
   this.setState({ customers: allCustomers })
-
 }
 
 class Customers extends React.Component {
@@ -60,7 +62,6 @@ class Customers extends React.Component {
     // console.error('------>', props)
     this.entity = 'Customer'
     this.foundation = props.foundation
-    this.history = props.useHistory
     this.pagination = {
       offset: 0,
       limit: 30
@@ -75,13 +76,14 @@ class Customers extends React.Component {
   }
 
   componentWillUnmount () {
+    const { Customer } = this.foundation.data
     /**
      * Destroy event listeners of this component which are listening to Customer collection
      * and react to it
      */
-    this.foundation.destroyEvent(this.onAddDocEventListener)
-    this.foundation.destroyEvent(this.onEditDocEventListener)
-    this.foundation.destroyEvent(this.onDeleteDocEventListener)
+    Customer.stopListenTo(this.onAddDocEventListener)
+    Customer.stopListenTo(this.onEditDocEventListener)
+    Customer.stopListenTo(this.onDeleteDocEventListener)
     this.onAddDocEventListener = null
     this.onEditDocEventListener = null
     this.onDeleteDocEventListener = null
@@ -95,14 +97,11 @@ class Customers extends React.Component {
      * and react to it
      */
     // listen to add Customer Collection event on Data API
-    this.onAddDocEventListener = this.foundation
-      .on(`collection:add:${this.entity.toLowerCase()}`, handlerOnAddDocEventListener.bind(this))
+    this.onAddDocEventListener = Customer.on('add', handlerOnAddDocEventListener.bind(this))
     // listen to edit Customer Collection event on Data API
-    this.onEditDocEventListener = this.foundation
-      .on(`collection:edit:${this.entity.toLowerCase()}`, handlerOnEditDocEventListener.bind(this))
+    this.onEditDocEventListener = Customer.on('edit', handlerOnEditDocEventListener.bind(this))
     // listen to delete Customer Collection event on Data API
-    this.onDeleteDocEventListener = this.foundation
-      .on(`collection:delete:${this.entity.toLowerCase()}`, handlerOnDeleteDocEventListener.bind(this))
+    this.onDeleteDocEventListener = Customer.on('delete', handlerOnDeleteDocEventListener.bind(this))
 
     // get Customers on database
     const customers = await Customer.find({}, { ...this.pagination })

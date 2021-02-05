@@ -7,6 +7,7 @@ import Orders from './components/orders'
 import OrdersAdd from './components/orders/OrdersAdd'
 import Customers from './components/customers'
 import CustomersAdd from './components/customers/CustomersAdd'
+import CustomersEdit from './components/customers/CustomersEdit'
 import Crud from './components/crud/Crud'
 import CrudAdd from './components/crud/CrudAdd'
 import CrudEdit from './components/crud/CrudEdit'
@@ -19,6 +20,8 @@ function App (props) {
   useEffect(() => {
     feather.replace()
   }, [])
+
+  const _foundation = props.foundation
 
   // const history = useHistory()
 
@@ -94,25 +97,29 @@ function App (props) {
             </nav>
             <Switch>
               <Route path='/Orders'>
-                <Orders entity='Order' useHistory={useHistory()} foundation={props.foundation} />
+                <Orders entity='Order' foundation={props.foundation} />
               </Route>
               <Route path='/OrdersEdit/:__id'>
                 <div>Order edit</div>
               </Route>
               <Route path='/OrdersAdd'>
-                <OrdersAdd entity='Order' useHistory={useHistory()} foundation={props.foundation} />
+                <OrdersAdd entity='Order' foundation={props.foundation} />
               </Route>
               <Route path='/Customers'>
-                <Customers entity='Customer' useHistory={useHistory()} foundation={props.foundation} />
+                <Customers entity='Customer' foundation={props.foundation} />
               </Route>
-              <Route path='/CustomersEdit/:__id'>
-                <div>Customer edit</div>
-              </Route>
+
+              <Route
+                exact
+                path='/CustomersEdit/:__id'
+                render={(props) => <CustomersEdit entity='Customer' foundation={_foundation} {...props} />}
+              />
+
               <Route path='/CustomersAdd'>
-                <CustomersAdd entity='Customer' useHistory={useHistory()} foundation={props.foundation} />
+                <CustomersAdd entity='Customer' foundation={props.foundation} />
               </Route>
               <Route path='/'>
-                <Dashboard useHistory={useHistory()} foundation={props.foundation} />
+                <Dashboard foundation={props.foundation} />
               </Route>
             </Switch>
           </div>
