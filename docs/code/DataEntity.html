@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Agnostic Web Application Foundation Class: DataAPI</title>
+	<title>Agnostic Web Application Foundation Class: DataEntity</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="DataAPI.html">DataAPI</a></li><li><a href="Foundation.html">Foundation</a></li><li><a href="LocalDatabaseTransport.html">LocalDatabaseTransport</a></li>
+					<li><a href="DataEntity.html">DataEntity</a></li><li><a href="Foundation.html">Foundation</a></li><li><a href="LocalDatabaseTransport.html">LocalDatabaseTransport</a></li>
 				</ul>
 			</li>
 			
@@ -72,13 +72,13 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: DataAPI</h1>
+	<h1 class="page-title">Class: DataEntity</h1>
 <section>
 
 <header>
     
         <h2>
-        DataAPI
+        DataEntity
         </h2>
         
     
@@ -91,7 +91,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="DataAPI"><span class="type-signature"></span>new DataAPI(DataEntityConfig)</h4>
+    <h4 class="name" id="DataEntity"><span class="type-signature"></span>new DataEntity(DataEntityConfig)</h4>
     
     
     <p class="summary">Data Entity API</p>
@@ -106,8 +106,8 @@
 <br><br>We assume the <a href="https://en.wikipedia.org/wiki/Entity%25E2%2580%2593relationship_model">Entity Relationship</a> and <a href="https://en.wikipedia.org/wiki/Entity%25E2%2580%2593relationship_model">Data Entity</a> models as technique and paradigm to design the application data. 
 <br><br>If you have no idea of how agile you could to design your ER diagram, please take a look at some tools like <a href="https://www.datensen.com/data-modeling/moon-modeler-for-databases.html">Moon Modeler</a>
 <br><br> Every Data Entity in the system has it own encapsulated properties and methods that cares about where entity data is writen to and read from. 
-<br><br> The DataAPI relies on the application instance (passed to it constructor) to access the available data transports. 
-<br>It means you can not use DataAPI prior starting a data transport layer. 
+<br><br> The DataEntity relies on the application instance (passed to it constructor) to access the available data transports. 
+<br>It means you can not use DataEntity prior starting a data transport layer. 
 <br><br> This class is not for direct usage in your project, unless you are a core developer or want to understand what happens behind the scenes, you should consider to take a look at the <a href="Foundation.html"><code>Foundation</code></a> class.
     </div>
     
@@ -227,7 +227,7 @@
 
             
 
-            <td class="description last">Data entity name which this dataAPI instance is handling</td>
+            <td class="description last">Data entity name which this dataEntity instance is handling</td>
         </tr>
 
     
@@ -333,8 +333,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-7">line 7</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-7">line 7</a>
 			</li>
 		</ul>
 	</dd>
@@ -389,7 +389,7 @@ const schema = new Schema({
   }
 })
 
-const Customer = new DataAPI({
+const Customer = new DataEntity({
   foundation, // Foundation instance, object
   entity: &#x27;Customer&#x27;, // entity name, string
   strategy: &#x27;offline&#x27;, // data strategy, string
@@ -531,8 +531,8 @@ Customer.stopListenTo(onDeleteDocEventListener)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-148">line 148</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-148">line 148</a>
 			</li>
 		</ul>
 	</dd>
@@ -549,7 +549,7 @@ Customer.stopListenTo(onDeleteDocEventListener)</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">console.log(DataAPI.strategy)</pre>
+    <pre class="sunlight-highlight-javascript">console.log(DataEntity.strategy)</pre>
 
 
     
@@ -621,8 +621,8 @@ Customer.stopListenTo(onDeleteDocEventListener)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-517">line 517</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-517">line 517</a>
 			</li>
 		</ul>
 	</dd>
@@ -868,8 +868,8 @@ Customer.stopListenTo(onDeleteDocEventListener)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-551">line 551</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-551">line 551</a>
 			</li>
 		</ul>
 	</dd>
@@ -1093,7 +1093,7 @@ Customer.stopListenTo(onDeleteDocEventListener)</pre>
 
             
 
-            <td class="description last">The raw document object provided on dataAPI.add(doc) mehod call. Default is {} if not provided.</td>
+            <td class="description last">The raw document object provided on dataEntity.add(doc) mehod call. Default is {} if not provided.</td>
         </tr>
 
     
@@ -1144,8 +1144,8 @@ Customer.stopListenTo(onDeleteDocEventListener)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-212">line 212</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-212">line 212</a>
 			</li>
 		</ul>
 	</dd>
@@ -1385,8 +1385,8 @@ Customer.stopListenTo(onDeleteDocEventListener)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-364">line 364</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-364">line 364</a>
 			</li>
 		</ul>
 	</dd>
@@ -1599,7 +1599,7 @@ Customer.stopListenTo(onDeleteDocEventListener)</pre>
 
             
 
-            <td class="description last">The raw document object provided on dataAPI.edit(primaryKey, doc) mehod call. Default is {} if not provided.</td>
+            <td class="description last">The raw document object provided on dataEntity.edit(primaryKey, doc) mehod call. Default is {} if not provided.</td>
         </tr>
 
     
@@ -1650,8 +1650,8 @@ Customer.stopListenTo(onDeleteDocEventListener)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-300">line 300</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-300">line 300</a>
 			</li>
 		</ul>
 	</dd>
@@ -1790,8 +1790,8 @@ Customer.stopListenTo(onDeleteDocEventListener)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-171">line 171</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-171">line 171</a>
 			</li>
 		</ul>
 	</dd>
@@ -2013,8 +2013,8 @@ const { data, error } = await Customer.add(doc)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-489">line 489</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-489">line 489</a>
 			</li>
 		</ul>
 	</dd>
@@ -2235,8 +2235,8 @@ const { data, error } = await Customer.add(doc)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-337">line 337</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-337">line 337</a>
 			</li>
 		</ul>
 	</dd>
@@ -2473,8 +2473,8 @@ const { data, error } = await Customer.add(doc)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-243">line 243</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-243">line 243</a>
 			</li>
 		</ul>
 	</dd>
@@ -2799,8 +2799,8 @@ const { data, error } = await Customer.edit(doc.__id, doc)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-453">line 453</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-453">line 453</a>
 			</li>
 		</ul>
 	</dd>
@@ -2968,8 +2968,8 @@ const { data, error } = await Customer.edit(doc.__id, doc)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-429">line 429</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-429">line 429</a>
 			</li>
 		</ul>
 	</dd>
@@ -3182,8 +3182,8 @@ const { data, error } = await Customer.edit(doc.__id, doc)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-398">line 398</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-398">line 398</a>
 			</li>
 		</ul>
 	</dd>
@@ -3417,8 +3417,8 @@ const { data, error } = await Customer.edit(doc.__id, doc)</pre>
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="foundation_DataAPI.js.html">foundation/DataAPI.js</a>,
-				 <a href="foundation_DataAPI.js.html#sunlight-1-line-159">line 159</a>
+				<a href="foundation_DataEntity.js.html">foundation/DataEntity.js</a>,
+				 <a href="foundation_DataEntity.js.html#sunlight-1-line-159">line 159</a>
 			</li>
 		</ul>
 	</dd>
@@ -3527,7 +3527,7 @@ const { data, error } = await Customer.edit(doc.__id, doc)</pre>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-02-05T03:23:09-03:00
+		on 2021-02-05T03:29:22-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

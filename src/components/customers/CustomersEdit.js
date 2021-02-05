@@ -1,6 +1,6 @@
 /* globals document */
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 // import { LinkContainer } from 'react-router-bootstrap'
 // import swal from 'sweetalert'
 // import moment from 'moment'
@@ -12,13 +12,16 @@ import swal from 'sweetalert'
 }) */
 
 const customerObj = {
+  __id: null,
+  _id: null,
   name: '',
   address: 'Seminole, FL',
   email: '',
   cards: []
 }
 
-class CustomersAdd extends React.Component {
+class CustomersEdit extends React.Component {
+  #__id
   constructor (props) {
     super(props)
     this.entity = 'Customer'
@@ -34,15 +37,34 @@ class CustomersAdd extends React.Component {
       cards: ['VISA ⠀*** 3719'],
       toDashboard: false
     }
+    this.#__id = null
     this.form = null
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.handleChangeFieldValue = this.handleChangeFieldValue.bind(this)
+    console.debug('constructor')
   }
 
   async componentDidMount () {
+    console.debug('componentDidMount', this.props)
+    const { match: { params } } = this.props
+    const { Customer } = this.foundation.data
+
     if (!this.state.toDashboard) {
       this.form = document.querySelectorAll('.needs-validation')[0]
       this.form.addEventListener('submit', this.handleFormSubmit, false)
+    }
+    console.log(params)
+    const { __id } = params
+    this.#__id = __id
+    const findCustomer = await Customer.findById(this.#__id)
+    console.error('findCustomer', findCustomer)
+    if (findCustomer.error) {
+      console.error('findCustomer.error', findCustomer.error)
+      return
+    }
+    if (findCustomer.data) {
+      this.setState({ customer: findCustomer.data })
+      // setCustomer(findCustomer.data)
     }
   }
 
@@ -75,8 +97,8 @@ class CustomersAdd extends React.Component {
 
     const doc = { ...this.state.customer }
 
-    const { /* data, */ error } = await Customer.add(doc)
-    // console.error('data', data)
+    const { data, error } = await Customer.edit(this.#__id, doc)
+    console.error('data', data)
     if (error) {
       swal('Database error', error.message, 'error')
       return
@@ -85,13 +107,15 @@ class CustomersAdd extends React.Component {
   }
 
   render () {
+    console.debug('render')
+    console.debug('this.state.toDashboard', this.state.toDashboard)
     if (this.state.toDashboard === true) {
       return <Redirect to='/Customers' />
     }
     return (
       <main className='col-md-9 ms-sm-auto col-lg-10 px-md-4 main'>
         <div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 bcustomer-bottom'>
-          <h1 className='h2'>Customer Add</h1>
+          <h1 className='h2'>Customer Edit - {this.state.customer.name}</h1>
         </div>
         <div className='table-responsive'>
           <form className='needs-validation' noValidate>
@@ -121,7 +145,14 @@ class CustomersAdd extends React.Component {
 
               <div className='col-md-5'>
                 <label htmlFor='cards' className='form-label'>Payment method</label>
-                <select className='custom-select' id='cards' required onChange={this.handleChangeFieldValue}>
+                <select
+                  className='custom-select'
+                  id='cards'
+                  required
+                  multiple
+                  onChange={this.handleChangeFieldValue}
+                  value={this.state.customer.cards}
+                >
                   <option value=''>Choose...</option>
                   {this.state.cards.map((card) => (
                     <option key={card} value={card}>{card}</option>
@@ -144,4 +175,4 @@ class CustomersAdd extends React.Component {
   }
 }
 
-export default CustomersAdd
+export default CustomersEdit
