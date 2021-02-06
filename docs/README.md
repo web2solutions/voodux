@@ -81,7 +81,7 @@ Transpile the es6 code (src/) to es5 version at dist/ folder
 9. textual search with lunr.
 10. Workbox -> https://developers.google.com/web/tools/workbox/guides/get-started
 
-
+## React Demos
 ### React Demo app (Functional components)
 
 <img src="https://i.imgur.com/b29Lsgj.png" width="600" />
