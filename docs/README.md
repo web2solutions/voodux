@@ -82,6 +82,30 @@ Transpile the es6 code (src/) to es5 version at dist/ folder
 10. Workbox -> https://developers.google.com/web/tools/workbox/guides/get-started
 
 
+### React Demo app (Functional components)
+
+<img src="https://i.imgur.com/b29Lsgj.png" width="600" />
+
+[`Demo app`](https://agnostic-web-foundation-react-functions-demo.vercel.app/)
+
+[`Demo project`](https://github.com/web2solutions/agnostic-web-foundation-react-functions-demo)
+
+`Demo documentation:` -> TODO
+
+### React Demo app (Class based components)
+
+<img src="https://i.imgur.com/E1u5g6y.png" width="600" />
+
+[`Demo app`](https://agnostic-web-foundation-react-class-demo.vercel.app/)
+
+[`Demo project`](https://github.com/web2solutions/agnostic-web-foundation-react-class-demo)
+
+[`Demo documentation:`](https://web2solutions.github.io/agnostic-web-foundation-react-class-demo/)
+
+
+## Motivation
+
+[What motivates this](https://github.com/web2solutions/agnostic-web-foundation/blob/main/MOTIVATION.md)
 
 ## Links and references
 
@@ -92,6 +116,8 @@ Transpile the es6 code (src/) to es5 version at dist/ folder
 - [SPA - Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application)
 - [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
 - [Mongoose](https://mongoosejs.com/)
+
+
 
 
 
