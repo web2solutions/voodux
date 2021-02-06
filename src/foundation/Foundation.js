@@ -39,71 +39,151 @@ const _workerOnMessage = function (event) {
  * @param  {boolean} config.useWorker - Use a ServiceWorker in Background
  * @param  {object}  config.schemas - map of data schemas
  * @example {@lang javascript}
-    import Foundation from './Foundation'
-    import mongoose from 'mongoose'
+// =========> main.js
+// import React
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-    const ProductSchema = new mongoose.Schema({
-      name: {
+// import Bootstrap
+import 'bootstrap/dist/css/bootstrap.css'
+
+// import React app
+import App from './App'
+
+// import agnostic foundation foundation class
+import Foundation from './foundation/Foundation'
+
+const CustomerSchema = new Foundation.Schema({
+    name: {
         type: String,
         required: true,
         index: true
-      },
-      vendor: {
+    },
+    address: {
         type: String,
         required: true,
         index: true
-      },
-      price_cost: {
+    },
+    email: {
+        type: String,
+        required: true,
+        index: true
+    },
+    cards: {
+        type: [],
+        required: true
+    }
+})
+
+const OrderSchema = new Foundation.Schema({
+    name: {
+        type: String,
+        required: true,
+        index: true
+    },
+    shipTo: {
+        type: String,
+        required: true,
+        index: true
+    },
+    paymentMethod: {
+        type: String,
+        required: true,
+        index: true
+    },
+    amount: {
         type: Number,
         required: true,
         default: 0,
         index: true
-      }
-    })
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+        index: true
+    }
+})
 
-    const UserSchema = new mongoose.Schema({
-      name: {
+const ProductSchema = new Foundation.Schema({
+    name: {
+        type: String,
+        required: true,
+        index: true
+    },
+    vendor: {
+        type: String,
+        required: true,
+        index: true
+    },
+    price_cost: {
+        type: Number,
+        required: true,
+        default: 0,
+        index: true
+    }
+})
+
+const UserSchema = new Foundation.Schema({
+    name: {
         type: String,
         required: true
-      },
-      username: {
+    },
+    username: {
         type: String,
         required: true
-      }
-    })
+    }
+})
 
-    const foundation = new Foundation({
-      name: 'My App',
-      useWorker: true,
-      dataStrategy: 'offlineFirst',
-      schemas: {
+const foundation = new Foundation({
+    name: 'My App',
+    useWorker: true,
+    dataStrategy: 'offlineFirst',
+    schemas: {
         User: UserSchema,
-        Product: ProductSchema
-      }
-    })
+        Product: ProductSchema,
+        Order: OrderSchema,
+        Customer: CustomerSchema
+    }
+})
 
-    foundation.on('foundation:start', function (eventObj){
-      const { foundation, error } = eventObj
-      if (error) {
+foundation.on('foundation:start', function(eventObj) {
+    const {
+        foundation,
+        error
+    } = eventObj
+    if (error) {
         throw new Error(`Error starting foundation stack: ${error}`)
-      }
-      const { User, Product } = foundation.data
-      const Eduardo = await User.add({
+    }
+    const {
+        User,
+        Product
+    } = foundation.data
+    const Eduardo = await User.add({
         name: 'Eduardo Almeida',
         username: 'web2'
-      })
-      console.debug('Eduardo', Eduardo)
+    })
+    console.debug('Eduardo', Eduardo)
 
-      const Volvo = await Product.add({
+    const Volvo = await Product.add({
         name: 'Volvo XC90',
         vendor: 'Volvo',
         price_cost: 150000
-      })
-      console.debug('Volvo', Volvo)
     })
-    
-    // start foundation and get it ready to be used
-    await foundation.start()
+    console.debug('Volvo', Volvo)
+})
+
+// start foundation and get it ready to be used
+await foundation.start()
+
+const start = await foundation.start()
+if (start.error) {
+    throw new Error(`Error starting foundation stack: ${start.error}`)
+}
+// console.debug('start', start)
+ReactDOM.render(
+  <App foundation={foundation} />,
+  document.getElementById('root')
+)
  */
 export default class Foundation extends EventSystem {
   

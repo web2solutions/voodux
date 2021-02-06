@@ -15,17 +15,35 @@ import moment from 'moment'
   minimumFractionDigits: 2,
   maximumFractionDigits: 2
 }) */
+/**
+ * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
+ * @Component Chart
+ * @description React component consuming a Order Data Entity collection to feed a grid
+ * @extends React.Component
+ */
+class Chart extends React.Component {
+  constructor (props) {
+    super(props)
+    // console.error('------>', props)
+    this.entity = 'Order'
+    this.foundation = props.foundation
+    this.state = {
+      series: [
+        { time: '00:00', amount: 0 },
+        { time: '24:00', amount: undefined }
+      ]
+    }
+    this.onAddDocEventListener = null
+    this.onEditDocEventListener = null
+    this.onDeleteDocEventListener = null
 
-export default function Chart (props) {
-  const [series, setSeries] = useState([
-    { time: '00:00', amount: 0 },
-    { time: '24:00', amount: undefined }
-  ])
-  const { Order } = props.foundation.data
+    this.handlerChangeOrder = this.handlerChangeOrder.bind(this)
+  }
 
-  const _setSeries = async () => {
-    const { data } = await Order.find({})
-    if (!data) {
+  async setSeries () {
+    const { Order } = this.foundation.data
+    const { error, data } = await Order.find({})
+    if (error) {
       return
     }
     let _total = 0
@@ -43,70 +61,119 @@ export default function Chart (props) {
       { time: '24:00', amount: undefined }
     ]
     // console.log(final)
-    setSeries(final)
+    this.setState({ series: final })
   }
 
-  const handlerChangeOrder = async (eventObj) => {
+  async handlerChangeOrder (eventObj) {
     console.error('handlerChangeOrder chart')
     const { error } = eventObj
     if (error) {
       return
     }
-    await _setSeries()
+    await this.setSeries()
   }
 
-  // listen to add Order Collection event on Data API
-  props.foundation.on(
-    `collection:add:${props.entity.toLowerCase()}`,
-    handlerChangeOrder
-  )
-
-  // listen to edit Order Collection event on Data API
-  props.foundation.on(
-    `collection:edit:${props.entity.toLowerCase()}`,
-    handlerChangeOrder
-  )
-
-  // listen to delete Order Collection event on Data API
-  props.foundation.on(
-    `collection:delete:${props.entity.toLowerCase()}`,
-    handlerChangeOrder
-  )
-
-  useEffect(async () => {
-    await _setSeries()
-  }, []) // run one time only
-
-  return (
-    <>
-      <ResponsiveContainer height={300}>
-        <LineChart
-          data={series}
-          margin={{
-            top: 16,
-            right: 16,
-            bottom: 0,
-            left: 24
-          }}
-        >
-          <XAxis dataKey='time' stroke='#cccccc' />
-          <YAxis stroke='#cccccc'>
-            <Label
-              angle={270}
-              position='left'
-              style={{ textAnchor: 'middle', fill: '#000000' }}
-            >
-              Sales ($)
-            </Label>
-          </YAxis>
-          <Line
-            type='monotone'
-            dataKey='amount'
-            stroke='#000000'
-            dot={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </>
-  )
+  /**
+   * @Method Chart.componentWillUnmount
+   * @summary Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as cancelled network requests, or cleaning up any DOM elements created in componentDidMount.
+   * @description lets stop listen to Order Data State Change Events
+   * @example
+componentWillUnmount() {
+  const { Order } = this.foundation.data
+  Order.stopListenTo(this.onAddDocEventListener)
+  Order.stopListenTo(this.onEditDocEventListener)
+  Order.stopListenTo(this.onDeleteDocEventListener)
 }
+   */
+  componentWillUnmount () {
+    const { Order } = this.foundation.data
+    /**
+     * Destroy event listeners of this component which are listening to Order collection
+     * and react to it
+     */
+    Order.stopListenTo(this.onAddDocEventListener)
+    Order.stopListenTo(this.onEditDocEventListener)
+    Order.stopListenTo(this.onDeleteDocEventListener)
+    this.onAddDocEventListener = null
+    this.onEditDocEventListener = null
+    this.onDeleteDocEventListener = null
+  }
+
+  /**
+   * @async
+   * @Method Chart.componentDidMount
+   * @summary Called immediately after a component is mounted. Setting state here will trigger re-rendering.
+   * @description Once component is monted we are now ready to start listen to changes on Order data entity and get a list of order in database to fill out the state.orders
+   * @example
+componentDidMount() {
+  const { Order } = this.foundation.data
+
+  // listen to add, edit and delete events on Order collection
+  // and react to it
+  this.onAddDocEventListener = Order.on('add', this.handlerChangeOrder)
+  this.onEditDocEventListener = Order.on('edit', this.handlerChangeOrder)
+  this.onDeleteDocEventListener = Order.on('delete', this.handlerChangeOrder)
+
+  await this.setSeries()
+}
+   */
+  async componentDidMount () {
+    const { Order } = this.foundation.data
+
+    // listen to add, edit and delete events on Order collection
+    // and react to it
+    /**
+     * listen to add Order Data Entity change event on Data API
+     */
+    this.onAddDocEventListener = Order.on('add', this.handlerChangeOrder)
+
+    /**
+     * listen to edit Order Data Entity change event on Data API
+     */
+    this.onEditDocEventListener = Order.on('edit', this.handlerChangeOrder)
+
+    /**
+     * listen to delete Order Data Entity change event on Data API
+     */
+    this.onDeleteDocEventListener = Order.on('delete', this.handlerChangeOrder)
+
+    await this.setSeries()
+  }
+
+  render () {
+    return (
+      <>
+        <ResponsiveContainer height={300}>
+          <LineChart
+            data={this.state.series}
+            margin={{
+              top: 16,
+              right: 16,
+              bottom: 0,
+              left: 24
+            }}
+          >
+            <XAxis dataKey='time' stroke='#cccccc' />
+            <YAxis stroke='#cccccc'>
+              <Label
+                angle={270}
+                position='left'
+                style={{ textAnchor: 'middle', fill: '#000000' }}
+              >
+                Sales ($)
+              </Label>
+            </YAxis>
+            <Line
+              type='monotone'
+              dataKey='amount'
+              stroke='#000000'
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </>
+    )
+  }
+}
+
+export default Chart

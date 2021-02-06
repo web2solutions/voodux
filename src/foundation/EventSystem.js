@@ -47,7 +47,7 @@ class EventSystem {
       const event = this.eventBus[x]
       // console.log(event.id);
       if (event.id === eventId) {
-        console.log('eventId', eventId)
+        // console.log('eventId', eventId)
         this.eventBus.splice(x, 1)
         removed = true
       }

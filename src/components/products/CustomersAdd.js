@@ -1,6 +1,6 @@
 /* globals document */
 import React from 'react'
-import { Redirect, useParams } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 // import { LinkContainer } from 'react-router-bootstrap'
 // import swal from 'sweetalert'
 // import moment from 'moment'
@@ -11,9 +11,7 @@ import swal from 'sweetalert'
   maximumFractionDigits: 2
 }) */
 
-const customerObj = {
-  __id: null,
-  _id: null,
+const productObj = {
   name: '',
   address: 'Seminole, FL',
   email: '',
@@ -21,18 +19,17 @@ const customerObj = {
 }
 /**
  * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
- * @Component CustomersEdit
- * @description React component that edits a Customer data by biding it to a form
+ * @Component ProductsAdd
+ * @description React component that creates new a Product into the database
  * @extends React.Component
  */
-class CustomersEdit extends React.Component {
-  #__id
+class ProductsAdd extends React.Component {
   constructor (props) {
     super(props)
     /**
      * Entity name which this component represents to
      */
-    this.entity = 'Customer'
+    this.entity = 'Product'
     /**
      * access to foundation instance
      */
@@ -48,70 +45,31 @@ class CustomersEdit extends React.Component {
      * component state
      */
     this.state = {
-      customer: {
-        ...customerObj
+      product: {
+        ...productObj
       },
       cards: ['VISA ⠀*** 3719'],
       toDashboard: false
     }
-    this.#__id = null
     this.form = null
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.handleChangeFieldValue = this.handleChangeFieldValue.bind(this)
   }
-  /**
-   * @async
-   * @Method CustomersEdit.componentDidMount
-   * @summary Called immediately after a component is mounted. Setting state here will trigger re-rendering.
-   * @description Once component is monted we are now ready to get the desired Customer data in database and bind to state.customer
-   * @example
-  async componentDidMount() {
+
+  async componentDidMount () {
     if (!this.state.toDashboard) {
       this.form = document.querySelectorAll('.needs-validation')[0]
       this.form.addEventListener('submit', this.handleFormSubmit, false)
-    }
-    const { match: { params } } = this.props
-    const { Customer } = this.foundation.data
-    const { __id } = params
-    this.#__id = __id
-    const findCustomer = await Customer.findById(this.#__id)
-    if (findCustomer.error) {
-      console.error('findCustomer.error', findCustomer.error)
-      return
-    }
-    if (findCustomer.data) {
-      this.setState({
-        customer: findCustomer.data
-      })
-    }
-  }
-   */
-  async componentDidMount() {
-    if (!this.state.toDashboard) {
-      this.form = document.querySelectorAll('.needs-validation')[0]
-      this.form.addEventListener('submit', this.handleFormSubmit, false)
-    }
-    const { match: { params } } = this.props
-    const { Customer } = this.foundation.data
-    const { __id } = params
-    this.#__id = __id
-    const findCustomer = await Customer.findById(this.#__id)
-    if (findCustomer.error) {
-      console.error('findCustomer.error', findCustomer.error)
-      return
-    }
-    if (findCustomer.data) {
-      this.setState({ customer: findCustomer.data })
     }
   }
 
   /**
-   * @Method CustomersEdit.handleChangeFieldValue
+   * @Method ProductsAdd.handleChangeFieldValue
    * @summary Event handler that change form field values and set it state
    * @param  {event} event - The HTML event triggered on User interation
    * @example
 handleChangeFieldValue(e) {
-  const newHash = { ...this.state.customer }
+  const newHash = { ...this.state.product }
   const name = e.target.id || e.target.name
   const value = e.target.value
   newHash[name] = value
@@ -122,11 +80,12 @@ handleChangeFieldValue(e) {
       newHash[name] = []
     }
   }
-  this.setState({ customer: newHash })
+  this.setState({ product: newHash })
 }
    */
   handleChangeFieldValue (e) {
-    const newHash = { ...this.state.customer }
+    // e.preventDefault()
+    const newHash = { ...this.state.product }
     const name = e.target.id || e.target.name
     const value = e.target.value
     newHash[name] = value
@@ -137,25 +96,26 @@ handleChangeFieldValue(e) {
         newHash[name] = []
       }
     }
-    this.setState({ customer: newHash })
+    // console.error('newHash', newHash)
+    this.setState({ product: newHash })
   }
 
   /**
    * @async
-   * @Method CustomersEdit.handleFormSubmit
+   * @Method ProductsAdd.handleFormSubmit
    * @summary Event handler that handles the form submission
    * @param  {event} event - The HTML event triggered on User interation
    * @example
 async handleFormSubmit(e) {
-  const { Customer } = this.foundation.data
+  const { Product } = this.foundation.data
   if (!this.form.checkValidity()) {
     // console.log('not validated')
   }
   e.preventDefault()
   e.stopPropagation()
   this.form.classList.add('was-validated')
-  const doc = { ...this.state.customer }
-  const { data, error } = await Customer.edit(this.#__id, doc)
+  const doc = { ...this.state.product }
+  const { data, error } = await Product.add(doc)
   if (error) {
     swal('Database error', error.message, 'error')
     return
@@ -163,16 +123,16 @@ async handleFormSubmit(e) {
   this.setState({ toDashboard: true })
 }
    */
-  async handleFormSubmit(e) {
+  async handleFormSubmit (e) {
     e.preventDefault()
     e.stopPropagation()
-    const { Customer } = this.foundation.data
+    const { Product } = this.foundation.data
     if (!this.form.checkValidity()) {
       // console.log('not validated')
     }
     this.form.classList.add('was-validated')
-    const doc = { ...this.state.customer }
-    const { data, error } = await Customer.edit(this.#__id, doc)
+    const doc = { ...this.state.product }
+    const { /* data, */ error } = await Product.add(doc)
     if (error) {
       swal('Database error', error.message, 'error')
       return
@@ -182,18 +142,18 @@ async handleFormSubmit(e) {
 
   /**
    * @async
-   * @Method CustomersEdit.render
+   * @Method ProductsAdd.render
    * @summary Component render function.
-   * @description Renders a form to edit the Customer data
+   * @description Renders a form to create the Product data
    */
   render () {
     if (this.state.toDashboard === true) {
-      return <Redirect to='/Customers' />
+      return <Redirect to='/Products' />
     }
     return (
       <main className='col-md-9 ms-sm-auto col-lg-10 px-md-4 main'>
-        <div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 bcustomer-bottom'>
-          <h1 className='h2'>Customer Edit - {this.state.customer.name}</h1>
+        <div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 bproduct-bottom'>
+          <h1 className='h2'>Product Add</h1>
         </div>
         <div className='table-responsive'>
           <form className='needs-validation' noValidate>
@@ -205,9 +165,9 @@ async handleFormSubmit(e) {
                   className='form-control'
                   id='name'
                   placeholder=''
-                  value={this.state.customer.name}
+                  value={this.state.product.name}
                   required
-                  onChange={this.handleChangeFieldValue} 
+                  onChange={this.handleChangeFieldValue}
                 />
                 <div className='invalid-feedback'>
                   Valid name is required.
@@ -221,7 +181,7 @@ async handleFormSubmit(e) {
                   id='email'
                   placeholder='you@example.com'
                   required
-                  value={this.state.customer.email}
+                  value={this.state.product.email}
                   onChange={this.handleChangeFieldValue}
                 />
                 <div className='invalid-feedback'>
@@ -237,8 +197,8 @@ async handleFormSubmit(e) {
                   id='address'
                   placeholder='1234 Main St'
                   required
-                  value={this.state.customer.address}
-                  onChange={this.handleChangeFieldValue} 
+                  value={this.state.product.address}
+                  onChange={this.handleChangeFieldValue}
                 />
                 <div className='invalid-feedback'>
                   Please enter your address.
@@ -251,9 +211,7 @@ async handleFormSubmit(e) {
                   className='custom-select'
                   id='cards'
                   required
-                  multiple
                   onChange={this.handleChangeFieldValue}
-                  value={this.state.customer.cards}
                 >
                   <option value=''>Choose...</option>
                   {this.state.cards.map((card) => (
@@ -282,4 +240,4 @@ async handleFormSubmit(e) {
   }
 }
 
-export default CustomersEdit
+export default ProductsAdd

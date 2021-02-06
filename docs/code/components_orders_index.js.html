@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Agnostic Web Application Foundation Source: components/customers/index.js</title>
+	<title>Agnostic Web Application Foundation Source: components/orders/index.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,7 +72,7 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: components/customers/index.js</h1>
+		<h1 class="page-title">Source: components/orders/index.js</h1>
     
 <section>
     <article>
@@ -82,70 +82,73 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import swal from 'sweetalert'
-/* import moment from 'moment'
+import moment from 'moment'
 
 const formatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2
-}) */
+})
 
 const handlerOnAddDocEventListener = function (eventObj) {
+  console.error('handlerOnAddDocEventListener order index.js')
   const { error, /* document, foundation, */ data } = eventObj
   if (error) {
     console.error(`Error adding user: ${error}`)
     return
   }
-  console.debug([data, ...this.state.customers])
-  this.setState({ customers: [data, ...this.state.customers] })
+  console.debug([data, ...this.state.orders])
+  this.setState({ orders: [data, ...this.state.orders] })
 }
 
 const handlerOnEditDocEventListener = function (eventObj) {
+  console.error('handlerOnEditDocEventListener order index.js')
   const { data, primaryKey, /* document, foundation, */ error } = eventObj
   if (error) {
     console.error(`Error updating user: ${error}`)
     return
   }
-  const newData = this.state.customers.map((customer) => {
-    if (customer.__id === primaryKey) {
+  const newData = this.state.orders.map((order) => {
+    if (order.__id === primaryKey) {
       return data
     } else {
-      return customer
+      return order
     }
   })
   console.debug([...newData])
-  this.setState({ customers: [...newData] })
+  this.setState({ orders: [...newData] })
 }
 
 const handlerOnDeleteDocEventListener = function (eventObj) {
+  console.error('handlerOnDeleteDocEventListener order index.js')
   const { error, /* document, foundation, */ data } = eventObj
   if (error) {
     console.error(`Error deleting user: ${error}`)
     return
   }
-  const allCustomers = [...this.state.customers]
-  for (let x = 0; x &lt; allCustomers.length; x++) {
-    const customer = allCustomers[x]
-    if (customer.__id === data.__id) {
-      allCustomers.splice(x)
+  const allOrders = [...this.state.orders]
+  for (let x = 0; x &lt; allOrders.length; x++) {
+    const order = allOrders[x]
+    if (order.__id === data.__id) {
+      allOrders.splice(x)
     }
   }
-  this.setState({ customers: allCustomers })
+  this.setState({ orders: allOrders })
 }
 
 /**
  * @author Eduardo Perotta de Almeida &lt;web2solucoes@gmail.com>
- * @Component Customers
- * @description React component consuming a Customer Data Entity collection to feed a grid
+ * @Component Orders
+ * @description React component consuming a Order Data Entity collection to feed a grid
  * @extends React.Component
  */
-class Customers extends React.Component {
+class Orders extends React.Component {
   constructor (props) {
     super(props)
     // console.error('------>', props)
     /**
      * Entity name which this component represents to
      */
-    this.entity = 'Customer'
+    this.entity = 'Order'
     /**
      * access to foundation instance
      */
@@ -161,35 +164,35 @@ class Customers extends React.Component {
      * component state
      */
     this.state = {
-      customers: []
+      orders: []
     }
     this.onAddDocEventListener = null
     this.onEditDocEventListener = null
     this.onDeleteDocEventListener = null
-    this.handleDeleteCustomer = this.handleDeleteCustomer.bind(this)
+    this.handleDeleteOrder = this.handleDeleteOrder.bind(this)
   }
 
   /**
-   * @Method Customers.componentWillUnmount
+   * @Method Orders.componentWillUnmount
    * @summary Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as cancelled network requests, or cleaning up any DOM elements created in componentDidMount.
-   * @description lets stop listen to Customer Data State Change Events
+   * @description lets stop listen to Order Data State Change Events
    * @example
 componentWillUnmount() {
-  const { Customer } = this.foundation.data
-  Customer.stopListenTo(this.onAddDocEventListener)
-  Customer.stopListenTo(this.onEditDocEventListener)
-  Customer.stopListenTo(this.onDeleteDocEventListener)
+  const { Order } = this.foundation.data
+  Order.stopListenTo(this.onAddDocEventListener)
+  Order.stopListenTo(this.onEditDocEventListener)
+  Order.stopListenTo(this.onDeleteDocEventListener)
 }
    */
   componentWillUnmount () {
-    const { Customer } = this.foundation.data
+    const { Order } = this.foundation.data
     /**
-     * Destroy event listeners of this component which are listening to Customer collection
+     * Destroy event listeners of this component which are listening to Order collection
      * and react to it
      */
-    Customer.stopListenTo(this.onAddDocEventListener)
-    Customer.stopListenTo(this.onEditDocEventListener)
-    Customer.stopListenTo(this.onDeleteDocEventListener)
+    Order.stopListenTo(this.onAddDocEventListener)
+    Order.stopListenTo(this.onEditDocEventListener)
+    Order.stopListenTo(this.onDeleteDocEventListener)
     this.onAddDocEventListener = null
     this.onEditDocEventListener = null
     this.onDeleteDocEventListener = null
@@ -197,72 +200,72 @@ componentWillUnmount() {
 
   /**
    * @async
-   * @Method Customers.componentDidMount
+   * @Method Orders.componentDidMount
    * @summary Called immediately after a component is mounted. Setting state here will trigger re-rendering.
-   * @description Once component is monted we are now ready to start listen to changes on Customer data entity and get a list of customer in database to fill out the state.customers
+   * @description Once component is monted we are now ready to start listen to changes on Order data entity and get a list of order in database to fill out the state.orders
    * @example
 componentDidMount() {
-  const { Customer } = this.foundation.data
+  const { Order } = this.foundation.data
 
-  this.onAddDocEventListener = Customer.on(
+  this.onAddDocEventListener = Order.on(
     'add',
     handlerOnAddDocEventListener.bind(this)
   )
 
-  this.onEditDocEventListener = Customer.on(
+  this.onEditDocEventListener = Order.on(
     'edit',
     handlerOnEditDocEventListener.bind(this)
   )
 
-  this.onDeleteDocEventListener = Customer.on(
+  this.onDeleteDocEventListener = Order.on(
     'delete',
     handlerOnDeleteDocEventListener.bind(this)
   )
 
-  const { error, data } = await Customer.find({}, { ...this.pagination })
+  const { error, data } = await Order.find({}, { ...this.pagination })
   if (!error) {
-    this.setState({ customers: customers.data })
+    this.setState({ orders: orders.data })
   }
 }
    */
   async componentDidMount () {
-    const { Customer } = this.foundation.data
+    const { Order } = this.foundation.data
 
-    // listen to add, edit and delete events on Customer collection
+    // listen to add, edit and delete events on Order collection
     // and react to it
     /**
-     * listen to add Customer Data Entity change event on Data API
+     * listen to add Order Data Entity change event on Data API
      */
-    this.onAddDocEventListener = Customer.on('add', handlerOnAddDocEventListener.bind(this))
+    this.onAddDocEventListener = Order.on('add', handlerOnAddDocEventListener.bind(this))
 
     /**
-     * listen to edit Customer Data Entity change event on Data API
+     * listen to edit Order Data Entity change event on Data API
      */
-    this.onEditDocEventListener = Customer.on('edit', handlerOnEditDocEventListener.bind(this))
+    this.onEditDocEventListener = Order.on('edit', handlerOnEditDocEventListener.bind(this))
 
     /**
-     * listen to delete Customer Data Entity change event on Data API
+     * listen to delete Order Data Entity change event on Data API
      */
-    this.onDeleteDocEventListener = Customer.on('delete', handlerOnDeleteDocEventListener.bind(this))
+    this.onDeleteDocEventListener = Order.on('delete', handlerOnDeleteDocEventListener.bind(this))
 
-    // get Customers on database
-    const customers = await Customer.find({}, { ...this.pagination })
-    // console.warn(customers)
+    // get Orders on database
+    const orders = await Order.find({}, { ...this.pagination })
+    console.warn(orders)
 
-    if (customers.data) {
-      this.setState({ customers: customers.data })
+    if (orders.data) {
+      this.setState({ orders: orders.data })
     }
   }
 
   /**
-   * @Method Customers.handleDeleteCustomer
-   * @summary Event handler that Deletes a customer
-   * @description Once component is monted we are now ready to start listen to changes on Customer data entity and get a list of customer in database to fill out the state.customers
+   * @Method Orders.handleDeleteOrder
+   * @summary Event handler that Deletes a order
+   * @description Once component is monted we are now ready to start listen to changes on Order data entity and get a list of order in database to fill out the state.orders
    * @param  {event} event - The HTML event triggered on User interation
    * @param  {number} __id - The primaryKey value of the record willing to be deleted
    * @example
-handleDeleteCustomer(e, ___id) {
-  const { Customer } = this.foundation.data
+handleDeleteOrder(e, ___id) {
+  const { Order } = this.foundation.data
   e.preventDefault()
   swal({
     title: 'Are you sure?',
@@ -272,25 +275,25 @@ handleDeleteCustomer(e, ___id) {
     dangerMode: true
   }).then(async (willDelete) => {
     if (willDelete) {
-      const r = await Customer.delete(___id)
+      const r = await Order.delete(___id)
       if (r.error) {
         swal('Database error', e.error.message, 'error')
         return
       }
-      swal('Poof! The customer has been deleted!', {
+      swal('Poof! The order has been deleted!', {
         icon: 'success'
       })
       return &lt;Redirect to = '/dashboard' / >
     } else {
-      swal('The Customer is safe!')
+      swal('The Order is safe!')
     }
   })
 }
 
-// &lt;a color='primary' href='#' onClick={e => this.handleDeleteCustomer(e, doc.__id)}>[delete]&lt;/a>
+// &lt;a color='primary' href='#' onClick={e => this.handleDeleteOrder(e, doc.__id)}>[delete]&lt;/a>
    */
-  handleDeleteCustomer (e, ___id) {
-    const { Customer } = this.foundation.data
+  handleDeleteOrder (e, ___id) {
+    const { Order } = this.foundation.data
     e.preventDefault()
     // console.error(___id)
     swal({
@@ -301,38 +304,38 @@ handleDeleteCustomer(e, ___id) {
       dangerMode: true
     }).then(async (willDelete) => {
       if (willDelete) {
-        const r = await Customer.delete(___id)
+        const r = await Order.delete(___id)
         // console.error(r)
         if (r.error) {
           swal('Database error', e.error.message, 'error')
           return
         }
-        swal('Poof! The customer has been deleted!', {
+        swal('Poof! The order has been deleted!', {
           icon: 'success'
         })
         return &lt;Redirect to='/dashboard' />
       } else {
-        swal('The Customer is safe!')
+        swal('The Order is safe!')
       }
     })
   }
 
   /**
    * @async
-   * @Method Customers.render
+   * @Method Orders.render
    * @summary Component render function.
-   * @description Renders a grid of Customers
+   * @description Renders a grid of Orders
    */
   render () {
     return (
       &lt;main className='col-md-9 ms-sm-auto col-lg-10 px-md-4 main'>
-        &lt;div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 bcustomer-bottom'>
-          &lt;h1 className='h2'>Customers&lt;/h1>
+        &lt;div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
+          &lt;h1 className='h2'>Orders&lt;/h1>
           &lt;div className='btn-toolbar mb-2 mb-md-0'>
             &lt;div className='btn-group me-2'>
-              &lt;LinkContainer to='/CustomersAdd'>
+              &lt;LinkContainer to='/OrdersAdd'>
                 &lt;button type='button' className='btn btn-sm btn-outline-secondary'>
-                  Add new Customer
+                  Add new Order
                 &lt;/button>
               &lt;/LinkContainer>
             &lt;/div>
@@ -342,23 +345,24 @@ handleDeleteCustomer(e, ___id) {
           &lt;table className='table table-striped table-sm'>
             &lt;thead>
               &lt;tr>
+                &lt;th>Date&lt;/th>
                 &lt;th>Name&lt;/th>
-                &lt;th>Address&lt;/th>
-                &lt;th>E-mail&lt;/th>
-                &lt;th align='right'>Cards&lt;/th>
+                &lt;th>Ship to&lt;/th>
+                &lt;th>Payment method&lt;/th>
+                &lt;th align='right'>Amount&lt;/th>
                 &lt;th>-&lt;/th>
               &lt;/tr>
             &lt;/thead>
             &lt;tbody>
-              {this.state.customers.map((doc) => (
+              {this.state.orders.map((doc) => (
                 &lt;tr key={doc.id}>
+                  &lt;td>{moment(doc.date).subtract(6, 'days').calendar()}&lt;/td>
                   &lt;td>{doc.name}&lt;/td>
-                  &lt;td>{doc.address}&lt;/td>
-                  &lt;td>{doc.email}&lt;/td>
-                  &lt;td align='right'>{doc.cards}&lt;/td>
+                  &lt;td>{doc.shipTo}&lt;/td>
+                  &lt;td>{doc.paymentMethod}&lt;/td>
+                  &lt;td align='right'>USD {formatter.format(doc.amount)}&lt;/td>
                   &lt;td>
-                    &lt;Link color='primary' to={`/CustomersEdit/${doc.__id}`}>[edit]&lt;/Link>
-                    | &lt;a color='primary' href='#' onClick={e => this.handleDeleteCustomer(e, doc.__id)}>[delete]&lt;/a>
+                    &lt;a color='primary' href='#' onClick={e => this.handleDeleteOrder(e, doc.__id)}>[delete]&lt;/a>
                   &lt;/td>
                 &lt;/tr>
               ))}
@@ -371,7 +375,7 @@ handleDeleteCustomer(e, ___id) {
   }
 }
 
-export default Customers
+export default Orders
 </pre>
     </article>
 </section>

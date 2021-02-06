@@ -517,7 +517,11 @@ const { data, error } = await Customer.edit(doc.__id, doc)
   /**
    * @Method DataEntity.#_listenToAllOtherSessionsStateChanges
    * @summary PRIVATE - Listen to data state changes on every Application session.
-   * @description The application scope is the browser running the application. <br> Every tab is considered a session. <br> Internally it's triggers all events related to data change events, except if the source, the session which originated the event is the same that is receiving. <br> It can not rely on network.
+   * @description Listen to data state change event incoming from every other Application session and communicates to every subscriber tied to this session.
+   * <br><br>  The application scope is the browser running the application. 
+   * <br><br>  Every tab is considered a session. 
+   * <br> <br> Internally it triggers all events related to data change events, except if the source, the session which originated the event, is the same that is receiving the event
+   * <br> <br> It does not rely on network to propagate the changes.
    * @example 
         this.#_listenToAllOtherSessionsStateChanges()
   */

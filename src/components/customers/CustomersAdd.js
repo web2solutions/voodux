@@ -17,16 +17,33 @@ const customerObj = {
   email: '',
   cards: []
 }
-
+/**
+ * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
+ * @Component CustomersAdd
+ * @description React component that creates new a Customer into the database
+ * @extends React.Component
+ */
 class CustomersAdd extends React.Component {
   constructor (props) {
     super(props)
+    /**
+     * Entity name which this component represents to
+     */
     this.entity = 'Customer'
+    /**
+     * access to foundation instance
+     */
     this.foundation = props.foundation
+    /**
+     * default pagination to list data
+     */
     this.pagination = {
       offset: 0,
       limit: 30
     }
+    /**
+     * component state
+     */
     this.state = {
       customer: {
         ...customerObj
@@ -46,6 +63,26 @@ class CustomersAdd extends React.Component {
     }
   }
 
+  /**
+   * @Method CustomersAdd.handleChangeFieldValue
+   * @summary Event handler that change form field values and set it state
+   * @param  {event} event - The HTML event triggered on User interation
+   * @example
+handleChangeFieldValue(e) {
+  const newHash = { ...this.state.customer }
+  const name = e.target.id || e.target.name
+  const value = e.target.value
+  newHash[name] = value
+  if (name === 'cards') {
+    if (value !== '') {
+      newHash[name] = [value]
+    } else {
+      newHash[name] = []
+    }
+  }
+  this.setState({ customer: newHash })
+}
+   */
   handleChangeFieldValue (e) {
     // e.preventDefault()
     const newHash = { ...this.state.customer }
@@ -63,20 +100,39 @@ class CustomersAdd extends React.Component {
     this.setState({ customer: newHash })
   }
 
+  /**
+   * @async
+   * @Method CustomersAdd.handleFormSubmit
+   * @summary Event handler that handles the form submission
+   * @param  {event} event - The HTML event triggered on User interation
+   * @example
+async handleFormSubmit(e) {
+  const { Customer } = this.foundation.data
+  if (!this.form.checkValidity()) {
+    // console.log('not validated')
+  }
+  e.preventDefault()
+  e.stopPropagation()
+  this.form.classList.add('was-validated')
+  const doc = { ...this.state.customer }
+  const { data, error } = await Customer.add(doc)
+  if (error) {
+    swal('Database error', error.message, 'error')
+    return
+  }
+  this.setState({ toDashboard: true })
+}
+   */
   async handleFormSubmit (e) {
+    e.preventDefault()
+    e.stopPropagation()
     const { Customer } = this.foundation.data
     if (!this.form.checkValidity()) {
       // console.log('not validated')
     }
-    e.preventDefault()
-    e.stopPropagation()
     this.form.classList.add('was-validated')
-    // console.error('this.state.customer', this.state.customer)
-
     const doc = { ...this.state.customer }
-
     const { /* data, */ error } = await Customer.add(doc)
-    // console.error('data', data)
     if (error) {
       swal('Database error', error.message, 'error')
       return
@@ -84,6 +140,12 @@ class CustomersAdd extends React.Component {
     this.setState({ toDashboard: true })
   }
 
+  /**
+   * @async
+   * @Method CustomersAdd.render
+   * @summary Component render function.
+   * @description Renders a form to create the Customer data
+   */
   render () {
     if (this.state.toDashboard === true) {
       return <Redirect to='/Customers' />
@@ -98,14 +160,30 @@ class CustomersAdd extends React.Component {
             <div className='row g-3'>
               <div className='col-12'>
                 <label htmlFor='name' className='form-label'>Name</label>
-                <input type='text' className='form-control' id='name' placeholder='' value={this.state.customer.name} required onChange={this.handleChangeFieldValue}/>
+                <input
+                  type='text'
+                  className='form-control'
+                  id='name'
+                  placeholder=''
+                  value={this.state.customer.name}
+                  required
+                  onChange={this.handleChangeFieldValue}
+                />
                 <div className='invalid-feedback'>
-                  Valid first name is required.
+                  Valid name is required.
                 </div>
               </div>
               <div className='col-12'>
                 <label htmlFor='email' className='form-label'>Email </label>
-                <input type='email' className='form-control' id='email' placeholder='you@example.com' required value={this.state.customer.email} onChange={this.handleChangeFieldValue} />
+                <input
+                  type='email'
+                  className='form-control'
+                  id='email'
+                  placeholder='you@example.com'
+                  required
+                  value={this.state.customer.email}
+                  onChange={this.handleChangeFieldValue}
+                />
                 <div className='invalid-feedback'>
                   Please enter a valid email address for shipping updates.
                 </div>
@@ -113,18 +191,36 @@ class CustomersAdd extends React.Component {
 
               <div className='col-12'>
                 <label htmlFor='address' className='form-label'>Address</label>
-                <input type='text' className='form-control' id='address' placeholder='1234 Main St' required value={this.state.customer.address} onChange={this.handleChangeFieldValue} />
+                <input
+                  type='text'
+                  className='form-control'
+                  id='address'
+                  placeholder='1234 Main St'
+                  required
+                  value={this.state.customer.address}
+                  onChange={this.handleChangeFieldValue}
+                />
                 <div className='invalid-feedback'>
-                  Please enter your shipping address.
+                  Please enter your address.
                 </div>
               </div>
 
               <div className='col-md-5'>
-                <label htmlFor='cards' className='form-label'>Payment method</label>
-                <select className='custom-select' id='cards' required onChange={this.handleChangeFieldValue}>
+                <label htmlFor='cards' className='form-label'>Credit cards</label>
+                <select
+                  className='custom-select'
+                  id='cards'
+                  required
+                  onChange={this.handleChangeFieldValue}
+                >
                   <option value=''>Choose...</option>
                   {this.state.cards.map((card) => (
-                    <option key={card} value={card}>{card}</option>
+                    <option
+                      key={card}
+                      value={card}
+                    >
+                      {card}
+                    </option>
                   ))}
                 </select>
                 <div className='invalid-feedback'>

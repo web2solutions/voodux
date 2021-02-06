@@ -1,195 +1,269 @@
 /* globals document */
 import React from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
+import { Redirect } from 'react-router-dom'
+// import { LinkContainer } from 'react-router-bootstrap'
 // import swal from 'sweetalert'
-import moment from 'moment'
+// import moment from 'moment'
+import swal from 'sweetalert'
 
-const formatter = new Intl.NumberFormat('en-US', {
+/* const formatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2
-})
+}) */
 
 const orderObj = {
-  name: null,
-  shipTo: null,
-  paymentMethod: null,
-  amount: null,
-  customerId: null
+  name: '',
+  shipTo: '',
+  paymentMethod: '',
+  amount: '',
+  customerId: ''
 }
-
+/**
+ * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
+ * @Component OrdersAdd
+ * @description React component that creates new a Order into the database
+ * @extends React.Component
+ */
 class OrdersAdd extends React.Component {
   constructor (props) {
     super(props)
-    try {
-      // console.error('------>', props)
-      this.entity = 'Order'
-      this.foundation = props.foundation
-      this.history = props.useHistory
-      this.pagination = {
-        offset: 0,
-        limit: 30
-      }
-      this.state = {
-        order: { ...orderObj }
-      }
-    } catch (error) {
-      console.error(error)
+    /**
+     * Entity name which this component represents to
+     */
+    this.entity = 'Order'
+    /**
+     * access to foundation instance
+     */
+    this.foundation = props.foundation
+    /**
+     * default pagination to list data
+     */
+    this.pagination = {
+      offset: 0,
+      limit: 30
+    }
+    /**
+     * component state
+     */
+    this.state = {
+      order: {
+        ...orderObj
+      },
+      customers: [],
+      toDashboard: false
+    }
+    this.form = null
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.handleChangeFieldValue = this.handleChangeFieldValue.bind(this)
+  }
+
+  /**
+   * @Method OrdersAdd.componentDidMount
+   * @summary Called immediately after a component is mounted. Setting state here will trigger re-rendering.
+   * @description Once component is monted we are now ready to get customer list to use on select html item.
+   * We could also listen to changes in Customer and change the select values based on those events
+   * @example
+async componentDidMount() {
+  const { Customer } = this.foundation.data
+  if (!this.state.toDashboard) {
+    this.form = document.querySelectorAll('.needs-validation')[0]
+    this.form.addEventListener('submit', this.handleFormSubmit, false)
+  }
+  const findCustomers = await Customer.find({})
+  if (!findCustomers) {
+    return
+  }
+  if (findCustomers.data) {
+    this.setState({
+      customers: findCustomers.data
+    })
+  }
+}
+   */
+
+  async componentDidMount () {
+    const { Customer } = this.foundation.data
+    if (!this.state.toDashboard) {
+      this.form = document.querySelectorAll('.needs-validation')[0]
+      this.form.addEventListener('submit', this.handleFormSubmit, false)
+    }
+    const findCustomers = await Customer.find({})
+    if (!findCustomers) {
+      return
+    }
+    if (findCustomers.data) {
+      this.setState({ customers: findCustomers.data })
     }
   }
 
-  async componentDidMount () {
+  /**
+   * @Method OrdersAdd.handleChangeFieldValue
+   * @summary Event handler that change form field values and set it state
+   * @param  {event} event - The HTML event triggered on User interation
+   * @example
+handleChangeFieldValue(e) {
+  const { Customer } = this.foundation.data
 
+  if (e.target) {
+    if (e.target.value === null || e.target.value === 'null') {
+      const copy = { ...orderObj }
+      delete copy.amount
+      // console.debug(copy)
+      this.setState({ order: copy })
+      return
+    }
+  }
+  const newHash = { ...this.state.order }
+  if (e.target.id === 'amount') {
+    newHash[e.target.id] = e.target.value
+  } else if (e.target.id === 'name') {
+    const { data, error } = await Customer.findById(e.target.value)
+    if (error) {
+      return
+    }
+    // console.error({ data, error })
+    newHash.customerId = data.__id
+    newHash.name = data.name
+    newHash.shipTo = data.address
+    newHash.paymentMethod = data.cards[0]
   }
 
+  // console.error(newHash)
+  this.setState({ order: newHash })
+}
+   */
+  async handleChangeFieldValue (e) {
+    const { Customer } = this.foundation.data
+
+    if (e.target) {
+      if (e.target.value === null || e.target.value === 'null') {
+        const copy = { ...orderObj }
+        delete copy.amount
+        // console.debug(copy)
+        this.setState({ order: copy })
+        return
+      }
+    }
+    const newHash = { ...this.state.order }
+    if (e.target.id === 'amount') {
+      newHash[e.target.id] = e.target.value
+    } else if (e.target.id === 'name') {
+      const { data, error } = await Customer.findById(e.target.value)
+      if (error) {
+        return
+      }
+      // console.error({ data, error })
+      newHash.customerId = data.__id
+      newHash.name = data.name
+      newHash.shipTo = data.address
+      newHash.paymentMethod = data.cards[0]
+    }
+
+    // console.error(newHash)
+    this.setState({ order: newHash })
+  }
+
+  /**
+   * @async
+   * @Method OrdersAdd.handleFormSubmit
+   * @summary Event handler that handles the form submission
+   * @param  {event} event - The HTML event triggered on User interation
+   * @example
+async handleFormSubmit(e) {
+  const { Order } = this.foundation.data
+  if (!this.form.checkValidity()) {
+    // console.log('not validated')
+  }
+  e.preventDefault()
+  e.stopPropagation()
+  this.form.classList.add('was-validated')
+  const doc = { ...this.state.order }
+  const { data, error } = await Order.add(doc)
+  if (error) {
+    swal('Database error', error.message, 'error')
+    return
+  }
+  this.setState({ toDashboard: true })
+}
+   */
+  async handleFormSubmit (e) {
+    e.preventDefault()
+    e.stopPropagation()
+    const { Order } = this.foundation.data
+    if (!this.form.checkValidity()) {
+      // console.log('not validated')
+    }
+    this.form.classList.add('was-validated')
+    const doc = { ...this.state.order }
+    const { /* data, */ error } = await Order.add(doc)
+    if (error) {
+      swal('Database error', error.message, 'error')
+      return
+    }
+    this.setState({ toDashboard: true })
+  }
+
+  /**
+   * @async
+   * @Method OrdersAdd.render
+   * @summary Component render function.
+   * @description Renders a form to create the Order data
+   */
   render () {
+    if (this.state.toDashboard === true) {
+      return <Redirect to='/Orders' />
+    }
     return (
       <main className='col-md-9 ms-sm-auto col-lg-10 px-md-4 main'>
         <div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
           <h1 className='h2'>Order Add</h1>
         </div>
         <div className='table-responsive'>
-          <form class='needs-validation' novalidate>
-            <div class='row g-3'>
-              <div class='col-sm-6'>
-                <label for='firstName' class='form-label'>First name</label>
-                <input type='text' class='form-control' id='firstName' placeholder='' value='' required />
-                <div class='invalid-feedback'>
-                  Valid first name is required.
-                </div>
-              </div>
-
-              <div class='col-sm-6'>
-                <label for='lastName' class='form-label'>Last name</label>
-                <input type='text' class='form-control' id='lastName' placeholder='' value='' required />
-                <div class='invalid-feedback'>
-                  Valid last name is required.
-                </div>
-              </div>
-
-              <div class='col-12'>
-                <label for='username' class='form-label'>Username</label>
-                <div class='input-group'>
-                  <span class='input-group-text'>@</span>
-                  <input type='text' class='form-control' id='username' placeholder='Username' required />
-                  <div class='invalid-feedback'>
-                    Your username is required.
-                  </div>
-                </div>
-              </div>
-
-              <div class='col-12'>
-                <label for='address' class='form-label'>Address</label>
-                <input type='text' class='form-control' id='address' placeholder='1234 Main St' required />
-                <div class='invalid-feedback'>
-                  Please enter your shipping address.
-                </div>
-              </div>
-
-              <div class='col-12'>
-                <label for='address2' class='form-label'>Address 2 <span class='text-muted'>(Optional)</span></label>
-                <input type='text' class='form-control' id='address2' placeholder='Apartment or suite' />
-              </div>
-
-              <div class='col-md-5'>
-                <label for='country' class='form-label'>Country</label>
-                <select class='form-select' id='country' required>
+          <form className='needs-validation' noValidate>
+            <div className='row g-3'>
+              <div className='col-md-5'>
+                <label htmlFor='name' className='form-label'>Customer</label>
+                <select
+                  className='custom-select'
+                  id='name'
+                  required
+                  value={this.state.order.customerId}
+                  onChange={this.handleChangeFieldValue}
+                >
                   <option value=''>Choose...</option>
-                  <option>United States</option>
+                  {this.state.customers.map((customer) => (
+                    <option
+                      key={customer.__id}
+                      value={customer.__id}
+                    >
+                      {customer.name}
+                    </option>
+                  ))}
                 </select>
-                <div class='invalid-feedback'>
-                  Please select a valid country.
+                <div className='invalid-feedback'>
+                  Please select a Customer.
                 </div>
               </div>
-
-              <div class='col-md-4'>
-                <label for='state' class='form-label'>State</label>
-                <select class='form-select' id='state' required>
-                  <option value=''>Choose...</option>
-                  <option>California</option>
-                </select>
-                <div class='invalid-feedback'>
-                  Please provide a valid state.
-                </div>
-              </div>
-
-              <div class='col-md-3'>
-                <label for='zip' class='form-label'>Zip</label>
-                <input type='text' class='form-control' id='zip' placeholder='' required />
-                <div class='invalid-feedback'>
-                  Zip code required.
+              <div className='col-12'>
+                <label htmlFor='amount' className='form-label'>Amount</label>
+                <input
+                  type='text'
+                  className='form-control'
+                  id='amount'
+                  placeholder=''
+                  value={this.state.order.amount}
+                  required
+                  onChange={this.handleChangeFieldValue}
+                />
+                <div className='invalid-feedback'>
+                  Valid amount
                 </div>
               </div>
             </div>
 
-            <hr class='my-4' />
+            <hr className='my-4' />
 
-            <div class='form-check'>
-              <input type='checkbox' class='form-check-input' id='same-address' />
-              <label class='form-check-label' for='same-address'>Shipping address is the same as my billing address</label>
-            </div>
-
-            <div class='form-check'>
-              <input type='checkbox' class='form-check-input' id='save-info' />
-              <label class='form-check-label' for='save-info'>Save this information for next time</label>
-            </div>
-
-            <hr class='my-4' />
-
-            <h4 class='mb-3'>Payment</h4>
-
-            <div class='my-3'>
-              <div class='form-check'>
-                <input id='credit' name='paymentMethod' type='radio' class='form-check-input' checked required />
-                <label class='form-check-label' for='credit'>Credit card</label>
-              </div>
-              <div class='form-check'>
-                <input id='debit' name='paymentMethod' type='radio' class='form-check-input' required />
-                <label class='form-check-label' for='debit'>Debit card</label>
-              </div>
-              <div class='form-check'>
-                <input id='paypal' name='paymentMethod' type='radio' class='form-check-input' required />
-                <label class='form-check-label' for='paypal'>PayPal</label>
-              </div>
-            </div>
-
-            <div class='row gy-3'>
-              <div class='col-md-6'>
-                <label for='cc-name' class='form-label'>Name on card</label>
-                <input type='text' class='form-control' id='cc-name' placeholder='' required />
-                <small class='text-muted'>Full name as displayed on card</small>
-                <div class='invalid-feedback'>
-                  Name on card is required
-                </div>
-              </div>
-
-              <div class='col-md-6'>
-                <label for='cc-number' class='form-label'>Credit card number</label>
-                <input type='text' class='form-control' id='cc-number' placeholder='' required />
-                <div class='invalid-feedback'>
-                  Credit card number is required
-                </div>
-              </div>
-
-              <div class='col-md-3'>
-                <label for='cc-expiration' class='form-label'>Expiration</label>
-                <input type='text' class='form-control' id='cc-expiration' placeholder='' required />
-                <div class='invalid-feedback'>
-                  Expiration date required
-                </div>
-              </div>
-
-              <div class='col-md-3'>
-                <label for='cc-cvv' class='form-label'>CVV</label>
-                <input type='text' class='form-control' id='cc-cvv' placeholder='' required />
-                <div class='invalid-feedback'>
-                  Security code required
-                </div>
-              </div>
-            </div>
-
-            <hr class='my-4' />
-
-            <button class='w-100 btn btn-primary btn-lg' type='submit'>Continue to checkout</button>
+            <button className='w-100 btn btn-primary btn-lg' type='submit'>save</button>
           </form>
         </div>
       </main>
