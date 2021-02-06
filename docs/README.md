@@ -2,24 +2,34 @@
 
 # awf - Agnostic Web Foundation
 
+## Summary
 
 The proposal is about to cover the common lacks and mistakes in modern web applications development by heavly opinionating on how to define a strong foundation for most common types of web based softwares which relies mostly in `V-*` libraries and frameworks like `Vue` and `React`.
 
 It provides a underlying architecture offering resources like:
 
-- Generic `Data Schema` and `Data Model` driven design
-- A proxy like `Data API` supporting different transports
-- `Data Schema` generators leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
-- CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
-- Enforced Data Modeling and Data Entities driven design
+- Generic `Data Schema` and `Data Model` driven design. Use the Mongoose implementation to define models. Same model can both run on client and server.
+- A proxy like `Data Entity API` supporting different data transports
+- Complete boilerplate for software testing.
+- Complete boilerplate for software documentation.
+- Enforced Entity Relatioship and Data Entities design
 - Application session
 - Realtime Data Sync
 - Plugin based `Data Transport` to give you the freedom to back your web software with any kind of `back end technology`
 - `Trully multi threaded` architecture by leveraging web workers. Web applications are originally single threaded applications.
 - 100% offline capable applications
 - Asynchronous and `event driven` architecture.
+- `Data Schema` generators leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
+- CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
 
-### Code automation tools
+
+## What it does not?
+
+- It does not replace Redux, Mobx or Vuex.
+- It does not cares about how you manage your application state
+- It does not cares about which framework for `project standards` you use. Vue, React ...
+- It does not cares about the UI framework you use. Material UI, Boostrap, Sencha, DHTMLX, Dojo.
+## Code automation tools
 
 - `npm run test`
 
