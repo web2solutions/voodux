@@ -1,4 +1,4 @@
-# React Demo App - Class based components
+# Agnostic Web Foundation
 
 This is a React application demo leveraging the [Agnostic Web Foundation](https://github.com/web2solutions/agnostic-web-foundation).
 
