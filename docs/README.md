@@ -27,8 +27,8 @@ It provides a underlying architecture offering resources like:
 
 - It does not replace Redux, Mobx or Vuex.
 - It does not cares about how you manage your application state
-- It does not cares about which framework for `project standards` you use. Vue, React ...
-- It does not cares about the UI framework you use. Material UI, Boostrap, Sencha, DHTMLX, Dojo.
+- It does not cares about which framework/library for `project standards` you use. Vue, React ...
+- It does not cares about the UI framework/library you use. Material UI, Boostrap, Sencha, DHTMLX, Dojo.
 ## Code automation tools
 
 - `npm run test`
