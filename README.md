@@ -17,6 +17,9 @@ Agnostic Foundation for Web Applications - DRAFT
 
 ### React Demo app (Functional components)
 
+
+<img src="https://i.imgur.com/b29Lsgj.png" width="600" />
+
 `Demo app:`
 
 https://agnostic-web-foundation-react-functions-demo.vercel.app/
@@ -31,6 +34,9 @@ TODO
 
 
 ### React Demo app (Class based components)
+
+<img src="https://i.imgur.com/E1u5g6y.png" width="600" />
+
 
 `Demo app:`
 
