@@ -31,19 +31,6 @@ It provides a underlying architecture offering resources like:
 - It does not cares about the UI framework/library you use. Material UI, Boostrap, Sencha, DHTMLX, Dojo.
 
 
-## ToDo
-
-1. REST transport
-2. Websocket transport
-3. Serverless transport (Firebase)
-4. Session layer
-5. Event sourcing
-6. Vue demo
-7. DHTMLX demo
-8. VanilaJS demo
-9. textual search with lunr.
-10. Workbox -> https://developers.google.com/web/tools/workbox/guides/get-started
-
 ## React Demos
 ### React Demo app (Functional components)
 
@@ -122,6 +109,17 @@ Transpile the es6 code (src/) to es5 version at dist/ folder
 
 
 
+## ToDo
 
+1. REST transport
+2. Websocket transport
+3. Serverless transport (Firebase)
+4. Session layer
+5. Event sourcing
+6. Vue demo
+7. DHTMLX demo
+8. VanilaJS demo
+9. textual search with lunr.
+10. Workbox -> https://developers.google.com/web/tools/workbox/guides/get-started
 
 
