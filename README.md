@@ -1,8 +1,35 @@
 #   <img src="https://avatars3.githubusercontent.com/u/14809007?s=280&v=4" width="50" />  Agnostic Web Foundation
 
-Agnostic Foundation for Web Applications - DRAFT
+> The missing building block for enterprise and modern web applications
 
-> ˜Web based software development is serious˜
+`Agnostic Foundation for Web Applications` is more a kind of framework where its code is not the most important piece, but it underlying proposal.
+
+Leveraging agile techiques to implement scalable React, Vue and any other kind of "V*" framework based applications since it initial days.
+
+We strongly opiniate about the `M` layer and we `have a database`! In the browser. Yes, this excactly what you are hearing.
+
+Data design and ER diagrams are not `back end crucial only`.
+
+### Why is this important ?
+
+Right here we are not talking about `servers` and `back ends`. Never.
+
+This is about producing standalone web applications. 
+
+We strongly believe that `PWA` and `SPA` are the future of `mobile` applications simply because they are cheaper than producing speficic platform based code. They are just HTML5, CSS and JS. Backed by powerful things like caching, database, hardware manipulation through APIs, multi threading. Everything on Browser!
+
+For those that follows `herd mentality`, `this proposal`, might NOT make senses. But for those that really understands this industry, it totaly makes sense!
+
+It is about writing one code and to target all devices. Right now the hype approach is to produce web and mobile decoupled applications. 
+
+It could be more profitable for a software house to implement 2 different applications at least, but looking to the exponentional demand increasing for `sharing apps through app stores`, sometimes you will probably need to ask your `front end team` (`those guys seeing as kids it doesnt matter how old they are`) take onwnership of responsibilities like your very skilled `Kotlin`, `Java` or `Swift` team are actually doing.
+
+`It is about costs!`
+
+`It is about available resources on market!`
+
+`It is about to be able to attend the demand in short and long term`
+
 
 > "The use of data modeling standards is strongly recommended for all projects requiring a standard means of defining and analyzing data within an organization"
 
