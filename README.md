@@ -41,7 +41,7 @@ It could be more profitable for a software house to implement 2 different applic
 
 ### API documentation (DRAFT)
 
-https://web2solutions.github.io/agnostic-web-foundation/
+https://web2solutions.github.io/agnostic-web-foundation/code/index.html
 
 
 
