@@ -8,14 +8,11 @@ import OrdersAdd from './components/orders/OrdersAdd'
 import Customers from './components/customers'
 import CustomersAdd from './components/customers/CustomersAdd'
 import CustomersEdit from './components/customers/CustomersEdit'
-import Crud from './components/crud/Crud'
-import CrudAdd from './components/crud/CrudAdd'
-import CrudEdit from './components/crud/CrudEdit'
 
 import './App.css'
 
 function App (props) {
-  const [users, setUsers] = useState([])
+  // const [users, setUsers] = useState([])
 
   useEffect(() => {
     feather.replace()
@@ -98,9 +95,6 @@ function App (props) {
             <Switch>
               <Route path='/Orders'>
                 <Orders entity='Order' foundation={props.foundation} />
-              </Route>
-              <Route path='/OrdersEdit/:__id'>
-                <div>Order edit</div>
               </Route>
               <Route path='/OrdersAdd'>
                 <OrdersAdd entity='Order' foundation={props.foundation} />

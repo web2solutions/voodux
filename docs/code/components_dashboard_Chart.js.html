@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Agnostic Web Application Foundation Source: foundation/utils.js</title>
+	<title>Agnostic Web Application Foundation Source: components/dashboard/Chart.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,112 +72,190 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: foundation/utils.js</h1>
+		<h1 class="page-title">Source: components/dashboard/Chart.js</h1>
     
 <section>
     <article>
         <pre
-            class="sunlight-highlight-javascript linenums">import lunr from 'lunr'
-import mongoose from 'mongoose'
+            class="sunlight-highlight-javascript linenums">import React, { useState, useEffect } from 'react'
+
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Label,
+  ResponsiveContainer
+} from 'recharts'
+
+import moment from 'moment'
+
+/* const formatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+}) */
 /**
  * @author Eduardo Perotta de Almeida &lt;web2solucoes@gmail.com>
- * @module utils
- * */
-
-/**
- * createMethodSignature
- * Create default signature method object
- * @function
- * @param {string|object} error - The string or error object if have any
- * @param {object|array|number|string|boolean} data - Information about method execution
- * @return  {object} signature - Default methods signature format { error, data }
- * @return  {string|object} signature.error - Execution error
- * @return  {object|array|number|string|boolean} signature.data - Execution data
+ * @Component Chart
+ * @description React component consuming a Order Data Entity collection to feed a grid
+ * @extends React.Component
  */
-export const createMethodSignature = (error = null, data = null) => {
-  return { error, data }
-}
-
-/**
- * GUID
- * generates a Universally unique identifier string - alias to uuid()
- * @function
- * @return  {string} guid / uuid
- */
-export const GUID = () => {
-  return uuid()
-}
-
-/**
- * uuid
- * generates a Universally unique identifier string
- * @function
- * @return  {string} guid / uuid
- */
-export function uuid () {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    const r = (Math.random() * 16) | 0
-    const v = c === 'x' ? r : (r &amp; 0x3) | 0x8
-    return v.toString(16)
-  })
-}
-
-/**
- * toJSON -  stringify and parse an object&lt;br> It uses native JSON internally.
- * @function
- * @param {string|object} obj - Valid JSON object or string
- * @return  {object} new JSON object
- */
-export function toJSON (obj) {
-  if (typeof obj === 'string') {
-    return JSON.parse(obj)
-  }
-  return JSON.parse(JSON.stringify(obj))
-}
-
-/**
- * mongooseToDexieTableString
- * convert given Mongoose schema to a Dexie Table columns configuration. &lt;br>
- * All columns inside returned configuration are indexed at IndexedDB
- * prepend __id as local primary key and _id for remote primary key
- * @function
- * @return  {string} Dexie table configuration string
- */
-export function mongooseToDexieTableString (schema) {
-  const cols = []
-  for (const propertyName in schema.paths) {
-    if (Object.prototype.hasOwnProperty.call(schema.paths, propertyName)) {
-      const property = schema.paths[propertyName]
-      const {
-        // instance,
-        _index // ,
-        // isRequired
-      } = property
-      // console.debug(propertyName, property)
-      if (propertyName === '_id' || propertyName === '__id') {
-        continue
-      }
-      if (!_index) {
-        continue
-      }
-      cols.push(propertyName)
+class Chart extends React.Component {
+  constructor (props) {
+    super(props)
+    // console.error('------>', props)
+    this.entity = 'Order'
+    this.foundation = props.foundation
+    this.state = {
+      series: [
+        { time: '00:00', amount: 0 },
+        { time: '24:00', amount: undefined }
+      ]
     }
+    this.onAddDocEventListener = null
+    this.onEditDocEventListener = null
+    this.onDeleteDocEventListener = null
+
+    this.handlerChangeOrder = this.handlerChangeOrder.bind(this)
   }
-  return `++__id,_id${cols.length > 0 ? (',' + cols.join(',')) : ''}`
+
+  async setSeries () {
+    const { Order } = this.foundation.data
+    const { error, data } = await Order.find({})
+    if (error) {
+      return
+    }
+    let _total = 0
+    const series = data.reverse().map(({ date, amount }) => {
+      _total = _total + amount
+      return {
+        amount: _total,
+        time: moment(date).format('HH:mm:ss'),
+        mseconds: new Date(date).getTime()
+      }
+    })
+    const final = [
+      { time: '00:00', amount: 0 },
+      ...series.slice().sort((a, b) => a.mseconds - b.mseconds),
+      { time: '24:00', amount: undefined }
+    ]
+    // console.log(final)
+    this.setState({ series: final })
+  }
+
+  async handlerChangeOrder (eventObj) {
+    console.error('handlerChangeOrder chart')
+    const { error } = eventObj
+    if (error) {
+      return
+    }
+    await this.setSeries()
+  }
+
+  /**
+   * @Method Chart.componentWillUnmount
+   * @summary Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as cancelled network requests, or cleaning up any DOM elements created in componentDidMount.
+   * @description lets stop listen to Order Data State Change Events
+   * @example
+componentWillUnmount() {
+  const { Order } = this.foundation.data
+  Order.stopListenTo(this.onAddDocEventListener)
+  Order.stopListenTo(this.onEditDocEventListener)
+  Order.stopListenTo(this.onDeleteDocEventListener)
+}
+   */
+  componentWillUnmount () {
+    const { Order } = this.foundation.data
+    /**
+     * Destroy event listeners of this component which are listening to Order collection
+     * and react to it
+     */
+    Order.stopListenTo(this.onAddDocEventListener)
+    Order.stopListenTo(this.onEditDocEventListener)
+    Order.stopListenTo(this.onDeleteDocEventListener)
+    this.onAddDocEventListener = null
+    this.onEditDocEventListener = null
+    this.onDeleteDocEventListener = null
+  }
+
+  /**
+   * @async
+   * @Method Chart.componentDidMount
+   * @summary Called immediately after a component is mounted. Setting state here will trigger re-rendering.
+   * @description Once component is monted we are now ready to start listen to changes on Order data entity and get a list of order in database to fill out the state.orders
+   * @example
+componentDidMount() {
+  const { Order } = this.foundation.data
+
+  // listen to add, edit and delete events on Order collection
+  // and react to it
+  this.onAddDocEventListener = Order.on('add', this.handlerChangeOrder)
+  this.onEditDocEventListener = Order.on('edit', this.handlerChangeOrder)
+  this.onDeleteDocEventListener = Order.on('delete', this.handlerChangeOrder)
+
+  await this.setSeries()
+}
+   */
+  async componentDidMount () {
+    const { Order } = this.foundation.data
+
+    // listen to add, edit and delete events on Order collection
+    // and react to it
+    /**
+     * listen to add Order Data Entity change event on Data API
+     */
+    this.onAddDocEventListener = Order.on('add', this.handlerChangeOrder)
+
+    /**
+     * listen to edit Order Data Entity change event on Data API
+     */
+    this.onEditDocEventListener = Order.on('edit', this.handlerChangeOrder)
+
+    /**
+     * listen to delete Order Data Entity change event on Data API
+     */
+    this.onDeleteDocEventListener = Order.on('delete', this.handlerChangeOrder)
+
+    await this.setSeries()
+  }
+
+  render () {
+    return (
+      &lt;>
+        &lt;ResponsiveContainer height={300}>
+          &lt;LineChart
+            data={this.state.series}
+            margin={{
+              top: 16,
+              right: 16,
+              bottom: 0,
+              left: 24
+            }}
+          >
+            &lt;XAxis dataKey='time' stroke='#cccccc' />
+            &lt;YAxis stroke='#cccccc'>
+              &lt;Label
+                angle={270}
+                position='left'
+                style={{ textAnchor: 'middle', fill: '#000000' }}
+              >
+                Sales ($)
+              &lt;/Label>
+            &lt;/YAxis>
+            &lt;Line
+              type='monotone'
+              dataKey='amount'
+              stroke='#000000'
+              dot={false}
+            />
+          &lt;/LineChart>
+        &lt;/ResponsiveContainer>
+      &lt;/>
+    )
+  }
 }
 
-/**
- * getSearchTokenStream
- * generates a lunr search token. See {@link https://lunrjs.com/guides/searching.html|lunr search}
- * @function
- * @return {array} token
- */
-export function getSearchTokenStream (text = '') {
-  const index = lunr()
-  return index.pipeline.run(lunr.tokenizer(text))
-}
-
-export const Schema = mongoose.Schema
+export default Chart
 </pre>
     </article>
 </section>

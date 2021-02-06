@@ -1,6 +1,6 @@
 /* globals document */
 import React from 'react'
-
+import Chart from './Chart'
 // import swal from 'sweetalert'
 import moment from 'moment'
 
@@ -116,7 +116,7 @@ class Dashboard extends React.Component {
             </button>
           </div>
         </div>
-
+        <Chart foundation={this.props.foundation} />
         <h2>Orders</h2>
         <div className='table-responsive'>
           <table className='table table-striped table-sm'>
@@ -126,7 +126,7 @@ class Dashboard extends React.Component {
                 <th>Name</th>
                 <th>Ship To</th>
                 <th>Payment method</th>
-                <th>Amount</th>
+                <th align='right'>Amount</th>
               </tr>
             </thead>
             <tbody>

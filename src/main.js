@@ -20,8 +20,8 @@ import OrderSchema from './schemas/Order'
 import CustomerSchema from './schemas/Customer'
 
 // foundation event handlers
-// import onApplicationStart from './events/onApplicationStart'
-// import onWorkerResponseClientId from './events/onWorkerResponseClientId'
+import onApplicationStart from './events/onApplicationStart'
+import onWorkerResponseClientId from './events/onWorkerResponseClientId'
 
 (async () => {
   const foundation = new Foundation({
@@ -36,19 +36,9 @@ import CustomerSchema from './schemas/Customer'
     }
   })
 
-  /* foundation.on('foundation:start', async function (eventObj) {
-    const { data, foundation, error } = eventObj
-    if (error) {
-      throw new Error(`Error starting foundation stack: ${error}`)
-    }
+  foundation.on('foundation:start', onApplicationStart.bind(foundation))
 
-    ReactDOM.render(
-      <App foundation={foundation} />,
-      document.getElementById('root')
-    )
-  }) */
-
-  // foundation.on('worker:responseClientId', onWorkerResponseClientId.bind(foundation))
+  foundation.on('worker:responseClientId', onWorkerResponseClientId.bind(foundation))
 
   const start = await foundation.start()
   if (start.error) {
@@ -59,12 +49,6 @@ import CustomerSchema from './schemas/Customer'
     <App foundation={foundation} />,
     document.getElementById('root')
   )
-
-  /* window.setInterval(() => {
-    console.log('savinf on storage')
-    window.localStorage.setItem('internalMessage', 'aaaaaa')
-  }, 1000)
-  */
 
   return foundation
 })()

@@ -1,4 +1,4 @@
-/* global document */
+/* global */
 export default async function (eventObj) {
   const { /* data, */ foundation, error } = eventObj
   if (error) {
@@ -17,12 +17,4 @@ export default async function (eventObj) {
     price_cost: 150000
   })
   console.debug('Volvo', Volvo)
-
-  // console.log('foundation.applicationWorker', foundation.applicationWorker)
-
-  document.getElementById('guid').innerText = 'Aplication GUID -> ' + this.guid
-
-  const dialog = document.getElementById('favDialog')
-  dialog.returnValue = 'favAnimal'
-  dialog.showModal()
 }
