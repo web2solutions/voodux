@@ -1,4 +1,6 @@
-#   <img src="https://avatars3.githubusercontent.com/u/14809007?s=280&v=4" width="50" />  Agnostic Web Foundation
+<img src="https://i.imgur.com/614mA0U.png" width="100" />
+
+# awf - Agnostic Web Foundation
 
 > The missing building block for enterprise and modern web applications
 
@@ -90,7 +92,7 @@ https://web2solutions.github.io/agnostic-web-foundation/
 
 ## The Problem
 
-Paradigms like `SPA (Single Page Application)`, `PWA (Personal Web Applications)` and `Serverless Applications` are, in fact, at least 10 years old. Not least, the "enterprise web" advent is nothing something new too.
+Paradigms like `SPA (Single Page Application)`, `PWA (Progressive Web Applications)` and `Serverless Applications` are, in fact, at least 10 years old. Not least, the "enterprise web" advent is nothing something new too.
 
 
 The web based softwares are in hype as it ever have been before. 
@@ -242,56 +244,3 @@ It provides a underlying architecture offering resources like:
 - `Trully multi threaded` architecture by leveraging web workers. Web applications are originally single threaded applications.
 - 100% offline capable applications
 - Asynchronous and `event driven` architecture.
-
-### Code automation tools
-
-- `npm run test`
-
-  Executes the test suite
-
-- `npm run start:dev`
-
-  Starts the dev server at 5490 port
-
-- `npm run build`
-
-  Build the application inside `dist/` folder
-
-  1. Runs `npm run lint`
-  2. Runs `npm run test`
-  3. Runs `npm run doc`
-  4. Runs `npm run webpack`
-
-- `npm run doc`
-
-  Generates the code documentation using JSDoc
-
-- `npm run lint`
-
-  Runs lint against the code at src/ folder
-
-- `npm run eslint-fix`
-
-  Runs eslint --fix against the code at src/ folder
-
-- `npm run format-code`
-
-Runs prettier-eslint --write against the code at src/ folder
-
-- `npm run webpack`
-
-Transpile the es6 code (src/) to es5 version at dist/ folder
-
-
-## ToDo
-
-1. REST transport
-2. Websocket transport
-3. Serverless transport (Firebase)
-4. Session layer
-5. Event sourcing
-6. Vue demo
-7. DHTMLX demo
-8. VanilaJS demo
-9. textual search with lunr.
-10. Workbox -> https://developers.google.com/web/tools/workbox/guides/get-started
