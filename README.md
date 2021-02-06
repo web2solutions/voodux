@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/614mA0U.png" width="100" />
+<img src="https://i.imgur.com/614mA0U.png" width="200" />
 
 # awf - Agnostic Web Foundation
 
@@ -44,6 +44,15 @@ It could be more profitable for a software house to implement 2 different applic
 [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop) Develop branch at Circle CI
 
 
+
+
+### Code Docs (DRAFT)
+
+https://web2solutions.github.io/agnostic-web-foundation/
+
+
+
+
 ### React Demo app (Functional components)
 
 
@@ -83,11 +92,6 @@ https://web2solutions.github.io/agnostic-web-foundation-react-class-demo/
 
 
 ### Vue Demo app - todo
-
-### Code Docs (DRAFT)
-
-https://web2solutions.github.io/agnostic-web-foundation/
-
 
 
 ## The Problem
