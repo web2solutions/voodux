@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/614mA0U.png" width="100" />
+<img src="https://i.imgur.com/614mA0U.png" width="200" />
 
 # awf - Agnostic Web Foundation
 
@@ -72,12 +72,10 @@ Transpile the es6 code (src/) to es5 version at dist/ folder
 10. Workbox -> https://developers.google.com/web/tools/workbox/guides/get-started
 
 
-TODO
-
 
 ## Links and references
 
-
+- [API documentation](https://web2solutions.github.io/agnostic-web-foundation/code/index.html)
 - [Unit tests Report](https://web2solutions.github.io/agnostic-web-foundation/reports/unit-testing/index.html)
 
 - [PWA - Progressive web applications](https://web.dev/progressive-web-apps/)
