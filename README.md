@@ -4,6 +4,9 @@
 
 > The missing building block for enterprise and modern web applications
 
+[![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main) Main branch at Circle CI | [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release) Release branch at Circle CI | [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop) Develop branch at Circle CI
+
+
 `Agnostic Foundation for Web Applications` is more a kind of framework where its code is not the most important piece, but it underlying proposal.
 
 Leveraging agile techiques to implement scalable React, Vue and any other kind of "V*" framework based applications since it initial days.
@@ -36,17 +39,7 @@ It could be more profitable for a software house to implement 2 different applic
 > "The use of data modeling standards is strongly recommended for all projects requiring a standard means of defining and analyzing data within an organization"
 
 
-[![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main) Main branch at Circle CI
-
-[![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release) Release branch at Circle CI
-
-
-[![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop) Develop branch at Circle CI
-
-
-
-
-### Code Docs (DRAFT)
+### API documentation (DRAFT)
 
 https://web2solutions.github.io/agnostic-web-foundation/
 
