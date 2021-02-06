@@ -1,4 +1,7 @@
-# Agnostic Web Foundation
+<img src="https://i.imgur.com/614mA0U.png" width="100" />
+
+# awf - Agnostic Web Foundation
+
 
 The proposal is about to cover the common lacks and mistakes in modern web applications development by heavly opinionating on how to define a strong foundation for most common types of web based softwares which relies mostly in `V-*` libraries and frameworks like `Vue` and `React`.
 
