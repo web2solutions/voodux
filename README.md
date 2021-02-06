@@ -27,7 +27,7 @@ https://github.com/web2solutions/agnostic-web-foundation-react-functions-demo
 
 `Demo documentation:`
 
-https://web2solutions.github.io/agnostic-web-foundation-react-functions-demo/
+TODO
 
 
 ### React Demo app (Class based components)
