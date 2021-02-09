@@ -94,16 +94,14 @@
 
     <section class="readme-section">
         <article><img src="https://i.imgur.com/a856gth.png" width="400" />
-<p><a href="https://circleci.com/gh/web2solutions/voodux/tree/main"><img src="https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> Main | <a href="https://circleci.com/gh/web2solutions/voodux/tree/release"><img src="https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> Release | <a href="https://circleci.com/gh/web2solutions/voodux/tree/develop"><img src="https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> Develop | <a href="https://codecov.io/gh/web2solutions/voodux"><img src="https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG" alt="codecov"></a></p>
+<p><a href="https://circleci.com/gh/web2solutions/voodux/tree/main"><img src="https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> | <a href="https://circleci.com/gh/web2solutions/voodux/tree/release"><img src="https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> | <a href="https://circleci.com/gh/web2solutions/voodux/tree/develop"><img src="https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> | <a href="https://codecov.io/gh/web2solutions/voodux"><img src="https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG" alt="codecov"></a> | <a href="https://snyk.io/test/github/web2solutions/voodux"><img src="https://snyk.io/test/github/web2solutions/voodux/badge.svg" alt="Known Vulnerabilities"></a></p>
 <h1>voodux</h1>
 <h2>Summary</h2>
-<p>The proposal is about to cover the common lacks and mistakes in modern web applications development by heavly opinionating on how to define a strong foundation for most common types of web based softwares which relies mostly in <code>V-*</code> libraries and frameworks like <code>Vue</code> and <code>React</code>.</p>
+<p>The VooduX's proposal is to cover the common lacks and mistakes in modern web applications development. It heavly opinionate on how to define a strong foundation for most common types of web softwares which relies mostly in <code>V-*</code> like libraries and frameworks such as <code>Vue</code> and <code>React</code>.</p>
 <p>It provides a underlying architecture offering resources like:</p>
 <ul>
 <li>Generic <code>Data Schema</code> and <code>Data Model</code> driven design. Use the Mongoose implementation to define models. Same model can both run on client and server.</li>
 <li>A proxy like <code>Data Entity API</code> supporting different data transports</li>
-<li>Complete boilerplate for software testing.</li>
-<li>Complete boilerplate for software documentation.</li>
 <li>Enforced Entity Relatioship and Data Entities design</li>
 <li>Application session</li>
 <li>Realtime Data Sync</li>
@@ -122,9 +120,67 @@
 <li>It does not cares about the UI framework/library you use. Material UI, Boostrap, Sencha, DHTMLX, Dojo.</li>
 </ul>
 <h2>Install</h2>
-<pre class="prettyprint source lang-bash"><code>    $ npm install voodux --save
+<h3>Via npm - Simple usage</h3>
+<pre class="prettyprint source lang-bash"><code>  $ npm install voodux --save
+</code></pre>
+<h3>Via git - Advanced usage</h3>
+<pre class="prettyprint source lang-bash"><code>  $ git clone https://github.com/web2solutions/voodux.git
+  $ cd voodux
+  $ npm install
 </code></pre>
 <h2>How to use</h2>
+<h3>ES5 import</h3>
+<pre class="prettyprint source lang-javascript"><code>  const { Foundation } = require('voodux')
+</code></pre>
+<h3>ES6 import</h3>
+<pre class="prettyprint source lang-javascript"><code>  import { Foundation } from 'voodux'
+</code></pre>
+<h3>Directly on browser</h3>
+<pre class="prettyprint source lang-html"><code>  &lt;script type=&quot;text/javascript&quot; src=&quot;voodux/dist/main.min.js&quot;>&lt;/script>
+</code></pre>
+<h3>Foundation constructor</h3>
+<p>The starting point of every <code>voodux</code> application is it <code>Foundation</code>.</p>
+<p>The application foundation holds things like data definition, data access, data validation, data persistence, data change notification ....</p>
+<pre class="prettyprint source lang-javascript"><code>  const foundation = new Foundation({
+      name: 'My App',
+      useWorker: true,
+      dataStrategy: 'offlineFirst',
+      schemas: {
+          User: UserSchema,
+          Product: ProductSchema,
+          Order: OrderSchema,
+          Customer: CustomerSchema
+      }
+  })
+</code></pre>
+<h3>Setup a data schema for a Data Entity</h3>
+<pre class="prettyprint source lang-javascript"><code>import { Foundation } from 'voodux'
+
+const CustomerSchema = new Foundation.Schema({
+  name: {
+    type: String,
+    required: true,
+    index: true
+  },
+  address: {
+    type: String,
+    required: true,
+    index: true
+  },
+  email: {
+    type: String,
+    required: true,
+    index: true
+  },
+  cards: {
+    type: [],
+    required: true
+  }
+})
+</code></pre>
+<h3>Listening to Application start event</h3>
+<p>Sometimes you may need to start executing heavy tasks prior start rendering your application screens. For example you could start a data sync process, starting to fill out you local database and in meantime, render a dashboard and start rendering data changes in realtime, as long as they are <code>emitted</code> from the Data Entity abstraction implementation.</p>
+<h3>Setup application data and start it</h3>
 <pre class="prettyprint source lang-javascript"><code>  import { Foundation } from 'voodux'
 
   const CustomerSchema = new Foundation.Schema({
@@ -397,7 +453,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-02-09T17:13:53-03:00
+		on 2021-02-09T19:48:33-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

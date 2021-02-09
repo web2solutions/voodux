@@ -1,6 +1,6 @@
 <img src="https://i.imgur.com/a856gth.png" width="400" />
 
-[![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/main) Main | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/release) Release | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/develop) Develop | [![codecov](https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG)](https://codecov.io/gh/web2solutions/voodux) | [![Known Vulnerabilities](https://snyk.io/test/github/web2solutions/voodux/badge.svg)](https://snyk.io/test/github/web2solutions/voodux)
+[![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/main) | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/release) | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/develop) | [![codecov](https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG)](https://codecov.io/gh/web2solutions/voodux) | [![Known Vulnerabilities](https://snyk.io/test/github/web2solutions/voodux/badge.svg)](https://snyk.io/test/github/web2solutions/voodux)
 
 
 
@@ -8,14 +8,13 @@
 
 ## Summary
 
-The proposal is about to cover the common lacks and mistakes in modern web applications development by heavly opinionating on how to define a strong foundation for most common types of web based softwares which relies mostly in `V-*` libraries and frameworks like `Vue` and `React`.
+The VooduX's proposal is to cover the common lacks and mistakes in modern web applications development. It heavly opinionate on how to define a strong foundation for most common types of web softwares which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
+
 
 It provides a underlying architecture offering resources like:
 
 - Generic `Data Schema` and `Data Model` driven design. Use the Mongoose implementation to define models. Same model can both run on client and server.
 - A proxy like `Data Entity API` supporting different data transports
-- Complete boilerplate for software testing.
-- Complete boilerplate for software documentation.
 - Enforced Entity Relatioship and Data Entities design
 - Application session
 - Realtime Data Sync
@@ -37,11 +36,98 @@ It provides a underlying architecture offering resources like:
 
 ## Install
 
+### Via npm - Simple usage
+
 ```bash
-    $ npm install voodux --save
+  $ npm install voodux --save
 ```
 
+### Via git - Advanced usage
+
+```bash
+  $ git clone https://github.com/web2solutions/voodux.git
+  $ cd voodux
+  $ npm install
+```
+
+
 ## How to use
+
+
+### ES5 import
+
+```javascript
+  const { Foundation } = require('voodux')
+```
+
+
+### ES6 import
+
+```javascript
+  import { Foundation } from 'voodux'
+```
+
+
+### Directly on browser
+
+```html
+  <script type="text/javascript" src="voodux/dist/main.min.js"></script>
+```
+### Foundation constructor
+
+The starting point of every `voodux` application is it `Foundation`.
+
+The application foundation holds things like data definition, data access, data validation, data persistence, data change notification ....
+
+```javascript
+  const foundation = new Foundation({
+      name: 'My App',
+      useWorker: true,
+      dataStrategy: 'offlineFirst',
+      schemas: {
+          User: UserSchema,
+          Product: ProductSchema,
+          Order: OrderSchema,
+          Customer: CustomerSchema
+      }
+  })
+```
+
+
+### Setup a data schema for a Data Entity
+
+```javascript
+import { Foundation } from 'voodux'
+
+const CustomerSchema = new Foundation.Schema({
+  name: {
+    type: String,
+    required: true,
+    index: true
+  },
+  address: {
+    type: String,
+    required: true,
+    index: true
+  },
+  email: {
+    type: String,
+    required: true,
+    index: true
+  },
+  cards: {
+    type: [],
+    required: true
+  }
+})
+```
+
+
+
+### Listening to Application start event
+
+Sometimes you may need to start executing heavy tasks prior start rendering your application screens. For example you could start a data sync process, starting to fill out you local database and in meantime, render a dashboard and start rendering data changes in realtime, as long as they are `emitted` from the Data Entity abstraction implementation.
+
 
 ### Setup application data and start it
 
