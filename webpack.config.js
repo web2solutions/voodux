@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -17,7 +17,7 @@ module.exports = {
     compress: true,
     port: 5490
   },
-  optimization: {
+  /* optimization: {
     minimize: true,
     minimizer: [new UglifyJsPlugin({
       include: /\.min\.js$/,
@@ -27,7 +27,7 @@ module.exports = {
         }
       }
     })],
-  },
+  }, */
   module: {
     rules: [
       {

@@ -1,10 +1,12 @@
 <img src="https://i.imgur.com/614mA0U.png" width="200" />
 
-# awf - Agnostic Web Foundation
+# voodux
+
+> "with bateries included" agnostic scalable "M" layer for React, Vue, ExtJS, DHTMLX and Vanilla.JS
 
 > The missing building block for enterprise and modern web applications
 
-[![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main) Main | [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release) Release | [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop) Develop
+[![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/main) Main | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/release) Release | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/develop) Develop
 
 
 `Agnostic Foundation for Web Applications` is more a kind of framework where its code is not the most important piece, but it underlying proposal.
@@ -41,7 +43,7 @@ It could be more profitable for a software house to implement 2 different applic
 
 ### API documentation (DRAFT)
 
-https://web2solutions.github.io/agnostic-web-foundation/code/index.html
+https://web2solutions.github.io/voodux/code/index.html
 
 
 
@@ -51,9 +53,9 @@ https://web2solutions.github.io/agnostic-web-foundation/code/index.html
 
 <img src="https://i.imgur.com/b29Lsgj.png" width="600" />
 
-[`Demo app`](https://agnostic-web-foundation-react-functions-demo.vercel.app/)
+[`Demo app`](https://voodux-react-functions-demo.vercel.app/)
 
-[`Demo project`](https://github.com/web2solutions/agnostic-web-foundation-react-functions-demo)
+[`Demo project`](https://github.com/web2solutions/voodux-react-functions-demo)
 
 `Demo documentation:`
 
@@ -65,13 +67,13 @@ TODO
 <img src="https://i.imgur.com/E1u5g6y.png" width="600" />
 
 
-[`Demo app`](https://agnostic-web-foundation-react-class-demo.vercel.app/)
+[`Demo app`](https://voodux-react-class-demo.vercel.app/)
 
 
 
-[`Demo project`](https://github.com/web2solutions/agnostic-web-foundation-react-class-demo)
+[`Demo project`](https://github.com/web2solutions/voodux-react-class-demo)
 
-[`Demo documentation:`](https://web2solutions.github.io/agnostic-web-foundation-react-class-demo/)
+[`Demo documentation:`](https://web2solutions.github.io/voodux-react-class-demo/)
 
 
 
@@ -83,4 +85,4 @@ TODO
 
 ## Motivation
 
-[What motivates this](https://github.com/web2solutions/agnostic-web-foundation/blob/main/MOTIVATION.md)
+[What motivates this](https://github.com/web2solutions/voodux/blob/main/MOTIVATION.md)
