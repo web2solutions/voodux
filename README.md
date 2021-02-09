@@ -6,6 +6,147 @@
 
 > The missing building block for enterprise and modern web applications
 
+```
+    $ npm install voodux --save
+```
+
+
+```
+  import { Foundation } from 'voodux'
+
+  const CustomerSchema = new Foundation.Schema({
+    name: {
+        type: String,
+        required: true,
+        index: true
+    },
+    address: {
+        type: String,
+        required: true,
+        index: true
+    },
+    email: {
+        type: String,
+        required: true,
+        index: true
+    },
+    cards: {
+        type: [],
+        required: true
+    }
+})
+
+const OrderSchema = new Foundation.Schema({
+    name: {
+        type: String,
+        required: true,
+        index: true
+    },
+    shipTo: {
+        type: String,
+        required: true,
+        index: true
+    },
+    paymentMethod: {
+        type: String,
+        required: true,
+        index: true
+    },
+    amount: {
+        type: Number,
+        required: true,
+        default: 0,
+        index: true
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+        index: true
+    }
+})
+
+const ProductSchema = new Foundation.Schema({
+    name: {
+        type: String,
+        required: true,
+        index: true
+    },
+    vendor: {
+        type: String,
+        required: true,
+        index: true
+    },
+    price_cost: {
+        type: Number,
+        required: true,
+        default: 0,
+        index: true
+    }
+})
+
+const UserSchema = new Foundation.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    username: {
+        type: String,
+        required: true
+    }
+})
+
+const foundation = new Foundation({
+    name: 'My App',
+    useWorker: true,
+    dataStrategy: 'offlineFirst',
+    schemas: {
+        User: UserSchema,
+        Product: ProductSchema,
+        Order: OrderSchema,
+        Customer: CustomerSchema
+    }
+})
+
+foundation.on('foundation:start', async function(eventObj) {
+    const {
+        foundation,
+        error
+    } = eventObj
+    if (error) {
+        throw new Error(`Error starting foundation stack: ${error}`)
+    }
+    const {
+        User,
+        Product
+    } = foundation.data
+    const Eduardo = await User.add({
+        name: 'Eduardo Almeida',
+        username: 'web2'
+    })
+    console.debug('Eduardo', Eduardo)
+
+    const Volvo = await Product.add({
+        name: 'Volvo XC90',
+        vendor: 'Volvo',
+        price_cost: 150000
+    })
+    console.debug('Volvo', Volvo)
+})
+
+// start foundation and get it ready to be used
+const start = await foundation.start()
+if (start.error) {
+    throw new Error(`Error starting foundation stack: ${start.error}`)
+}
+// console.debug('start', start)
+ReactDOM.render(
+  <App foundation={foundation} />,
+  document.getElementById('root')
+)
+
+```
+
+
 [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/main) Main | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/release) Release | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/develop) Develop
 
 
