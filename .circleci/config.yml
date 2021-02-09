@@ -4,12 +4,6 @@ orbs:
 workflows:
   build:
     jobs:
-      - install:
-          build: 'npm install'
-          #record: true
-      - build:
-          build: 'npm run build'
-          #record: true
       - cypress/run:
-          build: 'npm run test'
+          build: 'npm install && npm run test'
           #record: true
