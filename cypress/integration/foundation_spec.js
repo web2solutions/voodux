@@ -1,4 +1,4 @@
-/* global describe it Blob before */
+/* global describe it Blob before Foundation */
 
 // import agnostic foundation foundation class
 import '../../dist/main.js'
@@ -223,6 +223,7 @@ describe('#--- Foundation Class Test Suite', () => {
       }
       assert.equal(error !== null, true)
       assert.equal(typeof error === 'object', true)
+      assert.notEqual(foundation.data, 'string text')
       done()
     })
 
@@ -235,18 +236,52 @@ describe('#--- Foundation Class Test Suite', () => {
       }
       assert.equal(error !== null, true)
       assert.equal(typeof error === 'object', true)
+      assert.notEqual(foundation.dataStrategy, 222222)
       done()
     })
 
-    it('foundation.dataStrategy is getter only', (done) => {
+    it('foundation.started is getter only', (done) => {
       let error = null
       try {
-        foundation.dataStrategy = 222222
+        foundation.started = 222222
       } catch (e) {
         error = e
       }
       assert.equal(error !== null, true)
       assert.equal(typeof error === 'object', true)
+      assert.notEqual(foundation.started, 222222)
+      done()
+    })
+
+    it('foundation.applicationWorker is getter only', (done) => {
+      let error = null
+      try {
+        foundation.applicationWorker = 222222
+      } catch (e) {
+        error = e
+      }
+      assert.equal(error !== null, true)
+      assert.equal(typeof error === 'object', true)
+      assert.notEqual(foundation.applicationWorker, 222222)
+      done()
+    })
+
+
+    it('foundation.useWorker is getter only', (done) => {
+      let error = null
+      try {
+        foundation.useWorker = 222222
+      } catch (e) {
+        error = e
+      }
+      assert.equal(error !== null, true)
+      assert.equal(typeof error === 'object', true)
+      assert.notEqual(foundation.useWorker, 222222)
+      done()
+    })
+
+    it('Foundation.Schema is static', (done) => {
+      assert.equal(typeof Foundation.Schema, 'function')
       done()
     })
 

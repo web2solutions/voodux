@@ -286,13 +286,9 @@ export default class Foundation extends EventSystem {
   #setModel(entity = '', dataEntity = {}) {
     let _error = null
     let _data = null
-    try {
-      this.#_models[entity] =  dataEntity
-      _data = this.#_models[entity]
-    } catch (error) {
-      console.error('EROROR', error)
-      _error = error
-    }
+    this.#_models[entity] = dataEntity
+    _data = this.#_models[entity]
+
     return createMethodSignature(_error, _data)
   }
   
