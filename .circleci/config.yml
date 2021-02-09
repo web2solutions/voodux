@@ -1,9 +1,7 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1.0.0
+  node: circleci/node@3.0.0
 workflows:
-  build:
+  node-tests:
     jobs:
-      - cypress/run:
-          build: 'npm install && npm run test'
-          #record: true
+      - node/test
