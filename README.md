@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/614mA0U.png" width="200" />
+<img src="https://i.imgur.com/qjveRkG.png" width="200" />
 
 # voodux
 
