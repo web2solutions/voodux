@@ -2,7 +2,8 @@ version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
 jobs:
-  cov: 
+  cov:
+    run: 'bash <(curl -s https://codecov.io/bash)'
 workflows:
   build:
     jobs:
@@ -21,5 +22,5 @@ workflows:
           parallelism: 4 # use 4 CircleCI machines to finish quickly
           ##group: 'all tests' # name this group "all tests" on the dashboard
           # start: 'npm start' # start server before running tests
-      - run: 'bash <(curl -s https://codecov.io/bash)'
+      - cov
               
