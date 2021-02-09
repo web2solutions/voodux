@@ -4,7 +4,7 @@
 
 > The missing building block for enterprise and modern web applications
 
-[![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main) Main | [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release) Release | [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop.svg?style=svg&circle-token=fcfee86b26bbb793653443c248645b779aa3d80b)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop) Develop
+[![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/main) Main | [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/release) Release | [![CircleCI](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/agnostic-web-foundation/tree/develop) Develop
 
 
 `Agnostic Foundation for Web Applications` is more a kind of framework where its code is not the most important piece, but it underlying proposal.
