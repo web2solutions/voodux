@@ -6,12 +6,12 @@
 
 > The missing building block for enterprise and modern web applications
 
-```
+```bash
     $ npm install voodux --save
 ```
 
 
-```
+```javascript
   import { Foundation } from 'voodux'
 
   const CustomerSchema = new Foundation.Schema({

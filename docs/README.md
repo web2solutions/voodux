@@ -33,13 +33,13 @@ It provides a underlying architecture offering resources like:
 
 ## Install
 
-```
+```bash
     $ npm install voodux --save
 ```
 
 ## How to use
 
-```
+```javascript
   import { Foundation } from 'voodux'
 
   const CustomerSchema = new Foundation.Schema({
