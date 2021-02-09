@@ -3,7 +3,9 @@ orbs:
   cypress: cypress-io/cypress@1
 jobs:
   cov:
-    run: 'bash <(curl -s https://codecov.io/bash)'
+    steps:
+      - checkout
+      - run: 'bash <(curl -s https://codecov.io/bash)'
 workflows:
   build:
     jobs:
