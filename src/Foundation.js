@@ -4,29 +4,7 @@ import DataEntity from './DataEntity'
 import LocalDatabaseTransport from './LocalDatabaseTransport'
 import EventSystem from './EventSystem'
 
-
-
-const _workerOnMessage = function (event) {
-  // console.error('_workerOnMessage')
-  const {
-    cmd /* , message */
-  } = event.data
-  switch (cmd) {
-    case 'responseClientId':
-      this.triggerEvent('worker:responseClientId', {
-        foundation: this,
-        worker: this.applicationWorker,
-        ...event.data
-      })
-      break
-    default:
-      console.log(`Sorry, we are out of ${cmd}.`)
-  }
-}
-
-
-
-
+// import workerOnMessage from './events/workerOnMessage'
 
 /**
  * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
@@ -398,7 +376,7 @@ export default class Foundation extends EventSystem {
    * @return  {string|object} signature.error - Execution error
    * @return  {object} signature.data - Worker Registration Object
    */
-  #registerApplicationWorker (workerFile = 'ServiceWorker.js') {
+  /* #registerApplicationWorker (workerFile = 'ServiceWorker.js') {
     const self = this
     return new Promise((resolve, reject) => {
       if ('serviceWorker' in navigator) {
@@ -408,7 +386,7 @@ export default class Foundation extends EventSystem {
           })
           .then(function (reg) {
             // registration worked
-            navigator.serviceWorker.addEventListener('message', _workerOnMessage.bind(self))
+            navigator.serviceWorker.addEventListener('message', workerOnMessage.bind(self))
             if (reg.installing) {
               self.#_workers['foundation'] = reg.installing
               self.#_workers['foundation'].postMessage({ cmd: 'getClientId', message: null })
@@ -424,7 +402,7 @@ export default class Foundation extends EventSystem {
           })
       }
     })
-  }
+  } */
 
   /**
    * @async
@@ -436,7 +414,7 @@ export default class Foundation extends EventSystem {
    * @return  {string|object} signature.error - Execution error
    * @return  {object} signature.data - Worker Registration Object
    */
-  #registerWorker (name = '', workerFile = 'ServiceWorker.js') {
+  /* #registerWorker (name = '', workerFile = 'ServiceWorker.js') {
     const self = this
     return new Promise((resolve, reject) => {
       if ('serviceWorker' in navigator) {
@@ -446,7 +424,7 @@ export default class Foundation extends EventSystem {
           })
           .then(function (reg) {
             // registration worked
-            navigator.serviceWorker.addEventListener('message', _workerOnMessage.bind(self))
+            navigator.serviceWorker.addEventListener('message', workerOnMessage.bind(self))
             if (reg.installing) {
               self.#_workers[name] = reg.installing
               self.#_workers[name].postMessage({ cmd: 'getClientId', message: null })
@@ -462,7 +440,7 @@ export default class Foundation extends EventSystem {
           })
       }
     })
-  }
+  } */
 
   /**
    * @Private
@@ -513,9 +491,9 @@ export default class Foundation extends EventSystem {
     try {
       const vitals = await this.#startVitals()
 
-      if (this.useWorker) {
-        await this.#registerApplicationWorker()
-      }
+      // if (this.useWorker) {
+        // await this.#registerApplicationWorker()
+      // }
 
       this.#_started = true
       
