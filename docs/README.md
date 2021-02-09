@@ -1,6 +1,6 @@
 <img src="https://i.imgur.com/a856gth.png" width="400" />
 
-# voodux - voodux
+# voodux
 
 ## Summary
 
@@ -62,115 +62,115 @@ It provides a underlying architecture offering resources like:
         type: [],
         required: true
     }
-})
+  })
 
-const OrderSchema = new Foundation.Schema({
-    name: {
-        type: String,
-        required: true,
-        index: true
-    },
-    shipTo: {
-        type: String,
-        required: true,
-        index: true
-    },
-    paymentMethod: {
-        type: String,
-        required: true,
-        index: true
-    },
-    amount: {
-        type: Number,
-        required: true,
-        default: 0,
-        index: true
-    },
-    date: {
-        type: Date,
-        default: Date.now,
-        index: true
-    }
-})
+  const OrderSchema = new Foundation.Schema({
+      name: {
+          type: String,
+          required: true,
+          index: true
+      },
+      shipTo: {
+          type: String,
+          required: true,
+          index: true
+      },
+      paymentMethod: {
+          type: String,
+          required: true,
+          index: true
+      },
+      amount: {
+          type: Number,
+          required: true,
+          default: 0,
+          index: true
+      },
+      date: {
+          type: Date,
+          default: Date.now,
+          index: true
+      }
+  })
 
-const ProductSchema = new Foundation.Schema({
-    name: {
-        type: String,
-        required: true,
-        index: true
-    },
-    vendor: {
-        type: String,
-        required: true,
-        index: true
-    },
-    price_cost: {
-        type: Number,
-        required: true,
-        default: 0,
-        index: true
-    }
-})
+  const ProductSchema = new Foundation.Schema({
+      name: {
+          type: String,
+          required: true,
+          index: true
+      },
+      vendor: {
+          type: String,
+          required: true,
+          index: true
+      },
+      price_cost: {
+          type: Number,
+          required: true,
+          default: 0,
+          index: true
+      }
+  })
 
-const UserSchema = new Foundation.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    username: {
-        type: String,
-        required: true
-    }
-})
+  const UserSchema = new Foundation.Schema({
+      name: {
+          type: String,
+          required: true
+      },
+      username: {
+          type: String,
+          required: true
+      }
+  })
 
-const foundation = new Foundation({
-    name: 'My App',
-    useWorker: true,
-    dataStrategy: 'offlineFirst',
-    schemas: {
-        User: UserSchema,
-        Product: ProductSchema,
-        Order: OrderSchema,
-        Customer: CustomerSchema
-    }
-})
+  const foundation = new Foundation({
+      name: 'My App',
+      useWorker: true,
+      dataStrategy: 'offlineFirst',
+      schemas: {
+          User: UserSchema,
+          Product: ProductSchema,
+          Order: OrderSchema,
+          Customer: CustomerSchema
+      }
+  })
 
-foundation.on('foundation:start', async function(eventObj) {
-    const {
-        foundation,
-        error
-    } = eventObj
-    if (error) {
-        throw new Error(`Error starting foundation stack: ${error}`)
-    }
-    const {
-        User,
-        Product
-    } = foundation.data
-    const Eduardo = await User.add({
-        name: 'Eduardo Almeida',
-        username: 'web2'
-    })
-    console.debug('Eduardo', Eduardo)
+  foundation.on('foundation:start', async function(eventObj) {
+      const {
+          foundation,
+          error
+      } = eventObj
+      if (error) {
+          throw new Error(`Error starting foundation stack: ${error}`)
+      }
+      const {
+          User,
+          Product
+      } = foundation.data
+      const Eduardo = await User.add({
+          name: 'Eduardo Almeida',
+          username: 'web2'
+      })
+      console.debug('Eduardo', Eduardo)
 
-    const Volvo = await Product.add({
-        name: 'Volvo XC90',
-        vendor: 'Volvo',
-        price_cost: 150000
-    })
-    console.debug('Volvo', Volvo)
-})
+      const Volvo = await Product.add({
+          name: 'Volvo XC90',
+          vendor: 'Volvo',
+          price_cost: 150000
+      })
+      console.debug('Volvo', Volvo)
+  })
 
-// start foundation and get it ready to be used
-const start = await foundation.start()
-if (start.error) {
-    throw new Error(`Error starting foundation stack: ${start.error}`)
-}
-// console.debug('start', start)
-ReactDOM.render(
-  <App foundation={foundation} />,
-  document.getElementById('root')
-)
+  // start foundation and get it ready to be used
+  const start = await foundation.start()
+  if (start.error) {
+      throw new Error(`Error starting foundation stack: ${start.error}`)
+  }
+  // console.debug('start', start)
+  ReactDOM.render(
+    <App foundation={foundation} />,
+    document.getElementById('root')
+  )
 
 ```
 
