@@ -42,6 +42,8 @@ It provides a underlying architecture offering resources like:
 
 ## How to use
 
+### Setup application data and start it
+
 ```javascript
   import { Foundation } from 'voodux'
 
