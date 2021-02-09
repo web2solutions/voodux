@@ -146,7 +146,7 @@ const foundation = new Foundation({
     }
 })
 
-foundation.on('foundation:start', function(eventObj) {
+foundation.on('foundation:start', async function(eventObj) {
     const {
         foundation,
         error
@@ -371,18 +371,8 @@ export default class Foundation extends EventSystem {
    * @return Foundation GUID saved on localStorage
    */
   setGuidStorage (guid) {
-    localStorage.setItem('guid', guid)
-    return localStorage.getItem('guid')
-  }
-
-  /**
-   * @Method Foundation.getGuidStorage
-   * @description get Foundation GUID saved on localStorage
-   * @example foundation.getGuidStorage()
-   * @return Foundation GUID saved on localStorage
-   */
-  getGuidStorage () {
-    return localStorage.getItem('guid') || false
+    window.localStorage.setItem('guid', guid)
+    return window.localStorage.getItem('guid')
   }
 
   /**
@@ -391,13 +381,13 @@ export default class Foundation extends EventSystem {
    * @return Foundation GUID saved on localStorage
    */
   setupAppGuid () {
-    const guidCache = this.getGuidStorage() || false
+    const guidCache = window.localStorage.getItem('guid') || false
     if (guidCache) {
       this.#_guid = guidCache
     } else {
       this.setGuidStorage(this.#_guid)
     }
-    return this.getGuidStorage()
+    return window.localStorage.getItem('guid')
   }
   
   /**

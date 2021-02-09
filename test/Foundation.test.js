@@ -1,13 +1,89 @@
 /* global describe it Blob before */
 
 // import agnostic foundation foundation class
-import Foundation from '../src/foundation/Foundation'
+import Foundation from '../dist/main.js'
 
-// import mongoose like data schemas
-import UserSchema from '../src/schemas/User'
-import ProductSchema from '../src/schemas/Product'
-import OrderSchema from '../src/schemas/Order'
-import CustomerSchema from '../src/schemas/Customer'
+const CustomerSchema = new Foundation.Schema({
+  name: {
+    type: String,
+    required: true,
+    index: true
+  },
+  address: {
+    type: String,
+    required: true,
+    index: true
+  },
+  email: {
+    type: String,
+    required: true,
+    index: true
+  },
+  cards: {
+    type: [],
+    required: true
+  }
+})
+
+const OrderSchema = new Foundation.Schema({
+  name: {
+    type: String,
+    required: true,
+    index: true
+  },
+  shipTo: {
+    type: String,
+    required: true,
+    index: true
+  },
+  paymentMethod: {
+    type: String,
+    required: true,
+    index: true
+  },
+  amount: {
+    type: Number,
+    required: true,
+    default: 0,
+    index: true
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+    index: true
+  }
+})
+
+const ProductSchema = new Foundation.Schema({
+  name: {
+    type: String,
+    required: true,
+    index: true
+  },
+  vendor: {
+    type: String,
+    required: true,
+    index: true
+  },
+  price_cost: {
+    type: Number,
+    required: true,
+    default: 0,
+    index: true
+  }
+})
+
+const UserSchema = new Foundation.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  username: {
+    type: String,
+    required: true
+  }
+})
+
 
 import assert from 'assert'
 
