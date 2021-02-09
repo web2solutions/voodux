@@ -1,1 +1,9 @@
-{}
+{
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "docs/reports",
+    "overwrite": true,
+    "html": true,
+    "json": true
+  }
+}
