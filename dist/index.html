@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>voodux</title>
+    <meta property="og:site_name" content="voodux" />
+
+    <link rel="manifest" href="manifest.json">
+    
+    <meta name="apple-mobile-web-app-title" content="voodux" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/static/icon_x192.png">
+    
+    <meta name="robots" content="max-snippet:20, max-image-preview:large">
+    
+    <meta name="theme-color" content="#ffffff" />
+    
+    <meta name="description" content="voodux">
+    <meta name="author" content="Eduardo Perotta de Almeida">
+    
+    <link rel="preload" href="main.min.js" as="script">
+    
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <meta name="application-name" content="voodux">
+    <meta name="apple-mobile-web-app-title" content="voodux">
+    
+    <meta name="msapplication-starturl" content="/index.html">
+    <style>
+         .bd-placeholder-img {
+         font-size: 1.125rem;
+         text-anchor: middle;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         user-select: none;
+         }
+         @media (min-width: 768px) {
+         .bd-placeholder-img-lg {
+         font-size: 3.5rem;
+         }
+         }
+      </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src="main.min.js"></script>
+    <script>
+      window.addEventListener("load", async (event) => {
+        const CustomerSchema = new Foundation.Schema({
+          name: {
+              type: String,
+              required: true,
+              index: true
+          },
+          address: {
+              type: String,
+              required: true,
+              index: true
+          },
+          email: {
+              type: String,
+              required: true,
+              index: true
+          },
+          cards: {
+              type: [],
+              required: true
+          }
+      })
+
+      const OrderSchema = new Foundation.Schema({
+          name: {
+              type: String,
+              required: true,
+              index: true
+          },
+          shipTo: {
+              type: String,
+              required: true,
+              index: true
+          },
+          paymentMethod: {
+              type: String,
+              required: true,
+              index: true
+          },
+          amount: {
+              type: Number,
+              required: true,
+              default: 0,
+              index: true
+          },
+          date: {
+              type: Date,
+              default: Date.now,
+              index: true
+          }
+      })
+
+      const ProductSchema = new Foundation.Schema({
+          name: {
+              type: String,
+              required: true,
+              index: true
+          },
+          vendor: {
+              type: String,
+              required: true,
+              index: true
+          },
+          price_cost: {
+              type: Number,
+              required: true,
+              default: 0,
+              index: true
+          }
+      })
+
+      const UserSchema = new Foundation.Schema({
+          name: {
+              type: String,
+              required: true
+          },
+          username: {
+              type: String,
+              required: true
+          }
+      })
+
+      const foundation = new Foundation({
+          name: 'My App',
+          useWorker: true,
+          dataStrategy: 'offlineFirst',
+          schemas: {
+              User: UserSchema,
+              Product: ProductSchema,
+              Order: OrderSchema,
+              Customer: CustomerSchema
+          }
+      })
+
+      foundation.on('foundation:start', async function(eventObj) {
+          const {
+              foundation,
+              error
+          } = eventObj
+          if (error) {
+              throw new Error(`Error starting foundation stack: ${error}`)
+          }
+          const {
+              User,
+              Product
+          } = foundation.data
+          const Eduardo = await User.add({
+              name: 'Eduardo Almeida',
+              username: 'web2'
+          })
+          console.debug('Eduardo', Eduardo)
+
+          const Volvo = await Product.add({
+              name: 'Volvo XC90',
+              vendor: 'Volvo',
+              price_cost: 150000
+          })
+          console.debug('Volvo', Volvo)
+      })
+
+      // start foundation and get it ready to be used
+
+      const start = await foundation.start()
+      if (start.error) {
+        throw new Error(`Error starting foundation stack: ${start.error}`)
+      }
+      });
+    </script>
+  </head>
+	<body>
+    <div id="root"></div>
+      <noscript>
+      <style>
+        body {
+          -ms-overflow-style: scrollbar;
+          overflow-y: scroll;
+          overscroll-behavior-y: none;
+        }
+
+        .errorContainer {
+          background-color: #FFF;
+          color: #0F1419;
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 10%;
+          font-family: Helvetica, sans-serif;
+          font-size: 16px;
+        }
+
+        .errorButton {
+          margin: 3em 0;
+        }
+
+        .errorButton a {
+          background: #1DA1F2;
+          border-radius: 2.5em;
+          color: white;
+          padding: 1em 2em;
+          text-decoration: none;
+        }
+
+        .errorButton a:hover,
+        .errorButton a:focus {
+          background: rgb(26, 145, 218);
+        }
+
+        #placeholder,
+        #react-root {
+          display: none !important;
+        }
+      </style>
+      <div class="errorContainer">
+        <h1>JavaScript is not available.</h1>
+        <p>We’ve detected that JavaScript is disabled in this browser. Please enable JavaScript or switch to a supported browser to continue using this application. You can see a list of supported browsers in our Help Center.</p>
+        <p class="errorButton"><a>Help Center</a></p>
+      </div>
+    </noscript>
+	</body>
+</html>
