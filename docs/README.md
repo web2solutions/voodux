@@ -1,6 +1,6 @@
 <img src="https://i.imgur.com/614mA0U.png" width="200" />
 
-# awf - Agnostic Web Foundation
+# voodux - voodux
 
 ## Summary
 
@@ -36,9 +36,9 @@ It provides a underlying architecture offering resources like:
 
 <img src="https://i.imgur.com/b29Lsgj.png" width="600" />
 
-[`Demo app`](https://agnostic-web-foundation-react-functions-demo.vercel.app/)
+[`Demo app`](https://voodux-react-functions-demo.vercel.app/)
 
-[`Demo project`](https://github.com/web2solutions/agnostic-web-foundation-react-functions-demo)
+[`Demo project`](https://github.com/web2solutions/voodux-react-functions-demo)
 
 `Demo documentation:` -> TODO
 
@@ -46,21 +46,21 @@ It provides a underlying architecture offering resources like:
 
 <img src="https://i.imgur.com/E1u5g6y.png" width="600" />
 
-[`Demo app`](https://agnostic-web-foundation-react-class-demo.vercel.app/)
+[`Demo app`](https://voodux-react-class-demo.vercel.app/)
 
-[`Demo project`](https://github.com/web2solutions/agnostic-web-foundation-react-class-demo)
+[`Demo project`](https://github.com/web2solutions/voodux-react-class-demo)
 
-[`Demo documentation:`](https://web2solutions.github.io/agnostic-web-foundation-react-class-demo/)
+[`Demo documentation:`](https://web2solutions.github.io/voodux-react-class-demo/)
 
 
 ## Motivation
 
-[What motivates this](https://github.com/web2solutions/agnostic-web-foundation/blob/main/MOTIVATION.md)
+[What motivates this](https://github.com/web2solutions/voodux/blob/main/MOTIVATION.md)
 
 ## Links and references
 
-- [API documentation](https://web2solutions.github.io/agnostic-web-foundation/code/index.html)
-- [Unit tests Report](https://web2solutions.github.io/agnostic-web-foundation/reports/unit-testing/index.html)
+- [API documentation](https://web2solutions.github.io/voodux/code/index.html)
+- [Unit tests Report](https://web2solutions.github.io/voodux/reports/unit-testing/index.html)
 
 - [PWA - Progressive web applications](https://web.dev/progressive-web-apps/)
 - [SPA - Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application)

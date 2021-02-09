@@ -1,5 +1,5 @@
 {
-  "name": "agnostic-web-foundation",
+  "name": "voodux",
   "version": "0.0.1",
   "build": 0,
   "author": {
@@ -10,7 +10,7 @@
   "contributors": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/web2solutions/agnostic-web-foundation.git"
+    "url": "https://github.com/web2solutions/voodux.git"
   },
   "license": "MIT",
   "main": "main.js",
@@ -65,7 +65,6 @@
     "mochawesome": "^6.2.1",
     "mochawesome-report-generator": "^5.1.0",
     "prettier": "^2.2.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.14.0",
     "webpack-cli": "^4.3.1",
     "webpack-dev-server": "^3.11.2"
