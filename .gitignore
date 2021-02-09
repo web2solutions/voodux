@@ -1,8 +1,7 @@
 .DS_Store
 nbproject/
 node_modules/
-data/
-node_modules copy/
+data
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -22,6 +21,3 @@ yarn-error.log*
 log/
 logs/
 dist/
-tests-bundle/
-
-sequelize-meta\.json
