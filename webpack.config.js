@@ -1,16 +1,32 @@
 const path = require('path')
 const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    "main": "./index.js",
+    "main.min": "./index.js",
+  },
   mode: 'development',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    filename: '[name].js',
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 5490
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new UglifyJsPlugin({
+      include: /\.min\.js$/,
+      uglifyOptions: {
+        output: {
+          comments: false
+        }
+      }
+    })],
   },
   module: {
     rules: [
