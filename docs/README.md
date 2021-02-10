@@ -15,9 +15,11 @@ I like to see teams proud of being `TDD driven` teams. We love to see team proud
 
 But several web development teams are mistakenly focusing on some `industry and marketers expectation standards` and negleting the main `techonology proposal` which is to make every one life better and easier and to reduce costs. When I say `make every one life better and easier`, I'm talking about those ones which are going to consume the technology.
 
-The problem is most companies are looking to (front end) web resources as `marketing tools` and not like what they really could be: `well architected software products`.
+The most common problem is some companies are looking to (front end) web resources as `marketing tools` and not like what they really could be: `well architected software products`.
 
-Please don't get us wrong. `We are not reinventing any wheels`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `Event Driven Architecture`, `Data Caching` and so on, to delivery agile produced sotwares MVPs that scales since from it initial days.
+In some other cases, industries are heavily focusing on specific pieces of the process, under a totaly focused `Software Engineer` influenced perspective, rather than prior scoping a overall `System Information` flavoured perspective. Sometimes part of the project process is `rock solid`, but the final product may lack in simple things. I saw large financial applications that when opened on multiple browser tabs, and if you add a new data in tab one, all other tabs stays dumb. If I went to another tab, the new data was not there.
+
+Please don't get us wrong. `We are not reinventing any wheels`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `Event Driven Architecture`, `Data Caching` so on and so forth, to delivery agile produced sotware MVPs that scales since from it initial days.
 
 We really love `State Management` libraries and we use them on daily basis. But we don't agree to the assumption that `Application State Management` does the same as a `Application Data Management` abstraction suposedly does. Simply because the `application data size` might considerable grows.
 
@@ -39,7 +41,7 @@ Traditionaly the main applications implementation rely on directly calling an AP
 
 Going against this implementation model, we intoduce a `proxy like` abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser. 
 
-There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development, data validation and several things that I'm not going to discuss here, but that I have massively tested on several different project and POCs stacks.
+There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development.
 
 Aditionaly, VooduX abstract some kind of `data transporters` which is used `to send own produced event and data to` and `to consume thirdy party produced event and data from`. Every data change has an associated event object and action, which is not used only for `Event Sourcing`, but also to provide direct `bindings` for `decoupled View components`.
 
