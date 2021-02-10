@@ -11,16 +11,22 @@
 
 The VooduX's proposal is to cover the common lacks and mistakes in modern web applications development. It heavly opinionate on how to define a strong underlying architecture for the most common types of web softwares which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
 
-Please don't get us wrong. `We are not reinventing any wheels`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `Event Driven Architecture`, `Data Caching`.
+I like to see teams proud of being `TDD driven` teams. We love to see team proud of `Translating pixel-perfect designs from Figma`, we do really are fascinated about good `User Xperiences`.
 
-We really love `State Management` libraries and we use them on daily basis. But we don't agree to the assumption that `Application State Management` does the same as a `Application Data Management` abstraction suposedly does. Simply because the `application data size` might considerable grow.
+But several web development teams are mistakenly focusing on some `industry and marketers expectation standards` and negleting the main `techonology proposal` which is to make every one life better and easier and to reduce costs. When I say `make every one life better and easier`, I'm talking about those ones which are going to consume the technology.
+
+The problem is most companies are looking to (front end) web resources as `marketing tools` and not like what they really could be: `well architected software products`.
+
+Please don't get us wrong. `We are not reinventing any wheels`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `Event Driven Architecture`, `Data Caching` and so on, to delivery agile produced sotwares MVPs that scales since from it initial days.
+
+We really love `State Management` libraries and we use them on daily basis. But we don't agree to the assumption that `Application State Management` does the same as a `Application Data Management` abstraction suposedly does. Simply because the `application data size` might considerable grows.
 
 We like to think in a scenario where the `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment. But it does not means you should not have another pieces of data being `underlying handled by some other manner` behind the scenes. 
 
 Supose the `server - back end` emits a [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events) to connected clients with the following info:
 
  ```javascript
-  { action: 'completed', entity: 'Payment', customerId: 3443, lineItems: [], totalPaid: 5430 }
+  { action: 'completed', entity: 'Order', id: 24455 customerId: 3443, lineItems: [...[{}]], totalPaid: 5430 }
 ```
 
 Supose you are curently visualizing the Dashboard page in the screen where you have: `Last Order Listing`, `Sales Chart` and `Total Earns Today` badge. You new need to update those components based on the received [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events).
@@ -29,11 +35,13 @@ The `Last Order Listing` component displays the name of the customer alongside i
 
 In that moment, if you dont have the Customer information inside the `Application State Management` implementation, you need to get it in another place. That is where the `Application Data Management` abstraction resides.
 
-Traditionaly the main applications implementation rely on directly calling an API or even use things like the browser `localStorage` API.
+Traditionaly the main applications implementation rely on directly calling an API, or even use things like the browser `localStorage` API, which will fails once it data size and complexity grows.
 
 Going against this implementation model, we intoduce a `proxy like` abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser. 
 
-Aditionaly we abstract some kind of `data transporters` which is used `to send produced data to` and `to consume data from`. Every data change has an associated event object and action, which is not used only for `Event Sourcing`, but also to provide direct `bindings` for `decoupled View components`.
+There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development, data validation and several things that I'm not going to discuss here, but that I have massively tested on several different project and POCs stacks.
+
+Aditionaly, VooduX abstract some kind of `data transporters` which is used `to send own produced event and data to` and `to consume thirdy party produced event and data from`. Every data change has an associated event object and action, which is not used only for `Event Sourcing`, but also to provide direct `bindings` for `decoupled View components`.
 
 Despite the fact we can now fastly and cheaply request data, we have also a complete database running on front end. The `Application Data Management` abstraction gives you some capabilities such:
 

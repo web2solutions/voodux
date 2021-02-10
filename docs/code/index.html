@@ -98,17 +98,22 @@
 <h1>voodux</h1>
 <h2>Summary</h2>
 <p>The VooduX's proposal is to cover the common lacks and mistakes in modern web applications development. It heavly opinionate on how to define a strong underlying architecture for the most common types of web softwares which relies mostly in <code>V-*</code> like libraries and frameworks such as <code>Vue</code> and <code>React</code>.</p>
-<p>Please don't get us wrong. <code>We are not reinventing any wheels</code>. We are just leveraging well stabilished paradigms and methodologies like <code>Entity Relationship</code>, <code>Data Entities</code>, <code>Actors</code>, <code>Objects</code>, <code>RAD</code>, <code>Component Engineering</code>, <code>Messaging Patterns</code>, <code>Event Driven Architecture</code>, <code>Data Caching</code>.</p>
-<p>We really love <code>State Management</code> libraries and we use them on daily basis. But we don't agree to the assumption that <code>Application State Management</code> does the same as a <code>Application Data Management</code> abstraction suposedly does. Simply because the <code>application data size</code> might considerable grow.</p>
+<p>I like to see teams proud of being <code>TDD driven</code> teams. We love to see team proud of <code>Translating pixel-perfect designs from Figma</code>, we do really are fascinated about good <code>User Xperiences</code>.</p>
+<p>But several web development teams are mistakenly focusing on some <code>industry and marketers expectation standards</code> and negleting the main <code>techonology proposal</code> which is to make every one life better and easier and to reduce costs. When I say <code>make every one life better and easier</code>, I'm talking about those ones which are going to consume the technology.</p>
+<p>The problem is most companies are looking to (front end) web resources as <code>marketing tools</code> and not like what they really could be: <code>well architected software products</code>.</p>
+<p>Please don't get us wrong. <code>We are not reinventing any wheels</code>. We are just leveraging well stabilished paradigms and methodologies like <code>Entity Relationship</code>, <code>Data Entities</code>, <code>Actors</code>, <code>Objects</code>, <code>RAD</code>, <code>Component Engineering</code>, <code>Messaging Patterns</code>, <code>Event Driven Architecture</code>, <code>Data Caching</code> and so on, to delivery agile produced sotwares MVPs that scales since from it initial days.</p>
+<p>We really love <code>State Management</code> libraries and we use them on daily basis. But we don't agree to the assumption that <code>Application State Management</code> does the same as a <code>Application Data Management</code> abstraction suposedly does. Simply because the <code>application data size</code> might considerable grows.</p>
 <p>We like to think in a scenario where the <code>Application State Management</code> abstraction handles <code>pieces</code> of data that are curenlty being used in the screen at the present moment. But it does not means you should not have another pieces of data being <code>underlying handled by some other manner</code> behind the scenes.</p>
 <p>Supose the <code>server - back end</code> emits a <a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events"><code>Server Event Message</code></a> to connected clients with the following info:</p>
-<pre class="prettyprint source lang-javascript"><code> { action: 'completed', entity: 'Payment', customerId: 3443, lineItems: [], totalPaid: 5430 }
+<pre class="prettyprint source lang-javascript"><code> { action: 'completed', entity: 'Order', id: 24455 customerId: 3443, lineItems: [...[{}]], totalPaid: 5430 }
 </code></pre>
 <p>Supose you are curently visualizing the Dashboard page in the screen where you have: <code>Last Order Listing</code>, <code>Sales Chart</code> and <code>Total Earns Today</code> badge. You new need to update those components based on the received <a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events"><code>Server Event Message</code></a>.</p>
 <p>The <code>Last Order Listing</code> component displays the name of the customer alongside it address and total paid for that specific order.</p>
 <p>In that moment, if you dont have the Customer information inside the <code>Application State Management</code> implementation, you need to get it in another place. That is where the <code>Application Data Management</code> abstraction resides.</p>
-<p>Traditionaly the main applications implementation rely on directly calling an API or even use things like the browser <code>localStorage</code> API.</p>
-<p>Going against this implementation model, we intoduce a <code>proxy like</code> abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser. Aditionaly we abstract some kind of <code>data transporters</code> which is used <code>to send produced data to</code> and <code>to consume data from</code>. Every data change has an associated event object and action, which is not used only for <code>Event Sourcing</code>, but also to provide direct <code>bindings</code> for <code>decoupled View components</code>.</p>
+<p>Traditionaly the main applications implementation rely on directly calling an API, or even use things like the browser <code>localStorage</code> API, which will fails once it data size and complexity grows.</p>
+<p>Going against this implementation model, we intoduce a <code>proxy like</code> abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser.</p>
+<p>There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development, data validation and several things that I'm not going to discuss here, but that I have massively tested on several different project and POCs stacks.</p>
+<p>Aditionaly, VooduX abstract some kind of <code>data transporters</code> which is used <code>to send own produced event and data to</code> and <code>to consume thirdy party produced event and data from</code>. Every data change has an associated event object and action, which is not used only for <code>Event Sourcing</code>, but also to provide direct <code>bindings</code> for <code>decoupled View components</code>.</p>
 <p>Despite the fact we can now fastly and cheaply request data, we have also a complete database running on front end. The <code>Application Data Management</code> abstraction gives you some capabilities such:</p>
 <ul>
 <li>Do not loose data on network disconnections.</li>
@@ -818,7 +823,7 @@ export default Customers
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-02-10T14:50:19-03:00
+		on 2021-02-10T15:52:25-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
