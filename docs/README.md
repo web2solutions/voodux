@@ -32,11 +32,7 @@ Sometimes part of the project process is rock solid, but the final product is la
 
 This is how a common web application looks like:
 
-This is how a VooduX application looks like:
-
-https://i.imgur.com/greQ5c3.png
-
-<img src="https://i.imgur.com/e7dRAvz.png" width="500" />
+<img src="https://i.imgur.com/e7dRAvz.png" />
 
 
 
@@ -47,7 +43,7 @@ We like to think in a scenario where the `Application State Management` abstract
 This is how a VooduX application looks like: 
 
 
-<img src="https://i.imgur.com/greQ5c3.png" width="500" />
+<img src="https://i.imgur.com/greQ5c3.png" style="max-width: 900px;" />
 
 
 
