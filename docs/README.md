@@ -31,7 +31,9 @@ In that moment, if you dont have the Customer information inside the `Applicatio
 
 Traditionaly the main applications implementation rely on directly calling an API or even use things like the browser `localStorage` API.
 
-Going against this implementation model, we intoduce a `proxy like` abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser. Aditionaly we abstract some kind of `data transporters` which is used `to send produced data to` and `to consume data from`. Every data change has an associated event object and action, which is not used only for `Event Sourcing`, but also to provide direct `bindings` for `decoupled View components`.
+Going against this implementation model, we intoduce a `proxy like` abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser. 
+
+Aditionaly we abstract some kind of `data transporters` which is used `to send produced data to` and `to consume data from`. Every data change has an associated event object and action, which is not used only for `Event Sourcing`, but also to provide direct `bindings` for `decoupled View components`.
 
 Despite the fact we can now fastly and cheaply request data, we have also a complete database running on front end. The `Application Data Management` abstraction gives you some capabilities such:
 
