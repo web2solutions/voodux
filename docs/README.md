@@ -326,8 +326,10 @@ The `foundation:start` event listener must be set before calling `foundation.sta
 ```
 
 
-## React Demos
-### React Demo app (Functional components)
+## Application demos
+
+### React demos
+#### React Demo app (Functional components)
 
 <img src="https://i.imgur.com/b29Lsgj.png" width="600" />
 
@@ -337,7 +339,7 @@ The `foundation:start` event listener must be set before calling `foundation.sta
 
 `Demo documentation:` -> TODO
 
-### React Demo app (Class based components)
+#### React Demo app (Class based components)
 
 <img src="https://i.imgur.com/E1u5g6y.png" width="600" />
 
@@ -347,6 +349,13 @@ The `foundation:start` event listener must be set before calling `foundation.sta
 
 [`Demo documentation:`](https://web2solutions.github.io/voodux-react-class-demo/)
 
+
+### Vue Demos
+
+### DHTMLX demos
+
+
+### Vanilla JS demos
 
 ## Motivation
 
