@@ -12,6 +12,8 @@
 
 
 ```javascript
+  import React from 'react'
+
   import { Foundation } from 'voodux'
 
   const CustomerSchema = new Foundation.Schema({

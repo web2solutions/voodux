@@ -98,7 +98,8 @@
 <h1>voodux</h1>
 <h2>Summary</h2>
 <p>The VooduX's proposal is to cover the common lacks and mistakes in modern web applications development. It heavly opinionate on how to define a strong foundation for most common types of web softwares which relies mostly in <code>V-*</code> like libraries and frameworks such as <code>Vue</code> and <code>React</code>.</p>
-<p>It provides a underlying architecture offering resources like:</p>
+<p>Please don't get us wrong. <code>We are not reinventing any wheels</code>. We are just leveraging well stabilished paradigms and methodologies like <code>Entity Relationship</code>, <code>Data Entities</code>, <code>Actors</code>, <code>Objects</code>, <code>RAD</code>, <code>Component Engineering</code>, <code>Messaging Patterns</code>, <code>Event Driven Architecture</code>,</p>
+<p>VooduX provides a underlying architecture offering resources like:</p>
 <ul>
 <li>Generic <code>Data Schema</code> and <code>Data Model</code> driven design. Use the Mongoose implementation to define models. Same model can both run on client and server.</li>
 <li>A proxy like <code>Data Entity API</code> supporting different data transports</li>
@@ -112,7 +113,7 @@
 <li><code>Data Schema</code> generators leveraging OpenAPI speficiations (Swagger) as declarative metadata standard</li>
 <li>CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard</li>
 </ul>
-<h2>What it does not?</h2>
+<h3>What it does not?</h3>
 <ul>
 <li>It does not replace Redux, Mobx or Vuex.</li>
 <li>It does not cares about how you manage your application state</li>
@@ -129,31 +130,25 @@
   $ npm install
 </code></pre>
 <h2>How to use</h2>
-<h3>ES5 import</h3>
+<h3>Importing VooduX into your application</h3>
+<p>The first step to use VooduX in your project it to import it library.</p>
+<h4>ES5 import</h4>
 <pre class="prettyprint source lang-javascript"><code>  const { Foundation } = require('voodux')
 </code></pre>
-<h3>ES6 import</h3>
+<h4>ES6 import</h4>
 <pre class="prettyprint source lang-javascript"><code>  import { Foundation } from 'voodux'
 </code></pre>
-<h3>Directly on browser</h3>
+<h4>Directly on browser</h4>
 <pre class="prettyprint source lang-html"><code>  &lt;script type=&quot;text/javascript&quot; src=&quot;voodux/dist/main.min.js&quot;>&lt;/script>
 </code></pre>
-<h3>Foundation constructor</h3>
-<p>The starting point of every <code>voodux</code> application is it <code>Foundation</code>.</p>
-<p>The application foundation holds things like data definition, data access, data validation, data persistence, data change notification ....</p>
-<pre class="prettyprint source lang-javascript"><code>  const foundation = new Foundation({
-      name: 'My App',
-      useWorker: true,
-      dataStrategy: 'offlineFirst',
-      schemas: {
-          User: UserSchema,
-          Product: ProductSchema,
-          Order: OrderSchema,
-          Customer: CustomerSchema
-      }
-  })
-</code></pre>
-<h3>Setup a data schema for a Data Entity</h3>
+<h3>Writing your application code</h3>
+<p>The underlying architecture of every VooduX application borns in it <code>Data Design</code>.</p>
+<p>The VooduX strongly believes that the <code>Data plan</code> and <code>Data design</code> is the first step to take when building successful projects. That is why we start by defining some <code>Data Schemas</code> for the <code>Data entities</code> we have in the system.</p>
+<p>Every Data entity in the system has it own encapsulated methods to access, handle and notify data changes to every actor listening to it.
+Schemas must be provided in the foundation constructor or at least pior calling the <a href="https://web2solutions.github.io/voodux/code/Foundation.html#.start__anchor"><code>foundation.start()</code></a> method. Otherwise it collection will not be created inside the local database.</p>
+<h4>Setup a data schema for a Data Entity</h4>
+<p>Every <code>Data Schema</code> in a <code>VooduX</code> application is set using the <a href="https://web2solutions.github.io/voodux/code/Foundation.html#.Schema__anchor"><code>Foundation.Schema(schema)</code></a> static method.</p>
+<p>The data schemas are set following the <a href="https://mongoosejs.com/docs/guide.html"><code>Mongoose</code></a> standard to define schemas. It means you are not repeating yourself when writing data schemas because they targets both the <code>front end</code> and <code>back end</code>. In other words, server and client data are being defined by a single contract.</p>
 <pre class="prettyprint source lang-javascript"><code>import { Foundation } from 'voodux'
 
 const CustomerSchema = new Foundation.Schema({
@@ -178,8 +173,26 @@ const CustomerSchema = new Foundation.Schema({
   }
 })
 </code></pre>
-<h3>Listening to Application start event</h3>
+<h4>Foundation constructor</h4>
+<p>The starting point of every <code>voodux</code> application is it <code>Foundation</code>.</p>
+<p>The application foundation holds things like data definition, data access, data validation, data persistence, data change notification ....</p>
+<p>Prior starting your React or Vue application code, you must create your <code>application foundation</code> and then to pass it as property to your React or Vue application.</p>
+<p>The <code>application foundation</code> is set by calling the <code>Foundation constructor</code>.</p>
+<pre class="prettyprint source lang-javascript"><code>  const foundation = new Foundation({
+      name: 'My App',
+      useWorker: true,
+      dataStrategy: 'offlineFirst',
+      schemas: {
+          User: UserSchema,
+          Product: ProductSchema,
+          Order: OrderSchema,
+          Customer: CustomerSchema
+      }
+  })
+</code></pre>
+<h4>Listening to <code>Application Start</code> event</h4>
 <p>Sometimes you may need to start executing heavy tasks prior start rendering your application screens. For example you could start a data sync process, starting to fill out you local database and in meantime, render a dashboard and start rendering data changes in realtime, as long as they are <code>emitted</code> from the Data Entity abstraction implementation.</p>
+<p>The <code>foundation:start</code> event listener must be set before calling <code>foundation.start()</code>. Otherwise it will not be triggered.</p>
 <pre class="prettyprint source lang-javascript"><code>    foundation.on('foundation:start', async function(eventObj) {
       const {
           foundation,
@@ -206,8 +219,11 @@ const CustomerSchema = new Foundation.Schema({
       console.debug('Volvo', Volvo)
   })
 </code></pre>
-<h3>Setup application data and start it</h3>
-<pre class="prettyprint source lang-javascript"><code>  import { Foundation } from 'voodux'
+<h4>Setup application data and start it</h4>
+<pre class="prettyprint source lang-javascript"><code>
+  import React from 'react'
+
+  import { Foundation } from 'voodux'
 
   const CustomerSchema = new Foundation.Schema({
     name: {
@@ -479,7 +495,7 @@ const CustomerSchema = new Foundation.Schema({
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-02-09T21:02:07-03:00
+		on 2021-02-10T12:21:45-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
