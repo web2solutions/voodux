@@ -11,7 +11,25 @@
 
 The VooduX's proposal is to cover the common lacks and mistakes in modern web applications development. It heavly opinionate on how to define a strong underlying architecture for the most common types of web softwares which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
 
-Please don't get us wrong. `We are not reinventing any wheels`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `Event Driven Architecture`, `Data Caching`
+Please don't get us wrong. `We are not reinventing any wheels`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `Event Driven Architecture`, `Data Caching`.
+
+We really love `State Management` libraries and we use them on daily basis. But we don't agree to the assumption that `Application State Management` does the same as a `Application Data Management` abstraction suposedly does. Simply because the `application data size` might considerable grow.
+
+We like to think in a scenario where the `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen the present moment. But it does not means you should not have another pieces of data being `underlying handled by some other manner` behind the scenes. 
+
+Supose the `server - back end` emits a [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events) to connected clients with the following info:
+
+ ```javascript
+  { action: 'completed', entity: 'Payment', customerId: 3443, lineItems: [], totalPaid: 5430 }
+```
+
+Supose you are curently visualizing the Dashboard page in the screen where you have: `Last Order Listing`, `Sales Chart` and `Total Earns Today` badge. You new need to update those components based on the received [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events).
+
+The `Last Order Listing` component displays the name of the customer alongside it address and total paid for that specific order.
+
+In that moment, if you dont have the Customer information inside the `Application State Management` implementation, you need to get it in another place. That is where the `Application Data Management` abstraction resides.
+
+Traditionaly the main applications implementation rely on directly calling an API or even use things like the browser `localStorage` API.
 
 
 VooduX provides a underlying architecture offering resources like:
@@ -25,7 +43,7 @@ VooduX provides a underlying architecture offering resources like:
 - `Trully multi threaded` architecture by leveraging web workers. Web applications are originally single threaded applications.
 - 100% offline capable applications
 - Asynchronous and `event driven` architecture.
-- `Data Schema` generators leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
+- `Data Schema` generators leveraging the OpenAPI speficiations (Swagger) as declarative metadata standard
 - CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
 
 
@@ -185,14 +203,15 @@ The `foundation:start` event listener must be set before calling `foundation.sta
 
 
 
-#### Setup application data and start it
+#### Hypothetical full React app setup demo
 
 ```javascript
-
+  // import React lib
   import React from 'react'
-
+  // import Foundation lib
   import { Foundation } from 'voodux'
 
+  // setup Data schemas
   const CustomerSchema = new Foundation.Schema({
     name: {
         type: String,
@@ -286,6 +305,7 @@ The `foundation:start` event listener must be set before calling `foundation.sta
       }
   })
 
+  // listen to application start event and add some records to database.
   foundation.on('foundation:start', async function(eventObj) {
       const {
           foundation,
@@ -312,12 +332,13 @@ The `foundation:start` event listener must be set before calling `foundation.sta
       console.debug('Volvo', Volvo)
   })
 
-  // start foundation and get it ready to be used
+  // start application foundation and get it ready to be used
   const start = await foundation.start()
   if (start.error) {
       throw new Error(`Error starting foundation stack: ${start.error}`)
   }
-  // console.debug('start', start)
+  
+  // start rendering yout React application by passing the application foundation as it prop.
   ReactDOM.render(
     <App foundation={foundation} />,
     document.getElementById('root')
@@ -325,6 +346,315 @@ The `foundation:start` event listener must be set before calling `foundation.sta
 
 ```
 
+
+
+#### Hypothetical React `Customers Listing` component
+
+This component does render a list of Customers.
+
+On the list, every listed customer has associated `delete` and `update` links.
+
+The component has an array of `customers` as main state property.
+
+Ok, there is nothing new here!
+
+The `dirty magic` begins when the requirement list starting asking for things like:
+
+- To be able to show the same data in the screen after browser refreshing `and do not` call the server API asking for those specific piece of data.
+- Have a reliable and high performance `2-way dataflow` model between `Application Data Storage and Application State Manager`.
+
+
+
+```javascript
+import React from 'react'
+import { Link, Redirect } from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap'
+import swal from 'sweetalert'
+
+const handlerOnAddDocEventListener = function (eventObj) {
+  const { error, /* document, foundation, */ data } = eventObj
+  if (error) {
+    console.error(`Error adding user: ${error}`)
+    return
+  }
+  console.debug([data, ...this.state.customers])
+  this.setState({ customers: [data, ...this.state.customers] })
+}
+
+const handlerOnEditDocEventListener = function (eventObj) {
+  const { data, primaryKey, /* document, foundation, */ error } = eventObj
+  if (error) {
+    console.error(`Error updating user: ${error}`)
+    return
+  }
+  const newData = this.state.customers.map((customer) => {
+    if (customer.__id === primaryKey) {
+      return data
+    } else {
+      return customer
+    }
+  })
+  console.debug([...newData])
+  this.setState({ customers: [...newData] })
+}
+
+const handlerOnDeleteDocEventListener = function (eventObj) {
+  const { error, /* document, foundation, */ data } = eventObj
+  if (error) {
+    console.error(`Error deleting user: ${error}`)
+    return
+  }
+  const allCustomers = [...this.state.customers]
+  for (let x = 0; x < allCustomers.length; x++) {
+    const customer = allCustomers[x]
+    if (customer.__id === data.__id) {
+      allCustomers.splice(x)
+    }
+  }
+  this.setState({ customers: allCustomers })
+}
+
+/**
+ * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
+ * @Component Customers
+ * @description React component consuming a Customer Data Entity collection to feed a grid
+ * @extends React.Component
+ */
+class Customers extends React.Component {
+  constructor (props) {
+    super(props)
+    // console.error('------>', props)
+    /**
+     * Entity name which this component represents to
+     */
+    this.entity = 'Customer'
+    /**
+     * access to foundation instance
+     */
+    this.foundation = props.foundation
+    /**
+     * default pagination to list data
+     */
+    this.pagination = {
+      offset: 0,
+      limit: 30
+    }
+    /**
+     * component state
+     */
+    this.state = {
+      customers: []
+    }
+    this.onAddDocEventListener = null
+    this.onEditDocEventListener = null
+    this.onDeleteDocEventListener = null
+    this.handleDeleteCustomer = this.handleDeleteCustomer.bind(this)
+  }
+
+  /**
+   * @Method Customers.componentWillUnmount
+   * @summary Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as cancelled network requests, or cleaning up any DOM elements created in componentDidMount.
+   * @description lets stop listen to Customer Data State Change Events
+   * @example
+componentWillUnmount() {
+  const { Customer } = this.foundation.data
+  Customer.stopListenTo(this.onAddDocEventListener)
+  Customer.stopListenTo(this.onEditDocEventListener)
+  Customer.stopListenTo(this.onDeleteDocEventListener)
+}
+   */
+  componentWillUnmount () {
+    const { Customer } = this.foundation.data
+    /**
+     * Destroy event listeners of this component which are listening to Customer collection
+     * and react to it
+     */
+    Customer.stopListenTo(this.onAddDocEventListener)
+    Customer.stopListenTo(this.onEditDocEventListener)
+    Customer.stopListenTo(this.onDeleteDocEventListener)
+    this.onAddDocEventListener = null
+    this.onEditDocEventListener = null
+    this.onDeleteDocEventListener = null
+  }
+
+  /**
+   * @async
+   * @Method Customers.componentDidMount
+   * @summary Called immediately after a component is mounted. Setting state here will trigger re-rendering.
+   * @description Once component is monted we are now ready to start listen to changes on Customer data entity and get a list of customer in database to fill out the state.customers
+   * @example
+componentDidMount() {
+  const { Customer } = this.foundation.data
+
+  this.onAddDocEventListener = Customer.on(
+    'add',
+    handlerOnAddDocEventListener.bind(this)
+  )
+
+  this.onEditDocEventListener = Customer.on(
+    'edit',
+    handlerOnEditDocEventListener.bind(this)
+  )
+
+  this.onDeleteDocEventListener = Customer.on(
+    'delete',
+    handlerOnDeleteDocEventListener.bind(this)
+  )
+
+  const { error, data } = await Customer.find({}, { ...this.pagination })
+  if (!error) {
+    this.setState({ customers: customers.data })
+  }
+}
+   */
+  async componentDidMount () {
+    const { Customer } = this.foundation.data
+
+    // listen to add, edit and delete events on Customer collection
+    // and react to it
+    /**
+     * listen to add Customer Data Entity change event on Data API
+     */
+    this.onAddDocEventListener = Customer.on('add', handlerOnAddDocEventListener.bind(this))
+
+    /**
+     * listen to edit Customer Data Entity change event on Data API
+     */
+    this.onEditDocEventListener = Customer.on('edit', handlerOnEditDocEventListener.bind(this))
+
+    /**
+     * listen to delete Customer Data Entity change event on Data API
+     */
+    this.onDeleteDocEventListener = Customer.on('delete', handlerOnDeleteDocEventListener.bind(this))
+
+    // get Customers on database
+    const customers = await Customer.find({}, { ...this.pagination })
+    // console.warn(customers)
+
+    if (customers.data) {
+      this.setState({ customers: customers.data })
+    }
+  }
+
+  /**
+   * @Method Customers.handleDeleteCustomer
+   * @summary Event handler that Deletes a customer
+   * @description Once component is monted we are now ready to start listen to changes on Customer data entity and get a list of customer in database to fill out the state.customers
+   * @param  {event} event - The HTML event triggered on User interation
+   * @param  {number} __id - The primaryKey value of the record willing to be deleted
+   * @example
+handleDeleteCustomer(e, ___id) {
+  const { Customer } = this.foundation.data
+  e.preventDefault()
+  swal({
+    title: 'Are you sure?',
+    text: 'Once deleted, you will not be able to recover this!',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true
+  }).then(async (willDelete) => {
+    if (willDelete) {
+      const r = await Customer.delete(___id)
+      if (r.error) {
+        swal('Database error', e.error.message, 'error')
+        return
+      }
+      swal('Poof! The customer has been deleted!', {
+        icon: 'success'
+      })
+      return <Redirect to = '/dashboard' / >
+    } else {
+      swal('The Customer is safe!')
+    }
+  })
+}
+
+// <a color='primary' href='#' onClick={e => this.handleDeleteCustomer(e, doc.__id)}>[delete]</a>
+   */
+  handleDeleteCustomer (e, ___id) {
+    const { Customer } = this.foundation.data
+    e.preventDefault()
+    // console.error(___id)
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        const r = await Customer.delete(___id)
+        // console.error(r)
+        if (r.error) {
+          swal('Database error', e.error.message, 'error')
+          return
+        }
+        swal('Poof! The customer has been deleted!', {
+          icon: 'success'
+        })
+        return <Redirect to='/dashboard' />
+      } else {
+        swal('The Customer is safe!')
+      }
+    })
+  }
+
+  /**
+   * @async
+   * @Method Customers.render
+   * @summary Component render function.
+   * @description Renders a grid of Customers
+   */
+  render () {
+    return (
+      <main className='col-md-9 ms-sm-auto col-lg-10 px-md-4 main'>
+        <div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 bcustomer-bottom'>
+          <h1 className='h2'>Customers</h1>
+          <div className='btn-toolbar mb-2 mb-md-0'>
+            <div className='btn-group me-2'>
+              <LinkContainer to='/CustomersAdd'>
+                <button type='button' className='btn btn-sm btn-outline-secondary'>
+                  Add new Customer
+                </button>
+              </LinkContainer>
+            </div>
+          </div>
+        </div>
+        <div className='table-responsive'>
+          <table className='table table-striped table-sm'>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>E-mail</th>
+                <th align='right'>Cards</th>
+                <th>-</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.customers.map((doc) => (
+                <tr key={doc.id}>
+                  <td>{doc.name}</td>
+                  <td>{doc.address}</td>
+                  <td>{doc.email}</td>
+                  <td align='right'>{doc.cards}</td>
+                  <td>
+                    <Link color='primary' to={`/CustomersEdit/${doc.__id}`}>[edit]</Link>
+                    | <a color='primary' href='#' onClick={e => this.handleDeleteCustomer(e, doc.__id)}>[delete]</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </main>
+
+    )
+  }
+}
+
+export default Customers
+```
 
 ## Application demos
 
