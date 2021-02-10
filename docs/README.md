@@ -52,7 +52,14 @@ Please don't get us wrong. `We are not reinventing any wheels`. We are just leve
 Supose the `server - back end` emits a [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events) to connected clients with the following info:
 
  ```javascript
-  { action: 'completed', entity: 'Order', id: 24455 customerId: 3443, lineItems: [...[{}]], totalPaid: 5430 }
+  { 
+    action: 'completed', 
+    entity: 'Order', 
+    id: 24455,
+    customerId: 3443,
+    lineItems: [...[{}]],
+    totalPaid: 5430
+  }
 ```
 
 Supose you are curently visualizing the Dashboard page in the screen where you have: `Last Order Listing`, `Sales Chart` and `Total Earns Today` badge. 
@@ -62,8 +69,7 @@ Like this:
 <img src="https://i.imgur.com/b29Lsgj.png" width="500" />
 
 
-You new need to update those components based on the received [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events).
-
+You now need to update those components based on the received [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events).
 
 
 The `Last Order Listing` component displays the name of the customer alongside it address and total paid for that specific order.
