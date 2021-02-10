@@ -30,9 +30,26 @@ In some other cases, industries are heavily focusing on specific pieces of the p
 
 Sometimes part of the project process is rock solid, but the final product is lacking in simple things. I saw large financial applications that when opened on multiple browser tabs, and if you add a new data in tab one, all other tabs stays dumb. If I went to another tab, the new data was not there.
 
+This is how a common web application looks like:
+
+This is how a VooduX application looks like:
+
+https://i.imgur.com/greQ5c3.png
+
+<img src="https://i.imgur.com/e7dRAvz.png" width="500" />
+
+
+
 We really love `State Management` libraries and we use them on daily basis. But we don't agree to the assumption that `Application State Management` does the same as a `Application Data Management` abstraction suposedly does. Simply because the `application data size` might considerable grows.
 
 We like to think in a scenario where the `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment. But it does not means you should not have another pieces of data being `underlying handled by some other manner` behind the scenes.
+
+This is how a VooduX application looks like: 
+
+
+<img src="https://i.imgur.com/greQ5c3.png" width="500" />
+
+
 
 Please don't get us wrong. `We are not reinventing any wheels`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `2-way data flow over an Event Driven Architecture`, `Data Caching` so on and so forth, to delivery agile produced sotware MVPs that scales since from it initial days.
 
