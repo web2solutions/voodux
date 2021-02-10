@@ -15,7 +15,7 @@ Please don't get us wrong. `We are not reinventing any wheels`. We are just leve
 
 We really love `State Management` libraries and we use them on daily basis. But we don't agree to the assumption that `Application State Management` does the same as a `Application Data Management` abstraction suposedly does. Simply because the `application data size` might considerable grow.
 
-We like to think in a scenario where the `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen the present moment. But it does not means you should not have another pieces of data being `underlying handled by some other manner` behind the scenes. 
+We like to think in a scenario where the `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment. But it does not means you should not have another pieces of data being `underlying handled by some other manner` behind the scenes. 
 
 Supose the `server - back end` emits a [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events) to connected clients with the following info:
 
