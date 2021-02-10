@@ -18,7 +18,7 @@ The VooduX's proposal is to cover the common lacks and mistakes in modern web ap
 - It does not cares about which `project standard`'s framework/library you employ. Vue, React, It does not matters.
 - It does not cares about the UI framework/library you are employing. The Material UI, Boostrap, Vuetify, Sencha, DHTMLX, Dojo.
 
-#### What about is VooduX then?
+#### What is VooduX then?
 
 It is good to see teams proud of being `TDD driven` teams. It is amazing to see team proud of `Translating pixel-perfect designs from Figma`, it is really are fascinating to be exposed to new and good `User Xperiences`. Horses flying and 3D rotating on screen, big red error messages on giant rounded number form field when user tries to type a string value inside, are good, but this is the head of the iceberg only.
 
@@ -74,7 +74,7 @@ Traditionaly the main applications implementation rely on directly calling an AP
 
 Going against this implementation model, we intoduce a `proxy like` abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser. 
 
-There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development.
+There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development and validation.
 
 Aditionaly, VooduX abstract some kind of `data transporters` which is used `to send own produced event and data to` and `to consume thirdy party produced event and data from`. Every data change has an associated event object and action, which is not used only for `Event Sourcing`, but also to provide direct `bindings` for `decoupled View components`.
 
