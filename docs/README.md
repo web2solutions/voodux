@@ -62,7 +62,7 @@ Supose the `server - back end` emits a [`Server Event Message`](https://develope
   }
 ```
 
-Supose you are curently visualizing the Dashboard page in the screen where you have: `Last Order Listing`, `Sales Chart` and `Total Earns Today` badge. 
+Supose you are currently catching your eyes at the Dashboard page in the screen where you have: `Last Order Listing`, `Sales Chart` and `Total Earns Today` badge. 
 
 Like this: 
 
