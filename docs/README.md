@@ -11,19 +11,30 @@
 
 The VooduX's proposal is to cover the common lacks and mistakes in modern web applications development. It heavly opinionate on how to define a strong underlying architecture for the most common types of web softwares which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
 
-I like to see teams proud of being `TDD driven` teams. We love to see team proud of `Translating pixel-perfect designs from Figma`, we do really are fascinated about good `User Xperiences`.
+#### What it does not?
+
+- It does not replace Redux, Mobx or Vuex.
+- It does not cares about how you manage your application state
+- It does not cares about which framework/library for `project standards` you use. Vue, React ...
+- It does not cares about the UI framework/library you use. Material UI, Boostrap, Sencha, DHTMLX, Dojo.
+
+#### What about is VooduX then?
+
+It is good to see teams proud of being `TDD driven` teams. It is amazing to see team proud of `Translating pixel-perfect designs from Figma`, it is really are fascinating to be exposed to new and good `User Xperiences`. Horses flying and 3D rotating on screen, big red error messages on giant rounded number form field when user tries to type a string value inside.
 
 But several web development teams are mistakenly focusing on some `industry and marketers expectation standards` and negleting the main `techonology proposal` which is to make every one life better and easier and to reduce costs. When I say `make every one life better and easier`, I'm talking about those ones which are going to consume the technology.
 
 The most common problem is some companies are looking to (front end) web resources as `marketing tools` and not like what they really could be: `well architected software products`.
 
-In some other cases, industries are heavily focusing on specific pieces of the process, under a totaly focused on a `Software Engineering` field influenced perspective, rather than prior scoping a overall product plan, flavoured on a `System Information` field perspective. Sometimes part of the project process is rock solid, but the final product are lacking in simple things. I saw large financial applications that when opened on multiple browser tabs, and if you add a new data in tab one, all other tabs stays dumb. If I went to another tab, the new data was not there.
+In some other cases, industries are heavily focusing on specific pieces of the process, under a totaly focused on a `Software Engineering` field influenced perspective, rather than prior scoping a overall product plan, flavoured on a `System Information` field perspective. 
 
-Please don't get us wrong. `We are not reinventing any wheels`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `2-way data flow over an Event Driven Architecture`, `Data Caching` so on and so forth, to delivery agile produced sotware MVPs that scales since from it initial days.
+Sometimes part of the project process is rock solid, but the final product is lacking in simple things. I saw large financial applications that when opened on multiple browser tabs, and if you add a new data in tab one, all other tabs stays dumb. If I went to another tab, the new data was not there.
 
 We really love `State Management` libraries and we use them on daily basis. But we don't agree to the assumption that `Application State Management` does the same as a `Application Data Management` abstraction suposedly does. Simply because the `application data size` might considerable grows.
 
-We like to think in a scenario where the `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment. But it does not means you should not have another pieces of data being `underlying handled by some other manner` behind the scenes. 
+We like to think in a scenario where the `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment. But it does not means you should not have another pieces of data being `underlying handled by some other manner` behind the scenes.
+
+Please don't get us wrong. `We are not reinventing any wheels`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `2-way data flow over an Event Driven Architecture`, `Data Caching` so on and so forth, to delivery agile produced sotware MVPs that scales since from it initial days.
 
 Supose the `server - back end` emits a [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events) to connected clients with the following info:
 
@@ -31,7 +42,16 @@ Supose the `server - back end` emits a [`Server Event Message`](https://develope
   { action: 'completed', entity: 'Order', id: 24455 customerId: 3443, lineItems: [...[{}]], totalPaid: 5430 }
 ```
 
-Supose you are curently visualizing the Dashboard page in the screen where you have: `Last Order Listing`, `Sales Chart` and `Total Earns Today` badge. You new need to update those components based on the received [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events).
+Supose you are curently visualizing the Dashboard page in the screen where you have: `Last Order Listing`, `Sales Chart` and `Total Earns Today` badge. 
+
+Like this: 
+
+<img src="https://i.imgur.com/b29Lsgj.png" width="500" />
+
+
+You new need to update those components based on the received [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events).
+
+
 
 The `Last Order Listing` component displays the name of the customer alongside it address and total paid for that specific order.
 
@@ -66,15 +86,6 @@ VooduX provides a underlying architecture offering resources like:
 - Asynchronous and `event driven` architecture.
 - `Data Schema` generators leveraging the OpenAPI speficiations (Swagger) as declarative metadata standard
 - CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
-
-
-#### What it does not?
-
-- It does not replace Redux, Mobx or Vuex.
-- It does not cares about how you manage your application state
-- It does not cares about which framework/library for `project standards` you use. Vue, React ...
-- It does not cares about the UI framework/library you use. Material UI, Boostrap, Sencha, DHTMLX, Dojo.
-
 
 ## Install
 
