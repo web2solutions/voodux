@@ -29,7 +29,7 @@ VooduX provides a underlying architecture offering resources like:
 - CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
 
 
-### What it does not?
+#### What it does not?
 
 - It does not replace Redux, Mobx or Vuex.
 - It does not cares about how you manage your application state
