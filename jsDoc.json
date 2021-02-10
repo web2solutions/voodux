@@ -17,7 +17,7 @@
   "templates": {
     "cleverLinks": true,
     "monospaceLinks": true,
-    "theme": "Spacelab", // Paper, Slate
+    "theme": "spacelab", // Paper, Slate
     "systemName": "voodux",
     "footer": "<br><br><br><br>Sponsored by WEB2 Solutions",
     "copyright": "Eduardo Almeida",
