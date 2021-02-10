@@ -17,10 +17,12 @@
   "templates": {
     "cleverLinks": true,
     "monospaceLinks": true,
+    "theme": "Spacelab", // Paper, Slate
     "systemName": "voodux",
     "footer": "<br><br><br><br>Sponsored by WEB2 Solutions",
     "copyright": "Eduardo Almeida",
     "navType" : "{inline}",
+    "inverseNav": true,
     "linenums": true,
     "outputSourceFiles": true
   },

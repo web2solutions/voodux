@@ -1,22 +1,22 @@
-<img src="https://i.imgur.com/a856gth.png" width="400" />
+[<img src="https://i.imgur.com/a856gth.png" width="400" />](./index.html)
 
 [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/main) | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/release) | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/develop) | [![codecov](https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG)](https://codecov.io/gh/web2solutions/voodux) | [![Known Vulnerabilities](https://snyk.io/test/github/web2solutions/voodux/badge.svg)](https://snyk.io/test/github/web2solutions/voodux) | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
 
 
-# voodux
+# VooduX
 
 ## Summary
 
 The VooduX's proposal is to cover the common lacks and mistakes in modern web applications development. It heavly opinionate on how to define a strong underlying architecture for the most common types of web softwares which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
 
-#### What it does not?
+#### What VooduX is not?
 
-- It does not replace Redux, Mobx or Vuex.
-- It does not cares about how you manage your application state
-- It does not cares about which framework/library for `project standards` you use. Vue, React ...
-- It does not cares about the UI framework/library you use. Material UI, Boostrap, Sencha, DHTMLX, Dojo.
+- It does not replace Redux, Mobx, Vuex any any other kind of `Application Management` abstraction.
+- It does not cares about how you manage your application state.
+- It does not cares about which `project standard`'s framework/library you employ. Vue, React, It does not matters.
+- It does not cares about the UI framework/library you are employing. The Material UI, Boostrap, Vuetify, Sencha, DHTMLX, Dojo.
 
 #### What about is VooduX then?
 
