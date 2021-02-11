@@ -130,7 +130,7 @@ This the Step by Step guide to use VooduX
 ### Importing VooduX into your application
 
 The first step to use VooduX in your project it to import it library.
-#### ES5 import
+#### ES5 require
 
 ```javascript
   const { 
