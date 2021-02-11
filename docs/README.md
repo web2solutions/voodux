@@ -157,8 +157,15 @@ Then your .babelrc file will looks like the following:
 
 ```
   {
-    "presets": ["@babel/preset-env", "@babel/preset-react"],
-    "plugins": ["@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties", "@babel/plugin-proposal-private-methods", "istanbul"]
+    "presets": [
+      "@babel/preset-env", 
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime", 
+      "@babel/plugin-proposal-class-properties", 
+      "@babel/plugin-proposal-private-methods"
+    ]
   }
 ```
 
