@@ -154,10 +154,7 @@ Then your .babelrc file will looks like the following:
 ```
   {
     "presets": ["@babel/preset-env", "@babel/preset-react"],
-    "plugins": ["@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties", "@babel/plugin-proposal-private-methods", "istanbul"],
-    "compact": false,
-    "comments": false,
-    "ignore": [],
+    "plugins": ["@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties", "@babel/plugin-proposal-private-methods", "istanbul"]
   }
 ```
 
@@ -170,7 +167,7 @@ In order to import the main library to your project just simply import it:
 ```
 
 
-#### Directly on browser
+#### Browser directly usage
 
 ```html
   <script type="text/javascript" src="voodux/dist/main.min.js"></script>
@@ -232,8 +229,6 @@ The `application foundation` is set by calling the `Foundation constructor`.
 ```javascript
   const foundation = new Foundation({
       name: 'My App',
-      useWorker: true,
-      dataStrategy: 'offlineFirst',
       schemas: {
           User: UserSchema,
           Product: ProductSchema,
@@ -533,13 +528,6 @@ class Customers extends React.Component {
    * @Method Customers.componentWillUnmount
    * @summary Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as cancelled network requests, or cleaning up any DOM elements created in componentDidMount.
    * @description lets stop listen to Customer Data State Change Events
-   * @example
-componentWillUnmount() {
-  const { Customer } = this.foundation.data
-  Customer.stopListenTo(this.onAddDocEventListener)
-  Customer.stopListenTo(this.onEditDocEventListener)
-  Customer.stopListenTo(this.onDeleteDocEventListener)
-}
    */
   componentWillUnmount () {
     const { Customer } = this.foundation.data
@@ -560,30 +548,6 @@ componentWillUnmount() {
    * @Method Customers.componentDidMount
    * @summary Called immediately after a component is mounted. Setting state here will trigger re-rendering.
    * @description Once component is monted we are now ready to start listen to changes on Customer data entity and get a list of customer in database to fill out the state.customers
-   * @example
-componentDidMount() {
-  const { Customer } = this.foundation.data
-
-  this.onAddDocEventListener = Customer.on(
-    'add',
-    handlerOnAddDocEventListener.bind(this)
-  )
-
-  this.onEditDocEventListener = Customer.on(
-    'edit',
-    handlerOnEditDocEventListener.bind(this)
-  )
-
-  this.onDeleteDocEventListener = Customer.on(
-    'delete',
-    handlerOnDeleteDocEventListener.bind(this)
-  )
-
-  const { error, data } = await Customer.find({}, { ...this.pagination })
-  if (!error) {
-    this.setState({ customers: customers.data })
-  }
-}
    */
   async componentDidMount () {
     const { Customer } = this.foundation.data
@@ -620,34 +584,12 @@ componentDidMount() {
    * @description Once component is monted we are now ready to start listen to changes on Customer data entity and get a list of customer in database to fill out the state.customers
    * @param  {event} event - The HTML event triggered on User interation
    * @param  {number} __id - The primaryKey value of the record willing to be deleted
-   * @example
-handleDeleteCustomer(e, ___id) {
-  const { Customer } = this.foundation.data
-  e.preventDefault()
-  swal({
-    title: 'Are you sure?',
-    text: 'Once deleted, you will not be able to recover this!',
-    icon: 'warning',
-    buttons: true,
-    dangerMode: true
-  }).then(async (willDelete) => {
-    if (willDelete) {
-      const r = await Customer.delete(___id)
-      if (r.error) {
-        swal('Database error', e.error.message, 'error')
-        return
-      }
-      swal('Poof! The customer has been deleted!', {
-        icon: 'success'
-      })
-      return <Redirect to = '/dashboard' / >
-    } else {
-      swal('The Customer is safe!')
-    }
-  })
-}
+   */
 
-// <a color='primary' href='#' onClick={e => this.handleDeleteCustomer(e, doc.__id)}>[delete]</a>
+  /**
+   * @Method Customers.handleDeleteCustomer
+   * @summary handleDeleteCustomer event handle
+   * @description triggered when clicking on delete button
    */
   handleDeleteCustomer (e, ___id) {
     const { Customer } = this.foundation.data
