@@ -445,7 +445,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import swal from 'sweetalert'
 
 const handlerOnAddDocEventListener = function (eventObj) {
-  const { error, /* document, foundation, */ data } = eventObj
+  const { error, document, foundation, data } = eventObj
   if (error) {
     console.error(`Error adding user: ${error}`)
     return
@@ -455,7 +455,7 @@ const handlerOnAddDocEventListener = function (eventObj) {
 }
 
 const handlerOnEditDocEventListener = function (eventObj) {
-  const { data, primaryKey, /* document, foundation, */ error } = eventObj
+  const { data, primaryKey,  document, foundation, error } = eventObj
   if (error) {
     console.error(`Error updating user: ${error}`)
     return
@@ -472,7 +472,7 @@ const handlerOnEditDocEventListener = function (eventObj) {
 }
 
 const handlerOnDeleteDocEventListener = function (eventObj) {
-  const { error, /* document, foundation, */ data } = eventObj
+  const { error, document, foundation, data } = eventObj
   if (error) {
     console.error(`Error deleting user: ${error}`)
     return
@@ -496,7 +496,6 @@ const handlerOnDeleteDocEventListener = function (eventObj) {
 class Customers extends React.Component {
   constructor (props) {
     super(props)
-    // console.error('------>', props)
     /**
      * Entity name which this component represents to
      */
@@ -538,9 +537,6 @@ class Customers extends React.Component {
     Customer.stopListenTo(this.onAddDocEventListener)
     Customer.stopListenTo(this.onEditDocEventListener)
     Customer.stopListenTo(this.onDeleteDocEventListener)
-    this.onAddDocEventListener = null
-    this.onEditDocEventListener = null
-    this.onDeleteDocEventListener = null
   }
 
   /**
@@ -594,7 +590,6 @@ class Customers extends React.Component {
   handleDeleteCustomer (e, ___id) {
     const { Customer } = this.foundation.data
     e.preventDefault()
-    // console.error(___id)
     swal({
       title: 'Are you sure?',
       text: 'Once deleted, you will not be able to recover this!',
@@ -604,7 +599,6 @@ class Customers extends React.Component {
     }).then(async (willDelete) => {
       if (willDelete) {
         const r = await Customer.delete(___id)
-        // console.error(r)
         if (r.error) {
           swal('Database error', e.error.message, 'error')
           return
