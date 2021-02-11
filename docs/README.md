@@ -731,7 +731,7 @@ export default Customers
 - [RAD](https://en.wikipedia.org/wiki/Rapid_application_development)
 - [Entity Relationship Model](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model)
 - [Component Engineering](https://en.wikipedia.org/wiki/Component_engineering)
-- [Information Systems and Software Engineering](http://iraj.in/journal/journal_file/journal_pdf/3-248-146294887148-54.pdf)
+- [Information Systems and Software Engineering - PDF](http://iraj.in/journal/journal_file/journal_pdf/3-248-146294887148-54.pdf)
 
 
 
