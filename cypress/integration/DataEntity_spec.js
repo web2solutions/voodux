@@ -53,17 +53,17 @@ describe('#--- DataEntity Class Test Suite', () => {
         foundation = new Foundation({
           name: 'My Test app',
           schemas: {
-            Customer: schema
+            // Customer: schema
           }
         })
-
-        await foundation.start()
 
         Customer = new DataEntity({
           foundation, // Foundation instance, object
           entity: 'Customer', // entity name, string
           schema // data schema, a mongoose like schema
         })
+
+        await foundation.start()
         
         done()
       } catch (error) {
@@ -115,6 +115,12 @@ describe('#--- DataEntity Class Test Suite', () => {
       done()
     })
 
+    it('Customer.strategy must be "offlineFirst"', (done) => {
+      let error = null
+      assert.equal(Customer.strategy, 'offlineFirst')
+      done()
+    })
+
     it('Customer.schema is getter only', (done) => {
       let error = null
       try {
@@ -143,6 +149,49 @@ describe('#--- DataEntity Class Test Suite', () => {
       let error = null
       assert.equal(typeof Customer.add, 'function')
       done()
+    })
+    it('Calling Customer.add() without parameter must returns an error', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.add()
+          if (error) {
+            _error = error
+          } else {
+            _data = data
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // assert.equal(typeof Customer.add, 'function')
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
+        assert.equal(_error, 'You must pass a valid JSON document as parameter to to DataEntity.add() method')
+        done()
+      })()
+    })
+    it('Calling Customer.edit() without parameter must returns an error', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.edit()
+          if (error) {
+            _error = error
+          } else {
+            _data = data
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
+        assert.equal(_error, 'You must pass a valid JSON document as parameter to to DataEntity.edit() method')
+        done()
+      })()
     })
     it('Customer.edit() must be a function', (done) => {
       let error = null

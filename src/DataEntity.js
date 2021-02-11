@@ -106,7 +106,12 @@ export default class DataEntity extends EventSystem {
   #_pagination
   #_stateChangeStorageName
 
-  constructor ({ foundation, entity, strategy, schema } = {}) {
+  constructor({
+    foundation = {},
+    entity = null,
+    strategy = 'offlineFirst',
+    schema = {}
+  } = {}) {
     super()
     this.#_entity = entity
     this.#_strategy = strategy // offlineFirst, onlineFirst, offline, online
@@ -185,7 +190,10 @@ const doc = {
 }
 const { data, error } = await Customer.add(doc)
   */
-  async add (doc = {}) {
+  async add(doc = {}) {
+    if (Object.keys(doc).length === 0) {
+      return createMethodSignature('You must pass a valid JSON document as parameter to to DataEntity.add() method', null)
+    }
     let data = null
     let error = null
     let rawObj = {}
@@ -260,7 +268,13 @@ const doc = {
 }
 const { data, error } = await Customer.edit(doc.__id, doc)
    */
-  async edit(primaryKey, doc) {
+  async edit(primaryKey = null, doc = {}) {
+    if (Object.keys(doc).length === 0) {
+      return createMethodSignature('You must pass a valid JSON document as parameter to to DataEntity.edit() method', null)
+    }
+    if (primaryKey === null) {
+      return createMethodSignature('You must pass a valid primary key value as parameter to to DataEntity.edit() method', null)
+    }
     primaryKey = +primaryKey
     let data = null
     let error = null

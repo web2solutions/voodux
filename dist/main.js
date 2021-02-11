@@ -434,7 +434,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function cov_1wly7kbuqz() {
   var path = "/Users/admin/apps/voodux/src/DataEntity.js";
-  var hash = "723c7fb308311460403688251d88f8c0af9acd9a";
+  var hash = "a22f75969d47d1421dac8da0ba29104d5be04680";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
@@ -442,325 +442,335 @@ function cov_1wly7kbuqz() {
     statementMap: {
       "0": {
         start: {
-          line: 110,
+          line: 115,
           column: 4
         },
         end: {
-          line: 110,
+          line: 115,
           column: 11
         }
       },
       "1": {
         start: {
-          line: 111,
+          line: 116,
           column: 4
         },
         end: {
-          line: 111,
+          line: 116,
           column: 26
         }
       },
       "2": {
         start: {
-          line: 112,
+          line: 117,
           column: 4
         },
         end: {
-          line: 112,
+          line: 117,
           column: 30
         }
       },
       "3": {
         start: {
-          line: 113,
+          line: 118,
           column: 4
         },
         end: {
-          line: 113,
+          line: 118,
           column: 26
         }
       },
       "4": {
         start: {
-          line: 114,
+          line: 119,
           column: 4
         },
         end: {
-          line: 114,
+          line: 119,
           column: 34
         }
       },
       "5": {
         start: {
-          line: 115,
+          line: 120,
           column: 4
         },
         end: {
-          line: 118,
+          line: 123,
           column: 5
         }
       },
       "6": {
         start: {
-          line: 119,
+          line: 124,
           column: 4
         },
         end: {
-          line: 119,
+          line: 124,
           column: 78
         }
       },
       "7": {
         start: {
-          line: 121,
+          line: 126,
           column: 4
         },
         end: {
-          line: 121,
+          line: 126,
           column: 84
         }
       },
       "8": {
         start: {
-          line: 123,
+          line: 128,
           column: 4
         },
         end: {
-          line: 123,
+          line: 128,
           column: 49
         }
       },
       "9": {
         start: {
-          line: 134,
+          line: 139,
           column: 4
         },
         end: {
-          line: 134,
+          line: 139,
           column: 24
         }
       },
       "10": {
         start: {
-          line: 145,
+          line: 150,
           column: 4
         },
         end: {
-          line: 145,
+          line: 150,
           column: 24
         }
       },
       "11": {
         start: {
-          line: 156,
+          line: 161,
           column: 4
         },
         end: {
-          line: 156,
+          line: 161,
           column: 26
         }
       },
       "12": {
         start: {
-          line: 167,
+          line: 172,
           column: 24
         },
         end: {
-          line: 167,
+          line: 172,
           column: 41
         }
       },
       "13": {
         start: {
-          line: 168,
+          line: 173,
           column: 4
         },
         end: {
-          line: 168,
+          line: 173,
           column: 77
         }
       },
       "14": {
         start: {
-          line: 168,
+          line: 173,
           column: 43
         },
         end: {
-          line: 168,
+          line: 173,
           column: 77
         }
       },
       "15": {
         start: {
-          line: 169,
+          line: 174,
           column: 4
         },
         end: {
-          line: 169,
+          line: 174,
           column: 35
         }
       },
       "16": {
         start: {
-          line: 189,
-          column: 15
-        },
-        end: {
-          line: 189,
-          column: 19
-        }
-      },
-      "17": {
-        start: {
-          line: 190,
-          column: 16
-        },
-        end: {
-          line: 190,
-          column: 20
-        }
-      },
-      "18": {
-        start: {
-          line: 191,
-          column: 17
-        },
-        end: {
-          line: 191,
-          column: 19
-        }
-      },
-      "19": {
-        start: {
-          line: 192,
+          line: 194,
           column: 4
         },
         end: {
-          line: 206,
+          line: 196,
           column: 5
         }
       },
-      "20": {
-        start: {
-          line: 193,
-          column: 20
-        },
-        end: {
-          line: 193,
-          column: 54
-        }
-      },
-      "21": {
-        start: {
-          line: 194,
-          column: 22
-        },
-        end: {
-          line: 194,
-          column: 42
-        }
-      },
-      "22": {
+      "17": {
         start: {
           line: 195,
           column: 6
         },
         end: {
+          line: 195,
+          column: 122
+        }
+      },
+      "18": {
+        start: {
+          line: 197,
+          column: 15
+        },
+        end: {
+          line: 197,
+          column: 19
+        }
+      },
+      "19": {
+        start: {
           line: 198,
-          column: 7
+          column: 16
+        },
+        end: {
+          line: 198,
+          column: 20
+        }
+      },
+      "20": {
+        start: {
+          line: 199,
+          column: 17
+        },
+        end: {
+          line: 199,
+          column: 19
+        }
+      },
+      "21": {
+        start: {
+          line: 200,
+          column: 4
+        },
+        end: {
+          line: 214,
+          column: 5
+        }
+      },
+      "22": {
+        start: {
+          line: 201,
+          column: 20
+        },
+        end: {
+          line: 201,
+          column: 54
         }
       },
       "23": {
         start: {
-          line: 197,
-          column: 8
+          line: 202,
+          column: 22
         },
         end: {
-          line: 197,
-          column: 51
+          line: 202,
+          column: 42
         }
       },
       "24": {
         start: {
-          line: 199,
+          line: 203,
           column: 6
         },
         end: {
-          line: 199,
-          column: 28
+          line: 206,
+          column: 7
         }
       },
       "25": {
         start: {
-          line: 200,
-          column: 19
+          line: 205,
+          column: 8
         },
         end: {
-          line: 202,
-          column: 29
+          line: 205,
+          column: 51
         }
       },
       "26": {
         start: {
-          line: 203,
+          line: 207,
           column: 6
         },
         end: {
-          line: 203,
-          column: 32
+          line: 207,
+          column: 28
         }
       },
       "27": {
         start: {
-          line: 205,
-          column: 6
+          line: 208,
+          column: 19
         },
         end: {
-          line: 205,
-          column: 15
+          line: 210,
+          column: 29
         }
       },
       "28": {
         start: {
-          line: 208,
-          column: 4
+          line: 211,
+          column: 6
         },
         end: {
-          line: 208,
-          column: 75
+          line: 211,
+          column: 32
         }
       },
       "29": {
         start: {
-          line: 209,
-          column: 4
+          line: 213,
+          column: 6
         },
         end: {
-          line: 209,
-          column: 45
+          line: 213,
+          column: 15
         }
       },
       "30": {
         start: {
-          line: 222,
-          column: 19
+          line: 216,
+          column: 4
         },
         end: {
-          line: 222,
-          column: 24
+          line: 216,
+          column: 75
         }
       },
       "31": {
         start: {
-          line: 223,
+          line: 217,
           column: 4
         },
         end: {
-          line: 230,
-          column: 6
+          line: 217,
+          column: 45
         }
       },
       "32": {
+        start: {
+          line: 230,
+          column: 19
+        },
+        end: {
+          line: 230,
+          column: 24
+        }
+      },
+      "33": {
         start: {
           line: 231,
           column: 4
@@ -770,893 +780,943 @@ function cov_1wly7kbuqz() {
           column: 6
         }
       },
-      "33": {
-        start: {
-          line: 239,
-          column: 18
-        },
-        end: {
-          line: 239,
-          column: 71
-        }
-      },
       "34": {
         start: {
-          line: 240,
+          line: 239,
           column: 4
         },
         end: {
-          line: 240,
-          column: 51
+          line: 246,
+          column: 6
         }
       },
       "35": {
         start: {
-          line: 264,
-          column: 4
+          line: 247,
+          column: 18
         },
         end: {
-          line: 264,
-          column: 28
+          line: 247,
+          column: 71
         }
       },
       "36": {
         start: {
-          line: 265,
-          column: 15
+          line: 248,
+          column: 4
         },
         end: {
-          line: 265,
-          column: 19
+          line: 248,
+          column: 51
         }
       },
       "37": {
         start: {
-          line: 266,
-          column: 16
+          line: 272,
+          column: 4
         },
         end: {
-          line: 266,
-          column: 20
+          line: 274,
+          column: 5
         }
       },
       "38": {
         start: {
-          line: 267,
-          column: 17
+          line: 273,
+          column: 6
         },
         end: {
-          line: 267,
-          column: 19
+          line: 273,
+          column: 123
         }
       },
       "39": {
         start: {
-          line: 268,
+          line: 275,
           column: 4
         },
         end: {
-          line: 295,
+          line: 277,
           column: 5
         }
       },
       "40": {
         start: {
-          line: 269,
-          column: 20
+          line: 276,
+          column: 6
         },
         end: {
-          line: 269,
-          column: 54
+          line: 276,
+          column: 127
         }
       },
       "41": {
         start: {
-          line: 270,
-          column: 22
+          line: 278,
+          column: 4
         },
         end: {
-          line: 270,
-          column: 42
+          line: 278,
+          column: 28
         }
       },
       "42": {
         start: {
-          line: 271,
-          column: 6
+          line: 279,
+          column: 15
         },
         end: {
-          line: 273,
-          column: 7
+          line: 279,
+          column: 19
         }
       },
       "43": {
         start: {
-          line: 272,
-          column: 8
+          line: 280,
+          column: 16
         },
         end: {
-          line: 272,
-          column: 51
+          line: 280,
+          column: 20
         }
       },
       "44": {
         start: {
-          line: 274,
-          column: 6
+          line: 281,
+          column: 17
         },
         end: {
-          line: 274,
-          column: 28
+          line: 281,
+          column: 19
         }
       },
       "45": {
         start: {
-          line: 275,
-          column: 6
+          line: 282,
+          column: 4
         },
         end: {
-          line: 275,
-          column: 30
+          line: 309,
+          column: 5
         }
       },
       "46": {
         start: {
-          line: 276,
-          column: 6
+          line: 283,
+          column: 20
         },
         end: {
-          line: 276,
-          column: 50
+          line: 283,
+          column: 54
         }
       },
       "47": {
         start: {
-          line: 277,
-          column: 23
+          line: 284,
+          column: 22
         },
         end: {
-          line: 279,
-          column: 27
+          line: 284,
+          column: 42
         }
       },
       "48": {
         start: {
-          line: 281,
+          line: 285,
           column: 6
         },
         end: {
-          line: 281,
-          column: 41
+          line: 287,
+          column: 7
         }
       },
       "49": {
         start: {
-          line: 282,
-          column: 6
+          line: 286,
+          column: 8
         },
         end: {
-          line: 282,
-          column: 44
+          line: 286,
+          column: 51
         }
       },
       "50": {
         start: {
-          line: 293,
+          line: 288,
           column: 6
         },
         end: {
-          line: 293,
-          column: 20
+          line: 288,
+          column: 28
         }
       },
       "51": {
         start: {
-          line: 294,
+          line: 289,
           column: 6
         },
         end: {
-          line: 294,
-          column: 15
+          line: 289,
+          column: 30
         }
       },
       "52": {
         start: {
-          line: 296,
-          column: 4
+          line: 290,
+          column: 6
         },
         end: {
-          line: 296,
-          column: 65
+          line: 290,
+          column: 50
         }
       },
       "53": {
         start: {
-          line: 297,
-          column: 4
+          line: 291,
+          column: 23
         },
         end: {
-          line: 297,
-          column: 45
+          line: 293,
+          column: 27
         }
       },
       "54": {
         start: {
-          line: 310,
-          column: 19
+          line: 295,
+          column: 6
         },
         end: {
-          line: 310,
-          column: 25
+          line: 295,
+          column: 41
         }
       },
       "55": {
+        start: {
+          line: 296,
+          column: 6
+        },
+        end: {
+          line: 296,
+          column: 44
+        }
+      },
+      "56": {
+        start: {
+          line: 307,
+          column: 6
+        },
+        end: {
+          line: 307,
+          column: 20
+        }
+      },
+      "57": {
+        start: {
+          line: 308,
+          column: 6
+        },
+        end: {
+          line: 308,
+          column: 15
+        }
+      },
+      "58": {
+        start: {
+          line: 310,
+          column: 4
+        },
+        end: {
+          line: 310,
+          column: 65
+        }
+      },
+      "59": {
         start: {
           line: 311,
           column: 4
         },
         end: {
-          line: 321,
-          column: 5
-        }
-      },
-      "56": {
-        start: {
-          line: 322,
-          column: 4
-        },
-        end: {
-          line: 332,
-          column: 5
-        }
-      },
-      "57": {
-        start: {
-          line: 333,
-          column: 18
-        },
-        end: {
-          line: 333,
-          column: 71
-        }
-      },
-      "58": {
-        start: {
-          line: 334,
-          column: 4
-        },
-        end: {
-          line: 334,
-          column: 51
-        }
-      },
-      "59": {
-        start: {
-          line: 347,
-          column: 4
-        },
-        end: {
-          line: 347,
-          column: 28
+          line: 311,
+          column: 45
         }
       },
       "60": {
         start: {
-          line: 348,
-          column: 15
+          line: 324,
+          column: 19
         },
         end: {
-          line: 348,
-          column: 19
+          line: 324,
+          column: 25
         }
       },
       "61": {
         start: {
-          line: 349,
-          column: 16
+          line: 325,
+          column: 4
         },
         end: {
-          line: 349,
-          column: 20
+          line: 335,
+          column: 5
         }
       },
       "62": {
         start: {
-          line: 350,
-          column: 17
+          line: 336,
+          column: 4
         },
         end: {
-          line: 350,
-          column: 19
+          line: 346,
+          column: 5
         }
       },
       "63": {
         start: {
-          line: 351,
-          column: 4
+          line: 347,
+          column: 18
         },
         end: {
-          line: 359,
-          column: 5
+          line: 347,
+          column: 71
         }
       },
       "64": {
         start: {
-          line: 352,
-          column: 19
+          line: 348,
+          column: 4
         },
         end: {
-          line: 354,
-          column: 28
+          line: 348,
+          column: 51
         }
       },
       "65": {
         start: {
-          line: 356,
-          column: 6
+          line: 361,
+          column: 4
         },
         end: {
-          line: 356,
-          column: 33
+          line: 361,
+          column: 28
         }
       },
       "66": {
         start: {
-          line: 358,
-          column: 6
+          line: 362,
+          column: 15
         },
         end: {
-          line: 358,
-          column: 15
+          line: 362,
+          column: 19
         }
       },
       "67": {
         start: {
-          line: 360,
-          column: 4
+          line: 363,
+          column: 16
         },
         end: {
-          line: 360,
-          column: 59
+          line: 363,
+          column: 20
         }
       },
       "68": {
         start: {
-          line: 361,
-          column: 4
+          line: 364,
+          column: 17
         },
         end: {
-          line: 361,
-          column: 45
+          line: 364,
+          column: 19
         }
       },
       "69": {
         start: {
-          line: 373,
-          column: 19
+          line: 365,
+          column: 4
         },
         end: {
           line: 373,
-          column: 27
+          column: 5
         }
       },
       "70": {
+        start: {
+          line: 366,
+          column: 19
+        },
+        end: {
+          line: 368,
+          column: 28
+        }
+      },
+      "71": {
+        start: {
+          line: 370,
+          column: 6
+        },
+        end: {
+          line: 370,
+          column: 33
+        }
+      },
+      "72": {
+        start: {
+          line: 372,
+          column: 6
+        },
+        end: {
+          line: 372,
+          column: 15
+        }
+      },
+      "73": {
         start: {
           line: 374,
           column: 4
         },
         end: {
-          line: 383,
-          column: 5
-        }
-      },
-      "71": {
-        start: {
-          line: 384,
-          column: 4
-        },
-        end: {
-          line: 393,
-          column: 5
-        }
-      },
-      "72": {
-        start: {
-          line: 394,
-          column: 18
-        },
-        end: {
-          line: 394,
-          column: 53
-        }
-      },
-      "73": {
-        start: {
-          line: 395,
-          column: 4
-        },
-        end: {
-          line: 395,
-          column: 51
+          line: 374,
+          column: 59
         }
       },
       "74": {
         start: {
-          line: 408,
-          column: 15
+          line: 375,
+          column: 4
         },
         end: {
-          line: 408,
-          column: 19
+          line: 375,
+          column: 45
         }
       },
       "75": {
         start: {
-          line: 409,
-          column: 16
+          line: 387,
+          column: 19
         },
         end: {
-          line: 409,
-          column: 20
+          line: 387,
+          column: 27
         }
       },
       "76": {
         start: {
-          line: 410,
+          line: 388,
           column: 4
         },
         end: {
-          line: 425,
+          line: 397,
           column: 5
         }
       },
       "77": {
         start: {
-          line: 411,
-          column: 6
+          line: 398,
+          column: 4
         },
         end: {
-          line: 411,
-          column: 39
+          line: 407,
+          column: 5
         }
       },
       "78": {
         start: {
-          line: 412,
+          line: 408,
           column: 18
         },
         end: {
-          line: 414,
-          column: 26
+          line: 408,
+          column: 53
         }
       },
       "79": {
         start: {
-          line: 416,
-          column: 6
+          line: 409,
+          column: 4
         },
         end: {
-          line: 421,
-          column: 7
+          line: 409,
+          column: 51
         }
       },
       "80": {
         start: {
-          line: 418,
-          column: 8
+          line: 422,
+          column: 15
         },
         end: {
-          line: 420,
-          column: 9
+          line: 422,
+          column: 19
         }
       },
       "81": {
         start: {
-          line: 419,
-          column: 10
+          line: 423,
+          column: 16
         },
         end: {
-          line: 419,
-          column: 45
+          line: 423,
+          column: 20
         }
       },
       "82": {
         start: {
-          line: 423,
-          column: 6
+          line: 424,
+          column: 4
         },
         end: {
-          line: 423,
-          column: 35
+          line: 439,
+          column: 5
         }
       },
       "83": {
         start: {
-          line: 424,
+          line: 425,
           column: 6
         },
         end: {
-          line: 424,
-          column: 15
+          line: 425,
+          column: 39
         }
       },
       "84": {
         start: {
           line: 426,
-          column: 4
+          column: 18
         },
         end: {
-          line: 426,
-          column: 45
+          line: 428,
+          column: 26
         }
       },
       "85": {
         start: {
-          line: 438,
-          column: 15
+          line: 430,
+          column: 6
         },
         end: {
-          line: 438,
-          column: 19
+          line: 435,
+          column: 7
         }
       },
       "86": {
         start: {
-          line: 439,
-          column: 16
+          line: 432,
+          column: 8
         },
         end: {
-          line: 439,
-          column: 20
+          line: 434,
+          column: 9
         }
       },
       "87": {
+        start: {
+          line: 433,
+          column: 10
+        },
+        end: {
+          line: 433,
+          column: 45
+        }
+      },
+      "88": {
+        start: {
+          line: 437,
+          column: 6
+        },
+        end: {
+          line: 437,
+          column: 35
+        }
+      },
+      "89": {
+        start: {
+          line: 438,
+          column: 6
+        },
+        end: {
+          line: 438,
+          column: 15
+        }
+      },
+      "90": {
         start: {
           line: 440,
           column: 4
         },
         end: {
-          line: 449,
-          column: 5
-        }
-      },
-      "88": {
-        start: {
-          line: 441,
-          column: 24
-        },
-        end: {
-          line: 445,
-          column: 28
-        }
-      },
-      "89": {
-        start: {
-          line: 446,
-          column: 6
-        },
-        end: {
-          line: 446,
-          column: 22
-        }
-      },
-      "90": {
-        start: {
-          line: 448,
-          column: 6
-        },
-        end: {
-          line: 448,
-          column: 15
+          line: 440,
+          column: 45
         }
       },
       "91": {
         start: {
-          line: 450,
-          column: 4
+          line: 452,
+          column: 15
         },
         end: {
-          line: 450,
-          column: 45
+          line: 452,
+          column: 19
         }
       },
       "92": {
         start: {
-          line: 470,
-          column: 28
+          line: 453,
+          column: 16
         },
         end: {
-          line: 470,
-          column: 38
+          line: 453,
+          column: 20
         }
       },
       "93": {
         start: {
-          line: 471,
-          column: 15
+          line: 454,
+          column: 4
         },
         end: {
-          line: 471,
-          column: 19
+          line: 463,
+          column: 5
         }
       },
       "94": {
         start: {
-          line: 472,
-          column: 16
+          line: 455,
+          column: 24
         },
         end: {
-          line: 472,
-          column: 20
+          line: 459,
+          column: 28
         }
       },
       "95": {
         start: {
-          line: 473,
-          column: 4
+          line: 460,
+          column: 6
         },
         end: {
-          line: 485,
-          column: 5
+          line: 460,
+          column: 22
         }
       },
       "96": {
         start: {
-          line: 474,
-          column: 24
+          line: 462,
+          column: 6
         },
         end: {
-          line: 481,
-          column: 32
+          line: 462,
+          column: 15
         }
       },
       "97": {
         start: {
-          line: 482,
-          column: 6
+          line: 464,
+          column: 4
         },
         end: {
-          line: 482,
-          column: 22
+          line: 464,
+          column: 45
         }
       },
       "98": {
         start: {
           line: 484,
-          column: 6
+          column: 28
         },
         end: {
           line: 484,
-          column: 15
+          column: 38
         }
       },
       "99": {
         start: {
-          line: 486,
-          column: 4
+          line: 485,
+          column: 15
         },
         end: {
-          line: 486,
-          column: 45
+          line: 485,
+          column: 19
         }
       },
       "100": {
         start: {
-          line: 503,
-          column: 15
+          line: 486,
+          column: 16
         },
         end: {
-          line: 503,
-          column: 19
+          line: 486,
+          column: 20
         }
       },
       "101": {
         start: {
-          line: 504,
-          column: 16
+          line: 487,
+          column: 4
         },
         end: {
-          line: 504,
-          column: 20
+          line: 499,
+          column: 5
         }
       },
       "102": {
         start: {
-          line: 505,
-          column: 4
+          line: 488,
+          column: 24
         },
         end: {
-          line: 513,
-          column: 5
+          line: 495,
+          column: 32
         }
       },
       "103": {
         start: {
-          line: 506,
-          column: 22
+          line: 496,
+          column: 6
         },
         end: {
-          line: 509,
-          column: 27
+          line: 496,
+          column: 22
         }
       },
       "104": {
         start: {
-          line: 510,
+          line: 498,
           column: 6
         },
         end: {
-          line: 510,
-          column: 20
+          line: 498,
+          column: 15
         }
       },
       "105": {
         start: {
-          line: 512,
-          column: 6
+          line: 500,
+          column: 4
         },
         end: {
-          line: 512,
-          column: 15
+          line: 500,
+          column: 45
         }
       },
       "106": {
         start: {
-          line: 514,
-          column: 4
+          line: 517,
+          column: 15
         },
         end: {
-          line: 514,
-          column: 45
+          line: 517,
+          column: 19
         }
       },
       "107": {
         start: {
-          line: 529,
-          column: 4
+          line: 518,
+          column: 16
         },
         end: {
-          line: 552,
-          column: 6
+          line: 518,
+          column: 20
         }
       },
       "108": {
         start: {
-          line: 530,
-          column: 6
+          line: 519,
+          column: 4
         },
         end: {
-          line: 551,
-          column: 7
+          line: 527,
+          column: 5
         }
       },
       "109": {
         start: {
-          line: 532,
-          column: 44
+          line: 520,
+          column: 22
         },
         end: {
-          line: 532,
-          column: 49
+          line: 523,
+          column: 27
         }
       },
       "110": {
         start: {
-          line: 533,
-          column: 8
+          line: 524,
+          column: 6
         },
         end: {
-          line: 549,
-          column: 9
+          line: 524,
+          column: 20
         }
       },
       "111": {
         start: {
-          line: 536,
-          column: 28
+          line: 526,
+          column: 6
         },
         end: {
-          line: 536,
-          column: 48
+          line: 526,
+          column: 15
         }
       },
       "112": {
         start: {
-          line: 537,
-          column: 68
+          line: 528,
+          column: 4
         },
         end: {
-          line: 537,
-          column: 77
+          line: 528,
+          column: 45
         }
       },
       "113": {
         start: {
-          line: 539,
-          column: 27
+          line: 543,
+          column: 4
         },
         end: {
-          line: 545,
-          column: 11
+          line: 566,
+          column: 6
         }
       },
       "114": {
         start: {
-          line: 546,
-          column: 28
+          line: 544,
+          column: 6
         },
         end: {
-          line: 546,
-          column: 74
+          line: 565,
+          column: 7
         }
       },
       "115": {
         start: {
-          line: 547,
-          column: 10
+          line: 546,
+          column: 44
         },
         end: {
-          line: 547,
-          column: 61
+          line: 546,
+          column: 49
         }
       },
       "116": {
         start: {
-          line: 548,
-          column: 10
+          line: 547,
+          column: 8
         },
         end: {
-          line: 548,
-          column: 45
+          line: 563,
+          column: 9
         }
       },
       "117": {
         start: {
-          line: 572,
-          column: 4
+          line: 550,
+          column: 28
         },
         end: {
-          line: 575,
-          column: 5
+          line: 550,
+          column: 48
         }
       },
       "118": {
         start: {
-          line: 576,
-          column: 4
+          line: 551,
+          column: 68
         },
         end: {
-          line: 576,
-          column: 32
+          line: 551,
+          column: 77
         }
       },
       "119": {
         start: {
-          line: 577,
-          column: 24
+          line: 553,
+          column: 27
         },
         end: {
-          line: 577,
-          column: 45
+          line: 559,
+          column: 11
         }
       },
       "120": {
         start: {
-          line: 578,
-          column: 4
+          line: 560,
+          column: 28
         },
         end: {
-          line: 578,
-          column: 75
+          line: 560,
+          column: 74
         }
       },
       "121": {
         start: {
-          line: 579,
+          line: 561,
+          column: 10
+        },
+        end: {
+          line: 561,
+          column: 61
+        }
+      },
+      "122": {
+        start: {
+          line: 562,
+          column: 10
+        },
+        end: {
+          line: 562,
+          column: 45
+        }
+      },
+      "123": {
+        start: {
+          line: 586,
           column: 4
         },
         end: {
-          line: 579,
+          line: 589,
+          column: 5
+        }
+      },
+      "124": {
+        start: {
+          line: 590,
+          column: 4
+        },
+        end: {
+          line: 590,
+          column: 32
+        }
+      },
+      "125": {
+        start: {
+          line: 591,
+          column: 24
+        },
+        end: {
+          line: 591,
+          column: 45
+        }
+      },
+      "126": {
+        start: {
+          line: 592,
+          column: 4
+        },
+        end: {
+          line: 592,
+          column: 75
+        }
+      },
+      "127": {
+        start: {
+          line: 593,
+          column: 4
+        },
+        end: {
+          line: 593,
           column: 65
         }
       }
@@ -1676,327 +1736,327 @@ function cov_1wly7kbuqz() {
         },
         loc: {
           start: {
-            line: 109,
-            column: 62
+            line: 114,
+            column: 10
           },
           end: {
-            line: 124,
+            line: 129,
             column: 3
           }
         },
-        line: 109
+        line: 114
       },
       "1": {
         name: "(anonymous_1)",
         decl: {
           start: {
-            line: 133,
+            line: 138,
             column: 2
           },
           end: {
-            line: 133,
+            line: 138,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 133,
+            line: 138,
             column: 16
           },
           end: {
-            line: 135,
+            line: 140,
             column: 3
           }
         },
-        line: 133
+        line: 138
       },
       "2": {
         name: "(anonymous_2)",
         decl: {
           start: {
-            line: 144,
+            line: 149,
             column: 2
           },
           end: {
-            line: 144,
+            line: 149,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 144,
+            line: 149,
             column: 16
           },
           end: {
-            line: 146,
+            line: 151,
             column: 3
           }
         },
-        line: 144
+        line: 149
       },
       "3": {
         name: "(anonymous_3)",
         decl: {
           start: {
-            line: 155,
+            line: 160,
             column: 2
           },
           end: {
-            line: 155,
+            line: 160,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 155,
+            line: 160,
             column: 18
           },
           end: {
-            line: 157,
+            line: 162,
             column: 3
           }
         },
-        line: 155
+        line: 160
       },
       "4": {
         name: "(anonymous_4)",
         decl: {
           start: {
-            line: 166,
+            line: 171,
             column: 2
           },
           end: {
-            line: 166,
+            line: 171,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 166,
+            line: 171,
             column: 21
           },
           end: {
-            line: 170,
+            line: 175,
             column: 3
           }
         },
-        line: 166
+        line: 171
       },
       "5": {
         name: "(anonymous_5)",
         decl: {
           start: {
-            line: 168,
+            line: 173,
             column: 36
           },
           end: {
-            line: 168,
+            line: 173,
             column: 37
           }
         },
         loc: {
           start: {
-            line: 168,
+            line: 173,
             column: 43
           },
           end: {
-            line: 168,
+            line: 173,
             column: 77
           }
         },
-        line: 168
+        line: 173
       },
       "6": {
         name: "(anonymous_6)",
         decl: {
           start: {
-            line: 188,
+            line: 193,
             column: 2
           },
           end: {
-            line: 188,
+            line: 193,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 188,
-            column: 23
+            line: 193,
+            column: 22
           },
           end: {
-            line: 210,
+            line: 218,
             column: 3
           }
         },
-        line: 188
+        line: 193
       },
       "7": {
         name: "(anonymous_7)",
         decl: {
           start: {
-            line: 263,
+            line: 271,
             column: 2
           },
           end: {
-            line: 263,
+            line: 271,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 263,
-            column: 30
+            line: 271,
+            column: 42
           },
           end: {
-            line: 298,
+            line: 312,
             column: 3
           }
         },
-        line: 263
+        line: 271
       },
       "8": {
         name: "(anonymous_8)",
         decl: {
           start: {
-            line: 346,
+            line: 360,
             column: 2
           },
           end: {
-            line: 346,
+            line: 360,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 346,
+            line: 360,
             column: 27
           },
           end: {
-            line: 362,
+            line: 376,
             column: 3
           }
         },
-        line: 346
+        line: 360
       },
       "9": {
         name: "(anonymous_9)",
         decl: {
           start: {
-            line: 407,
+            line: 421,
             column: 2
           },
           end: {
-            line: 407,
+            line: 421,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 407,
+            line: 421,
             column: 30
           },
           end: {
-            line: 427,
+            line: 441,
             column: 3
           }
         },
-        line: 407
+        line: 421
       },
       "10": {
         name: "(anonymous_10)",
         decl: {
           start: {
-            line: 437,
+            line: 451,
             column: 2
-          },
-          end: {
-            line: 437,
-            column: 3
-          }
-        },
-        loc: {
-          start: {
-            line: 437,
-            column: 28
           },
           end: {
             line: 451,
             column: 3
           }
         },
-        line: 437
+        loc: {
+          start: {
+            line: 451,
+            column: 28
+          },
+          end: {
+            line: 465,
+            column: 3
+          }
+        },
+        line: 451
       },
       "11": {
         name: "(anonymous_11)",
         decl: {
           start: {
-            line: 469,
+            line: 483,
             column: 2
           },
           end: {
-            line: 469,
+            line: 483,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 469,
+            line: 483,
             column: 57
           },
           end: {
-            line: 487,
+            line: 501,
             column: 3
           }
         },
-        line: 469
+        line: 483
       },
       "12": {
         name: "(anonymous_12)",
         decl: {
           start: {
-            line: 502,
+            line: 516,
             column: 2
           },
           end: {
-            line: 502,
+            line: 516,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 502,
+            line: 516,
             column: 27
           },
           end: {
-            line: 515,
+            line: 529,
             column: 3
           }
         },
-        line: 502
+        line: 516
       },
       "13": {
         name: "(anonymous_13)",
         decl: {
           start: {
-            line: 529,
+            line: 543,
             column: 39
           },
           end: {
-            line: 529,
+            line: 543,
             column: 40
           }
         },
         loc: {
           start: {
-            line: 529,
+            line: 543,
             column: 50
           },
           end: {
-            line: 552,
+            line: 566,
             column: 5
           }
         },
-        line: 529
+        line: 543
       }
     },
     branchMap: {
@@ -2004,22 +2064,22 @@ function cov_1wly7kbuqz() {
         loc: {
           start: {
             line: 109,
-            column: 15
+            column: 14
           },
           end: {
-            line: 109,
-            column: 60
+            line: 114,
+            column: 8
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 109,
-            column: 58
+            line: 114,
+            column: 6
           },
           end: {
-            line: 109,
-            column: 60
+            line: 114,
+            column: 8
           }
         }],
         line: 109
@@ -2027,680 +2087,923 @@ function cov_1wly7kbuqz() {
       "1": {
         loc: {
           start: {
-            line: 188,
-            column: 13
+            line: 110,
+            column: 4
           },
           end: {
-            line: 188,
-            column: 21
+            line: 110,
+            column: 19
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 188,
-            column: 19
+            line: 110,
+            column: 17
           },
           end: {
-            line: 188,
-            column: 21
+            line: 110,
+            column: 19
           }
         }],
-        line: 188
+        line: 110
       },
       "2": {
         loc: {
           start: {
-            line: 195,
-            column: 6
+            line: 111,
+            column: 4
           },
           end: {
-            line: 198,
-            column: 7
+            line: 111,
+            column: 17
           }
         },
-        type: "if",
+        type: "default-arg",
         locations: [{
           start: {
-            line: 195,
-            column: 6
+            line: 111,
+            column: 13
           },
           end: {
-            line: 198,
-            column: 7
-          }
-        }, {
-          start: {
-            line: 195,
-            column: 6
-          },
-          end: {
-            line: 198,
-            column: 7
+            line: 111,
+            column: 17
           }
         }],
-        line: 195
+        line: 111
       },
       "3": {
         loc: {
           start: {
-            line: 221,
-            column: 21
+            line: 112,
+            column: 4
           },
           end: {
-            line: 221,
-            column: 84
+            line: 112,
+            column: 29
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 221,
-            column: 82
+            line: 112,
+            column: 15
           },
           end: {
-            line: 221,
-            column: 84
+            line: 112,
+            column: 29
           }
         }],
-        line: 221
+        line: 112
       },
       "4": {
         loc: {
           start: {
-            line: 221,
-            column: 23
+            line: 113,
+            column: 4
           },
           end: {
-            line: 221,
-            column: 34
+            line: 113,
+            column: 15
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 221,
-            column: 30
+            line: 113,
+            column: 13
           },
           end: {
-            line: 221,
-            column: 34
+            line: 113,
+            column: 15
           }
         }],
-        line: 221
+        line: 113
       },
       "5": {
         loc: {
           start: {
-            line: 221,
-            column: 36
+            line: 193,
+            column: 12
           },
           end: {
-            line: 221,
-            column: 48
+            line: 193,
+            column: 20
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 221,
-            column: 44
+            line: 193,
+            column: 18
           },
           end: {
-            line: 221,
-            column: 48
+            line: 193,
+            column: 20
           }
         }],
-        line: 221
+        line: 193
       },
       "6": {
         loc: {
           start: {
-            line: 221,
-            column: 50
+            line: 194,
+            column: 4
           },
           end: {
-            line: 221,
-            column: 64
+            line: 196,
+            column: 5
           }
         },
-        type: "default-arg",
+        type: "if",
         locations: [{
           start: {
-            line: 221,
-            column: 63
+            line: 194,
+            column: 4
           },
           end: {
-            line: 221,
-            column: 64
+            line: 196,
+            column: 5
+          }
+        }, {
+          start: {
+            line: 194,
+            column: 4
+          },
+          end: {
+            line: 196,
+            column: 5
           }
         }],
-        line: 221
+        line: 194
       },
       "7": {
         loc: {
           start: {
-            line: 221,
-            column: 66
+            line: 203,
+            column: 6
           },
           end: {
-            line: 221,
-            column: 77
+            line: 206,
+            column: 7
           }
         },
-        type: "default-arg",
+        type: "if",
         locations: [{
           start: {
-            line: 221,
-            column: 75
+            line: 203,
+            column: 6
           },
           end: {
-            line: 221,
-            column: 77
+            line: 206,
+            column: 7
+          }
+        }, {
+          start: {
+            line: 203,
+            column: 6
+          },
+          end: {
+            line: 206,
+            column: 7
           }
         }],
-        line: 221
+        line: 203
       },
       "8": {
         loc: {
           start: {
-            line: 271,
-            column: 6
+            line: 229,
+            column: 21
           },
           end: {
-            line: 273,
-            column: 7
+            line: 229,
+            column: 84
           }
         },
-        type: "if",
+        type: "default-arg",
         locations: [{
           start: {
-            line: 271,
-            column: 6
+            line: 229,
+            column: 82
           },
           end: {
-            line: 273,
-            column: 7
-          }
-        }, {
-          start: {
-            line: 271,
-            column: 6
-          },
-          end: {
-            line: 273,
-            column: 7
+            line: 229,
+            column: 84
           }
         }],
-        line: 271
+        line: 229
       },
       "9": {
         loc: {
           start: {
-            line: 309,
-            column: 22
+            line: 229,
+            column: 23
           },
           end: {
-            line: 309,
-            column: 85
+            line: 229,
+            column: 34
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 309,
-            column: 83
+            line: 229,
+            column: 30
           },
           end: {
-            line: 309,
-            column: 85
+            line: 229,
+            column: 34
           }
         }],
-        line: 309
+        line: 229
       },
       "10": {
         loc: {
           start: {
-            line: 309,
-            column: 24
+            line: 229,
+            column: 36
           },
           end: {
-            line: 309,
-            column: 35
+            line: 229,
+            column: 48
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 309,
-            column: 31
+            line: 229,
+            column: 44
           },
           end: {
-            line: 309,
-            column: 35
+            line: 229,
+            column: 48
           }
         }],
-        line: 309
+        line: 229
       },
       "11": {
         loc: {
           start: {
-            line: 309,
-            column: 37
+            line: 229,
+            column: 50
           },
           end: {
-            line: 309,
-            column: 49
+            line: 229,
+            column: 64
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 309,
-            column: 45
+            line: 229,
+            column: 63
           },
           end: {
-            line: 309,
-            column: 49
+            line: 229,
+            column: 64
           }
         }],
-        line: 309
+        line: 229
       },
       "12": {
         loc: {
           start: {
-            line: 309,
-            column: 51
+            line: 229,
+            column: 66
           },
           end: {
-            line: 309,
-            column: 65
+            line: 229,
+            column: 77
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 309,
-            column: 64
+            line: 229,
+            column: 75
           },
           end: {
-            line: 309,
-            column: 65
+            line: 229,
+            column: 77
           }
         }],
-        line: 309
+        line: 229
       },
       "13": {
         loc: {
           start: {
-            line: 309,
-            column: 67
+            line: 271,
+            column: 13
           },
           end: {
-            line: 309,
-            column: 78
+            line: 271,
+            column: 30
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 309,
-            column: 76
+            line: 271,
+            column: 26
           },
           end: {
-            line: 309,
-            column: 78
+            line: 271,
+            column: 30
           }
         }],
-        line: 309
+        line: 271
       },
       "14": {
         loc: {
           start: {
-            line: 372,
-            column: 24
+            line: 271,
+            column: 32
           },
           end: {
-            line: 372,
-            column: 74
+            line: 271,
+            column: 40
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 372,
-            column: 72
+            line: 271,
+            column: 38
           },
           end: {
-            line: 372,
-            column: 74
+            line: 271,
+            column: 40
           }
         }],
-        line: 372
+        line: 271
       },
       "15": {
         loc: {
           start: {
-            line: 372,
-            column: 26
+            line: 272,
+            column: 4
           },
           end: {
-            line: 372,
-            column: 37
+            line: 274,
+            column: 5
           }
         },
-        type: "default-arg",
+        type: "if",
         locations: [{
           start: {
-            line: 372,
-            column: 33
+            line: 272,
+            column: 4
           },
           end: {
-            line: 372,
-            column: 37
+            line: 274,
+            column: 5
+          }
+        }, {
+          start: {
+            line: 272,
+            column: 4
+          },
+          end: {
+            line: 274,
+            column: 5
           }
         }],
-        line: 372
+        line: 272
       },
       "16": {
         loc: {
           start: {
-            line: 372,
-            column: 39
+            line: 275,
+            column: 4
           },
           end: {
-            line: 372,
-            column: 51
+            line: 277,
+            column: 5
           }
         },
-        type: "default-arg",
+        type: "if",
         locations: [{
           start: {
-            line: 372,
-            column: 47
+            line: 275,
+            column: 4
           },
           end: {
-            line: 372,
-            column: 51
+            line: 277,
+            column: 5
+          }
+        }, {
+          start: {
+            line: 275,
+            column: 4
+          },
+          end: {
+            line: 277,
+            column: 5
           }
         }],
-        line: 372
+        line: 275
       },
       "17": {
         loc: {
           start: {
-            line: 372,
-            column: 53
+            line: 285,
+            column: 6
           },
           end: {
-            line: 372,
-            column: 67
+            line: 287,
+            column: 7
           }
         },
-        type: "default-arg",
+        type: "if",
         locations: [{
           start: {
-            line: 372,
-            column: 66
+            line: 285,
+            column: 6
           },
           end: {
-            line: 372,
-            column: 67
+            line: 287,
+            column: 7
+          }
+        }, {
+          start: {
+            line: 285,
+            column: 6
+          },
+          end: {
+            line: 287,
+            column: 7
           }
         }],
-        line: 372
+        line: 285
       },
       "18": {
         loc: {
           start: {
-            line: 416,
-            column: 6
+            line: 323,
+            column: 22
           },
           end: {
-            line: 421,
-            column: 7
+            line: 323,
+            column: 85
           }
         },
-        type: "if",
+        type: "default-arg",
         locations: [{
           start: {
-            line: 416,
-            column: 6
+            line: 323,
+            column: 83
           },
           end: {
-            line: 421,
-            column: 7
-          }
-        }, {
-          start: {
-            line: 416,
-            column: 6
-          },
-          end: {
-            line: 421,
-            column: 7
+            line: 323,
+            column: 85
           }
         }],
-        line: 416
+        line: 323
       },
       "19": {
         loc: {
           start: {
-            line: 418,
-            column: 8
+            line: 323,
+            column: 24
           },
           end: {
-            line: 420,
-            column: 9
+            line: 323,
+            column: 35
           }
         },
-        type: "if",
+        type: "default-arg",
         locations: [{
           start: {
-            line: 418,
-            column: 8
+            line: 323,
+            column: 31
           },
           end: {
-            line: 420,
-            column: 9
-          }
-        }, {
-          start: {
-            line: 418,
-            column: 8
-          },
-          end: {
-            line: 420,
-            column: 9
+            line: 323,
+            column: 35
           }
         }],
-        line: 418
+        line: 323
       },
       "20": {
         loc: {
           start: {
-            line: 437,
-            column: 16
+            line: 323,
+            column: 37
           },
           end: {
-            line: 437,
-            column: 26
+            line: 323,
+            column: 49
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 437,
-            column: 24
+            line: 323,
+            column: 45
           },
           end: {
-            line: 437,
-            column: 26
+            line: 323,
+            column: 49
           }
         }],
-        line: 437
+        line: 323
       },
       "21": {
         loc: {
           start: {
-            line: 469,
-            column: 13
+            line: 323,
+            column: 51
           },
           end: {
-            line: 469,
-            column: 23
+            line: 323,
+            column: 65
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 469,
-            column: 21
+            line: 323,
+            column: 64
           },
           end: {
-            line: 469,
-            column: 23
+            line: 323,
+            column: 65
           }
         }],
-        line: 469
+        line: 323
       },
       "22": {
         loc: {
           start: {
-            line: 469,
-            column: 25
+            line: 323,
+            column: 67
           },
           end: {
-            line: 469,
-            column: 55
+            line: 323,
+            column: 78
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 469,
-            column: 38
+            line: 323,
+            column: 76
           },
           end: {
-            line: 469,
-            column: 55
+            line: 323,
+            column: 78
           }
         }],
-        line: 469
+        line: 323
       },
       "23": {
         loc: {
           start: {
-            line: 502,
-            column: 15
+            line: 386,
+            column: 24
           },
           end: {
-            line: 502,
-            column: 25
+            line: 386,
+            column: 74
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 502,
-            column: 23
+            line: 386,
+            column: 72
           },
           end: {
-            line: 502,
-            column: 25
+            line: 386,
+            column: 74
           }
         }],
-        line: 502
+        line: 386
       },
       "24": {
         loc: {
           start: {
-            line: 530,
-            column: 6
+            line: 386,
+            column: 26
           },
           end: {
-            line: 551,
-            column: 7
+            line: 386,
+            column: 37
           }
         },
-        type: "if",
+        type: "default-arg",
         locations: [{
           start: {
-            line: 530,
-            column: 6
+            line: 386,
+            column: 33
           },
           end: {
-            line: 551,
-            column: 7
-          }
-        }, {
-          start: {
-            line: 530,
-            column: 6
-          },
-          end: {
-            line: 551,
-            column: 7
+            line: 386,
+            column: 37
           }
         }],
-        line: 530
+        line: 386
       },
       "25": {
         loc: {
           start: {
-            line: 533,
+            line: 386,
+            column: 39
+          },
+          end: {
+            line: 386,
+            column: 51
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 386,
+            column: 47
+          },
+          end: {
+            line: 386,
+            column: 51
+          }
+        }],
+        line: 386
+      },
+      "26": {
+        loc: {
+          start: {
+            line: 386,
+            column: 53
+          },
+          end: {
+            line: 386,
+            column: 67
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 386,
+            column: 66
+          },
+          end: {
+            line: 386,
+            column: 67
+          }
+        }],
+        line: 386
+      },
+      "27": {
+        loc: {
+          start: {
+            line: 430,
+            column: 6
+          },
+          end: {
+            line: 435,
+            column: 7
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 430,
+            column: 6
+          },
+          end: {
+            line: 435,
+            column: 7
+          }
+        }, {
+          start: {
+            line: 430,
+            column: 6
+          },
+          end: {
+            line: 435,
+            column: 7
+          }
+        }],
+        line: 430
+      },
+      "28": {
+        loc: {
+          start: {
+            line: 432,
             column: 8
           },
           end: {
-            line: 549,
+            line: 434,
             column: 9
           }
         },
         type: "if",
         locations: [{
           start: {
-            line: 533,
+            line: 432,
             column: 8
           },
           end: {
-            line: 549,
+            line: 434,
             column: 9
           }
         }, {
           start: {
-            line: 533,
+            line: 432,
             column: 8
           },
           end: {
-            line: 549,
+            line: 434,
             column: 9
           }
         }],
-        line: 533
+        line: 432
       },
-      "26": {
+      "29": {
         loc: {
           start: {
-            line: 571,
+            line: 451,
+            column: 16
+          },
+          end: {
+            line: 451,
+            column: 26
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 451,
+            column: 24
+          },
+          end: {
+            line: 451,
+            column: 26
+          }
+        }],
+        line: 451
+      },
+      "30": {
+        loc: {
+          start: {
+            line: 483,
+            column: 13
+          },
+          end: {
+            line: 483,
+            column: 23
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 483,
+            column: 21
+          },
+          end: {
+            line: 483,
+            column: 23
+          }
+        }],
+        line: 483
+      },
+      "31": {
+        loc: {
+          start: {
+            line: 483,
+            column: 25
+          },
+          end: {
+            line: 483,
+            column: 55
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 483,
             column: 38
           },
           end: {
-            line: 571,
+            line: 483,
+            column: 55
+          }
+        }],
+        line: 483
+      },
+      "32": {
+        loc: {
+          start: {
+            line: 516,
+            column: 15
+          },
+          end: {
+            line: 516,
+            column: 25
+          }
+        },
+        type: "default-arg",
+        locations: [{
+          start: {
+            line: 516,
+            column: 23
+          },
+          end: {
+            line: 516,
+            column: 25
+          }
+        }],
+        line: 516
+      },
+      "33": {
+        loc: {
+          start: {
+            line: 544,
+            column: 6
+          },
+          end: {
+            line: 565,
+            column: 7
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 544,
+            column: 6
+          },
+          end: {
+            line: 565,
+            column: 7
+          }
+        }, {
+          start: {
+            line: 544,
+            column: 6
+          },
+          end: {
+            line: 565,
+            column: 7
+          }
+        }],
+        line: 544
+      },
+      "34": {
+        loc: {
+          start: {
+            line: 547,
+            column: 8
+          },
+          end: {
+            line: 563,
+            column: 9
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 547,
+            column: 8
+          },
+          end: {
+            line: 563,
+            column: 9
+          }
+        }, {
+          start: {
+            line: 547,
+            column: 8
+          },
+          end: {
+            line: 563,
+            column: 9
+          }
+        }],
+        line: 547
+      },
+      "35": {
+        loc: {
+          start: {
+            line: 585,
+            column: 38
+          },
+          end: {
+            line: 585,
             column: 99
           }
         },
         type: "default-arg",
         locations: [{
           start: {
-            line: 571,
+            line: 585,
             column: 46
           },
           end: {
-            line: 571,
+            line: 585,
             column: 99
           }
         }],
-        line: 571
+        line: 585
       }
     },
     s: {
@@ -2825,7 +3128,13 @@ function cov_1wly7kbuqz() {
       "118": 0,
       "119": 0,
       "120": 0,
-      "121": 0
+      "121": 0,
+      "122": 0,
+      "123": 0,
+      "124": 0,
+      "125": 0,
+      "126": 0,
+      "127": 0
     },
     f: {
       "0": 0,
@@ -2846,34 +3155,43 @@ function cov_1wly7kbuqz() {
     b: {
       "0": [0],
       "1": [0],
-      "2": [0, 0],
+      "2": [0],
       "3": [0],
       "4": [0],
       "5": [0],
-      "6": [0],
-      "7": [0],
-      "8": [0, 0],
+      "6": [0, 0],
+      "7": [0, 0],
+      "8": [0],
       "9": [0],
       "10": [0],
       "11": [0],
       "12": [0],
       "13": [0],
       "14": [0],
-      "15": [0],
-      "16": [0],
-      "17": [0],
-      "18": [0, 0],
-      "19": [0, 0],
+      "15": [0, 0],
+      "16": [0, 0],
+      "17": [0, 0],
+      "18": [0],
+      "19": [0],
       "20": [0],
       "21": [0],
       "22": [0],
       "23": [0],
-      "24": [0, 0],
-      "25": [0, 0],
-      "26": [0]
+      "24": [0],
+      "25": [0],
+      "26": [0],
+      "27": [0, 0],
+      "28": [0, 0],
+      "29": [0],
+      "30": [0],
+      "31": [0],
+      "32": [0],
+      "33": [0, 0],
+      "34": [0, 0],
+      "35": [0]
     },
     _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash: "723c7fb308311460403688251d88f8c0af9acd9a"
+    hash: "a22f75969d47d1421dac8da0ba29104d5be04680"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -2937,10 +3255,14 @@ var DataEntity = function (_EventSystem) {
     var _this;
 
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (cov_1wly7kbuqz().b[0][0]++, {}),
-        foundation = _ref.foundation,
-        _entity2 = _ref.entity,
-        strategy = _ref.strategy,
-        schema = _ref.schema;
+        _ref$foundation = _ref.foundation,
+        foundation = _ref$foundation === void 0 ? (cov_1wly7kbuqz().b[1][0]++, {}) : _ref$foundation,
+        _ref$entity = _ref.entity,
+        _entity2 = _ref$entity === void 0 ? (cov_1wly7kbuqz().b[2][0]++, null) : _ref$entity,
+        _ref$strategy = _ref.strategy,
+        strategy = _ref$strategy === void 0 ? (cov_1wly7kbuqz().b[3][0]++, 'offlineFirst') : _ref$strategy,
+        _ref$schema = _ref.schema,
+        schema = _ref$schema === void 0 ? (cov_1wly7kbuqz().b[4][0]++, {}) : _ref$schema;
 
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, DataEntity);
 
@@ -3080,53 +3402,68 @@ var DataEntity = function (_EventSystem) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                doc = _args.length > 0 && _args[0] !== undefined ? _args[0] : (cov_1wly7kbuqz().b[1][0]++, {});
+                doc = _args.length > 0 && _args[0] !== undefined ? _args[0] : (cov_1wly7kbuqz().b[5][0]++, {});
                 cov_1wly7kbuqz().f[6]++;
-                data = (cov_1wly7kbuqz().s[16]++, null);
-                error = (cov_1wly7kbuqz().s[17]++, null);
-                rawObj = (cov_1wly7kbuqz().s[18]++, {});
-                cov_1wly7kbuqz().s[19]++;
-                _context.prev = 6;
-                model = (cov_1wly7kbuqz().s[20]++, new this.Model(doc, _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _schema)));
-                invalid = (cov_1wly7kbuqz().s[21]++, model.validateSync());
-                cov_1wly7kbuqz().s[22]++;
+                cov_1wly7kbuqz().s[16]++;
 
-                if (!invalid) {
-                  _context.next = 16;
+                if (!(Object.keys(doc).length === 0)) {
+                  _context.next = 9;
                   break;
                 }
 
-                cov_1wly7kbuqz().b[2][0]++;
-                cov_1wly7kbuqz().s[23]++;
+                cov_1wly7kbuqz().b[6][0]++;
+                cov_1wly7kbuqz().s[17]++;
+                return _context.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)('You must pass a valid JSON document as parameter to to DataEntity.add() method', null));
+
+              case 9:
+                cov_1wly7kbuqz().b[6][1]++;
+
+              case 10:
+                data = (cov_1wly7kbuqz().s[18]++, null);
+                error = (cov_1wly7kbuqz().s[19]++, null);
+                rawObj = (cov_1wly7kbuqz().s[20]++, {});
+                cov_1wly7kbuqz().s[21]++;
+                _context.prev = 14;
+                model = (cov_1wly7kbuqz().s[22]++, new this.Model(doc, _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _schema)));
+                invalid = (cov_1wly7kbuqz().s[23]++, model.validateSync());
+                cov_1wly7kbuqz().s[24]++;
+
+                if (!invalid) {
+                  _context.next = 24;
+                  break;
+                }
+
+                cov_1wly7kbuqz().b[7][0]++;
+                cov_1wly7kbuqz().s[25]++;
                 return _context.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)(invalid, data));
 
-              case 16:
-                cov_1wly7kbuqz().b[2][1]++;
+              case 24:
+                cov_1wly7kbuqz().b[7][1]++;
 
-              case 17:
-                cov_1wly7kbuqz().s[24]++;
+              case 25:
+                cov_1wly7kbuqz().s[26]++;
                 rawObj = (0,_utils__WEBPACK_IMPORTED_MODULE_13__.toJSON)(model);
-                cov_1wly7kbuqz().s[25]++;
-                _context.next = 22;
+                cov_1wly7kbuqz().s[27]++;
+                _context.next = 30;
                 return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).localDatabaseTransport.table(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity)).add(_objectSpread({}, rawObj));
 
-              case 22:
+              case 30:
                 __id = _context.sent;
-                cov_1wly7kbuqz().s[26]++;
+                cov_1wly7kbuqz().s[28]++;
                 data = _objectSpread({
                   __id: __id
                 }, rawObj);
-                _context.next = 31;
+                _context.next = 39;
                 break;
 
-              case 27:
-                _context.prev = 27;
-                _context.t0 = _context["catch"](6);
-                cov_1wly7kbuqz().s[27]++;
+              case 35:
+                _context.prev = 35;
+                _context.t0 = _context["catch"](14);
+                cov_1wly7kbuqz().s[29]++;
                 error = _context.t0;
 
-              case 31:
-                cov_1wly7kbuqz().s[28]++;
+              case 39:
+                cov_1wly7kbuqz().s[30]++;
 
                 _classPrivateMethodGet(this, _triggerAddEvents, _triggerAddEvents2).call(this, {
                   data: data,
@@ -3135,15 +3472,15 @@ var DataEntity = function (_EventSystem) {
                   rawObj: rawObj
                 });
 
-                cov_1wly7kbuqz().s[29]++;
+                cov_1wly7kbuqz().s[31]++;
                 return _context.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)(error, data));
 
-              case 35:
+              case 43:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[6, 27]]);
+        }, _callee, this, [[14, 35]]);
       }));
 
       function add() {
@@ -3155,71 +3492,111 @@ var DataEntity = function (_EventSystem) {
   }, {
     key: "edit",
     value: function () {
-      var _edit = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(primaryKey, doc) {
-        var data, error, rawObj, model, invalid, response;
+      var _edit = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var primaryKey,
+            doc,
+            data,
+            error,
+            rawObj,
+            model,
+            invalid,
+            response,
+            _args2 = arguments;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                primaryKey = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : (cov_1wly7kbuqz().b[13][0]++, null);
+                doc = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : (cov_1wly7kbuqz().b[14][0]++, {});
                 cov_1wly7kbuqz().f[7]++;
-                cov_1wly7kbuqz().s[35]++;
-                primaryKey = +primaryKey;
-                data = (cov_1wly7kbuqz().s[36]++, null);
-                error = (cov_1wly7kbuqz().s[37]++, null);
-                rawObj = (cov_1wly7kbuqz().s[38]++, {});
-                cov_1wly7kbuqz().s[39]++;
-                _context2.prev = 7;
-                model = (cov_1wly7kbuqz().s[40]++, new this.Model(doc, _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _schema)));
-                invalid = (cov_1wly7kbuqz().s[41]++, model.validateSync());
-                cov_1wly7kbuqz().s[42]++;
+                cov_1wly7kbuqz().s[37]++;
 
-                if (!invalid) {
-                  _context2.next = 17;
+                if (!(Object.keys(doc).length === 0)) {
+                  _context2.next = 10;
                   break;
                 }
 
-                cov_1wly7kbuqz().b[8][0]++;
-                cov_1wly7kbuqz().s[43]++;
-                return _context2.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)(invalid, data));
+                cov_1wly7kbuqz().b[15][0]++;
+                cov_1wly7kbuqz().s[38]++;
+                return _context2.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)('You must pass a valid JSON document as parameter to to DataEntity.edit() method', null));
 
-              case 17:
-                cov_1wly7kbuqz().b[8][1]++;
+              case 10:
+                cov_1wly7kbuqz().b[15][1]++;
+
+              case 11:
+                cov_1wly7kbuqz().s[39]++;
+
+                if (!(primaryKey === null)) {
+                  _context2.next = 18;
+                  break;
+                }
+
+                cov_1wly7kbuqz().b[16][0]++;
+                cov_1wly7kbuqz().s[40]++;
+                return _context2.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)('You must pass a valid primary key value as parameter to to DataEntity.edit() method', null));
 
               case 18:
-                cov_1wly7kbuqz().s[44]++;
-                rawObj = (0,_utils__WEBPACK_IMPORTED_MODULE_13__.toJSON)(model);
+                cov_1wly7kbuqz().b[16][1]++;
+
+              case 19:
+                cov_1wly7kbuqz().s[41]++;
+                primaryKey = +primaryKey;
+                data = (cov_1wly7kbuqz().s[42]++, null);
+                error = (cov_1wly7kbuqz().s[43]++, null);
+                rawObj = (cov_1wly7kbuqz().s[44]++, {});
                 cov_1wly7kbuqz().s[45]++;
+                _context2.prev = 25;
+                model = (cov_1wly7kbuqz().s[46]++, new this.Model(doc, _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _schema)));
+                invalid = (cov_1wly7kbuqz().s[47]++, model.validateSync());
+                cov_1wly7kbuqz().s[48]++;
+
+                if (!invalid) {
+                  _context2.next = 35;
+                  break;
+                }
+
+                cov_1wly7kbuqz().b[17][0]++;
+                cov_1wly7kbuqz().s[49]++;
+                return _context2.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)(invalid, data));
+
+              case 35:
+                cov_1wly7kbuqz().b[17][1]++;
+
+              case 36:
+                cov_1wly7kbuqz().s[50]++;
+                rawObj = (0,_utils__WEBPACK_IMPORTED_MODULE_13__.toJSON)(model);
+                cov_1wly7kbuqz().s[51]++;
                 rawObj.__id = primaryKey;
-                cov_1wly7kbuqz().s[46]++;
+                cov_1wly7kbuqz().s[52]++;
                 console.debug('query', {
                   primaryKey: primaryKey,
                   rawObj: rawObj
                 });
-                cov_1wly7kbuqz().s[47]++;
-                _context2.next = 27;
+                cov_1wly7kbuqz().s[53]++;
+                _context2.next = 45;
                 return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).localDatabaseTransport.table(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity)).put(_objectSpread({}, rawObj));
 
-              case 27:
+              case 45:
                 response = _context2.sent;
-                cov_1wly7kbuqz().s[48]++;
+                cov_1wly7kbuqz().s[54]++;
                 console.debug('response', response);
-                cov_1wly7kbuqz().s[49]++;
+                cov_1wly7kbuqz().s[55]++;
                 data = _objectSpread({
                   __id: primaryKey
                 }, rawObj);
-                _context2.next = 40;
+                _context2.next = 58;
                 break;
 
-              case 34:
-                _context2.prev = 34;
-                _context2.t0 = _context2["catch"](7);
-                cov_1wly7kbuqz().s[50]++;
+              case 52:
+                _context2.prev = 52;
+                _context2.t0 = _context2["catch"](25);
+                cov_1wly7kbuqz().s[56]++;
                 console.log(_context2.t0);
-                cov_1wly7kbuqz().s[51]++;
+                cov_1wly7kbuqz().s[57]++;
                 error = _context2.t0;
 
-              case 40:
-                cov_1wly7kbuqz().s[52]++;
+              case 58:
+                cov_1wly7kbuqz().s[58]++;
 
                 _classPrivateMethodGet(this, _triggerEditEvents, _triggerEditEvents2).call(this, {
                   data: data,
@@ -3228,18 +3605,18 @@ var DataEntity = function (_EventSystem) {
                   rawObj: rawObj
                 });
 
-                cov_1wly7kbuqz().s[53]++;
+                cov_1wly7kbuqz().s[59]++;
                 return _context2.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)(error, data));
 
-              case 44:
+              case 62:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[7, 34]]);
+        }, _callee2, this, [[25, 52]]);
       }));
 
-      function edit(_x, _x2) {
+      function edit() {
         return _edit.apply(this, arguments);
       }
 
@@ -3256,20 +3633,20 @@ var DataEntity = function (_EventSystem) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 cov_1wly7kbuqz().f[8]++;
-                cov_1wly7kbuqz().s[59]++;
+                cov_1wly7kbuqz().s[65]++;
                 primaryKey = +primaryKey;
-                data = (cov_1wly7kbuqz().s[60]++, null);
-                error = (cov_1wly7kbuqz().s[61]++, null);
-                rawObj = (cov_1wly7kbuqz().s[62]++, {});
-                cov_1wly7kbuqz().s[63]++;
+                data = (cov_1wly7kbuqz().s[66]++, null);
+                error = (cov_1wly7kbuqz().s[67]++, null);
+                rawObj = (cov_1wly7kbuqz().s[68]++, {});
+                cov_1wly7kbuqz().s[69]++;
                 _context3.prev = 7;
-                cov_1wly7kbuqz().s[64]++;
+                cov_1wly7kbuqz().s[70]++;
                 _context3.next = 11;
                 return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).localDatabaseTransport.table(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity))["delete"](primaryKey);
 
               case 11:
                 __id = _context3.sent;
-                cov_1wly7kbuqz().s[65]++;
+                cov_1wly7kbuqz().s[71]++;
                 data = {
                   __id: primaryKey
                 };
@@ -3279,11 +3656,11 @@ var DataEntity = function (_EventSystem) {
               case 16:
                 _context3.prev = 16;
                 _context3.t0 = _context3["catch"](7);
-                cov_1wly7kbuqz().s[66]++;
+                cov_1wly7kbuqz().s[72]++;
                 error = _context3.t0;
 
               case 20:
-                cov_1wly7kbuqz().s[67]++;
+                cov_1wly7kbuqz().s[73]++;
 
                 _classPrivateMethodGet(this, _triggerDeleteEvents, _triggerDeleteEvents2).call(this, {
                   data: data,
@@ -3291,7 +3668,7 @@ var DataEntity = function (_EventSystem) {
                   primaryKey: primaryKey
                 });
 
-                cov_1wly7kbuqz().s[68]++;
+                cov_1wly7kbuqz().s[74]++;
                 return _context3.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)(error, data));
 
               case 24:
@@ -3302,7 +3679,7 @@ var DataEntity = function (_EventSystem) {
         }, _callee3, this, [[7, 16]]);
       }));
 
-      function _delete(_x3) {
+      function _delete(_x) {
         return _delete2.apply(this, arguments);
       }
 
@@ -3318,35 +3695,35 @@ var DataEntity = function (_EventSystem) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 cov_1wly7kbuqz().f[9]++;
-                data = (cov_1wly7kbuqz().s[74]++, null);
-                error = (cov_1wly7kbuqz().s[75]++, null);
-                cov_1wly7kbuqz().s[76]++;
+                data = (cov_1wly7kbuqz().s[80]++, null);
+                error = (cov_1wly7kbuqz().s[81]++, null);
+                cov_1wly7kbuqz().s[82]++;
                 _context4.prev = 4;
-                cov_1wly7kbuqz().s[77]++;
+                cov_1wly7kbuqz().s[83]++;
                 primaryKey = parseInt(primaryKey);
-                cov_1wly7kbuqz().s[78]++;
+                cov_1wly7kbuqz().s[84]++;
                 _context4.next = 10;
                 return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).localDatabaseTransport.table(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity)).get(primaryKey);
 
               case 10:
                 doc = _context4.sent;
-                cov_1wly7kbuqz().s[79]++;
+                cov_1wly7kbuqz().s[85]++;
 
                 if (doc) {
-                  cov_1wly7kbuqz().b[18][0]++;
-                  cov_1wly7kbuqz().s[80]++;
+                  cov_1wly7kbuqz().b[27][0]++;
+                  cov_1wly7kbuqz().s[86]++;
 
                   if (doc.__id === primaryKey) {
-                    cov_1wly7kbuqz().b[19][0]++;
-                    cov_1wly7kbuqz().s[81]++;
+                    cov_1wly7kbuqz().b[28][0]++;
+                    cov_1wly7kbuqz().s[87]++;
                     data = _objectSpread({
                       __id: primaryKey
                     }, doc);
                   } else {
-                    cov_1wly7kbuqz().b[19][1]++;
+                    cov_1wly7kbuqz().b[28][1]++;
                   }
                 } else {
-                  cov_1wly7kbuqz().b[18][1]++;
+                  cov_1wly7kbuqz().b[27][1]++;
                 }
 
                 _context4.next = 21;
@@ -3355,13 +3732,13 @@ var DataEntity = function (_EventSystem) {
               case 15:
                 _context4.prev = 15;
                 _context4.t0 = _context4["catch"](4);
-                cov_1wly7kbuqz().s[82]++;
+                cov_1wly7kbuqz().s[88]++;
                 console.error('error', error);
-                cov_1wly7kbuqz().s[83]++;
+                cov_1wly7kbuqz().s[89]++;
                 error = _context4.t0;
 
               case 21:
-                cov_1wly7kbuqz().s[84]++;
+                cov_1wly7kbuqz().s[90]++;
                 return _context4.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)(error, data));
 
               case 23:
@@ -3372,7 +3749,7 @@ var DataEntity = function (_EventSystem) {
         }, _callee4, this, [[4, 15]]);
       }));
 
-      function findById(_x4) {
+      function findById(_x2) {
         return _findById.apply(this, arguments);
       }
 
@@ -3391,19 +3768,19 @@ var DataEntity = function (_EventSystem) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                query = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : (cov_1wly7kbuqz().b[20][0]++, {});
+                query = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : (cov_1wly7kbuqz().b[29][0]++, {});
                 cov_1wly7kbuqz().f[10]++;
-                data = (cov_1wly7kbuqz().s[85]++, null);
-                error = (cov_1wly7kbuqz().s[86]++, null);
-                cov_1wly7kbuqz().s[87]++;
+                data = (cov_1wly7kbuqz().s[91]++, null);
+                error = (cov_1wly7kbuqz().s[92]++, null);
+                cov_1wly7kbuqz().s[93]++;
                 _context5.prev = 5;
-                cov_1wly7kbuqz().s[88]++;
+                cov_1wly7kbuqz().s[94]++;
                 _context5.next = 9;
                 return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).localDatabaseTransport.collection(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity)).find(query).toArray();
 
               case 9:
                 documents = _context5.sent;
-                cov_1wly7kbuqz().s[89]++;
+                cov_1wly7kbuqz().s[95]++;
                 data = documents;
                 _context5.next = 18;
                 break;
@@ -3411,11 +3788,11 @@ var DataEntity = function (_EventSystem) {
               case 14:
                 _context5.prev = 14;
                 _context5.t0 = _context5["catch"](5);
-                cov_1wly7kbuqz().s[90]++;
+                cov_1wly7kbuqz().s[96]++;
                 error = _context5.t0;
 
               case 18:
-                cov_1wly7kbuqz().s[91]++;
+                cov_1wly7kbuqz().s[97]++;
                 return _context5.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)(error, data));
 
               case 20:
@@ -3450,21 +3827,21 @@ var DataEntity = function (_EventSystem) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                query = _args6.length > 0 && _args6[0] !== undefined ? _args6[0] : (cov_1wly7kbuqz().b[21][0]++, {});
-                pagination = _args6.length > 1 && _args6[1] !== undefined ? _args6[1] : (cov_1wly7kbuqz().b[22][0]++, _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _pagination));
+                query = _args6.length > 0 && _args6[0] !== undefined ? _args6[0] : (cov_1wly7kbuqz().b[30][0]++, {});
+                pagination = _args6.length > 1 && _args6[1] !== undefined ? _args6[1] : (cov_1wly7kbuqz().b[31][0]++, _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _pagination));
                 cov_1wly7kbuqz().f[11]++;
-                _ref2 = (cov_1wly7kbuqz().s[92]++, pagination), offset = _ref2.offset, limit = _ref2.limit;
-                data = (cov_1wly7kbuqz().s[93]++, null);
-                error = (cov_1wly7kbuqz().s[94]++, null);
-                cov_1wly7kbuqz().s[95]++;
+                _ref2 = (cov_1wly7kbuqz().s[98]++, pagination), offset = _ref2.offset, limit = _ref2.limit;
+                data = (cov_1wly7kbuqz().s[99]++, null);
+                error = (cov_1wly7kbuqz().s[100]++, null);
+                cov_1wly7kbuqz().s[101]++;
                 _context6.prev = 7;
-                cov_1wly7kbuqz().s[96]++;
+                cov_1wly7kbuqz().s[102]++;
                 _context6.next = 11;
                 return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).localDatabaseTransport.collection(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity)).find(query).reverse().offset(offset).limit(limit).toArray();
 
               case 11:
                 documents = _context6.sent;
-                cov_1wly7kbuqz().s[97]++;
+                cov_1wly7kbuqz().s[103]++;
                 data = documents;
                 _context6.next = 20;
                 break;
@@ -3472,11 +3849,11 @@ var DataEntity = function (_EventSystem) {
               case 16:
                 _context6.prev = 16;
                 _context6.t0 = _context6["catch"](7);
-                cov_1wly7kbuqz().s[98]++;
+                cov_1wly7kbuqz().s[104]++;
                 error = _context6.t0;
 
               case 20:
-                cov_1wly7kbuqz().s[99]++;
+                cov_1wly7kbuqz().s[105]++;
                 return _context6.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)(error, data));
 
               case 22:
@@ -3506,19 +3883,19 @@ var DataEntity = function (_EventSystem) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                query = _args7.length > 0 && _args7[0] !== undefined ? _args7[0] : (cov_1wly7kbuqz().b[23][0]++, {});
+                query = _args7.length > 0 && _args7[0] !== undefined ? _args7[0] : (cov_1wly7kbuqz().b[32][0]++, {});
                 cov_1wly7kbuqz().f[12]++;
-                data = (cov_1wly7kbuqz().s[100]++, null);
-                error = (cov_1wly7kbuqz().s[101]++, null);
-                cov_1wly7kbuqz().s[102]++;
+                data = (cov_1wly7kbuqz().s[106]++, null);
+                error = (cov_1wly7kbuqz().s[107]++, null);
+                cov_1wly7kbuqz().s[108]++;
                 _context7.prev = 5;
-                cov_1wly7kbuqz().s[103]++;
+                cov_1wly7kbuqz().s[109]++;
                 _context7.next = 9;
                 return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).localDatabaseTransport.collection(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity)).count(query);
 
               case 9:
                 counter = _context7.sent;
-                cov_1wly7kbuqz().s[104]++;
+                cov_1wly7kbuqz().s[110]++;
                 data = counter;
                 _context7.next = 18;
                 break;
@@ -3526,11 +3903,11 @@ var DataEntity = function (_EventSystem) {
               case 14:
                 _context7.prev = 14;
                 _context7.t0 = _context7["catch"](5);
-                cov_1wly7kbuqz().s[105]++;
+                cov_1wly7kbuqz().s[111]++;
                 error = _context7.t0;
 
               case 18:
-                cov_1wly7kbuqz().s[106]++;
+                cov_1wly7kbuqz().s[112]++;
                 return _context7.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_13__.createMethodSignature)(error, data));
 
               case 20:
@@ -3553,18 +3930,18 @@ var DataEntity = function (_EventSystem) {
 }(_EventSystem__WEBPACK_IMPORTED_MODULE_11__.default);
 
 var _triggerAddEvents2 = function _triggerAddEvents2() {
-  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (cov_1wly7kbuqz().b[3][0]++, {}),
+  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (cov_1wly7kbuqz().b[8][0]++, {}),
       _ref3$data = _ref3.data,
-      data = _ref3$data === void 0 ? (cov_1wly7kbuqz().b[4][0]++, null) : _ref3$data,
+      data = _ref3$data === void 0 ? (cov_1wly7kbuqz().b[9][0]++, null) : _ref3$data,
       _ref3$error = _ref3.error,
-      error = _ref3$error === void 0 ? (cov_1wly7kbuqz().b[5][0]++, null) : _ref3$error,
+      error = _ref3$error === void 0 ? (cov_1wly7kbuqz().b[10][0]++, null) : _ref3$error,
       _ref3$primaryKey = _ref3.primaryKey,
-      primaryKey = _ref3$primaryKey === void 0 ? (cov_1wly7kbuqz().b[6][0]++, 0) : _ref3$primaryKey,
+      primaryKey = _ref3$primaryKey === void 0 ? (cov_1wly7kbuqz().b[11][0]++, 0) : _ref3$primaryKey,
       _ref3$rawObj = _ref3.rawObj,
-      rawObj = _ref3$rawObj === void 0 ? (cov_1wly7kbuqz().b[7][0]++, {}) : _ref3$rawObj;
+      rawObj = _ref3$rawObj === void 0 ? (cov_1wly7kbuqz().b[12][0]++, {}) : _ref3$rawObj;
 
-  var action = (cov_1wly7kbuqz().s[30]++, 'add');
-  cov_1wly7kbuqz().s[31]++;
+  var action = (cov_1wly7kbuqz().s[32]++, 'add');
+  cov_1wly7kbuqz().s[33]++;
 
   _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).triggerEvent("collection:".concat(action, ":").concat(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity).toLowerCase()), {
     foundation: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation),
@@ -3575,7 +3952,7 @@ var _triggerAddEvents2 = function _triggerAddEvents2() {
     error: error
   });
 
-  cov_1wly7kbuqz().s[32]++;
+  cov_1wly7kbuqz().s[34]++;
   this.triggerEvent(action, {
     foundation: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation),
     entity: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity),
@@ -3584,31 +3961,31 @@ var _triggerAddEvents2 = function _triggerAddEvents2() {
     data: data,
     error: error
   });
-  var state = (cov_1wly7kbuqz().s[33]++, {
+  var state = (cov_1wly7kbuqz().s[35]++, {
     action: action,
     data: data,
     error: error,
     document: rawObj,
     primaryKey: primaryKey
   });
-  cov_1wly7kbuqz().s[34]++;
+  cov_1wly7kbuqz().s[36]++;
 
   _classPrivateMethodGet(this, _sendStateChangeToAllOtherSessions, _sendStateChangeToAllOtherSessions2).call(this, state);
 };
 
 var _triggerEditEvents2 = function _triggerEditEvents2() {
-  var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (cov_1wly7kbuqz().b[9][0]++, {}),
+  var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (cov_1wly7kbuqz().b[18][0]++, {}),
       _ref4$data = _ref4.data,
-      data = _ref4$data === void 0 ? (cov_1wly7kbuqz().b[10][0]++, null) : _ref4$data,
+      data = _ref4$data === void 0 ? (cov_1wly7kbuqz().b[19][0]++, null) : _ref4$data,
       _ref4$error = _ref4.error,
-      error = _ref4$error === void 0 ? (cov_1wly7kbuqz().b[11][0]++, null) : _ref4$error,
+      error = _ref4$error === void 0 ? (cov_1wly7kbuqz().b[20][0]++, null) : _ref4$error,
       _ref4$primaryKey = _ref4.primaryKey,
-      primaryKey = _ref4$primaryKey === void 0 ? (cov_1wly7kbuqz().b[12][0]++, 0) : _ref4$primaryKey,
+      primaryKey = _ref4$primaryKey === void 0 ? (cov_1wly7kbuqz().b[21][0]++, 0) : _ref4$primaryKey,
       _ref4$rawObj = _ref4.rawObj,
-      rawObj = _ref4$rawObj === void 0 ? (cov_1wly7kbuqz().b[13][0]++, {}) : _ref4$rawObj;
+      rawObj = _ref4$rawObj === void 0 ? (cov_1wly7kbuqz().b[22][0]++, {}) : _ref4$rawObj;
 
-  var action = (cov_1wly7kbuqz().s[54]++, 'edit');
-  cov_1wly7kbuqz().s[55]++;
+  var action = (cov_1wly7kbuqz().s[60]++, 'edit');
+  cov_1wly7kbuqz().s[61]++;
 
   _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).triggerEvent("collection:".concat(action, ":").concat(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity).toLowerCase()), {
     foundation: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation),
@@ -3619,7 +3996,7 @@ var _triggerEditEvents2 = function _triggerEditEvents2() {
     error: error
   });
 
-  cov_1wly7kbuqz().s[56]++;
+  cov_1wly7kbuqz().s[62]++;
   this.triggerEvent(action, {
     foundation: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation),
     entity: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity),
@@ -3628,29 +4005,29 @@ var _triggerEditEvents2 = function _triggerEditEvents2() {
     data: data,
     error: error
   });
-  var state = (cov_1wly7kbuqz().s[57]++, {
+  var state = (cov_1wly7kbuqz().s[63]++, {
     action: action,
     data: data,
     error: error,
     document: rawObj,
     primaryKey: primaryKey
   });
-  cov_1wly7kbuqz().s[58]++;
+  cov_1wly7kbuqz().s[64]++;
 
   _classPrivateMethodGet(this, _sendStateChangeToAllOtherSessions, _sendStateChangeToAllOtherSessions2).call(this, state);
 };
 
 var _triggerDeleteEvents2 = function _triggerDeleteEvents2() {
-  var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (cov_1wly7kbuqz().b[14][0]++, {}),
+  var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (cov_1wly7kbuqz().b[23][0]++, {}),
       _ref5$data = _ref5.data,
-      data = _ref5$data === void 0 ? (cov_1wly7kbuqz().b[15][0]++, null) : _ref5$data,
+      data = _ref5$data === void 0 ? (cov_1wly7kbuqz().b[24][0]++, null) : _ref5$data,
       _ref5$error = _ref5.error,
-      error = _ref5$error === void 0 ? (cov_1wly7kbuqz().b[16][0]++, null) : _ref5$error,
+      error = _ref5$error === void 0 ? (cov_1wly7kbuqz().b[25][0]++, null) : _ref5$error,
       _ref5$primaryKey = _ref5.primaryKey,
-      primaryKey = _ref5$primaryKey === void 0 ? (cov_1wly7kbuqz().b[17][0]++, 0) : _ref5$primaryKey;
+      primaryKey = _ref5$primaryKey === void 0 ? (cov_1wly7kbuqz().b[26][0]++, 0) : _ref5$primaryKey;
 
-  var action = (cov_1wly7kbuqz().s[69]++, 'delete');
-  cov_1wly7kbuqz().s[70]++;
+  var action = (cov_1wly7kbuqz().s[75]++, 'delete');
+  cov_1wly7kbuqz().s[76]++;
 
   _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).triggerEvent("collection:".concat(action, ":").concat(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity).toLowerCase()), {
     foundation: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation),
@@ -3660,7 +4037,7 @@ var _triggerDeleteEvents2 = function _triggerDeleteEvents2() {
     error: error
   });
 
-  cov_1wly7kbuqz().s[71]++;
+  cov_1wly7kbuqz().s[77]++;
   this.triggerEvent(action, {
     foundation: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation),
     entity: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity),
@@ -3668,13 +4045,13 @@ var _triggerDeleteEvents2 = function _triggerDeleteEvents2() {
     data: data,
     error: error
   });
-  var state = (cov_1wly7kbuqz().s[72]++, {
+  var state = (cov_1wly7kbuqz().s[78]++, {
     action: action,
     data: data,
     error: error,
     primaryKey: primaryKey
   });
-  cov_1wly7kbuqz().s[73]++;
+  cov_1wly7kbuqz().s[79]++;
 
   _classPrivateMethodGet(this, _sendStateChangeToAllOtherSessions, _sendStateChangeToAllOtherSessions2).call(this, state);
 };
@@ -3682,26 +4059,26 @@ var _triggerDeleteEvents2 = function _triggerDeleteEvents2() {
 var _listenToAllOtherSessionsStateChanges2 = function _listenToAllOtherSessionsStateChanges2() {
   var _this2 = this;
 
-  cov_1wly7kbuqz().s[107]++;
+  cov_1wly7kbuqz().s[113]++;
   window.addEventListener('storage', function (event) {
     cov_1wly7kbuqz().f[13]++;
-    cov_1wly7kbuqz().s[108]++;
+    cov_1wly7kbuqz().s[114]++;
 
     if (event.key === _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(_this2, _stateChangeStorageName)) {
-      cov_1wly7kbuqz().b[24][0]++;
+      cov_1wly7kbuqz().b[33][0]++;
 
-      var _ref6 = (cov_1wly7kbuqz().s[109]++, event),
+      var _ref6 = (cov_1wly7kbuqz().s[115]++, event),
           key = _ref6.key,
           newValue = _ref6.newValue,
           oldValue = _ref6.oldValue;
 
-      cov_1wly7kbuqz().s[110]++;
+      cov_1wly7kbuqz().s[116]++;
 
       if (newValue) {
-        cov_1wly7kbuqz().b[25][0]++;
-        var jsonState = (cov_1wly7kbuqz().s[111]++, JSON.parse(newValue));
+        cov_1wly7kbuqz().b[34][0]++;
+        var jsonState = (cov_1wly7kbuqz().s[117]++, JSON.parse(newValue));
 
-        var _ref7 = (cov_1wly7kbuqz().s[112]++, jsonState),
+        var _ref7 = (cov_1wly7kbuqz().s[118]++, jsonState),
             error = _ref7.error,
             data = _ref7.data,
             entity = _ref7.entity,
@@ -3709,48 +4086,48 @@ var _listenToAllOtherSessionsStateChanges2 = function _listenToAllOtherSessionsS
             source = _ref7.source,
             document = _ref7.document;
 
-        var eventObj = (cov_1wly7kbuqz().s[113]++, {
+        var eventObj = (cov_1wly7kbuqz().s[119]++, {
           foundation: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(_this2, _foundation),
           entity: entity,
           document: document,
           data: data,
           error: error
         });
-        var eventName = (cov_1wly7kbuqz().s[114]++, "collection:".concat(action, ":").concat(entity.toLowerCase()));
-        cov_1wly7kbuqz().s[115]++;
+        var eventName = (cov_1wly7kbuqz().s[120]++, "collection:".concat(action, ":").concat(entity.toLowerCase()));
+        cov_1wly7kbuqz().s[121]++;
 
         _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(_this2, _foundation).triggerEvent(eventName, eventObj);
 
-        cov_1wly7kbuqz().s[116]++;
+        cov_1wly7kbuqz().s[122]++;
 
         _this2.triggerEvent(action, eventObj);
       } else {
-        cov_1wly7kbuqz().b[25][1]++;
+        cov_1wly7kbuqz().b[34][1]++;
       }
     } else {
-      cov_1wly7kbuqz().b[24][1]++;
+      cov_1wly7kbuqz().b[33][1]++;
     }
   });
 };
 
 var _sendStateChangeToAllOtherSessions2 = function _sendStateChangeToAllOtherSessions2() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (cov_1wly7kbuqz().b[26][0]++, {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (cov_1wly7kbuqz().b[35][0]++, {
     action: '',
     data: null,
     error: null,
     document: {}
   });
-  cov_1wly7kbuqz().s[117]++;
+  cov_1wly7kbuqz().s[123]++;
   state.source = {
     sessionId: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).tabId,
     applicationId: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _foundation).guid
   };
-  cov_1wly7kbuqz().s[118]++;
+  cov_1wly7kbuqz().s[124]++;
   state.entity = _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _entity);
-  var stateChange = (cov_1wly7kbuqz().s[119]++, JSON.stringify(state));
-  cov_1wly7kbuqz().s[120]++;
+  var stateChange = (cov_1wly7kbuqz().s[125]++, JSON.stringify(state));
+  cov_1wly7kbuqz().s[126]++;
   window.localStorage.setItem(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _stateChangeStorageName), stateChange);
-  cov_1wly7kbuqz().s[121]++;
+  cov_1wly7kbuqz().s[127]++;
   window.localStorage.removeItem(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _stateChangeStorageName));
 };
 
