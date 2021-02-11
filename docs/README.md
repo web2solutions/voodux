@@ -186,6 +186,59 @@ In order to import the main library to your project just simply import it:
   <script type="text/javascript" src="voodux/dist/main.min.js"></script>
 ```
 
+#### Project structure for a hypothetical React or Vue application
+
+This is how a hypotethical project structure looks like. This example is assuming the fact that your application have 4 pages:
+
+1. Dashboard 
+2. Customers
+3. Orders
+4. Products
+
+
+```bash
+├── dist                          -> Final app code goes here
+├── docs
+│ ├── code                        -> JSDoc documentation will be saved here
+│ └── reports                     -> Karma reports will be saved here
+├── html_app                      -> Original static files
+├── test                          -> Test suites goes here
+├── src
+│   ├── components
+│   │   ├── customers
+│   │   │   ├── CustomersAdd.js   -> Add form
+│   │   │   ├── CustomersEdit.js  -> Edit form
+│   │   │   ├── index.js          -> Main listing page
+│   │   │   └── events            -> Event Handlers decoupled from component files
+│   │   ├── dashboard
+│   │   │   ├── Chart.js          -> Finance Chart
+│   │   │   ├── index.js          -> Main listing page
+│   │   │   └── events            -> Event Handlers decoupled from component files
+│   │   ├── orders
+│   │   │   ├── OrdersAdd.js      -> Add form
+│   │   │   ├── index.js          -> Main listing page
+│   │   │   └── events            -> Event Handlers decoupled from component files
+│   │   ├── products
+│   │   │   ├── ProductsAdd.js    -> Add form
+│   │   │   ├── ProductsEdit.js   -> Edit form
+│   │   │   ├── index.js          -> Main listing page
+│   │   │   └── events            -> Event Handlers decoupled from component files
+│   ├── events                    -> Decoupled Application Event handlers
+│   ├── schemas                   -> Data Entity Schemas (or Data Models) are saved here
+│   ├── App.css
+│   ├── App.js                    -> React Application code
+│   └── main.js                   -> Application entry point
+├── test
+├── .babelrc                      -> Babel configuration
+├── .eslintignore                 -> eslint ignore rules
+├── .eslintrc.json                -> eslint configuration
+├── .prettierrc                   -> prettier configuration
+├── jsDoc.json                    -> JSDoc configuration
+├── package.json
+└── webpack.config.js              -> webpack configuration
+```
+
+
 ### Writing your application code
 
 The underlying architecture of every VooduX application borns in it `Data Design`.
