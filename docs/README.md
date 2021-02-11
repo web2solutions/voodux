@@ -716,11 +716,18 @@ export default Customers
 
 ## Links and references
 
+### Useful links
+
+Project related resources:
+
 - [API documentation](https://web2solutions.github.io/voodux/code/index.html)
 - [Project repository](https://github.com/web2solutions/voodux)
 - [Unit tests Report](https://web2solutions.github.io/voodux/reports/unit-testing/index.html)
 - [Report an issue](https://github.com/web2solutions/voodux/issues)
 
+### Reference
+
+Knowledge base:
 
 - [PWA - Progressive web applications](https://web.dev/progressive-web-apps/)
 - [SPA - Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application)
