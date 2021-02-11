@@ -14,6 +14,10 @@
   },
   "license": "MIT",
   "main": "main.js",
+  "nyc": {
+    "include": ["src/**/*.js"],
+    "exclude": ["dist/**/*.*"]
+  },
   "scripts": {
     "webpack": "webpack",
     "_test": "npm run lint && mocha --recursive --exit --require @babel/register",
