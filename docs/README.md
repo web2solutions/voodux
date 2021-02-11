@@ -125,6 +125,7 @@ VooduX provides a underlying architecture offering resources like:
 
 ## How to use
 
+This the Step by Step guide to use VooduX
 
 ### Importing VooduX into your application
 
@@ -137,6 +138,28 @@ The first step to use VooduX in your project it to import it library.
 
 
 #### ES6 import
+
+We use brand new ES6 features, like privcy on Classes. If you are willing to import our classes into you ES6 project, you must setup the following babel plugins:
+
+```
+    "@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties", "@babel/plugin-proposal-private-methods"
+```
+
+Then your .babelrc file will looks like the following:
+
+```
+  {
+    "presets": ["@babel/preset-env", "@babel/preset-react"],
+    "plugins": ["@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties", "@babel/plugin-proposal-private-methods", "istanbul"],
+    "compact": false,
+    "comments": false,
+    "ignore": [],
+  }
+```
+
+Otherwise you are going to face compilation issues.
+
+In order to import the main library to your project just simply import it:
 
 ```javascript
   import { Foundation } from 'voodux'
