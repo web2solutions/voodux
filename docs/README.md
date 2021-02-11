@@ -147,7 +147,9 @@ The first step to use VooduX in your project it to import it library.
 We use brand new ES6 features, like privacy on Classes. If you are willing to import our classes into you ES6 project, you must setup the following babel plugins:
 
 ["@babel/plugin-transform-runtime"](https://babeljs.io/docs/en/babel-plugin-transform-runtime)
+
 ["@babel/plugin-proposal-class-properties"](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
+
 ["@babel/plugin-proposal-private-methods"](https://babeljs.io/docs/en/babel-plugin-proposal-private-methods)
 
 
