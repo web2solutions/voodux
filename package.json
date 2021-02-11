@@ -16,7 +16,7 @@
   "main": "main.js",
   "nyc": {
     "include": ["src/**/*.js"],
-    "exclude": ["dist/**/*.*"]
+    "exclude": ["dist/**/*.*", "dist/main.js"]
   },
   "scripts": {
     "webpack": "webpack",
