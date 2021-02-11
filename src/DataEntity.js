@@ -124,7 +124,7 @@ export default class DataEntity extends EventSystem {
   }
 
   /**
-   * @memberof DataEntity.entity
+   * @memberof DataEntity
    * @member {getter} DataEntity.entity
    * @example console.log(DataEntity.entity)
    * @description Gets the entity name which which DataEntity instance is handling out
@@ -135,7 +135,7 @@ export default class DataEntity extends EventSystem {
   }
 
   /**
-   * @memberof DataEntity.schema
+   * @memberof DataEntity
    * @member {getter} DataEntity.schema
    * @example console.log(DataEntity.schema)
    * @description Gets the data schema related to this Entity Data API
