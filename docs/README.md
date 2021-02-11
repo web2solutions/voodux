@@ -186,9 +186,9 @@ In order to import the main library to your project just simply import it:
   <script type="text/javascript" src="voodux/dist/main.min.js"></script>
 ```
 
-#### Project structure for a hypothetical React or Vue application
+#### React and Vue Project Structure 
 
-This is how a hypotethical project structure looks like. This example is assuming the fact that your application have 4 pages:
+This is how a hypotethical React or Vue project structure looks like. This example is assuming the fact that your application have 4 pages:
 
 1. Dashboard 
 2. Customers
@@ -226,7 +226,7 @@ This is how a hypotethical project structure looks like. This example is assumin
 │   ├── events                    -> Decoupled Application Event handlers
 │   ├── schemas                   -> Data Entity Schemas (or Data Models) are saved here
 │   ├── App.css
-│   ├── App.js                    -> React Application code
+│   ├── App.js                    -> React/Vue Application code
 │   └── main.js                   -> Application entry point
 ├── test
 ├── .babelrc                      -> Babel configuration
