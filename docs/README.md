@@ -710,39 +710,6 @@ export default Customers
 
 ### Vanilla JS demos
 
-## Motivation
-
-[What motivates this](https://github.com/web2solutions/voodux/blob/main/MOTIVATION.md)
-
-## Links and references
-
-### Useful links
-
-Project related resources:
-
-- [API documentation](https://web2solutions.github.io/voodux/code/index.html)
-- [Project repository](https://github.com/web2solutions/voodux)
-- [Unit tests Report](https://web2solutions.github.io/voodux/reports/unit-testing/index.html)
-- [Report an issue](https://github.com/web2solutions/voodux/issues)
-
-### Reference
-
-Knowledge base:
-
-- [PWA - Progressive web applications](https://web.dev/progressive-web-apps/)
-- [SPA - Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application)
-- [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
-- [Mongoose](https://mongoosejs.com/)
-- [Server Side Events](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events)
-- [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html)
-- [RAD - Rapid application development](https://en.wikipedia.org/wiki/Rapid_application_development)
-- [Case tools](http://www.umsl.edu/~sauterv/analysis/F08papers/View.html)
-- [Metaprogramming](https://en.wikipedia.org/wiki/Metaprogramming)
-- [Entity Relationship Model](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model)
-- [Component Engineering](https://en.wikipedia.org/wiki/Component_engineering)
-- [Information Systems and Software Engineering - PDF](http://iraj.in/journal/journal_file/journal_pdf/3-248-146294887148-54.pdf)
-
-
 
 ## Code automation tools
 
@@ -782,6 +749,41 @@ Runs prettier-eslint --write against the code at src/ folder
 - `npm run webpack`
 
 Transpile the es6 code (src/) to es5 version at dist/ folder
+
+
+## Motivation
+
+[What motivates this](https://github.com/web2solutions/voodux/blob/main/MOTIVATION.md)
+
+## Links and references
+
+### Useful links
+
+Project related resources:
+
+- [API documentation](https://web2solutions.github.io/voodux/code/index.html)
+- [Project repository](https://github.com/web2solutions/voodux)
+- [Unit tests Report](https://web2solutions.github.io/voodux/reports/unit-testing/index.html)
+- [Report an issue](https://github.com/web2solutions/voodux/issues)
+
+### Reference
+
+Knowledge base:
+
+- [PWA - Progressive web applications](https://web.dev/progressive-web-apps/)
+- [SPA - Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application)
+- [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
+- [Mongoose](https://mongoosejs.com/)
+- [Server Side Events](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events)
+- [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html)
+- [RAD - Rapid application development](https://en.wikipedia.org/wiki/Rapid_application_development)
+- [Case tools](http://www.umsl.edu/~sauterv/analysis/F08papers/View.html)
+- [Metaprogramming](https://en.wikipedia.org/wiki/Metaprogramming)
+- [Entity Relationship Model](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model)
+- [Component Engineering](https://en.wikipedia.org/wiki/Component_engineering)
+- [Information Systems and Software Engineering - PDF](http://iraj.in/journal/journal_file/journal_pdf/3-248-146294887148-54.pdf)
+
+
 
 
 
