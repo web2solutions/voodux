@@ -358,19 +358,13 @@ function last (list, value) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Foundation": () => (/* reexport safe */ _src_Foundation__WEBPACK_IMPORTED_MODULE_0__.default),
-/* harmony export */   "LocalDatabaseTransport": () => (/* reexport safe */ _src_LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_2__.default),
-/* harmony export */   "DataEntity": () => (/* reexport safe */ _src_DataEntity__WEBPACK_IMPORTED_MODULE_1__.default),
-/* harmony export */   "utils": () => (/* reexport module object */ _src_utils__WEBPACK_IMPORTED_MODULE_3__)
-/* harmony export */ });
 /* harmony import */ var _src_Foundation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/Foundation */ "./src/Foundation.js");
 /* harmony import */ var _src_DataEntity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/DataEntity */ "./src/DataEntity.js");
 /* harmony import */ var _src_LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/LocalDatabaseTransport */ "./src/LocalDatabaseTransport.js");
 /* harmony import */ var _src_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/utils */ "./src/utils.js");
 function cov_7ximpzrxj() {
   var path = "/Users/admin/apps/voodux/index.js";
-  var hash = "785b9571c60fd857cd73dd04e8cff2248fcc147a";
+  var hash = "b51853ca4a7552f5ea2b33c28e58ab8ae88931c4";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
@@ -382,53 +376,111 @@ function cov_7ximpzrxj() {
           column: 0
         },
         end: {
-          line: 7,
-          column: 30
+          line: 12,
+          column: 1
         }
       },
       "1": {
         start: {
           line: 8,
-          column: 0
+          column: 2
         },
         end: {
           line: 8,
-          column: 20
+          column: 32
         }
       },
       "2": {
         start: {
           line: 9,
-          column: 0
+          column: 2
         },
         end: {
           line: 9,
-          column: 54
+          column: 22
         }
       },
       "3": {
         start: {
           line: 10,
-          column: 0
+          column: 2
         },
         end: {
           line: 10,
-          column: 30
+          column: 56
+        }
+      },
+      "4": {
+        start: {
+          line: 11,
+          column: 2
+        },
+        end: {
+          line: 11,
+          column: 32
+        }
+      },
+      "5": {
+        start: {
+          line: 14,
+          column: 0
+        },
+        end: {
+          line: 19,
+          column: 1
         }
       }
     },
     fnMap: {},
-    branchMap: {},
+    branchMap: {
+      "0": {
+        loc: {
+          start: {
+            line: 7,
+            column: 0
+          },
+          end: {
+            line: 12,
+            column: 1
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 7,
+            column: 0
+          },
+          end: {
+            line: 12,
+            column: 1
+          }
+        }, {
+          start: {
+            line: 7,
+            column: 0
+          },
+          end: {
+            line: 12,
+            column: 1
+          }
+        }],
+        line: 7
+      }
+    },
     s: {
       "0": 0,
       "1": 0,
       "2": 0,
-      "3": 0
+      "3": 0,
+      "4": 0,
+      "5": 0
     },
     f: {},
-    b: {},
+    b: {
+      "0": [0, 0]
+    },
     _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash: "785b9571c60fd857cd73dd04e8cff2248fcc147a"
+    hash: "b51853ca4a7552f5ea2b33c28e58ab8ae88931c4"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -451,14 +503,28 @@ cov_7ximpzrxj();
 
 
 cov_7ximpzrxj().s[0]++;
-window.Foundation = _src_Foundation__WEBPACK_IMPORTED_MODULE_0__.default;
-cov_7ximpzrxj().s[1]++;
-window.utils = _src_utils__WEBPACK_IMPORTED_MODULE_3__;
-cov_7ximpzrxj().s[2]++;
-window.LocalDatabaseTransport = _src_LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_2__.default;
-cov_7ximpzrxj().s[3]++;
-window.DataEntity = _src_DataEntity__WEBPACK_IMPORTED_MODULE_1__.default;
 
+if (typeof window !== 'undefined') {
+  cov_7ximpzrxj().b[0][0]++;
+  cov_7ximpzrxj().s[1]++;
+  window.Foundation = _src_Foundation__WEBPACK_IMPORTED_MODULE_0__.default;
+  cov_7ximpzrxj().s[2]++;
+  window.utils = _src_utils__WEBPACK_IMPORTED_MODULE_3__;
+  cov_7ximpzrxj().s[3]++;
+  window.LocalDatabaseTransport = _src_LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_2__.default;
+  cov_7ximpzrxj().s[4]++;
+  window.DataEntity = _src_DataEntity__WEBPACK_IMPORTED_MODULE_1__.default;
+} else {
+  cov_7ximpzrxj().b[0][1]++;
+}
+
+cov_7ximpzrxj().s[5]++;
+exports["default"] = {
+  Foundation: _src_Foundation__WEBPACK_IMPORTED_MODULE_0__.default,
+  LocalDatabaseTransport: _src_LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_2__.default,
+  DataEntity: _src_DataEntity__WEBPACK_IMPORTED_MODULE_1__.default,
+  utils: _src_utils__WEBPACK_IMPORTED_MODULE_3__
+};
 
 /***/ }),
 
