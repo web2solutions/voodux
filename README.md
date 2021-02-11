@@ -7,7 +7,7 @@
 > The missing building block for enterprise and modern web applications
 
 ```bash
-    $ npm install voodux --save
+  $ npm install voodux --save
 ```
 
 ## Documentation

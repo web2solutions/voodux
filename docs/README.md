@@ -444,6 +444,9 @@ import { Link, Redirect } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import swal from 'sweetalert'
 
+/** 
+ * event listener triggered every time there is a 'add' type data change in Customer Data Entity
+*/
 const handlerOnAddDocEventListener = function (eventObj) {
   const { error, document, foundation, data } = eventObj
   if (error) {
@@ -454,6 +457,9 @@ const handlerOnAddDocEventListener = function (eventObj) {
   this.setState({ customers: [data, ...this.state.customers] })
 }
 
+/** 
+ * event listener triggered every time there is a 'edit' type data change in Customer Data Entity
+*/
 const handlerOnEditDocEventListener = function (eventObj) {
   const { data, primaryKey,  document, foundation, error } = eventObj
   if (error) {
@@ -471,6 +477,9 @@ const handlerOnEditDocEventListener = function (eventObj) {
   this.setState({ customers: [...newData] })
 }
 
+/** 
+ * event listener triggered every time there is a 'delete' type data change in Customer Data Entity
+*/
 const handlerOnDeleteDocEventListener = function (eventObj) {
   const { error, document, foundation, data } = eventObj
   if (error) {
@@ -708,12 +717,22 @@ export default Customers
 ## Links and references
 
 - [API documentation](https://web2solutions.github.io/voodux/code/index.html)
+- [Project repository](https://github.com/web2solutions/voodux)
 - [Unit tests Report](https://web2solutions.github.io/voodux/reports/unit-testing/index.html)
+- [Report an issue](https://github.com/web2solutions/voodux/issues)
+
 
 - [PWA - Progressive web applications](https://web.dev/progressive-web-apps/)
 - [SPA - Single Page Applications](https://en.wikipedia.org/wiki/Single-page_application)
 - [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
 - [Mongoose](https://mongoosejs.com/)
+- [Server Side Events](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events)
+- [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html)
+- [RAD](https://en.wikipedia.org/wiki/Rapid_application_development)
+- [Entity Relationship Model](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model)
+- [Component Engineering](https://en.wikipedia.org/wiki/Component_engineering)
+- [Information Systems and Software Engineering](http://iraj.in/journal/journal_file/journal_pdf/3-248-146294887148-54.pdf)
+
 
 
 ## Code automation tools
