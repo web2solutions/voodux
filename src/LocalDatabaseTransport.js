@@ -3,7 +3,8 @@ import dexie from 'dexie'
 import 'dexie-mongoify'
 import { createMethodSignature, mongooseToDexieTableString } from './utils'
 
-dexie.debug = false
+dexie.debug = true
+
 
 /**
  * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
@@ -115,7 +116,7 @@ export default class LocalDatabaseTransport extends dexie {
    * @async 
    * @Method LocalDatabaseTransport.connect
    * @description Setup connection to local database
-   * @return Foundation GUID saved on localStorage
+   * @return Foundation uuid saved on localStorage
    * @example 
         await localDataTransport.connect()
    * @return  {object} signature - Default methods signature format { error, data }

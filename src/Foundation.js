@@ -1,5 +1,5 @@
 /* global localStorage, navigator, window */
-import { createMethodSignature, GUID, Schema } from './utils'
+import { createMethodSignature, uuid, Schema } from './utils'
 import DataEntity from './DataEntity'
 import LocalDatabaseTransport from './LocalDatabaseTransport'
 import EventSystem from './EventSystem'
@@ -187,12 +187,12 @@ export default class Foundation extends EventSystem {
     this.#_useWorker = useWorker
     this.#_schemas = schemas
     this.#_started = false
-    this.#_guid = GUID()
+    this.#_guid = uuid()
     this.#_models = {}
     this.#_useWorker = useWorker || false
     this.#_workers = {}
     this.localDatabaseTransport = new LocalDatabaseTransport()
-    this.#_tabId = GUID() // assume new Id on every refresh
+    this.#_tabId = uuid() // assume new Id on every refresh
   }
 
   /**
@@ -340,9 +340,9 @@ export default class Foundation extends EventSystem {
 
   /**
    * @Method Foundation.setGuidStorage
-   * @description save Foundation GUID to localStorage
+   * @description save Foundation uuid to localStorage
    * @param  {string} guid
-   * @return Foundation GUID saved on localStorage
+   * @return Foundation uuid saved on localStorage
    */
   setGuidStorage (guid) {
     window.localStorage.setItem('guid', guid)
@@ -351,8 +351,8 @@ export default class Foundation extends EventSystem {
 
   /**
    * @Method Foundation.setupAppGuid
-   * @description check if Foundation has a GUID saved o
-   * @return Foundation GUID saved on localStorage
+   * @description check if Foundation has a uuid saved o
+   * @return Foundation uuid saved on localStorage
    */
   setupAppGuid () {
     const guidCache = window.localStorage.getItem('guid') || false

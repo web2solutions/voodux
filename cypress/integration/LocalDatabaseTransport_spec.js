@@ -1,14 +1,21 @@
-/* global describe it Blob before */
+/* global describe it Blob before after */
 
 // import agnostic foundation foundation class
-import '../../dist/main.js'
-console.log(window.Foundation)
-console.log(window.LocalDatabaseTransport)
+import {
+  Foundation,
+  LocalDatabaseTransport,
+  DataEntity,
+  utils
+} from '../../dist/main.js'
+
 import assert from 'assert'
 
 const Schema = Foundation.Schema
 describe('#--- LocalDatabaseTransport Class Test Suite', () => {
+  
   let localDataTransport = null
+  let localDataTransport_1 = null
+
   const UserSchema = new Schema({
     name: {
       type: String,
@@ -16,6 +23,19 @@ describe('#--- LocalDatabaseTransport Class Test Suite', () => {
       index: true
     },
     username: {
+      type: String,
+      required: true,
+      index: false
+    }
+  })
+
+  const ProductSchema = new Schema({
+    name: {
+      type: String,
+      required: true,
+      index: true
+    },
+    vendor: {
       type: String,
       required: true
     }
@@ -37,18 +57,30 @@ describe('#--- LocalDatabaseTransport Class Test Suite', () => {
 
   before(function (done) {
     ;(async function () {
+      localDataTransport = new LocalDatabaseTransport({
+        version: 2,
+        tables: {},
+        dbName: 'MyTestDatabase'
+      })
+      localDataTransport.addSchema('User', UserSchema)
+      done()
+    })()
+  })
+
+  after(function (done) {
+    ; (async function () {
+      let _error = null
+      let _data = null
       try {
-        localDataTransport = new LocalDatabaseTransport({
-          version: 2,
-          tables: {},
-          dbName: 'MyTestDatabase'
-        })
-        localDataTransport.addSchema('User', UserSchema)
-        await localDataTransport.connect()
+        await localDataTransport.delete()
+        await localDataTransport.delete()
+      } catch (e) {
+        _error = e
+      }
+      if (_error) {
+        done(_error)
+      } else {
         done()
-      } catch (error) {
-        // console.log('>>>>>>>>>', error)
-        done(error)
       }
     })()
   })
@@ -64,8 +96,40 @@ describe('#--- LocalDatabaseTransport Class Test Suite', () => {
     })
   })
 
+
   describe('Check Internal Data API', async () => {
+    
+    it('Connection shall to be ok', (done) => {
+      ; (async() => {
+        const connection = await localDataTransport.connect()
+        assert.equal(connection.error, null)
+        done()
+      })()
+    })
+
+    it('We must be able to connect to another database', (done) => {
+      ;(async() => {
+        localDataTransport_1 = new LocalDatabaseTransport({
+            version: 3,
+            tables: {},
+            dbName: 'MyTestDatabase_1'
+          })
+        localDataTransport_1.addSchema('Product', ProductSchema)
+        localDataTransport_1.addSchema('User', UserSchema)
+        const {
+          error,
+          data
+        } = await localDataTransport_1.connect()
+        assert.equal(error, null)
+        done()
+      })()
+    })
     it('We cannot to add new Data Schemas to schemas tree after connection', (done) => {
+      
+      if (error) {
+        return done(error)
+      }
+
       let error = {}
       try {
         const UserFakeSchema = new Schema({

@@ -149,6 +149,21 @@ describe('#--- Utils module Test Suite', () => {
       assert.equal(_data.length, 3)
       done()
     })
+    it('Returned token must have 0 entries', (done) => {
+      let _error = null
+      let _data = null
+      try {
+        const text = ''
+        const token = utils.getSearchTokenStream(text)
+        _data = token
+      } catch (e) {
+        console.log(e)
+        _error = e
+        _data = null
+      }
+      assert.equal(_data.length, 0)
+      done()
+    })
   })
 
   // getSearchTokenStream

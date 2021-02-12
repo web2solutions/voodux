@@ -23,16 +23,6 @@ export const createMethodSignature = (error = null, data = null) => {
 }
 
 /**
- * GUID
- * generates a Universally unique identifier string - alias to uuid()
- * @function
- * @return  {string} guid / uuid
- */
-export const GUID = () => {
-  return uuid()
-}
-
-/**
  * uuid
  * generates a Universally unique identifier string
  * @function
@@ -52,7 +42,7 @@ export function uuid () {
  * @param {string|object} obj - Valid JSON object or string
  * @return  {object} new JSON object
  */
-export function toJSON (obj) {
+export function toJSON (obj = '') {
   if (typeof obj === 'string') {
     return JSON.parse(obj)
   }
@@ -109,7 +99,8 @@ export function getSearchTokenStream(text = '') {
   // console.log('xxxxxxxxx', index)
   // const index = lunr()
   // return index.pipeline.run(lunr.tokenizer(text))
-  return (lunr.tokenizer(text)).map(t => (t.str))
+  const token = (lunr.tokenizer(text)).map(t => (t.str))
+  return token
   // return lunr.tokenizer(text)
 }
 
