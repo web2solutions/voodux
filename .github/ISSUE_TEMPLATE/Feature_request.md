@@ -1,7 +1,7 @@
 ---
 name: Feature request creation
 about: Ask for new features
-title: ''
+title: 'Feature request'
 labels: ''
 assignees: ''
 ---
