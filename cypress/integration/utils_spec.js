@@ -116,4 +116,41 @@ describe('#--- Utils module Test Suite', () => {
       done()
     })
   })
+
+  describe('lunr search token generating', () => {
+    it('Returned token must be an array', (done) => {
+      let _error = null
+      let _data = null
+      try {
+        const text = 'text goes here'
+        const token = utils.getSearchTokenStream(text)
+        _data = token
+      } catch (e) {
+        console.log(e)
+        _error = e
+        _data = null
+      }
+      assert.equal(Array.isArray(_data), true)
+      done()
+    })
+
+    it('Returned token must have 3 entries', (done) => {
+      let _error = null
+      let _data = null
+      try {
+        const text = 'text goes here'
+        const token = utils.getSearchTokenStream(text)
+        _data = token
+      } catch (e) {
+        console.log(e)
+        _error = e
+        _data = null
+      }
+      assert.equal(_data.length, 3)
+      done()
+    })
+  })
+
+  // getSearchTokenStream
+
 })

@@ -11,6 +11,7 @@ if (typeof window !== 'undefined') {
   window.DataEntity = DataEntity
 }
 
+exports = exports || {}
 exports.default = {
   Foundation,
   LocalDatabaseTransport,
