@@ -1,6 +1,6 @@
 ---
-name: Feature request creation disabled
-about: Go to VooduX :)
+name: Feature request creation
+about: Ask for new features
 title: ''
 labels: ''
 assignees: ''
