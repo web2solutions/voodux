@@ -1191,8 +1191,74 @@ describe('#--- DataEntity Class Test Suite', () => {
         }
       })()
     })
+  })
 
-    it('We must be able to delete database', (done) => {
+  describe('Check data event changes', () => {
+    it('Product.add() must triggers add event', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+        let listener = Product.on('add', (eventObj) => {
+          const { error, document, foundation, data } = eventObj
+          assert.equal(_error, null)
+          assert.equal(error, null)
+          assert.equal(data.name, ProductDocument.name)
+          Product.stopListenTo(listener)
+          if (_error) {
+            done(_error)
+          } else {
+            NewProductDocument = _data
+            done()
+          }
+
+        })
+        try {
+          const { error, data } = await Product.add(ProductDocument)
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // console.log(_error, _data)
+      })()
+    })
+    it('Product.edit() must triggers edit event', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+
+        let listener = Product.on('edit', async (eventObj) => {
+          console.log('---->edit', eventObj)
+          const { error, document, foundation, data } = eventObj
+          assert.equal(_error, null)
+          assert.equal(error, null)
+          assert.equal(data.name, 'XC90 T6')
+          Product.stopListenTo(listener)
+          await Product.delete(data.__id)
+          if (_error) {
+            done(_error)
+          } else {
+            NewProductDocument = _data
+            done()
+          }
+        })
+        try {
+          let add = await Product.add(ProductDocument)
+          add.data.name = 'XC90 T6'
+          let { error, data } = await Product.edit(add.data.__id, add.data)
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        console.log(_error, _data)
+      })()
+    })
+  })
+
+  it('We must be able to delete database', (done) => {
       ; (async function () {
         let _error = null
         try {
@@ -1205,5 +1271,4 @@ describe('#--- DataEntity Class Test Suite', () => {
         done()
       })()
     })
-  })
 })
