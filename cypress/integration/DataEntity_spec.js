@@ -1,4 +1,4 @@
-/* global describe it Blob before */
+/* global describe it Blob before  after */
 
 // import agnostic foundation foundation class
 // const {
@@ -23,6 +23,23 @@ const Schema = Foundation.Schema
 let foundation = null
 let Customer = null
 let Product = null
+
+const CustomerDocument = {
+  name: 'Eduardo Almeida',
+  address: 'Boca Raton, FL.',
+  email: 'web2solucoes@gmail.com',
+  cards: []
+}
+const ProductDocument = {
+  name: 'XC90',
+  vendor: 'Volvo',
+  price: 80000
+}
+
+let NewCustomerDocument = null
+let NewProductDocument = null
+
+
 
 const MyCustomizedDataEntity = class extends DataEntity {
   constructor (config) {
@@ -82,7 +99,13 @@ const productSchema = new Schema({
   price: {
     type: Number,
     required: true,
-    index: true
+    index: true,
+    validate: {
+      validator: function(v) {
+        return v > 0
+      },
+      message: props => `Product price must be greater than 0!`
+    },
   }
 })
 
@@ -182,9 +205,9 @@ describe('#--- DataEntity Class Test Suite', () => {
       done()
     })
 
-    it('Customer.strategy must be "offlineFirst"', (done) => {
+    it('Customer.strategy must be "offline"', (done) => {
       let error = null
-      assert.equal(Customer.strategy, 'offlineFirst')
+      assert.equal(Customer.strategy, 'offline')
       done()
     })
 
@@ -230,7 +253,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         // assert.equal(typeof Customer.add, 'function')
         assert.notEqual(_error, null)
         assert.equal(_data, null)
-        assert.equal(_error, 'You must pass a valid JSON document as parameter to to DataEntity.add() method')
+        assert.equal(_error, 'You must pass a valid JSON document as parameter to DataEntity.add() method')
         done()
       })()
     })
@@ -251,7 +274,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         }
         assert.notEqual(_error, null)
         assert.equal(_data, null)
-        assert.equal(_error, 'You must pass a valid JSON document as parameter to to DataEntity.edit() method')
+        assert.equal(_error, 'You must pass a valid JSON document as parameter to DataEntity.edit() method')
         done()
       })()
     })
@@ -326,9 +349,9 @@ describe('#--- DataEntity Class Test Suite', () => {
       done()
     })
 
-    it('Product.strategy must be "offlineFirst"', (done) => {
+    it('Product.strategy must be "offline"', (done) => {
       let error = null
-      assert.equal(Product.strategy, 'offlineFirst')
+      assert.equal(Product.strategy, 'offline')
       done()
     })
 
@@ -374,7 +397,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         // assert.equal(typeof Product.add, 'function')
         assert.notEqual(_error, null)
         assert.equal(_data, null)
-        assert.equal(_error, 'You must pass a valid JSON document as parameter to to DataEntity.add() method')
+        assert.equal(_error, 'You must pass a valid JSON document as parameter to DataEntity.add() method')
         done()
       })()
     })
@@ -395,7 +418,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         }
         assert.notEqual(_error, null)
         assert.equal(_data, null)
-        assert.equal(_error, 'You must pass a valid JSON document as parameter to to DataEntity.edit() method')
+        assert.equal(_error, 'You must pass a valid JSON document as parameter to DataEntity.edit() method')
         done()
       })()
     })
@@ -431,7 +454,404 @@ describe('#--- DataEntity Class Test Suite', () => {
     })
   })
 
-  // new this.Model(doc, this.#_schema)
+  describe('Check data schema implementation', () => {
+    it('Check model validation passing an invalid document should shall not to be validated', () => {
+      let invalid = null
+      const model = new Product.Model({
+          name: 'My Product'
+      }, productSchema)
+      invalid = model.isNotValid()
+      assert.equal(!!invalid, true)
+    })
 
-  
+    it('Check model validation passing a valid document should shall to be validated', () => {
+      let invalid = null
+      const model = new Product.Model({
+        name: 'My Product',
+        vendor: 'The Vendor',
+        price: 10
+      }, productSchema)
+      invalid = model.isNotValid()
+      assert.equal(!!invalid, false)
+    })
+
+    it('Testing schema.validate method. product.price must be greater than 0', () => {
+      let invalid = null
+      const model = new Product.Model({
+        name: 'My Product',
+        vendor: 'The Vendor',
+        price: 0
+      }, productSchema)
+      invalid = model.isNotValid()
+      assert.equal(!!invalid, true)
+    })
+  })
+
+  describe('Check class usage', () => {
+    it('We must be able to add new Customer', (done) => {
+      ;(async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.add(CustomerDocument)
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // console.log(_error, _data)
+        assert.equal(_error, null)
+
+        if (_error) {
+          done(_error)
+        } else {
+          NewCustomerDocument = _data
+          done()
+        }
+      })()
+    })
+
+    it('NewCustomerDocument must have valid __id (local ID)', () => {
+      assert.equal(typeof NewCustomerDocument.__id, 'number')
+    })
+
+    it('NewCustomerDocument must have valid _id (remote ID)', () => {
+      assert.equal(typeof NewCustomerDocument._id, 'string')
+    })
+
+    
+    it('We must be able to add new Product', (done) => {
+      ;(async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Product.add(ProductDocument)
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // console.log(_error, _data)
+        assert.equal(_error, null)
+
+        if (_error) {
+          done(_error)
+        } else {
+          NewProductDocument = _data
+          done()
+        }
+      })()
+    })
+
+    it('NewProductDocument must have valid __id (local ID)', () => {
+      assert.equal(typeof NewProductDocument.__id, 'number')
+    })
+
+    it('NewProductDocument must have valid _id (remote ID)', () => {
+      assert.equal(typeof NewProductDocument._id, 'string')
+    })
+
+    it('Customer.findAll must return the added Customer ', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.findAll({
+            name: CustomerDocument.name
+          })
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // console.log(_error, _data)
+
+        const found = _data.filter(c => c.name === CustomerDocument.name)
+        const doc = found[0] || {}
+
+        assert.equal(doc.name, CustomerDocument.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('Product.findAll must return the added Product ', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Product.findAll({
+            name: ProductDocument.name
+          })
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // console.log(_error, _data)
+
+        const found = _data.filter(p => p.name === ProductDocument.name)
+        const doc = found[0] || {}
+
+        assert.equal(doc.name, ProductDocument.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('Customer.find must return the added Customer ', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.find({
+            name: CustomerDocument.name
+          })
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // console.log(_error, _data)
+
+        const found = _data.filter(c => c.name === CustomerDocument.name)
+        const doc = found[0] || {}
+
+        assert.equal(doc.name, CustomerDocument.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('Product.find must return the added Product ', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Product.find({
+            name: ProductDocument.name
+          })
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // console.log(_error, _data)
+
+        const found = _data.filter(p => p.name === ProductDocument.name)
+        const doc = found[0] || {}
+
+        assert.equal(doc.name, ProductDocument.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('Customer.findById must return the added Customer ', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.findById(NewCustomerDocument.__id)
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+
+        assert.equal(_data.name, CustomerDocument.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('Product.findById must return the added Product ', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Product.findById(NewProductDocument.__id)
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+
+        assert.equal(_data.name, ProductDocument.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('We must be able to edit the added Product', (done) => {
+      ;(async () => {
+        let _error = null
+        let _data = null
+        let doc = null
+        try {
+          doc = {
+            ...NewProductDocument
+          }
+          doc.name = 'XC60'
+          const {
+            error,
+            data
+          } = await Product.edit(NewProductDocument.__id, doc)
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+          doc = null
+        }
+        // console.log(_error, _data)
+        assert.equal(_error, null)
+        assert.equal(_data.name, doc.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('We must be able to edit the added Customer', (done) => {
+      ;(async () => {
+        let _error = null
+        let _data = null
+        let doc = null
+        try {
+          doc = {
+            ...NewCustomerDocument
+          }
+          doc.name = 'José Eduardo Almeida'
+          const {
+            error,
+            data
+          } = await Customer.edit(NewCustomerDocument.__id, doc)
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+          doc = null
+        }
+        // console.log(_error, _data)
+        assert.equal(_error, null)
+        assert.equal(_data.name, doc.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+    
+    it('We must be able to delete the added Product', (done) => {
+      ;(async () => {
+        let _error = null
+        let _data = null
+        let doc = null
+        try {
+          const {
+            error,
+            data
+          } = await Product.delete(NewProductDocument.__id)
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+          doc = null
+        }
+        // console.log(_error, _data)
+        assert.equal(_error, null)
+        assert.equal(_data.__id, NewProductDocument.__id)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+    
+
+    it('We must be able to delete the added Customer', (done) => {
+      ;(async () => {
+        let _error = null
+        let _data = null
+        let doc = null
+        try {
+          const {
+            error,
+            data
+          } = await Customer.delete(NewCustomerDocument.__id)
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+          doc = null
+        }
+        // console.log(_error, _data)
+        assert.equal(_error, null)
+        assert.equal(_data.__id, NewCustomerDocument.__id)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('We must be able to delete database', (done) => {
+      ; (async function () {
+        let _error = null
+        try {
+          // create the foundation
+          await foundation.localDatabaseTransport.delete()
+        } catch (e) {
+          _error = e
+        }
+        assert.equal(_error, null)
+        done()
+      })()
+    })
+  })
 })

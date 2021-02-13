@@ -115,7 +115,7 @@ const UserSchema = new Foundation.Schema({
 const foundation = new Foundation({
     name: 'My App',
     useWorker: true,
-    dataStrategy: 'offlineFirst',
+    dataStrategy: 'offline',
     schemas: {
         User: UserSchema,
         Product: ProductSchema,
@@ -177,7 +177,7 @@ export default class Foundation extends EventSystem {
 
   constructor ({
     name = 'My Foundation Name',
-    dataStrategy = 'offlineFirst',
+    dataStrategy = 'offline',
     useWorker = false,
     schemas = {}
   } = {}) {
