@@ -283,12 +283,97 @@ export default class Foundation extends EventSystem {
     return this.#_workers.foundation
   }
 
-  #setModel(entity = '', dataEntity = {}) {
+  /**
+   * @Method Foundation.mapToDataEntityAPI
+   * @summary Maps an Data Entity abstraction to foundation Data API
+   * @description An Data Entity abstraction is an instance of the {@link DataEntity}. 
+   * Once it is mapped to foundation Data API, you can reach every Data Entity in the system from a single source point.
+   * This method dont works as expected if  you call it after {@link Foundation.start} method
+   * @param  {object} spec - Data Entity abstraction specification
+   * @param  {string} spec.entity - Data Entity name
+   * @param  {dataEntity} spec.dataEntity - An {@link DataEntity} instance for the entity defined on `spec.entity`
+   * @example
+const productSchema = new Foundation.Schema({
+  name: {
+    type: String,
+    required: true,
+    index: true
+  },
+  vendor: {
+    type: String,
+    required: true,
+    index: true
+  },
+  price: {
+    type: Number,
+    required: true,
+    index: true
+  }
+})
+
+// start the foundation
+const foundation = new Foundation({
+  name: 'My Test app',
+  schemas: {
+    // Customer: schema
+  }
+})
+
+// Build a customized Data Entity abstraction
+const MyCustomizedDataEntity = class extends DataEntity {
+  constructor(config) {
+    super(config)
+  }
+
+  sell(primaryKey, orderId) {
+    // primaryKey is Product primary key value
+    // orderId is the primaryKey of an Order
+    // const foundOrder = await Order.findById(orderId)
+    // if (foundOrder.error) {
+    //  CAN NOT TO SELL
+    // }
+    // const items = foundOrder.data.lineItems.filter(i => (i.productId === primaryKey))
+    // If  Order has the product listed item
+    // if(items[0])
+    // {
+    //    await this.delete(primaryKey) // deletes a Product from Products
+    // }
+  }
+}
+
+// instance of the custimized Data Entity
+const productDataEntity = new MyCustomizedDataEntity({
+  foundation,
+  entity: 'Product',
+  schema: productSchema
+})
+
+// import data entity
+foundation.importDataEntity({
+  entity: 'Product',
+  dataEntity: productDataEntity
+})
+
+// start the foundation
+await foundation.start()
+
+// you can now do things like: 
+
+const { Product } = foundation.data
+
+await Product.add({
+  name: 'Big Mac',
+  vendor: 'McDonalds', 
+  price: 3
+})
+
+   */
+  mapToDataEntityAPI(entity = '', dataEntity = {}) {
     let _error = null
     let _data = null
+    // if call mapToDataEntityAPI('Product') more than once, it will ovewrite the previous set Product model
     this.#_models[entity] = dataEntity
     _data = this.#_models[entity]
-
     return createMethodSignature(_error, _data)
   }
   
@@ -301,6 +386,17 @@ export default class Foundation extends EventSystem {
    */
   static get Schema() {
     return Schema
+  }
+
+  /**
+   * @Method Foundation.importDataEntity
+   * @description Imports a Data Entity abstraction into application data api
+   * @param  {object} spec - Data Entity abstraction specification
+   * @param  {string} spec.entity - Data Entity name
+   * @param  {dataEntity} spec.dataEntity - An {@link DataEntity} instance for the entity defined on `spec.entity`
+   */
+  importDataEntity({ entity = null, dataEntity = {} }) {
+    this.mapToDataEntityAPI(entity, dataEntity)
   }
 
   #mapModels(schemas) {
@@ -318,7 +414,7 @@ export default class Foundation extends EventSystem {
             strategy,
             schema
           })
-          this.#setModel(entity, dataEntity)
+          this.mapToDataEntityAPI(entity, dataEntity)
         }
       }
       _data = this.#_models

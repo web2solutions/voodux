@@ -903,95 +903,6 @@ ReactDOM.render(
             
 <hr>
 <dt class="name" id=".name">
-    <h4 id=".name"><span class="type-signature">&lt;static> </span>name<span class="type-signature"> :setter</span></h4>
-
-    
-    <p class="summary">Set the Foundation name.</p>
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Set the Foundation name
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">setter</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-256">line 256</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-        <h5>Example</h5>
-        
-    <pre class="sunlight-highlight-javascript">Foundation.name = &#x27;Provide the name here&#x27;</pre>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id=".name">
     <h4 id=".name"><span class="type-signature">&lt;static> </span>name<span class="type-signature"> :getter</span></h4>
 
     
@@ -1080,6 +991,95 @@ ReactDOM.render(
         
             
 <hr>
+<dt class="name" id=".name">
+    <h4 id=".name"><span class="type-signature">&lt;static> </span>name<span class="type-signature"> :setter</span></h4>
+
+    
+    <p class="summary">Set the Foundation name.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the Foundation name
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">setter</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Foundation.js.html">Foundation.js</a>,
+				 <a href="Foundation.js.html#sunlight-1-line-256">line 256</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">Foundation.name = &#x27;Provide the name here&#x27;</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
 <dt class="name" id=".Schema">
     <h4 id=".Schema"><span class="type-signature">&lt;static> </span>Schema<span class="type-signature"> :getter</span></h4>
 
@@ -1143,7 +1143,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-295">line 295</a>
+				 <a href="Foundation.js.html#sunlight-1-line-380">line 380</a>
 			</li>
 		</ul>
 	</dd>
@@ -1410,7 +1410,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-332">line 332</a>
+				 <a href="Foundation.js.html#sunlight-1-line-428">line 428</a>
 			</li>
 		</ul>
 	</dd>
@@ -1494,7 +1494,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-367">line 367</a>
+				 <a href="Foundation.js.html#sunlight-1-line-463">line 463</a>
 			</li>
 		</ul>
 	</dd>
@@ -1729,7 +1729,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-403">line 403</a>
+				 <a href="Foundation.js.html#sunlight-1-line-499">line 499</a>
 			</li>
 		</ul>
 	</dd>
@@ -1825,6 +1825,514 @@ ReactDOM.render(
 
 </li>
         </ul>
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".importDataEntity"><span class="type-signature">&lt;static> </span>importDataEntity(spec)</h4>
+    
+    
+    <p class="summary">Imports a Data Entity abstraction into application data api.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Imports a Data Entity abstraction into application data api
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>spec</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Data Entity abstraction specification
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Data Entity name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dataEntity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">dataEntity</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An <a href="DataEntity.html"><code>DataEntity</code></a> instance for the entity defined on `spec.entity`</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Foundation.js.html">Foundation.js</a>,
+				 <a href="Foundation.js.html#sunlight-1-line-391">line 391</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".mapToDataEntityAPI"><span class="type-signature">&lt;static> </span>mapToDataEntityAPI(spec)</h4>
+    
+    
+    <p class="summary">Maps an Data Entity abstraction to foundation Data API</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        An Data Entity abstraction is an instance of the <a href="DataEntity.html"><code>DataEntity</code></a>. 
+Once it is mapped to foundation Data API, you can reach every Data Entity in the system from a single source point.
+This method dont works as expected if  you call it after <a href="Foundation.html#.start"><code>Foundation.start</code></a> method
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>spec</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Data Entity abstraction specification
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Data Entity name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dataEntity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">dataEntity</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An <a href="DataEntity.html"><code>DataEntity</code></a> instance for the entity defined on `spec.entity`</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Foundation.js.html">Foundation.js</a>,
+				 <a href="Foundation.js.html#sunlight-1-line-286">line 286</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">const productSchema = new Foundation.Schema({
+  name: {
+    type: String,
+    required: true,
+    index: true
+  },
+  vendor: {
+    type: String,
+    required: true,
+    index: true
+  },
+  price: {
+    type: Number,
+    required: true,
+    index: true
+  }
+})
+
+// start the foundation
+const foundation = new Foundation({
+  name: &#x27;My Test app&#x27;,
+  schemas: {
+    // Customer: schema
+  }
+})
+
+// Build a customized Data Entity abstraction
+const MyCustomizedDataEntity = class extends DataEntity {
+  constructor(config) {
+    super(config)
+  }
+
+  sell(primaryKey, orderId) {
+    // primaryKey is Product primary key value
+    // orderId is the primaryKey of an Order
+    // const foundOrder = await Order.findById(orderId)
+    // if (foundOrder.error) {
+    //  CAN NOT TO SELL
+    // }
+    // const items = foundOrder.data.lineItems.filter(i =&gt; (i.productId === primaryKey))
+    // If  Order has the product listed item
+    // if(items[0])
+    // {
+    //    await this.delete(primaryKey) // deletes a Product from Products
+    // }
+  }
+}
+
+// instance of the custimized Data Entity
+const productDataEntity = new MyCustomizedDataEntity({
+  foundation,
+  entity: &#x27;Product&#x27;,
+  schema: productSchema
+})
+
+// import data entity
+foundation.importDataEntity({
+  entity: &#x27;Product&#x27;,
+  dataEntity: productDataEntity
+})
+
+// start the foundation
+await foundation.start()
+
+// you can now do things like: 
+
+const { Product } = foundation.data
+
+await Product.add({
+  name: &#x27;Big Mac&#x27;,
+  vendor: &#x27;McDonalds&#x27;, 
+  price: 3
+})</pre>
+
 
     
 </dd>
@@ -1940,7 +2448,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-341">line 341</a>
+				 <a href="Foundation.js.html#sunlight-1-line-437">line 437</a>
 			</li>
 		</ul>
 	</dd>
@@ -2041,7 +2549,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-352">line 352</a>
+				 <a href="Foundation.js.html#sunlight-1-line-448">line 448</a>
 			</li>
 		</ul>
 	</dd>
@@ -2142,7 +2650,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-476">line 476</a>
+				 <a href="Foundation.js.html#sunlight-1-line-572">line 572</a>
 			</li>
 		</ul>
 	</dd>
@@ -2298,7 +2806,7 @@ ReactDOM.render(
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-02-12T13:53:58-03:00
+		on 2021-02-12T22:06:41-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

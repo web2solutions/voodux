@@ -22,7 +22,7 @@ The VooduX's proposal is to cover the common lacks and mistakes in modern web ap
 
 It is good to see teams proud of being `TDD driven` teams. It is amazing to see team proud of `Translating pixel-perfect designs from Figma`, it is really are fascinating to be exposed to new and good `User Xperiences`. Horses flying and 3D rotating on screen, big red error messages on giant rounded number form field when user tries to type a string value inside, are good, but this is the head of the iceberg only.
 
-On daily basis, several web development teams are mistakenly focusing on some `industry and marketers expectation standards` and negleting the main `techonology proposal` which is to make every one life better and easier and to reduce costs. When I say `make every one life better and easier`, I'm talking about those ones which are going to consume the technology.
+On daily basis, several web development teams are mistakenly focusing on some `industry and marketers expectation standards` and neglecting the main `techonology proposal` which is to make every one life better and easier and to reduce costs. When I say `make every one life better and easier`, I'm talking about those ones which are going to consume the technology.
 
 The most common problem is some companies are looking to (front end) web resources as `marketing tools` and not like what they really could be: `well architected software products`.
 
