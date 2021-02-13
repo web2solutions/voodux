@@ -289,9 +289,8 @@ export default class Foundation extends EventSystem {
    * @description An Data Entity abstraction is an instance of the {@link DataEntity}. 
    * Once it is mapped to foundation Data API, you can reach every Data Entity in the system from a single source point.
    * This method dont works as expected if  you call it after {@link Foundation.start} method
-   * @param  {object} spec - Data Entity abstraction specification
-   * @param  {string} spec.entity - Data Entity name
-   * @param  {dataEntity} spec.dataEntity - An {@link DataEntity} instance for the entity defined on `spec.entity`
+   * @param  {string} entity - Data Entity name
+   * @param  {dataEntity} dataEntity - An {@link DataEntity} instance
    * @example
 const productSchema = new Foundation.Schema({
   name: {
@@ -390,7 +389,10 @@ await Product.add({
 
   /**
    * @Method Foundation.importDataEntity
-   * @description Imports a Data Entity abstraction into application data api
+   * @summary Alias to Foundation.mapToDataEntityAPI(entity = '', dataEntity = {})
+   * @description An Data Entity abstraction is an instance of the {@link DataEntity}. 
+   * Once it is mapped to foundation Data API, you can reach every Data Entity in the system from a single source point.
+   * This method dont works as expected if  you call it after {@link Foundation.start} method
    * @param  {object} spec - Data Entity abstraction specification
    * @param  {string} spec.entity - Data Entity name
    * @param  {dataEntity} spec.dataEntity - An {@link DataEntity} instance for the entity defined on `spec.entity`

@@ -1143,7 +1143,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-380">line 380</a>
+				 <a href="Foundation.js.html#sunlight-1-line-379">line 379</a>
 			</li>
 		</ul>
 	</dd>
@@ -1410,7 +1410,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-428">line 428</a>
+				 <a href="Foundation.js.html#sunlight-1-line-430">line 430</a>
 			</li>
 		</ul>
 	</dd>
@@ -1494,7 +1494,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-463">line 463</a>
+				 <a href="Foundation.js.html#sunlight-1-line-465">line 465</a>
 			</li>
 		</ul>
 	</dd>
@@ -1729,7 +1729,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-499">line 499</a>
+				 <a href="Foundation.js.html#sunlight-1-line-501">line 501</a>
 			</li>
 		</ul>
 	</dd>
@@ -1836,14 +1836,16 @@ ReactDOM.render(
     <h4 class="name" id=".importDataEntity"><span class="type-signature">&lt;static> </span>importDataEntity(spec)</h4>
     
     
-    <p class="summary">Imports a Data Entity abstraction into application data api.</p>
+    <p class="summary">Alias to Foundation.mapToDataEntityAPI(entity = '', dataEntity = {})</p>
     
 </dt>
 <dd>
 
     
     <div class="description">
-        Imports a Data Entity abstraction into application data api
+        An Data Entity abstraction is an instance of the <a href="DataEntity.html"><code>DataEntity</code></a>. 
+Once it is mapped to foundation Data API, you can reach every Data Entity in the system from a single source point.
+This method dont works as expected if  you call it after <a href="Foundation.html#.start"><code>Foundation.start</code></a> method
     </div>
     
 
@@ -2014,7 +2016,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-391">line 391</a>
+				 <a href="Foundation.js.html#sunlight-1-line-390">line 390</a>
 			</li>
 		</ul>
 	</dd>
@@ -2047,7 +2049,7 @@ ReactDOM.render(
             
 <hr>
 <dt>
-    <h4 class="name" id=".mapToDataEntityAPI"><span class="type-signature">&lt;static> </span>mapToDataEntityAPI(spec)</h4>
+    <h4 class="name" id=".mapToDataEntityAPI"><span class="type-signature">&lt;static> </span>mapToDataEntityAPI(entity, dataEntity)</h4>
     
     
     <p class="summary">Maps an Data Entity abstraction to foundation Data API</p>
@@ -2071,49 +2073,6 @@ This method dont works as expected if  you call it after <a href="Foundation.htm
     
         <h5>Parameters:</h5>
         
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>spec</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Data Entity abstraction specification
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
-                
 
 <table class="params table table-striped">
     <thead>
@@ -2178,14 +2137,7 @@ This method dont works as expected if  you call it after <a href="Foundation.htm
 
             
 
-            <td class="description last">An <a href="DataEntity.html"><code>DataEntity</code></a> instance for the entity defined on `spec.entity`</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last">An <a href="DataEntity.html"><code>DataEntity</code></a> instance</td>
         </tr>
 
     
@@ -2448,7 +2400,7 @@ await Product.add({
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-437">line 437</a>
+				 <a href="Foundation.js.html#sunlight-1-line-439">line 439</a>
 			</li>
 		</ul>
 	</dd>
@@ -2549,7 +2501,7 @@ await Product.add({
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-448">line 448</a>
+				 <a href="Foundation.js.html#sunlight-1-line-450">line 450</a>
 			</li>
 		</ul>
 	</dd>
@@ -2650,7 +2602,7 @@ await Product.add({
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-572">line 572</a>
+				 <a href="Foundation.js.html#sunlight-1-line-574">line 574</a>
 			</li>
 		</ul>
 	</dd>
@@ -2806,7 +2758,7 @@ await Product.add({
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-02-12T22:06:41-03:00
+		on 2021-02-12T22:18:31-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
