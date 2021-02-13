@@ -96,23 +96,58 @@ describe('#--- Utils module Test Suite', () => {
   })
 
   describe('Mongoose 2 Dexie: utils.mongooseToDexieTableString(schema) -> Mongoose schema conversion to Dexie table config', () => {
+    const schema = new utils.Schema({
+      name: {
+        type: String,
+        required: true,
+        index: true
+      },
+      username: {
+        type: String,
+        required: true,
+        index: true
+      },
+      cards: {
+        type: [],
+        required: true,
+        index: true
+      },
+      notIndexed: {
+        type: String,
+        required: true
+      }
+    })
+    const tableConfig = utils.mongooseToDexieTableString(schema)
     it('Table config must have __id as Primary Key', (done) => {
-      const schema = new utils.Schema({
-        name: {
-          type: String,
-          required: true,
-          index: true
-        },
-        username: {
-          type: String,
-          required: true,
-          index: true
+      const tableConfigArray = tableConfig.split(',')
+      assert.equal(tableConfigArray[0], '++__id')
+      done()
+    })
+    it('Table config must have _id ', (done) => {
+      const tableConfigArray = tableConfig.split(',')
+      assert.equal(tableConfigArray[1], '_id')
+      done()
+    })
+    it('cards property must be multi entry', (done) => {
+      const tableConfigArray = tableConfig.split(',')
+      let foundMultiEntry = false
+      tableConfigArray.forEach(propertyName => {
+        if (propertyName === '*cards') {
+          foundMultiEntry = true
         }
       })
-      const tableConfig = utils.mongooseToDexieTableString(schema)
+      assert.equal(foundMultiEntry, true)
+      done()
+    })
+    it('notIndexed property shall not be present on table config because it is not indexed', (done) => {
       const tableConfigArray = tableConfig.split(',')
-      // console.log(tableConfigArray)
-      assert.equal(tableConfigArray[0], '++__id')
+      let foundnotIndexed = false
+      tableConfigArray.forEach(propertyName => {
+        if (propertyName === 'notIndexed') {
+          foundnotIndexed = true
+        }
+      })
+      assert.equal(foundnotIndexed, false)
       done()
     })
   })

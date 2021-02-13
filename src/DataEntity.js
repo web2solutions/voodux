@@ -330,12 +330,10 @@ const { data, error } = await Customer.edit(doc.__id, doc)
       }
       rawObj = toJSON(model)
       rawObj.__id = primaryKey
-      console.debug('query', {primaryKey, rawObj})
       const response = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
         .put({ ...rawObj })
         // .update({ __id: primaryKey }, { ...rawObj })
-      console.debug('response', response)
       data = { __id: primaryKey, ...rawObj }
       /* if (response.modifiedCount === 1) {
         data = { __id: primaryKey, ...rawObj }
@@ -347,7 +345,6 @@ const { data, error } = await Customer.edit(doc.__id, doc)
         }
       } */
     } catch (e) {
-      console.log(e)
       error = e
     }
     this.#_triggerEditEvents({ data, error, primaryKey, rawObj })
@@ -469,7 +466,7 @@ const { data, error } = await Customer.edit(doc.__id, doc)
       const doc = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
           .get(primaryKey)
-      // console.debug({ __id: primaryKey, doc })
+      // console.log({ __id: primaryKey, doc })
       if (doc)
       {
         if (doc.__id === primaryKey) {
@@ -477,7 +474,6 @@ const { data, error } = await Customer.edit(doc.__id, doc)
         }
       }
     } catch (e) {
-      console.error('error', error)
       error = e
     }
     return createMethodSignature(error, data)
@@ -602,8 +598,7 @@ const { data, error } = await Customer.edit(doc.__id, doc)
             data,
             error
           }
-          const eventName = `collection:${action}:${entity.toLowerCase()}`
-          this.#_foundation.triggerEvent(eventName, eventObj)
+          this.#_foundation.triggerEvent(`collection:${action}:${entity.toLowerCase()}`, eventObj)
           this.triggerEvent(action, eventObj)
         }
         // oldValue

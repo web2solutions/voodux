@@ -257,6 +257,27 @@ describe('#--- DataEntity Class Test Suite', () => {
         done()
       })()
     })
+    it('Calling Customer.add({}) with empty object must returns an error', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.add({})
+          if (error) {
+            _error = error
+          } else {
+            _data = data
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // assert.equal(typeof Customer.add, 'function')
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
+        done()
+      })()
+    })
     it('Calling Customer.edit() without parameter must returns an error', (done) => {
       ;(async function () {
         let _error = null
@@ -275,6 +296,46 @@ describe('#--- DataEntity Class Test Suite', () => {
         assert.notEqual(_error, null)
         assert.equal(_data, null)
         assert.equal(_error, 'You must pass a valid JSON document as parameter to DataEntity.edit() method')
+        done()
+      })()
+    })
+    it('Calling Customer.edit(null) returns an error', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.edit(null)
+          if (error) {
+            _error = error
+          } else {
+            _data = data
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
+        done()
+      })()
+    })
+    it('Calling Customer.edit(1, {}) empty document returns an error', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.edit(1, {})
+          if (error) {
+            _error = error
+          } else {
+            _data = data
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
         done()
       })()
     })
@@ -401,6 +462,27 @@ describe('#--- DataEntity Class Test Suite', () => {
         done()
       })()
     })
+    it('Calling Product.add({}) with empty object must returns an error', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Product.add({})
+          if (error) {
+            _error = error
+          } else {
+            _data = data
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // assert.equal(typeof Product.add, 'function')
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
+        done()
+      })()
+    })
     it('Calling Product.edit() without parameter must returns an error', (done) => {
       ;(async function () {
         let _error = null
@@ -419,6 +501,46 @@ describe('#--- DataEntity Class Test Suite', () => {
         assert.notEqual(_error, null)
         assert.equal(_data, null)
         assert.equal(_error, 'You must pass a valid JSON document as parameter to DataEntity.edit() method')
+        done()
+      })()
+    })
+    it('Calling Customer.edit(null) returns an error', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.edit(null)
+          if (error) {
+            _error = error
+          } else {
+            _data = data
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
+        done()
+      })()
+    })
+    it('Calling Product.edit(1, {}) empty document returns an error', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Product.edit(1, {})
+          if (error) {
+            _error = error
+          } else {
+            _data = data
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
         done()
       })()
     })
@@ -553,7 +675,7 @@ describe('#--- DataEntity Class Test Suite', () => {
       assert.equal(typeof NewProductDocument._id, 'string')
     })
 
-    it('Customer.findAll must return the added Customer ', (done) => {
+    it('Customer.findAll must return the added Customer by it name', (done) => {
       ; (async () => {
         let _error = null
         let _data = null
@@ -582,7 +704,7 @@ describe('#--- DataEntity Class Test Suite', () => {
       })()
     })
 
-    it('Product.findAll must return the added Product ', (done) => {
+    it('Product.findAll must return the added Product by it name', (done) => {
       ; (async () => {
         let _error = null
         let _data = null
@@ -611,7 +733,62 @@ describe('#--- DataEntity Class Test Suite', () => {
       })()
     })
 
-    it('Customer.find must return the added Customer ', (done) => {
+
+    it('Customer.findAll must return the added Customer ', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.findAll()
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // console.log(_error, _data)
+
+        const found = _data.filter(c => c.name === CustomerDocument.name)
+        const doc = found[0] || {}
+
+        assert.equal(doc.name, CustomerDocument.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('Product.findAll must return the added Product ', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Product.findAll()
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // console.log(_error, _data)
+
+        const found = _data.filter(p => p.name === ProductDocument.name)
+        const doc = found[0] || {}
+
+        assert.equal(doc.name, ProductDocument.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('Customer.find must return the added Customer by it name', (done) => {
       ; (async () => {
         let _error = null
         let _data = null
@@ -640,7 +817,7 @@ describe('#--- DataEntity Class Test Suite', () => {
       })()
     })
 
-    it('Product.find must return the added Product ', (done) => {
+    it('Product.find must return the added Product by it name', (done) => {
       ; (async () => {
         let _error = null
         let _data = null
@@ -648,6 +825,60 @@ describe('#--- DataEntity Class Test Suite', () => {
           const { error, data } = await Product.find({
             name: ProductDocument.name
           })
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // console.log(_error, _data)
+
+        const found = _data.filter(p => p.name === ProductDocument.name)
+        const doc = found[0] || {}
+
+        assert.equal(doc.name, ProductDocument.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('Customer.find must return the added Customer ', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.find()
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        // console.log(_error, _data)
+
+        const found = _data.filter(c => c.name === CustomerDocument.name)
+        const doc = found[0] || {}
+
+        assert.equal(doc.name, CustomerDocument.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('Product.find must return the added Product ', (done) => {
+      ; (async () => {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Product.find()
           _error = error
           _data = data
         } catch (e) {
@@ -772,6 +1003,127 @@ describe('#--- DataEntity Class Test Suite', () => {
         // console.log(_error, _data)
         assert.equal(_error, null)
         assert.equal(_data.name, doc.name)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('We must be able to count Customer by name', (done) => {
+      ;(async () => {
+        let _error = null
+        let _data = null
+        let doc = null
+        try {
+          const {
+            error,
+            data
+          } = await Customer.count({
+            name: 'José Eduardo Almeida'
+          })
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+          doc = null
+        }
+        // console.log(_error, _data)
+        assert.equal(_error, null)
+        assert.equal(_data, 1)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('We must be able to count Product by name', (done) => {
+      ;(async () => {
+        let _error = null
+        let _data = null
+        let doc = null
+        try {
+          const {
+            error,
+            data
+          } = await Product.count({
+            name: 'XC60'
+          })
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+          doc = null
+        }
+        // console.log(_error, _data)
+        assert.equal(_error, null)
+        assert.equal(_data, 1)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+
+    it('We must be able to count Customer', (done) => {
+      ;(async () => {
+        let _error = null
+        let _data = null
+        let doc = null
+        try {
+          const {
+            error,
+            data
+          } = await Customer.count()
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+          doc = null
+        }
+        // console.log(_error, _data)
+        assert.equal(_error, null)
+        assert.equal(_data, 1)
+
+        if (_error) {
+          done(_error)
+        } else {
+          done()
+        }
+      })()
+    })
+
+    it('We must be able to count Product', (done) => {
+      ;(async () => {
+        let _error = null
+        let _data = null
+        let doc = null
+        try {
+          const {
+            error,
+            data
+          } = await Product.count()
+          _error = error
+          _data = data
+        } catch (e) {
+          _error = e
+          _data = null
+          doc = null
+        }
+        // console.log(_error, _data)
+        assert.equal(_error, null)
+        assert.equal(_data, 1)
 
         if (_error) {
           done(_error)
