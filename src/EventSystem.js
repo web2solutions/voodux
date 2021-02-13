@@ -9,9 +9,7 @@ class EventSystem {
 
   on (name, handler) {
     const id = uuid()
-    if (typeof name !== 'string') {
-      throw Error('Event name must be a string')
-    }
+    name = name+''
     this.eventBus.push({
       name,
       handler,

@@ -3,7 +3,7 @@ import dexie from 'dexie'
 import 'dexie-mongoify'
 import { createMethodSignature, mongooseToDexieTableString } from './utils'
 
-dexie.debug = true
+dexie.debug = false
 
 
 /**
