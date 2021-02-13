@@ -1,5 +1,8 @@
+/* global lunr */
 import lunr from 'lunr'
 import mongoose from 'mongoose'
+// const lunr = require('lunr')
+// console.debug('<>><><><<>><><><><><><><', lunr)
 /**
  * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
  * @module utils
@@ -17,16 +20,6 @@ import mongoose from 'mongoose'
  */
 export const createMethodSignature = (error = null, data = null) => {
   return { error, data }
-}
-
-/**
- * GUID
- * generates a Universally unique identifier string - alias to uuid()
- * @function
- * @return  {string} guid / uuid
- */
-export const GUID = () => {
-  return uuid()
 }
 
 /**
@@ -49,7 +42,7 @@ export function uuid () {
  * @param {string|object} obj - Valid JSON object or string
  * @return  {object} new JSON object
  */
-export function toJSON (obj) {
+export function toJSON (obj = '') {
   if (typeof obj === 'string') {
     return JSON.parse(obj)
   }
@@ -61,17 +54,20 @@ export function toJSON (obj) {
  * convert given Mongoose schema to a Dexie Table columns configuration. <br>
  * All columns inside returned configuration are indexed at IndexedDB
  * prepend __id as local primary key and _id for remote primary key
+ * Local primary key is integer and auto incremented
  * @function
  * @return  {string} Dexie table configuration string
  */
 export function mongooseToDexieTableString (schema) {
   const cols = []
-  for (const propertyName in schema.paths) {
+  for (let propertyName in schema.paths) {
     if (Object.prototype.hasOwnProperty.call(schema.paths, propertyName)) {
       const property = schema.paths[propertyName]
+      console.debug(property)
       const {
-        // instance,
-        _index // ,
+        instance, // instance is type
+        _index, // ,
+        options, // { default, index, required }
         // isRequired
       } = property
       // console.debug(propertyName, property)
@@ -81,6 +77,11 @@ export function mongooseToDexieTableString (schema) {
       if (!_index) {
         continue
       }
+      if (instance === 'Array') {
+        propertyName = `*${propertyName}`
+        // * is MultiEntry Index on Dexie
+      }
+      // if unique
       cols.push(propertyName)
     }
   }
@@ -93,9 +94,14 @@ export function mongooseToDexieTableString (schema) {
  * @function
  * @return {array} token
  */
-export function getSearchTokenStream (text = '') {
-  const index = lunr()
-  return index.pipeline.run(lunr.tokenizer(text))
+export function getSearchTokenStream(text = '') {
+  // console.log('xxxxxxxxx')
+  // console.log('xxxxxxxxx', index)
+  // const index = lunr()
+  // return index.pipeline.run(lunr.tokenizer(text))
+  const token = (lunr.tokenizer(text)).map(t => (t.str))
+  return token
+  // return lunr.tokenizer(text)
 }
 
 export const Schema = mongoose.Schema

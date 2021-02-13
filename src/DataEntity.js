@@ -2,7 +2,7 @@
 import EventSystem from './EventSystem'
 // import Dexie from 'dexie'
 import mongoose from 'mongoose'
-import { createMethodSignature, GUID, toJSON } from './utils'
+import { createMethodSignature, uuid, toJSON } from './utils'
 
 /**
  * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
@@ -106,12 +106,45 @@ export default class DataEntity extends EventSystem {
   #_pagination
   #_stateChangeStorageName
 
-  constructor ({ foundation, entity, strategy, schema } = {}) {
+  constructor({
+    foundation = {},
+    entity = null,
+    strategy = 'offline',
+    schema = {}
+  } = {}) {
     super()
     this.#_entity = entity
+    /**
+     * @memberof DataEntity
+     * @member {property} DataEntity.#_strategy
+     * @summary PRIVATE - Holds the data transport strategy for this Data Entity.
+     * @description 
+     * Default strategy is <b>offline</b>. <br><br>
+     * Possible values are: <br>
+     * - offlineFirst<br>
+     * Data will be saved on local database first.<br>
+     * - onlineFirst<br>
+     * Data will be saved on remote database first.<br>
+     * - offline<br>
+     * Data will be saved on local database only.<br>
+     * - online<br>
+     * Data will be saved on remote database only.<br>
+     */
     this.#_strategy = strategy // offlineFirst, onlineFirst, offline, online
+    /**
+     * @memberof DataEntity
+     * @member {property} DataEntity.#_schema
+     * @summary PRIVATE - Holds the data schema for this Data Entity
+     * @description Data schema is a mongoose.Schema implementation
+     */
     this.#_schema = schema
     this.#_foundation = foundation
+    /**
+     * @memberof DataEntity
+     * @member {property} DataEntity.#_pagination
+     * @summary PRIVATE - default internal paging configuration
+     * @description The default paging configuration is: offset: 0, limit 30. It means it will returns 30 documents starting on index 0.
+     */
     this.#_pagination = {
       offset: 0,
       limit: 30
@@ -124,7 +157,7 @@ export default class DataEntity extends EventSystem {
   }
 
   /**
-   * @memberof DataEntity.entity
+   * @memberof DataEntity
    * @member {getter} DataEntity.entity
    * @example console.log(DataEntity.entity)
    * @description Gets the entity name which which DataEntity instance is handling out
@@ -135,7 +168,7 @@ export default class DataEntity extends EventSystem {
   }
 
   /**
-   * @memberof DataEntity.schema
+   * @memberof DataEntity
    * @member {getter} DataEntity.schema
    * @example console.log(DataEntity.schema)
    * @description Gets the data schema related to this Entity Data API
@@ -165,7 +198,7 @@ export default class DataEntity extends EventSystem {
   */
   Model(doc, schema) {
     const modelSystem = mongoose.Document
-    modelSystem.prototype.isValid = () =>  modelSystem.prototype.validateSync
+    modelSystem.prototype.isNotValid = modelSystem.prototype.validateSync
     return modelSystem(doc, schema)
   }
   /**
@@ -185,10 +218,18 @@ const doc = {
 }
 const { data, error } = await Customer.add(doc)
   */
-  async add (doc = {}) {
+  async add(doc = {}) {
+    if (!(doc instanceof Document)) {
+      // return createMethodSignature('You must pass a valid JSON document as parameter to DataEntity.add() method', null)
+    }
+    if (Object.keys(doc).length < 1) {
+      return createMethodSignature('You must pass a valid JSON document as parameter to DataEntity.add() method', null)
+    }
     let data = null
     let error = null
     let rawObj = {}
+    delete doc.__id
+    delete doc._id
     try {
       const model = new this.Model(doc, this.#_schema)
       const invalid = model.validateSync()
@@ -197,6 +238,7 @@ const { data, error } = await Customer.add(doc)
         return createMethodSignature(invalid, data)
       }
       rawObj = toJSON(model)
+      // console.log('add', rawObj)
       const __id = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
           .add({ ...rawObj })
@@ -260,7 +302,22 @@ const doc = {
 }
 const { data, error } = await Customer.edit(doc.__id, doc)
    */
-  async edit(primaryKey, doc) {
+  async edit(primaryKey = null, doc = {}) {
+    if (!(doc instanceof Document)) {
+      // return createMethodSignature('You must pass a valid JSON document as parameter to DataEntity.edit() method', null)
+    }
+    if (Object.keys(doc).length < 1) {
+      return createMethodSignature('You must pass a valid JSON document as parameter to DataEntity.edit() method', null)
+    }
+    if (primaryKey === null) {
+      return createMethodSignature('You must pass a valid primary key value as parameter to DataEntity.edit() method', null)
+    }
+    if (typeof doc.__id !== 'number') {
+      return createMethodSignature('Document must have doc.__id (Integer) when calling DataEntity.edit() method', null)
+    }
+    if (typeof doc._id !== 'string') {
+      return createMethodSignature('Document must have doc._id (ObjectID) when calling DataEntity.edit() method', null)
+    }
     primaryKey = +primaryKey
     let data = null
     let error = null
@@ -273,12 +330,10 @@ const { data, error } = await Customer.edit(doc.__id, doc)
       }
       rawObj = toJSON(model)
       rawObj.__id = primaryKey
-      console.debug('query', {primaryKey, rawObj})
       const response = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
         .put({ ...rawObj })
         // .update({ __id: primaryKey }, { ...rawObj })
-      console.debug('response', response)
       data = { __id: primaryKey, ...rawObj }
       /* if (response.modifiedCount === 1) {
         data = { __id: primaryKey, ...rawObj }
@@ -290,7 +345,6 @@ const { data, error } = await Customer.edit(doc.__id, doc)
         }
       } */
     } catch (e) {
-      console.log(e)
       error = e
     }
     this.#_triggerEditEvents({ data, error, primaryKey, rawObj })
@@ -412,7 +466,7 @@ const { data, error } = await Customer.edit(doc.__id, doc)
       const doc = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
           .get(primaryKey)
-      // console.debug({ __id: primaryKey, doc })
+      // console.log({ __id: primaryKey, doc })
       if (doc)
       {
         if (doc.__id === primaryKey) {
@@ -420,7 +474,6 @@ const { data, error } = await Customer.edit(doc.__id, doc)
         }
       }
     } catch (e) {
-      console.error('error', error)
       error = e
     }
     return createMethodSignature(error, data)
@@ -429,7 +482,8 @@ const { data, error } = await Customer.edit(doc.__id, doc)
   /**
    * @async
    * @Method DataEntity.findAll
-   * @description find all documents
+   * @summary Find all documents
+   * @description This method will to return all documents based on the given query. If no query is specified, it will returns all records from this collection
    * @return  {object} signature - Default methods signature format { error, data }
    * @return  {string|object} signature.error - Execution error
    * @return  {array} signature.data - Array of Found documents
@@ -453,7 +507,8 @@ const { data, error } = await Customer.edit(doc.__id, doc)
   /**
    * @async
    * @Method DataEntity.find
-   * @description find all documents based on the given query
+   * @summary find documents based on the given query and returns a paginated response
+   * @description This method will to return the documents based on the given query and the specified paging. If no query is specified, it will returns documents based on paging only.
    * @param  {object|null} query - The query object to search documents
    * @param  {object} pagination - Pagination object. If not provided will assume internaly set pagination.
    * @param  {number} pagination.offset - Offset. Default 0.
@@ -543,8 +598,7 @@ const { data, error } = await Customer.edit(doc.__id, doc)
             data,
             error
           }
-          const eventName = `collection:${action}:${entity.toLowerCase()}`
-          this.#_foundation.triggerEvent(eventName, eventObj)
+          this.#_foundation.triggerEvent(`collection:${action}:${entity.toLowerCase()}`, eventObj)
           this.triggerEvent(action, eventObj)
         }
         // oldValue

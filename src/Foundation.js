@@ -1,5 +1,5 @@
 /* global localStorage, navigator, window */
-import { createMethodSignature, GUID, Schema } from './utils'
+import { createMethodSignature, uuid, Schema } from './utils'
 import DataEntity from './DataEntity'
 import LocalDatabaseTransport from './LocalDatabaseTransport'
 import EventSystem from './EventSystem'
@@ -115,7 +115,7 @@ const UserSchema = new Foundation.Schema({
 const foundation = new Foundation({
     name: 'My App',
     useWorker: true,
-    dataStrategy: 'offlineFirst',
+    dataStrategy: 'offline',
     schemas: {
         User: UserSchema,
         Product: ProductSchema,
@@ -177,7 +177,7 @@ export default class Foundation extends EventSystem {
 
   constructor ({
     name = 'My Foundation Name',
-    dataStrategy = 'offlineFirst',
+    dataStrategy = 'offline',
     useWorker = false,
     schemas = {}
   } = {}) {
@@ -187,12 +187,12 @@ export default class Foundation extends EventSystem {
     this.#_useWorker = useWorker
     this.#_schemas = schemas
     this.#_started = false
-    this.#_guid = GUID()
+    this.#_guid = uuid()
     this.#_models = {}
     this.#_useWorker = useWorker || false
     this.#_workers = {}
     this.localDatabaseTransport = new LocalDatabaseTransport()
-    this.#_tabId = GUID() // assume new Id on every refresh
+    this.#_tabId = uuid() // assume new Id on every refresh
   }
 
   /**
@@ -283,16 +283,22 @@ export default class Foundation extends EventSystem {
     return this.#_workers.foundation
   }
 
-  #setModel(entity = '', dataEntity = {}) {
+  /**
+   * @Method Foundation.mapToDataEntityAPI
+   * @summary Maps an Data Entity abstraction to foundation Data API
+   * @description An Data Entity abstraction is an instance of the {@link DataEntity}. 
+   * Once it is mapped to foundation Data API, you can reach every Data Entity in the system from a single source point.
+   * This method dont works as expected if  you call it after {@link Foundation.start} method.
+   * See {@link Foundation.importDataEntity} for usage further information.
+   * @param  {string} entity - Data Entity name
+   * @param  {dataEntity} dataEntity - An {@link DataEntity} instance
+   */
+  mapToDataEntityAPI(entity = '', dataEntity = {}) {
     let _error = null
     let _data = null
-    try {
-      this.#_models[entity] =  dataEntity
-      _data = this.#_models[entity]
-    } catch (error) {
-      console.error('EROROR', error)
-      _error = error
-    }
+    // if call mapToDataEntityAPI('Product') more than once, it will ovewrite the previous set Product model
+    this.#_models[entity] = dataEntity
+    _data = this.#_models[entity]
     return createMethodSignature(_error, _data)
   }
   
@@ -305,6 +311,95 @@ export default class Foundation extends EventSystem {
    */
   static get Schema() {
     return Schema
+  }
+
+  /**
+   * @Method Foundation.importDataEntity
+   * @summary Alias to Foundation.mapToDataEntityAPI(entity = '', dataEntity = {})
+   * @description An Data Entity abstraction is an instance of the {@link DataEntity}. 
+   * Once it is mapped to foundation Data API, you can reach every Data Entity in the system from a single source point.
+   * This method dont works as expected if  you call it after {@link Foundation.start} method
+   * @param  {object} spec - Data Entity abstraction specification
+   * @param  {string} spec.entity - Data Entity name
+   * @param  {dataEntity} spec.dataEntity - An {@link DataEntity} instance for the entity defined on `spec.entity`
+   * @example
+const productSchema = new Foundation.Schema({
+  name: {
+    type: String,
+    required: true,
+    index: true
+  },
+  vendor: {
+    type: String,
+    required: true,
+    index: true
+  },
+  price: {
+    type: Number,
+    required: true,
+    index: true
+  }
+})
+
+// start the foundation
+const foundation = new Foundation({
+  name: 'My Test app',
+  schemas: {
+    // Customer: schema
+  }
+})
+
+// Build a customized Data Entity abstraction
+const MyCustomizedDataEntity = class extends DataEntity {
+  constructor (config) {
+    super(config)
+  }
+
+  sell (primaryKey, orderId) {
+    // primaryKey is Product primary key value
+    // orderId is the primaryKey of an Order
+    // const foundOrder = await Order.findById(orderId)
+    // if (foundOrder.error) {
+    //  CAN NOT TO SELL
+    // }
+    // const items = foundOrder.data.lineItems.filter(i => (i.productId === primaryKey))
+    // If  Order has the product listed item
+    // if(items[0])
+    // {
+    //    await this.delete(primaryKey) // deletes a Product from Products
+    // }
+  }
+}
+
+// instance of the custimized Data Entity
+const productDataEntity = new MyCustomizedDataEntity({
+  foundation,
+  entity: 'Product',
+  schema: productSchema
+})
+
+// import data entity
+foundation.importDataEntity({
+  entity: 'Product',
+  dataEntity: productDataEntity
+})
+
+// start the foundation
+await foundation.start()
+
+// you can now do things like:
+
+const { Product } = foundation.data
+
+await Product.add({
+  name: 'Big Mac',
+  vendor: 'McDonalds',
+  price: 3
+})
+
+   */
+  importDataEntity({ entity = null, dataEntity = {} }) {
+    this.mapToDataEntityAPI(entity, dataEntity)
   }
 
   #mapModels(schemas) {
@@ -322,7 +417,7 @@ export default class Foundation extends EventSystem {
             strategy,
             schema
           })
-          this.#setModel(entity, dataEntity)
+          this.mapToDataEntityAPI(entity, dataEntity)
         }
       }
       _data = this.#_models
@@ -344,9 +439,9 @@ export default class Foundation extends EventSystem {
 
   /**
    * @Method Foundation.setGuidStorage
-   * @description save Foundation GUID to localStorage
+   * @description save Foundation uuid to localStorage
    * @param  {string} guid
-   * @return Foundation GUID saved on localStorage
+   * @return Foundation uuid saved on localStorage
    */
   setGuidStorage (guid) {
     window.localStorage.setItem('guid', guid)
@@ -355,8 +450,8 @@ export default class Foundation extends EventSystem {
 
   /**
    * @Method Foundation.setupAppGuid
-   * @description check if Foundation has a GUID saved o
-   * @return Foundation GUID saved on localStorage
+   * @description check if Foundation has a uuid saved o
+   * @return Foundation uuid saved on localStorage
    */
   setupAppGuid () {
     const guidCache = window.localStorage.getItem('guid') || false

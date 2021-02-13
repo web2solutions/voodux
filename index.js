@@ -4,14 +4,18 @@ import LocalDatabaseTransport from './src/LocalDatabaseTransport'
 import * as utils from './src/utils'
 
 
-window.Foundation = Foundation
-window.utils = utils
-window.LocalDatabaseTransport = LocalDatabaseTransport
-window.DataEntity = DataEntity
+if (typeof window !== 'undefined') {
+  window.Foundation = Foundation
+  window.utils = utils
+  window.LocalDatabaseTransport = LocalDatabaseTransport
+  window.DataEntity = DataEntity
+}
 
-export {
+exports = exports || {}
+exports.default = {
   Foundation,
   LocalDatabaseTransport,
   DataEntity,
   utils
 }
+

@@ -96,24 +96,111 @@ describe('#--- Utils module Test Suite', () => {
   })
 
   describe('Mongoose 2 Dexie: utils.mongooseToDexieTableString(schema) -> Mongoose schema conversion to Dexie table config', () => {
+    const schema = new utils.Schema({
+      name: {
+        type: String,
+        required: true,
+        index: true
+      },
+      username: {
+        type: String,
+        required: true,
+        index: true
+      },
+      cards: {
+        type: [],
+        required: true,
+        index: true
+      },
+      notIndexed: {
+        type: String,
+        required: true
+      }
+    })
+    const tableConfig = utils.mongooseToDexieTableString(schema)
     it('Table config must have __id as Primary Key', (done) => {
-      const schema = new utils.Schema({
-        name: {
-          type: String,
-          required: true,
-          index: true
-        },
-        username: {
-          type: String,
-          required: true,
-          index: true
-        }
-      })
-      const tableConfig = utils.mongooseToDexieTableString(schema)
       const tableConfigArray = tableConfig.split(',')
-      // console.log(tableConfigArray)
       assert.equal(tableConfigArray[0], '++__id')
       done()
     })
+    it('Table config must have _id ', (done) => {
+      const tableConfigArray = tableConfig.split(',')
+      assert.equal(tableConfigArray[1], '_id')
+      done()
+    })
+    it('cards property must be multi entry', (done) => {
+      const tableConfigArray = tableConfig.split(',')
+      let foundMultiEntry = false
+      tableConfigArray.forEach(propertyName => {
+        if (propertyName === '*cards') {
+          foundMultiEntry = true
+        }
+      })
+      assert.equal(foundMultiEntry, true)
+      done()
+    })
+    it('notIndexed property shall not be present on table config because it is not indexed', (done) => {
+      const tableConfigArray = tableConfig.split(',')
+      let foundnotIndexed = false
+      tableConfigArray.forEach(propertyName => {
+        if (propertyName === 'notIndexed') {
+          foundnotIndexed = true
+        }
+      })
+      assert.equal(foundnotIndexed, false)
+      done()
+    })
   })
+
+  describe('lunr search token generating', () => {
+    it('Returned token must be an array', (done) => {
+      let _error = null
+      let _data = null
+      try {
+        const text = 'text goes here'
+        const token = utils.getSearchTokenStream(text)
+        _data = token
+      } catch (e) {
+        console.log(e)
+        _error = e
+        _data = null
+      }
+      assert.equal(Array.isArray(_data), true)
+      done()
+    })
+
+    it('Returned token must have 3 entries', (done) => {
+      let _error = null
+      let _data = null
+      try {
+        const text = 'text goes here'
+        const token = utils.getSearchTokenStream(text)
+        _data = token
+      } catch (e) {
+        console.log(e)
+        _error = e
+        _data = null
+      }
+      assert.equal(_data.length, 3)
+      done()
+    })
+    it('Returned token must have 0 entries', (done) => {
+      let _error = null
+      let _data = null
+      try {
+        const text = ''
+        const token = utils.getSearchTokenStream(text)
+        _data = token
+      } catch (e) {
+        console.log(e)
+        _error = e
+        _data = null
+      }
+      assert.equal(_data.length, 0)
+      done()
+    })
+  })
+
+  // getSearchTokenStream
+
 })

@@ -4,23 +4,23 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Agnostic Web Application Foundation Index</title>
+	<title>voodux Index</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
 
-	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+	<link type="text/css" rel="stylesheet" href="styles/site.spacelab.css">
 
 </head>
 
 <body>
 
-<div class="navbar navbar-default navbar-fixed-top ">
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
 <div class="container">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="index.html">Agnostic Web Application Foundation</a>
+		<a class="navbar-brand" href="index.html">voodux</a>
 		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
@@ -93,16 +93,64 @@
 
 
     <section class="readme-section">
-        <article><img src="https://i.imgur.com/614mA0U.png" width="200" />
-<h1>voodux - voodux</h1>
+        <article><p><a href="./index.html"><img src="https://i.imgur.com/a856gth.png" width="400" /></a></p>
+<p><a href="https://circleci.com/gh/web2solutions/voodux/tree/main"><img src="https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> | <a href="https://circleci.com/gh/web2solutions/voodux/tree/release"><img src="https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> | <a href="https://circleci.com/gh/web2solutions/voodux/tree/develop"><img src="https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> | <a href="https://codecov.io/gh/web2solutions/voodux"><img src="https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG" alt="codecov"></a> | <a href="https://snyk.io/test/github/web2solutions/voodux"><img src="https://snyk.io/test/github/web2solutions/voodux/badge.svg" alt="Known Vulnerabilities"></a> | <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
+<h1>VooduX</h1>
 <h2>Summary</h2>
-<p>The proposal is about to cover the common lacks and mistakes in modern web applications development by heavly opinionating on how to define a strong foundation for most common types of web based softwares which relies mostly in <code>V-*</code> libraries and frameworks like <code>Vue</code> and <code>React</code>.</p>
-<p>It provides a underlying architecture offering resources like:</p>
+<p>The VooduX's proposal is to cover the common lacks and mistakes in modern web applications development. It heavly opinionate on how to define a strong underlying architecture for the most common types of web softwares which relies mostly in <code>V-*</code> like libraries and frameworks such as <code>Vue</code> and <code>React</code>.</p>
+<h4>What VooduX is not?</h4>
+<ul>
+<li>It does not replace Redux, Mobx, Vuex any any other kind of <code>Application Management</code> abstraction.</li>
+<li>It does not cares about how you manage your application state.</li>
+<li>It does not cares about which <code>project standard</code>'s framework/library you employ. Vue, React, It does not matters.</li>
+<li>It does not cares about the UI framework/library you are employing. The Material UI, Boostrap, Vuetify, Sencha, DHTMLX, Dojo.</li>
+</ul>
+<h4>What is VooduX then?</h4>
+<p>It is good to see teams proud of being <code>TDD driven</code> teams. It is amazing to see team proud of <code>Translating pixel-perfect designs from Figma</code>, it is really are fascinating to be exposed to new and good <code>User Xperiences</code>. Horses flying and 3D rotating on screen, big red error messages on giant rounded number form field when user tries to type a string value inside, are good, but this is the head of the iceberg only.</p>
+<p>In several cases, industries are heavily focusing on specific pieces of the process, under a totaly focused on a <code>Software Engineering</code> field influenced perspective, rather than prior scoping a overall product plan, flavoured on a <code>System Information</code> field perspective.</p>
+<p>Sometimes part of the project process is rock solid, but the final product is lacking in simple things. I saw large financial applications that when opened on multiple browser tabs, and if you add a new data in tab one, all other tabs stays dumb. If I went to another tab, the new data was not there.</p>
+<p>We really love <code>State Management</code> libraries and we use them on daily basis. But we don't agree to the assumption that <code>Application State Management</code> does the same as a <code>Application Data Management</code> abstraction suposedly does. Simply because the <code>application data size</code> might considerable grows.</p>
+<p>We like to think in a scenario where the <code>Application State Management</code> abstraction handles <code>pieces</code> of data that are curenlty being used in the screen at the present moment. But it does not means you should not have another pieces of data being <code>underlying handled by some other manner</code> behind the scenes.</p>
+<p>Let's make a simple comparison to quickly visualize the main difference between traditional React/Vue applications and a VooduX powered application:</p>
+<hr>
+<p><code>This is how a common React/Vue application looks like:</code></p>
+<img src="https://i.imgur.com/acwNgqq.png" style="max-width: 900px;" />
+<hr>
+<p><code>This is how a VooduX powered React/Vue application looks like:</code></p>
+<img src="https://i.imgur.com/FsxIaMl.png" style="max-width: 900px;" />
+<hr>
+<p>Please don't get us wrong. <code>We are not reinventing any wheels</code>. We are just leveraging well stabilished paradigms and methodologies like <code>Entity Relationship</code>, <code>Data Entities</code>, <code>Actors</code>, <code>Objects</code>, <code>RAD</code>, <code>Component Engineering</code>, <code>Messaging Patterns</code>, <code>2-way data flow over an Event Driven Architecture</code>, <code>Data Caching</code> so on and so forth, to delivery agile produced sotware MVPs that scales since from it initial days.</p>
+<p>Supose the <code>server - back end</code> emits a <a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events"><code>Server Event Message</code></a> to connected clients with the following info:</p>
+<pre class="prettyprint source lang-javascript"><code> { 
+   action: 'completed', 
+   entity: 'Order', 
+   id: 24455,
+   customerId: 3443,
+   lineItems: [...[{}]],
+   totalPaid: 5430
+ }
+</code></pre>
+<p>Supose you are currently catching your eyes at the Dashboard page in the screen where you have: <code>Last Order Listing</code>, <code>Sales Chart</code> and <code>Total Earns Today</code> badge.</p>
+<p>Like this:</p>
+<img src="https://i.imgur.com/b29Lsgj.png" width="500" />
+<p>You now need to update those components based on the received <a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events"><code>Server Event Message</code></a>.</p>
+<p>The <code>Last Order Listing</code> component displays the name of the customer alongside it address and total paid for that specific order.</p>
+<p>In that moment, if you dont have the Customer information inside the <code>Application State Management</code> implementation, you need to get it in another place. That is where the <code>Application Data Management</code> abstraction resides.</p>
+<p>Traditionaly the main applications implementation rely on directly calling an API, or even use things like the browser <code>localStorage</code> API, which will fails once it data size and complexity grows.</p>
+<p>Going against this implementation model, we intoduce a <code>proxy like</code> abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser.</p>
+<p>There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development and validation.</p>
+<p>Aditionaly, VooduX abstract some kind of <code>data transporters</code> which is used <code>to send own produced event and data to</code> and <code>to consume thirdy party produced event and data from</code>. Every data change has an associated event object and action, which is not used only for <code>Event Sourcing</code>, but also to provide direct <code>bindings</code> for <code>decoupled View components</code>.</p>
+<p>Despite the fact we can now fastly and cheaply request data, we have also a complete database running on front end. The <code>Application Data Management</code> abstraction gives you some capabilities such:</p>
+<ul>
+<li>Do not loose data on network disconnections.</li>
+<li>100% offline capable applications.</li>
+<li>Drastically reduce server resources dependency.</li>
+<li>High performant UI reactivity.</li>
+</ul>
+<p>VooduX provides a underlying architecture offering resources like:</p>
 <ul>
 <li>Generic <code>Data Schema</code> and <code>Data Model</code> driven design. Use the Mongoose implementation to define models. Same model can both run on client and server.</li>
 <li>A proxy like <code>Data Entity API</code> supporting different data transports</li>
-<li>Complete boilerplate for software testing.</li>
-<li>Complete boilerplate for software documentation.</li>
 <li>Enforced Entity Relatioship and Data Entities design</li>
 <li>Application session</li>
 <li>Realtime Data Sync</li>
@@ -110,91 +158,611 @@
 <li><code>Trully multi threaded</code> architecture by leveraging web workers. Web applications are originally single threaded applications.</li>
 <li>100% offline capable applications</li>
 <li>Asynchronous and <code>event driven</code> architecture.</li>
-<li><code>Data Schema</code> generators leveraging OpenAPI speficiations (Swagger) as declarative metadata standard</li>
+<li><code>Data Schema</code> generators leveraging the OpenAPI speficiations (Swagger) as declarative metadata standard</li>
 <li>CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard</li>
 </ul>
-<h2>What it does not?</h2>
+<h2>Install</h2>
+<h3>Via npm - Simple usage</h3>
+<pre class="prettyprint source lang-bash"><code>  $ npm install voodux --save
+</code></pre>
+<h3>Via git - Advanced usage</h3>
+<pre class="prettyprint source lang-bash"><code>  $ git clone https://github.com/web2solutions/voodux.git
+  $ cd voodux
+  $ npm install
+</code></pre>
+<h2>How to use</h2>
+<p>This the Step by Step guide to use VooduX</p>
+<h3>Importing VooduX into your application</h3>
+<p>The first step to use VooduX in your project it to import it library.</p>
+<h4>ES5 require</h4>
+<pre class="prettyprint source lang-javascript"><code>  const { 
+    Foundation, 
+    // LocalDatabaseTransport, 
+    // DataEntity, 
+    // utils 
+  } = require('voodux/dist/main').default
+</code></pre>
+<h4>ES6 import</h4>
+<p>We use brand new ES6 features, like privacy on Classes. If you are willing to import our classes into you ES6 project, you must setup the following babel plugins:</p>
+<p><a href="https://babeljs.io/docs/en/babel-plugin-transform-runtime">&quot;@babel/plugin-transform-runtime&quot;</a></p>
+<p><a href="https://babeljs.io/docs/en/babel-plugin-proposal-class-properties">&quot;@babel/plugin-proposal-class-properties&quot;</a></p>
+<p><a href="https://babeljs.io/docs/en/babel-plugin-proposal-private-methods">&quot;@babel/plugin-proposal-private-methods&quot;</a></p>
+<p>Not least, you must use at least the <code>env</code> preset.</p>
+<p>Then your .babelrc file will looks like the following:</p>
+<pre class="prettyprint source"><code>  {
+    &quot;presets&quot;: [
+      &quot;@babel/preset-env&quot;, 
+      &quot;@babel/preset-react&quot;
+    ],
+    &quot;plugins&quot;: [
+      &quot;@babel/plugin-transform-runtime&quot;, 
+      &quot;@babel/plugin-proposal-class-properties&quot;, 
+      &quot;@babel/plugin-proposal-private-methods&quot;
+    ]
+  }
+</code></pre>
+<p>Otherwise you are going to face compilation issues.</p>
+<p>In order to import the main library to your project just simply import it:</p>
+<pre class="prettyprint source lang-javascript"><code>  import { Foundation } from 'voodux'
+</code></pre>
+<h4>Browser directly usage</h4>
+<pre class="prettyprint source lang-html"><code>  &lt;script type=&quot;text/javascript&quot; src=&quot;voodux/dist/main.min.js&quot;>&lt;/script>
+</code></pre>
+<h4>React and Vue Project Structure</h4>
+<p>This is how a hypotethical React or Vue project structure looks like. This example is assuming the fact that your application have 4 pages:</p>
+<ol>
+<li>Dashboard</li>
+<li>Customers</li>
+<li>Orders</li>
+<li>Products</li>
+</ol>
+<pre class="prettyprint source lang-bash"><code>├── dist                          -> Final app code goes here
+├── docs
+│ ├── code                        -> JSDoc documentation will be saved here
+│ └── reports                     -> Karma reports will be saved here
+├── html_app                      -> Original static files
+├── test                          -> Test suites goes here
+├── src
+│   ├── components
+│   │   ├── customers
+│   │   │   ├── CustomersAdd.js   -> Add form
+│   │   │   ├── CustomersEdit.js  -> Edit form
+│   │   │   ├── index.js          -> Main listing page
+│   │   │   └── events            -> Event Handlers decoupled from component files
+│   │   ├── dashboard
+│   │   │   ├── Chart.js          -> Finance Chart
+│   │   │   ├── index.js          -> Main listing page
+│   │   │   └── events            -> Event Handlers decoupled from component files
+│   │   ├── orders
+│   │   │   ├── OrdersAdd.js      -> Add form
+│   │   │   ├── index.js          -> Main listing page
+│   │   │   └── events            -> Event Handlers decoupled from component files
+│   │   ├── products
+│   │   │   ├── ProductsAdd.js    -> Add form
+│   │   │   ├── ProductsEdit.js   -> Edit form
+│   │   │   ├── index.js          -> Main listing page
+│   │   │   └── events            -> Event Handlers decoupled from component files
+│   ├── events                    -> Decoupled Application Event handlers
+│   ├── schemas                   -> Data Entity Schemas (or Data Models) are saved here
+│   ├── App.css
+│   ├── App.js                    -> React/Vue Application code
+│   └── main.js                   -> Application entry point
+├── test
+├── .babelrc                      -> Babel configuration
+├── .eslintignore                 -> eslint ignore rules
+├── .eslintrc.json                -> eslint configuration
+├── .prettierrc                   -> prettier configuration
+├── jsDoc.json                    -> JSDoc configuration
+├── package.json
+└── webpack.config.js              -> webpack configuration
+</code></pre>
+<h3>Writing your application code</h3>
+<p>The underlying architecture of every VooduX application borns in it <code>Data Design</code>.</p>
+<p>The VooduX strongly believes that the <code>Data plan</code> and <code>Data design</code> is the first step to take when building successful projects. That is why we start by defining some <code>Data Schemas</code> for the <code>Data entities</code> we have in the system.</p>
+<p>Every Data entity in the system has it own encapsulated methods to access, handle and notify data changes to every actor listening to it.
+Schemas must be provided in the foundation constructor or at least pior calling the <a href="https://web2solutions.github.io/voodux/code/Foundation.html#.start__anchor"><code>foundation.start()</code></a> method. Otherwise it collection will not be created inside the local database.</p>
+<h4>Setup a data schema for a Data Entity</h4>
+<p>Every <code>Data Schema</code> in a <code>VooduX</code> application is set using the <a href="https://web2solutions.github.io/voodux/code/Foundation.html#.Schema__anchor"><code>Foundation.Schema(schema)</code></a> static method.</p>
+<p>The data schemas are set following the <a href="https://mongoosejs.com/docs/guide.html"><code>Mongoose</code></a> standard to define schemas. It means you are not repeating yourself when writing data schemas because they targets both the <code>front end</code> and <code>back end</code>. In other words, server and client data are being defined by a single contract.</p>
+<pre class="prettyprint source lang-javascript"><code>import { Foundation } from 'voodux'
+
+const CustomerSchema = new Foundation.Schema({
+  name: {
+    type: String,
+    required: true,
+    index: true
+  },
+  address: {
+    type: String,
+    required: true,
+    index: true
+  },
+  email: {
+    type: String,
+    required: true,
+    index: true
+  },
+  cards: {
+    type: [],
+    required: true
+  }
+})
+</code></pre>
+<h4>Foundation constructor</h4>
+<p>The starting point of every <code>voodux</code> application is it <code>Foundation</code>.</p>
+<p>The application foundation holds things like data definition, data access, data validation, data persistence, data change notification ....</p>
+<p>Prior starting your React or Vue application code, you must create your <code>application foundation</code> and then to pass it as property to your React or Vue application.</p>
+<p>The <code>application foundation</code> is set by calling the <code>Foundation constructor</code>.</p>
+<pre class="prettyprint source lang-javascript"><code>  const foundation = new Foundation({
+      name: 'My App',
+      schemas: {
+          User: UserSchema,
+          Product: ProductSchema,
+          Order: OrderSchema,
+          Customer: CustomerSchema
+      }
+  })
+</code></pre>
+<h4>Listening to <code>Application Start</code> event</h4>
+<p>Sometimes you may need to start executing heavy tasks prior start rendering your application screens. For example you could start a data sync process, starting to fill out you local database and in meantime, render a dashboard and start rendering data changes in realtime, as long as they are <code>emitted</code> from the Data Entity abstraction implementation.</p>
+<p>The <code>foundation:start</code> event listener must be set before calling <code>foundation.start()</code>. Otherwise it will not be triggered.</p>
+<pre class="prettyprint source lang-javascript"><code>    foundation.on('foundation:start', async function(eventObj) {
+      const {
+          foundation,
+          error
+      } = eventObj
+      if (error) {
+          throw new Error(`Error starting foundation stack: ${error}`)
+      }
+      const {
+          User,
+          Product
+      } = foundation.data
+      const Eduardo = await User.add({
+          name: 'Eduardo Almeida',
+          username: 'web2'
+      })
+      console.debug('Eduardo', Eduardo)
+
+      const Volvo = await Product.add({
+          name: 'Volvo XC90',
+          vendor: 'Volvo',
+          price_cost: 150000
+      })
+      console.debug('Volvo', Volvo)
+  })
+</code></pre>
+<h4>Hypothetical full React app setup demo</h4>
+<pre class="prettyprint source lang-javascript"><code>  // import React lib
+  import React from 'react'
+  // import Foundation lib
+  import { Foundation } from 'voodux'
+
+  // setup Data schemas
+  const CustomerSchema = new Foundation.Schema({
+    name: {
+        type: String,
+        required: true,
+        index: true
+    },
+    address: {
+        type: String,
+        required: true,
+        index: true
+    },
+    email: {
+        type: String,
+        required: true,
+        index: true
+    },
+    cards: {
+        type: [],
+        required: true
+    }
+  })
+
+  const OrderSchema = new Foundation.Schema({
+      name: {
+          type: String,
+          required: true,
+          index: true
+      },
+      shipTo: {
+          type: String,
+          required: true,
+          index: true
+      },
+      paymentMethod: {
+          type: String,
+          required: true,
+          index: true
+      },
+      amount: {
+          type: Number,
+          required: true,
+          default: 0,
+          index: true
+      },
+      date: {
+          type: Date,
+          default: Date.now,
+          index: true
+      }
+  })
+
+  const ProductSchema = new Foundation.Schema({
+      name: {
+          type: String,
+          required: true,
+          index: true
+      },
+      vendor: {
+          type: String,
+          required: true,
+          index: true
+      },
+      price_cost: {
+          type: Number,
+          required: true,
+          default: 0,
+          index: true
+      }
+  })
+
+  const UserSchema = new Foundation.Schema({
+      name: {
+          type: String,
+          required: true
+      },
+      username: {
+          type: String,
+          required: true
+      }
+  })
+
+  const foundation = new Foundation({
+      name: 'My App',
+      useWorker: true,
+      dataStrategy: 'offlineFirst',
+      schemas: {
+          User: UserSchema,
+          Product: ProductSchema,
+          Order: OrderSchema,
+          Customer: CustomerSchema
+      }
+  })
+
+  // listen to application start event and add some records to database.
+  foundation.on('foundation:start', async function(eventObj) {
+      const {
+          foundation,
+          error
+      } = eventObj
+      if (error) {
+          throw new Error(`Error starting foundation stack: ${error}`)
+      }
+      const {
+          User,
+          Product
+      } = foundation.data
+      const Eduardo = await User.add({
+          name: 'Eduardo Almeida',
+          username: 'web2'
+      })
+      console.debug('Eduardo', Eduardo)
+
+      const Volvo = await Product.add({
+          name: 'Volvo XC90',
+          vendor: 'Volvo',
+          price_cost: 150000
+      })
+      console.debug('Volvo', Volvo)
+  })
+
+  // start application foundation and get it ready to be used
+  const start = await foundation.start()
+  if (start.error) {
+      throw new Error(`Error starting foundation stack: ${start.error}`)
+  }
+  
+  // start rendering yout React application by passing the application foundation as it prop.
+  ReactDOM.render(
+    &lt;App foundation={foundation} />,
+    document.getElementById('root')
+  )
+
+</code></pre>
+<h4>Hypothetical React <code>Customers Listing</code> component</h4>
+<p>This component does render a list of Customers.</p>
+<p>On the list, every listed customer has associated <code>delete</code> and <code>update</code> links.</p>
+<p>The component has an array of <code>customers</code> as main state property.</p>
+<p>Ok, there is nothing new here!</p>
+<p>The <code>dirty magic</code> begins when the requirement list starting asking for things like:</p>
 <ul>
-<li>It does not replace Redux, Mobx or Vuex.</li>
-<li>It does not cares about how you manage your application state</li>
-<li>It does not cares about which framework/library for <code>project standards</code> you use. Vue, React ...</li>
-<li>It does not cares about the UI framework/library you use. Material UI, Boostrap, Sencha, DHTMLX, Dojo.</li>
+<li>To be able to show the same data in the screen after browser refreshing <code>and do not</code> call the server API asking for those specific piece of data.</li>
+<li>Have a reliable and high performance <code>2-way dataflow</code> model between <code>Application Data Storage and Application State Manager</code>.</li>
 </ul>
-<h2>React Demos</h2>
-<h3>React Demo app (Functional components)</h3>
+<pre class="prettyprint source lang-javascript"><code>import React from 'react'
+import { Link, Redirect } from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap'
+import swal from 'sweetalert'
+
+/** 
+ * event listener triggered every time there is a 'add' type data change in Customer Data Entity
+*/
+const handlerOnAddDocEventListener = function (eventObj) {
+  const { error, document, foundation, data } = eventObj
+  if (error) {
+    console.error(`Error adding user: ${error}`)
+    return
+  }
+  console.debug([data, ...this.state.customers])
+  this.setState({ customers: [data, ...this.state.customers] })
+}
+
+/** 
+ * event listener triggered every time there is a 'edit' type data change in Customer Data Entity
+*/
+const handlerOnEditDocEventListener = function (eventObj) {
+  const { data, primaryKey,  document, foundation, error } = eventObj
+  if (error) {
+    console.error(`Error updating user: ${error}`)
+    return
+  }
+  const newData = this.state.customers.map((customer) => {
+    if (customer.__id === primaryKey) {
+      return data
+    } else {
+      return customer
+    }
+  })
+  console.debug([...newData])
+  this.setState({ customers: [...newData] })
+}
+
+/** 
+ * event listener triggered every time there is a 'delete' type data change in Customer Data Entity
+*/
+const handlerOnDeleteDocEventListener = function (eventObj) {
+  const { error, document, foundation, data } = eventObj
+  if (error) {
+    console.error(`Error deleting user: ${error}`)
+    return
+  }
+  const allCustomers = [...this.state.customers]
+  for (let x = 0; x &lt; allCustomers.length; x++) {
+    const customer = allCustomers[x]
+    if (customer.__id === data.__id) {
+      allCustomers.splice(x)
+    }
+  }
+  this.setState({ customers: allCustomers })
+}
+
+/**
+ * @author Eduardo Perotta de Almeida &lt;web2solucoes@gmail.com>
+ * @Component Customers
+ * @description React component consuming a Customer Data Entity collection to feed a grid
+ * @extends React.Component
+ */
+class Customers extends React.Component {
+  constructor (props) {
+    super(props)
+    /**
+     * Entity name which this component represents to
+     */
+    this.entity = 'Customer'
+    /**
+     * access to foundation instance
+     */
+    this.foundation = props.foundation
+    /**
+     * default pagination to list data
+     */
+    this.pagination = {
+      offset: 0,
+      limit: 30
+    }
+    /**
+     * component state
+     */
+    this.state = {
+      customers: []
+    }
+    this.onAddDocEventListener = null
+    this.onEditDocEventListener = null
+    this.onDeleteDocEventListener = null
+    this.handleDeleteCustomer = this.handleDeleteCustomer.bind(this)
+  }
+
+  /**
+   * @Method Customers.componentWillUnmount
+   * @summary Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as cancelled network requests, or cleaning up any DOM elements created in componentDidMount.
+   * @description lets stop listen to Customer Data State Change Events
+   */
+  componentWillUnmount () {
+    const { Customer } = this.foundation.data
+    /**
+     * Destroy event listeners of this component which are listening to Customer collection
+     * and react to it
+     */
+    Customer.stopListenTo(this.onAddDocEventListener)
+    Customer.stopListenTo(this.onEditDocEventListener)
+    Customer.stopListenTo(this.onDeleteDocEventListener)
+  }
+
+  /**
+   * @async
+   * @Method Customers.componentDidMount
+   * @summary Called immediately after a component is mounted. Setting state here will trigger re-rendering.
+   * @description Once component is monted we are now ready to start listen to changes on Customer data entity and get a list of customer in database to fill out the state.customers
+   */
+  async componentDidMount () {
+    const { Customer } = this.foundation.data
+
+    // listen to add, edit and delete events on Customer collection
+    // and react to it
+    /**
+     * listen to add Customer Data Entity change event on Data API
+     */
+    this.onAddDocEventListener = Customer.on('add', handlerOnAddDocEventListener.bind(this))
+
+    /**
+     * listen to edit Customer Data Entity change event on Data API
+     */
+    this.onEditDocEventListener = Customer.on('edit', handlerOnEditDocEventListener.bind(this))
+
+    /**
+     * listen to delete Customer Data Entity change event on Data API
+     */
+    this.onDeleteDocEventListener = Customer.on('delete', handlerOnDeleteDocEventListener.bind(this))
+
+    // get Customers on database
+    const customers = await Customer.find({}, { ...this.pagination })
+    // console.warn(customers)
+
+    if (customers.data) {
+      this.setState({ customers: customers.data })
+    }
+  }
+
+  /**
+   * @Method Customers.handleDeleteCustomer
+   * @summary Event handler that Deletes a customer
+   * @description Once component is monted we are now ready to start listen to changes on Customer data entity and get a list of customer in database to fill out the state.customers
+   * @param  {event} event - The HTML event triggered on User interation
+   * @param  {number} __id - The primaryKey value of the record willing to be deleted
+   */
+
+  /**
+   * @Method Customers.handleDeleteCustomer
+   * @summary handleDeleteCustomer event handle
+   * @description triggered when clicking on delete button
+   */
+  handleDeleteCustomer (e, ___id) {
+    const { Customer } = this.foundation.data
+    e.preventDefault()
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        const r = await Customer.delete(___id)
+        if (r.error) {
+          swal('Database error', e.error.message, 'error')
+          return
+        }
+        swal('Poof! The customer has been deleted!', {
+          icon: 'success'
+        })
+        return &lt;Redirect to='/dashboard' />
+      } else {
+        swal('The Customer is safe!')
+      }
+    })
+  }
+
+  /**
+   * @async
+   * @Method Customers.render
+   * @summary Component render function.
+   * @description Renders a grid of Customers
+   */
+  render () {
+    return (
+      &lt;main className='col-md-9 ms-sm-auto col-lg-10 px-md-4 main'>
+        &lt;div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 bcustomer-bottom'>
+          &lt;h1 className='h2'>Customers&lt;/h1>
+          &lt;div className='btn-toolbar mb-2 mb-md-0'>
+            &lt;div className='btn-group me-2'>
+              &lt;LinkContainer to='/CustomersAdd'>
+                &lt;button type='button' className='btn btn-sm btn-outline-secondary'>
+                  Add new Customer
+                &lt;/button>
+              &lt;/LinkContainer>
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+        &lt;div className='table-responsive'>
+          &lt;table className='table table-striped table-sm'>
+            &lt;thead>
+              &lt;tr>
+                &lt;th>Name&lt;/th>
+                &lt;th>Address&lt;/th>
+                &lt;th>E-mail&lt;/th>
+                &lt;th align='right'>Cards&lt;/th>
+                &lt;th>-&lt;/th>
+              &lt;/tr>
+            &lt;/thead>
+            &lt;tbody>
+              {this.state.customers.map((doc) => (
+                &lt;tr key={doc.id}>
+                  &lt;td>{doc.name}&lt;/td>
+                  &lt;td>{doc.address}&lt;/td>
+                  &lt;td>{doc.email}&lt;/td>
+                  &lt;td align='right'>{doc.cards}&lt;/td>
+                  &lt;td>
+                    &lt;Link color='primary' to={`/CustomersEdit/${doc.__id}`}>[edit]&lt;/Link>
+                    | &lt;a color='primary' href='#' onClick={e => this.handleDeleteCustomer(e, doc.__id)}>[delete]&lt;/a>
+                  &lt;/td>
+                &lt;/tr>
+              ))}
+            &lt;/tbody>
+          &lt;/table>
+        &lt;/div>
+      &lt;/main>
+
+    )
+  }
+}
+
+export default Customers
+</code></pre>
+<h2>Application demos</h2>
+<h3>React demos</h3>
+<h4>React Demo app (Functional components)</h4>
 <img src="https://i.imgur.com/b29Lsgj.png" width="600" />
 <p><a href="https://voodux-react-functions-demo.vercel.app/"><code>Demo app</code></a></p>
 <p><a href="https://github.com/web2solutions/voodux-react-functions-demo"><code>Demo project</code></a></p>
 <p><code>Demo documentation:</code> -&gt; TODO</p>
-<h3>React Demo app (Class based components)</h3>
+<h4>React Demo app (Class based components)</h4>
 <img src="https://i.imgur.com/E1u5g6y.png" width="600" />
 <p><a href="https://voodux-react-class-demo.vercel.app/"><code>Demo app</code></a></p>
 <p><a href="https://github.com/web2solutions/voodux-react-class-demo"><code>Demo project</code></a></p>
 <p><a href="https://web2solutions.github.io/voodux-react-class-demo/"><code>Demo documentation:</code></a></p>
+<h3>Vue Demos</h3>
+<h3>DHTMLX demos</h3>
+<h3>Vanilla JS demos</h3>
 <h2>Motivation</h2>
 <p><a href="https://github.com/web2solutions/voodux/blob/main/MOTIVATION.md">What motivates this</a></p>
 <h2>Links and references</h2>
+<h3>Useful links</h3>
+<p>Project related resources:</p>
 <ul>
-<li>
-<p><a href="https://web2solutions.github.io/voodux/code/index.html">API documentation</a></p>
-</li>
-<li>
-<p><a href="https://web2solutions.github.io/voodux/reports/unit-testing/index.html">Unit tests Report</a></p>
-</li>
-<li>
-<p><a href="https://web.dev/progressive-web-apps/">PWA - Progressive web applications</a></p>
-</li>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Single-page_application">SPA - Single Page Applications</a></p>
-</li>
-<li>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API">IndexedDB</a></p>
-</li>
-<li>
-<p><a href="https://mongoosejs.com/">Mongoose</a></p>
-</li>
+<li><a href="https://web2solutions.github.io/voodux/code/index.html">API documentation</a></li>
+<li><a href="https://github.com/web2solutions/voodux">Project repository</a></li>
+<li><a href="https://web2solutions.github.io/voodux/reports/unit-testing/index.html">Unit tests Report</a></li>
+<li><a href="https://github.com/web2solutions/voodux/issues">Report an issue</a></li>
 </ul>
-<h2>Code automation tools</h2>
+<h3>Reference</h3>
+<p>Knowledge base:</p>
 <ul>
-<li>
-<p><code>npm run test</code></p>
-<p>Executes the test suite</p>
-</li>
-<li>
-<p><code>npm run start:dev</code></p>
-<p>Starts the dev server at 5490 port</p>
-</li>
-<li>
-<p><code>npm run build</code></p>
-<p>Build the application inside <code>dist/</code> folder</p>
-<ol>
-<li>Runs <code>npm run lint</code></li>
-<li>Runs <code>npm run test</code></li>
-<li>Runs <code>npm run doc</code></li>
-<li>Runs <code>npm run webpack</code></li>
-</ol>
-</li>
-<li>
-<p><code>npm run doc</code></p>
-<p>Generates the code documentation using JSDoc</p>
-</li>
-<li>
-<p><code>npm run lint</code></p>
-<p>Runs lint against the code at src/ folder</p>
-</li>
-<li>
-<p><code>npm run eslint-fix</code></p>
-<p>Runs eslint --fix against the code at src/ folder</p>
-</li>
-<li>
-<p><code>npm run format-code</code></p>
-</li>
+<li><a href="https://web.dev/progressive-web-apps/">PWA - Progressive web applications</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Single-page_application">SPA - Single Page Applications</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API">IndexedDB</a></li>
+<li><a href="https://mongoosejs.com/">Mongoose</a></li>
+<li><a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events">Server Side Events</a></li>
+<li><a href="https://martinfowler.com/eaaDev/EventSourcing.html">Event Sourcing</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rapid_application_development">RAD - Rapid application development</a></li>
+<li><a href="http://www.umsl.edu/~sauterv/analysis/F08papers/View.html">Case tools</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Metaprogramming">Metaprogramming</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity Relationship Model</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Component_engineering">Component Engineering</a></li>
+<li><a href="http://iraj.in/journal/journal_file/journal_pdf/3-248-146294887148-54.pdf">Information Systems and Software Engineering - PDF</a></li>
 </ul>
-<p>Runs prettier-eslint --write against the code at src/ folder</p>
-<ul>
-<li><code>npm run webpack</code></li>
-</ul>
-<p>Transpile the es6 code (src/) to es5 version at dist/ folder</p>
 <h2>ToDo</h2>
 <ol>
 <li>REST transport</li>
@@ -259,7 +827,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-02-09T14:44:14-03:00
+		on 2021-02-13T20:14:18-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -10,7 +10,7 @@
 *Describe the best way to test or validate your PR.*
 
 #### :clipboard: Checklist
-:rotating_light: Please review the [guidelines for contributing](../CONTRIBUTING.adoc) to this repository.
+:rotating_light: Please review the [guidelines for contributing](../CONTRIBUTING.md) to this repository.
 
 - [ ] :question: **CONSIDER** adding a unit test if your PR resolves an issue.
 - [ ] :heavy_check_mark: **DO** check open PR's to avoid duplicates.
@@ -21,7 +21,7 @@
 - [ ] :heavy_check_mark: **DO** add and modify seeds if necessary.
 - [ ] :heavy_check_mark: **DO** add CHANGELOG upgrade notes if required.
 - [ ] :heavy_check_mark: **DO** add to GraphQL API if there are new public fields.
-- [ ] :heavy_check_mark: **DO** add link to MetaDecidim if it's a new feature.
+- [ ] :heavy_check_mark: **DO** add link to VooduX if it's a new feature.
 - [ ] :x:**AVOID** breaking the continuous integration build.
 - [ ] :x:**AVOID** making significant changes to the overall architecture.
 
