@@ -1143,7 +1143,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-379">line 379</a>
+				 <a href="Foundation.js.html#sunlight-1-line-305">line 305</a>
 			</li>
 		</ul>
 	</dd>
@@ -1410,7 +1410,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-430">line 430</a>
+				 <a href="Foundation.js.html#sunlight-1-line-431">line 431</a>
 			</li>
 		</ul>
 	</dd>
@@ -1494,7 +1494,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-465">line 465</a>
+				 <a href="Foundation.js.html#sunlight-1-line-466">line 466</a>
 			</li>
 		</ul>
 	</dd>
@@ -1729,7 +1729,7 @@ ReactDOM.render(
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-501">line 501</a>
+				 <a href="Foundation.js.html#sunlight-1-line-502">line 502</a>
 			</li>
 		</ul>
 	</dd>
@@ -2016,7 +2016,7 @@ This method dont works as expected if  you call it after <a href="Foundation.htm
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-390">line 390</a>
+				 <a href="Foundation.js.html#sunlight-1-line-316">line 316</a>
 			</li>
 		</ul>
 	</dd>
@@ -2043,6 +2043,84 @@ This method dont works as expected if  you call it after <a href="Foundation.htm
     
 
     
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">const productSchema = new Foundation.Schema({
+  name: {
+    type: String,
+    required: true,
+    index: true
+  },
+  vendor: {
+    type: String,
+    required: true,
+    index: true
+  },
+  price: {
+    type: Number,
+    required: true,
+    index: true
+  }
+})
+
+// start the foundation
+const foundation = new Foundation({
+  name: &#x27;My Test app&#x27;,
+  schemas: {
+    // Customer: schema
+  }
+})
+
+// Build a customized Data Entity abstraction
+const MyCustomizedDataEntity = class extends DataEntity {
+  constructor (config) {
+    super(config)
+  }
+
+  sell (primaryKey, orderId) {
+    // primaryKey is Product primary key value
+    // orderId is the primaryKey of an Order
+    // const foundOrder = await Order.findById(orderId)
+    // if (foundOrder.error) {
+    //  CAN NOT TO SELL
+    // }
+    // const items = foundOrder.data.lineItems.filter(i =&gt; (i.productId === primaryKey))
+    // If  Order has the product listed item
+    // if(items[0])
+    // {
+    //    await this.delete(primaryKey) // deletes a Product from Products
+    // }
+  }
+}
+
+// instance of the custimized Data Entity
+const productDataEntity = new MyCustomizedDataEntity({
+  foundation,
+  entity: &#x27;Product&#x27;,
+  schema: productSchema
+})
+
+// import data entity
+foundation.importDataEntity({
+  entity: &#x27;Product&#x27;,
+  dataEntity: productDataEntity
+})
+
+// start the foundation
+await foundation.start()
+
+// you can now do things like:
+
+const { Product } = foundation.data
+
+await Product.add({
+  name: &#x27;Big Mac&#x27;,
+  vendor: &#x27;McDonalds&#x27;,
+  price: 3
+})</pre>
+
+
+    
 </dd>
 
         
@@ -2061,7 +2139,8 @@ This method dont works as expected if  you call it after <a href="Foundation.htm
     <div class="description">
         An Data Entity abstraction is an instance of the <a href="DataEntity.html"><code>DataEntity</code></a>. 
 Once it is mapped to foundation Data API, you can reach every Data Entity in the system from a single source point.
-This method dont works as expected if  you call it after <a href="Foundation.html#.start"><code>Foundation.start</code></a> method
+This method dont works as expected if  you call it after <a href="Foundation.html#.start"><code>Foundation.start</code></a> method.
+See <a href="Foundation.html#.importDataEntity"><code>Foundation.importDataEntity</code></a> for usage further information.
     </div>
     
 
@@ -2209,84 +2288,6 @@ This method dont works as expected if  you call it after <a href="Foundation.htm
     
 
     
-        <h5>Example</h5>
-        
-    <pre class="sunlight-highlight-javascript">const productSchema = new Foundation.Schema({
-  name: {
-    type: String,
-    required: true,
-    index: true
-  },
-  vendor: {
-    type: String,
-    required: true,
-    index: true
-  },
-  price: {
-    type: Number,
-    required: true,
-    index: true
-  }
-})
-
-// start the foundation
-const foundation = new Foundation({
-  name: &#x27;My Test app&#x27;,
-  schemas: {
-    // Customer: schema
-  }
-})
-
-// Build a customized Data Entity abstraction
-const MyCustomizedDataEntity = class extends DataEntity {
-  constructor(config) {
-    super(config)
-  }
-
-  sell(primaryKey, orderId) {
-    // primaryKey is Product primary key value
-    // orderId is the primaryKey of an Order
-    // const foundOrder = await Order.findById(orderId)
-    // if (foundOrder.error) {
-    //  CAN NOT TO SELL
-    // }
-    // const items = foundOrder.data.lineItems.filter(i =&gt; (i.productId === primaryKey))
-    // If  Order has the product listed item
-    // if(items[0])
-    // {
-    //    await this.delete(primaryKey) // deletes a Product from Products
-    // }
-  }
-}
-
-// instance of the custimized Data Entity
-const productDataEntity = new MyCustomizedDataEntity({
-  foundation,
-  entity: &#x27;Product&#x27;,
-  schema: productSchema
-})
-
-// import data entity
-foundation.importDataEntity({
-  entity: &#x27;Product&#x27;,
-  dataEntity: productDataEntity
-})
-
-// start the foundation
-await foundation.start()
-
-// you can now do things like: 
-
-const { Product } = foundation.data
-
-await Product.add({
-  name: &#x27;Big Mac&#x27;,
-  vendor: &#x27;McDonalds&#x27;, 
-  price: 3
-})</pre>
-
-
-    
 </dd>
 
         
@@ -2400,7 +2401,7 @@ await Product.add({
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-439">line 439</a>
+				 <a href="Foundation.js.html#sunlight-1-line-440">line 440</a>
 			</li>
 		</ul>
 	</dd>
@@ -2501,7 +2502,7 @@ await Product.add({
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-450">line 450</a>
+				 <a href="Foundation.js.html#sunlight-1-line-451">line 451</a>
 			</li>
 		</ul>
 	</dd>
@@ -2602,7 +2603,7 @@ await Product.add({
 		<ul class="dummy">
 			<li>
 				<a href="Foundation.js.html">Foundation.js</a>,
-				 <a href="Foundation.js.html#sunlight-1-line-574">line 574</a>
+				 <a href="Foundation.js.html#sunlight-1-line-575">line 575</a>
 			</li>
 		</ul>
 	</dd>
@@ -2758,7 +2759,7 @@ await Product.add({
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-02-12T22:18:31-03:00
+		on 2021-02-12T23:30:13-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

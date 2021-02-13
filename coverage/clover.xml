@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1613178466973" clover="3.2.0">
-  <project timestamp="1613178466973" name="All files">
+<coverage generated="1613183477326" clover="3.2.0">
+  <project timestamp="1613183477326" name="All files">
     <metrics statements="265" coveredstatements="128" conditionals="98" coveredconditionals="37" methods="46" coveredmethods="35" elements="409" coveredelements="200" complexity="0" loc="265" ncloc="265" packages="1" files="5" classes="5"/>
     <file name="DataEntity.js" path="/Users/admin/apps/voodux/src/DataEntity.js">
       <metrics statements="127" coveredstatements="18" conditionals="45" coveredconditionals="7" methods="14" coveredmethods="7"/>
@@ -178,55 +178,55 @@
       <line num="264" count="1" type="stmt"/>
       <line num="273" count="1" type="stmt"/>
       <line num="283" count="1" type="stmt"/>
-      <line num="372" count="6" type="stmt"/>
-      <line num="373" count="6" type="stmt"/>
-      <line num="375" count="6" type="stmt"/>
-      <line num="376" count="6" type="stmt"/>
-      <line num="377" count="6" type="stmt"/>
-      <line num="388" count="10" type="stmt"/>
-      <line num="399" count="2" type="stmt"/>
-      <line num="403" count="3" type="stmt"/>
-      <line num="404" count="3" type="stmt"/>
-      <line num="405" count="3" type="stmt"/>
+      <line num="297" count="6" type="stmt"/>
+      <line num="298" count="6" type="stmt"/>
+      <line num="300" count="6" type="stmt"/>
+      <line num="301" count="6" type="stmt"/>
+      <line num="302" count="6" type="stmt"/>
+      <line num="313" count="10" type="stmt"/>
+      <line num="402" count="2" type="stmt"/>
       <line num="406" count="3" type="stmt"/>
-      <line num="407" count="4" type="cond" truecount="1" falsecount="1"/>
-      <line num="409" count="4" type="stmt"/>
-      <line num="410" count="4" type="stmt"/>
-      <line num="411" count="4" type="stmt"/>
-      <line num="417" count="4" type="stmt"/>
-      <line num="420" count="3" type="stmt"/>
-      <line num="422" count="0" type="stmt"/>
-      <line num="423" count="0" type="stmt"/>
-      <line num="425" count="3" type="stmt"/>
-      <line num="434" count="1" type="stmt"/>
-      <line num="444" count="3" type="stmt"/>
-      <line num="445" count="3" type="stmt"/>
-      <line num="454" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="455" count="3" type="cond" truecount="1" falsecount="1"/>
-      <line num="456" count="0" type="stmt"/>
-      <line num="458" count="3" type="stmt"/>
-      <line num="460" count="3" type="stmt"/>
-      <line num="545" count="3" type="stmt"/>
-      <line num="546" count="3" type="stmt"/>
-      <line num="547" count="3" type="stmt"/>
+      <line num="407" count="3" type="stmt"/>
+      <line num="408" count="3" type="stmt"/>
+      <line num="409" count="3" type="stmt"/>
+      <line num="410" count="4" type="cond" truecount="1" falsecount="1"/>
+      <line num="412" count="4" type="stmt"/>
+      <line num="413" count="4" type="stmt"/>
+      <line num="414" count="4" type="stmt"/>
+      <line num="420" count="4" type="stmt"/>
+      <line num="423" count="3" type="stmt"/>
+      <line num="425" count="0" type="stmt"/>
+      <line num="426" count="0" type="stmt"/>
+      <line num="428" count="3" type="stmt"/>
+      <line num="437" count="1" type="stmt"/>
+      <line num="447" count="3" type="stmt"/>
+      <line num="448" count="3" type="stmt"/>
+      <line num="457" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="458" count="3" type="cond" truecount="1" falsecount="1"/>
+      <line num="459" count="0" type="stmt"/>
+      <line num="461" count="3" type="stmt"/>
+      <line num="463" count="3" type="stmt"/>
       <line num="548" count="3" type="stmt"/>
       <line num="549" count="3" type="stmt"/>
+      <line num="550" count="3" type="stmt"/>
       <line num="551" count="3" type="stmt"/>
+      <line num="552" count="3" type="stmt"/>
       <line num="554" count="3" type="stmt"/>
-      <line num="560" count="0" type="stmt"/>
-      <line num="561" count="0" type="stmt"/>
-      <line num="564" count="3" type="stmt"/>
-      <line num="570" count="3" type="stmt"/>
-      <line num="581" count="3" type="stmt"/>
-      <line num="582" count="3" type="stmt"/>
-      <line num="583" count="3" type="stmt"/>
+      <line num="557" count="3" type="stmt"/>
+      <line num="563" count="0" type="stmt"/>
+      <line num="564" count="0" type="stmt"/>
+      <line num="567" count="3" type="stmt"/>
+      <line num="573" count="3" type="stmt"/>
       <line num="584" count="3" type="stmt"/>
-      <line num="590" count="3" type="stmt"/>
+      <line num="585" count="3" type="stmt"/>
+      <line num="586" count="3" type="stmt"/>
+      <line num="587" count="3" type="stmt"/>
       <line num="593" count="3" type="stmt"/>
-      <line num="599" count="0" type="stmt"/>
-      <line num="600" count="0" type="stmt"/>
-      <line num="603" count="3" type="stmt"/>
-      <line num="609" count="3" type="stmt"/>
+      <line num="596" count="3" type="stmt"/>
+      <line num="602" count="0" type="stmt"/>
+      <line num="603" count="0" type="stmt"/>
+      <line num="606" count="3" type="stmt"/>
+      <line num="612" count="3" type="stmt"/>
     </file>
     <file name="LocalDatabaseTransport.js" path="/Users/admin/apps/voodux/src/LocalDatabaseTransport.js">
       <metrics statements="22" coveredstatements="20" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="3"/>

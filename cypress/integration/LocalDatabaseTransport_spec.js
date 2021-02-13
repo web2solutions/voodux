@@ -73,7 +73,7 @@ describe('#--- LocalDatabaseTransport Class Test Suite', () => {
       let _data = null
       try {
         await localDataTransport.delete()
-        await localDataTransport.delete()
+        await localDataTransport_1.delete()
       } catch (e) {
         _error = e
       }
