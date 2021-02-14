@@ -4991,31 +4991,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldGet */ "./node_modules/@babel/runtime/helpers/classPrivateFieldGet.js");
-/* harmony import */ var _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldSet */ "./node_modules/@babel/runtime/helpers/classPrivateFieldSet.js");
-/* harmony import */ var _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./utils */ "./src/utils.js");
-/* harmony import */ var _DataEntity__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./DataEntity */ "./src/DataEntity.js");
-/* harmony import */ var _LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./LocalDatabaseTransport */ "./src/LocalDatabaseTransport.js");
-/* harmony import */ var _EventSystem__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./EventSystem */ "./src/EventSystem.js");
-
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldGet */ "./node_modules/@babel/runtime/helpers/classPrivateFieldGet.js");
+/* harmony import */ var _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldSet */ "./node_modules/@babel/runtime/helpers/classPrivateFieldSet.js");
+/* harmony import */ var _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utils */ "./src/utils.js");
+/* harmony import */ var _DataEntity__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./DataEntity */ "./src/DataEntity.js");
+/* harmony import */ var _LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./LocalDatabaseTransport */ "./src/LocalDatabaseTransport.js");
+/* harmony import */ var _EventSystem__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./EventSystem */ "./src/EventSystem.js");
 
 
 
@@ -5029,7 +5026,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function cov_106po7lq8f() {
   var path = "/Users/admin/apps/voodux/src/Foundation.js";
-  var hash = "7fcb757af56eae423bedcb4a53a9257e4203c68e";
+  var hash = "5e900a6e34da589626d458de3ef34bd4788aa5de";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
@@ -5331,7 +5328,7 @@ function cov_106po7lq8f() {
           column: 4
         },
         end: {
-          line: 427,
+          line: 421,
           column: 5
         }
       },
@@ -5341,387 +5338,267 @@ function cov_106po7lq8f() {
           column: 6
         },
         end: {
-          line: 422,
+          line: 420,
           column: 7
         }
       },
       "31": {
         start: {
-          line: 410,
-          column: 8
+          line: 411,
+          column: 25
         },
         end: {
-          line: 421,
-          column: 9
+          line: 411,
+          column: 39
         }
       },
       "32": {
         start: {
           line: 412,
-          column: 27
+          column: 23
         },
         end: {
           line: 412,
-          column: 41
+          column: 38
         }
       },
       "33": {
         start: {
           line: 413,
-          column: 25
+          column: 27
         },
         end: {
-          line: 413,
-          column: 40
+          line: 418,
+          column: 10
         }
       },
       "34": {
         start: {
-          line: 414,
-          column: 29
+          line: 419,
+          column: 8
         },
         end: {
           line: 419,
-          column: 12
+          column: 51
         }
       },
       "35": {
         start: {
-          line: 420,
-          column: 10
+          line: 432,
+          column: 4
         },
         end: {
-          line: 420,
-          column: 53
+          line: 432,
+          column: 27
         }
       },
       "36": {
         start: {
-          line: 423,
-          column: 6
+          line: 442,
+          column: 4
         },
         end: {
-          line: 423,
-          column: 27
+          line: 442,
+          column: 45
         }
       },
       "37": {
         start: {
-          line: 425,
-          column: 6
+          line: 443,
+          column: 4
         },
         end: {
-          line: 425,
-          column: 26
+          line: 443,
+          column: 46
         }
       },
       "38": {
         start: {
-          line: 426,
-          column: 6
+          line: 452,
+          column: 22
         },
         end: {
-          line: 426,
-          column: 20
+          line: 452,
+          column: 66
         }
       },
       "39": {
         start: {
-          line: 428,
+          line: 453,
           column: 4
         },
         end: {
-          line: 428,
-          column: 47
+          line: 457,
+          column: 5
         }
       },
       "40": {
         start: {
-          line: 437,
-          column: 4
+          line: 454,
+          column: 6
         },
         end: {
-          line: 437,
-          column: 27
+          line: 454,
+          column: 29
         }
       },
       "41": {
         start: {
-          line: 447,
-          column: 4
+          line: 456,
+          column: 6
         },
         end: {
-          line: 447,
-          column: 45
+          line: 456,
+          column: 38
         }
       },
       "42": {
-        start: {
-          line: 448,
-          column: 4
-        },
-        end: {
-          line: 448,
-          column: 46
-        }
-      },
-      "43": {
-        start: {
-          line: 457,
-          column: 22
-        },
-        end: {
-          line: 457,
-          column: 66
-        }
-      },
-      "44": {
         start: {
           line: 458,
           column: 4
         },
         end: {
-          line: 462,
-          column: 5
+          line: 458,
+          column: 46
+        }
+      },
+      "43": {
+        start: {
+          line: 545,
+          column: 17
+        },
+        end: {
+          line: 545,
+          column: 21
+        }
+      },
+      "44": {
+        start: {
+          line: 546,
+          column: 16
+        },
+        end: {
+          line: 546,
+          column: 20
         }
       },
       "45": {
         start: {
-          line: 459,
-          column: 6
+          line: 547,
+          column: 4
         },
         end: {
-          line: 459,
-          column: 29
+          line: 569,
+          column: 5
         }
       },
       "46": {
         start: {
-          line: 461,
+          line: 548,
           column: 6
         },
         end: {
-          line: 461,
-          column: 38
+          line: 548,
+          column: 25
         }
       },
       "47": {
         start: {
-          line: 463,
-          column: 4
+          line: 549,
+          column: 24
         },
         end: {
-          line: 463,
-          column: 46
+          line: 549,
+          column: 55
         }
       },
       "48": {
         start: {
-          line: 548,
-          column: 17
+          line: 551,
+          column: 25
         },
         end: {
-          line: 548,
-          column: 21
+          line: 551,
+          column: 68
         }
       },
       "49": {
         start: {
-          line: 549,
-          column: 16
+          line: 553,
+          column: 6
         },
         end: {
-          line: 549,
-          column: 20
+          line: 564,
+          column: 7
         }
       },
       "50": {
         start: {
-          line: 550,
-          column: 4
+          line: 554,
+          column: 8
         },
         end: {
-          line: 565,
-          column: 5
+          line: 554,
+          column: 33
         }
       },
       "51": {
         start: {
-          line: 551,
-          column: 6
+          line: 556,
+          column: 8
         },
         end: {
-          line: 551,
-          column: 25
+          line: 556,
+          column: 29
         }
       },
       "52": {
         start: {
-          line: 552,
-          column: 24
+          line: 557,
+          column: 8
         },
         end: {
-          line: 552,
-          column: 55
+          line: 563,
+          column: 9
         }
       },
       "53": {
         start: {
-          line: 554,
+          line: 567,
           column: 6
         },
         end: {
-          line: 554,
-          column: 49
+          line: 567,
+          column: 20
         }
       },
       "54": {
         start: {
-          line: 557,
+          line: 568,
           column: 6
         },
         end: {
-          line: 561,
-          column: 7
+          line: 568,
+          column: 18
         }
       },
       "55": {
         start: {
-          line: 563,
-          column: 6
+          line: 571,
+          column: 4
         },
         end: {
-          line: 563,
-          column: 26
+          line: 575,
+          column: 6
         }
       },
       "56": {
         start: {
-          line: 564,
-          column: 6
-        },
-        end: {
-          line: 564,
-          column: 20
-        }
-      },
-      "57": {
-        start: {
-          line: 567,
+          line: 577,
           column: 4
         },
         end: {
-          line: 571,
-          column: 6
-        }
-      },
-      "58": {
-        start: {
-          line: 573,
-          column: 4
-        },
-        end: {
-          line: 573,
-          column: 47
-        }
-      },
-      "59": {
-        start: {
-          line: 584,
-          column: 17
-        },
-        end: {
-          line: 584,
-          column: 21
-        }
-      },
-      "60": {
-        start: {
-          line: 585,
-          column: 16
-        },
-        end: {
-          line: 585,
-          column: 20
-        }
-      },
-      "61": {
-        start: {
-          line: 586,
-          column: 4
-        },
-        end: {
-          line: 604,
-          column: 5
-        }
-      },
-      "62": {
-        start: {
-          line: 587,
-          column: 21
-        },
-        end: {
-          line: 587,
-          column: 46
-        }
-      },
-      "63": {
-        start: {
-          line: 593,
-          column: 6
-        },
-        end: {
-          line: 593,
-          column: 27
-        }
-      },
-      "64": {
-        start: {
-          line: 596,
-          column: 6
-        },
-        end: {
-          line: 600,
-          column: 7
-        }
-      },
-      "65": {
-        start: {
-          line: 602,
-          column: 6
-        },
-        end: {
-          line: 602,
-          column: 26
-        }
-      },
-      "66": {
-        start: {
-          line: 603,
-          column: 6
-        },
-        end: {
-          line: 603,
-          column: 20
-        }
-      },
-      "67": {
-        start: {
-          line: 606,
-          column: 4
-        },
-        end: {
-          line: 610,
-          column: 6
-        }
-      },
-      "68": {
-        start: {
-          line: 612,
-          column: 4
-        },
-        end: {
-          line: 612,
+          line: 577,
           column: 47
         }
       }
@@ -6019,97 +5896,97 @@ function cov_106po7lq8f() {
         name: "(anonymous_12)",
         decl: {
           start: {
-            line: 436,
+            line: 431,
             column: 2
           },
           end: {
-            line: 436,
+            line: 431,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 436,
+            line: 431,
             column: 19
           },
           end: {
-            line: 438,
+            line: 433,
             column: 3
           }
         },
-        line: 436
+        line: 431
       },
       "13": {
         name: "(anonymous_13)",
         decl: {
           start: {
-            line: 446,
+            line: 441,
             column: 2
           },
           end: {
-            line: 446,
+            line: 441,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 446,
+            line: 441,
             column: 24
           },
           end: {
-            line: 449,
+            line: 444,
             column: 3
           }
         },
-        line: 446
+        line: 441
       },
       "14": {
         name: "(anonymous_14)",
         decl: {
           start: {
-            line: 456,
+            line: 451,
             column: 2
           },
           end: {
-            line: 456,
+            line: 451,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 456,
+            line: 451,
             column: 18
           },
           end: {
-            line: 464,
+            line: 459,
             column: 3
           }
         },
-        line: 456
+        line: 451
       },
       "15": {
         name: "(anonymous_15)",
         decl: {
           start: {
-            line: 583,
+            line: 544,
             column: 2
           },
           end: {
-            line: 583,
+            line: 544,
             column: 3
           }
         },
         loc: {
           start: {
-            line: 583,
+            line: 544,
             column: 17
           },
           end: {
-            line: 613,
+            line: 578,
             column: 3
           }
         },
-        line: 583
+        line: 544
       }
     },
     branchMap: {
@@ -6365,101 +6242,134 @@ function cov_106po7lq8f() {
       "10": {
         loc: {
           start: {
-            line: 410,
-            column: 8
+            line: 409,
+            column: 6
           },
           end: {
-            line: 421,
-            column: 9
+            line: 420,
+            column: 7
           }
         },
         type: "if",
         locations: [{
           start: {
-            line: 410,
-            column: 8
+            line: 409,
+            column: 6
           },
           end: {
-            line: 421,
-            column: 9
+            line: 420,
+            column: 7
           }
         }, {
           start: {
-            line: 410,
-            column: 8
+            line: 409,
+            column: 6
           },
           end: {
-            line: 421,
-            column: 9
+            line: 420,
+            column: 7
           }
         }],
-        line: 410
+        line: 409
       },
       "11": {
         loc: {
           start: {
-            line: 457,
+            line: 452,
             column: 22
           },
           end: {
-            line: 457,
+            line: 452,
             column: 66
           }
         },
         type: "binary-expr",
         locations: [{
           start: {
-            line: 457,
+            line: 452,
             column: 22
           },
           end: {
-            line: 457,
+            line: 452,
             column: 57
           }
         }, {
           start: {
-            line: 457,
+            line: 452,
             column: 61
           },
           end: {
-            line: 457,
+            line: 452,
             column: 66
           }
         }],
-        line: 457
+        line: 452
       },
       "12": {
         loc: {
           start: {
-            line: 458,
+            line: 453,
             column: 4
           },
           end: {
-            line: 462,
+            line: 457,
             column: 5
           }
         },
         type: "if",
         locations: [{
           start: {
-            line: 458,
+            line: 453,
             column: 4
           },
           end: {
-            line: 462,
+            line: 457,
             column: 5
           }
         }, {
           start: {
-            line: 458,
+            line: 453,
             column: 4
           },
           end: {
-            line: 462,
+            line: 457,
             column: 5
           }
         }],
-        line: 458
+        line: 453
+      },
+      "13": {
+        loc: {
+          start: {
+            line: 553,
+            column: 6
+          },
+          end: {
+            line: 564,
+            column: 7
+          }
+        },
+        type: "if",
+        locations: [{
+          start: {
+            line: 553,
+            column: 6
+          },
+          end: {
+            line: 564,
+            column: 7
+          }
+        }, {
+          start: {
+            line: 553,
+            column: 6
+          },
+          end: {
+            line: 564,
+            column: 7
+          }
+        }],
+        line: 553
       }
     },
     s: {
@@ -6519,19 +6429,7 @@ function cov_106po7lq8f() {
       "53": 0,
       "54": 0,
       "55": 0,
-      "56": 0,
-      "57": 0,
-      "58": 0,
-      "59": 0,
-      "60": 0,
-      "61": 0,
-      "62": 0,
-      "63": 0,
-      "64": 0,
-      "65": 0,
-      "66": 0,
-      "67": 0,
-      "68": 0
+      "56": 0
     },
     f: {
       "0": 0,
@@ -6564,10 +6462,11 @@ function cov_106po7lq8f() {
       "9": [0],
       "10": [0, 0],
       "11": [0, 0],
-      "12": [0, 0]
+      "12": [0, 0],
+      "13": [0, 0]
     },
     _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash: "7fcb757af56eae423bedcb4a53a9257e4203c68e"
+    hash: "5e900a6e34da589626d458de3ef34bd4788aa5de"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -6586,11 +6485,7 @@ function cov_106po7lq8f() {
 
 cov_106po7lq8f();
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_8___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_8___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_7___default()(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6___default()(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
@@ -6621,10 +6516,8 @@ var _tabId = new WeakMap();
 
 var _mapModels = new WeakSet();
 
-var _startVitals = new WeakSet();
-
 var Foundation = function (_EventSystem) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_6___default()(Foundation, _EventSystem);
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default()(Foundation, _EventSystem);
 
   var _super = _createSuper(Foundation);
 
@@ -6641,160 +6534,158 @@ var Foundation = function (_EventSystem) {
         _ref$schemas = _ref.schemas,
         _schemas2 = _ref$schemas === void 0 ? (cov_106po7lq8f().b[4][0]++, {}) : _ref$schemas;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3___default()(this, Foundation);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Foundation);
 
     cov_106po7lq8f().f[0]++;
     cov_106po7lq8f().s[0]++;
     _this = _super.call(this);
 
-    _startVitals.add(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this));
+    _mapModels.add(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this));
 
-    _mapModels.add(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this));
-
-    _schemas.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), {
+    _schemas.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), {
       writable: true,
       value: void 0
     });
 
-    _name.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), {
+    _name.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), {
       writable: true,
       value: void 0
     });
 
-    _dataStrategy.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), {
+    _dataStrategy.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), {
       writable: true,
       value: void 0
     });
 
-    _started.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), {
+    _started.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), {
       writable: true,
       value: void 0
     });
 
-    _models.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), {
+    _models.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), {
       writable: true,
       value: void 0
     });
 
-    _guid.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), {
+    _guid.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), {
       writable: true,
       value: void 0
     });
 
-    _useWorker.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), {
+    _useWorker.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), {
       writable: true,
       value: void 0
     });
 
-    _workers.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), {
+    _workers.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), {
       writable: true,
       value: void 0
     });
 
-    _tabId.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), {
+    _tabId.set(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), {
       writable: true,
       value: void 0
     });
 
     cov_106po7lq8f().s[1]++;
 
-    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), _name, name);
+    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), _name, name);
 
     cov_106po7lq8f().s[2]++;
 
-    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), _dataStrategy, dataStrategy);
+    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), _dataStrategy, dataStrategy);
 
     cov_106po7lq8f().s[3]++;
 
-    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), _useWorker, useWorker);
+    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), _useWorker, useWorker);
 
     cov_106po7lq8f().s[4]++;
 
-    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), _schemas, _schemas2);
+    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), _schemas, _schemas2);
 
     cov_106po7lq8f().s[5]++;
 
-    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), _started, false);
+    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), _started, false);
 
     cov_106po7lq8f().s[6]++;
 
-    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), _guid, (0,_utils__WEBPACK_IMPORTED_MODULE_11__.uuid)());
+    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), _guid, (0,_utils__WEBPACK_IMPORTED_MODULE_10__.uuid)());
 
     cov_106po7lq8f().s[7]++;
 
-    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), _models, {});
+    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), _models, {});
 
     cov_106po7lq8f().s[8]++;
 
-    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), _useWorker, (cov_106po7lq8f().b[5][0]++, useWorker) || (cov_106po7lq8f().b[5][1]++, false));
+    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), _useWorker, (cov_106po7lq8f().b[5][0]++, useWorker) || (cov_106po7lq8f().b[5][1]++, false));
 
     cov_106po7lq8f().s[9]++;
 
-    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), _workers, {});
+    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), _workers, {});
 
     cov_106po7lq8f().s[10]++;
-    _this.localDatabaseTransport = new _LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_13__.default();
+    _this.localDatabaseTransport = new _LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_12__.default();
     cov_106po7lq8f().s[11]++;
 
-    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5___default()(_this), _tabId, (0,_utils__WEBPACK_IMPORTED_MODULE_11__.uuid)());
+    _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4___default()(_this), _tabId, (0,_utils__WEBPACK_IMPORTED_MODULE_10__.uuid)());
 
     return _this;
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4___default()(Foundation, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(Foundation, [{
     key: "dataStrategy",
     get: function get() {
       cov_106po7lq8f().f[1]++;
       cov_106po7lq8f().s[12]++;
-      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _dataStrategy);
+      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _dataStrategy);
     }
   }, {
     key: "guid",
     get: function get() {
       cov_106po7lq8f().f[2]++;
       cov_106po7lq8f().s[13]++;
-      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _guid);
+      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _guid);
     }
   }, {
     key: "data",
     get: function get() {
       cov_106po7lq8f().f[3]++;
       cov_106po7lq8f().s[14]++;
-      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _models);
+      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _models);
     }
   }, {
     key: "tabId",
     get: function get() {
       cov_106po7lq8f().f[4]++;
       cov_106po7lq8f().s[15]++;
-      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _tabId);
+      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _tabId);
     }
   }, {
     key: "name",
     get: function get() {
       cov_106po7lq8f().f[5]++;
       cov_106po7lq8f().s[16]++;
-      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _name);
+      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _name);
     },
     set: function set(name) {
       cov_106po7lq8f().f[6]++;
       cov_106po7lq8f().s[17]++;
 
-      _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(this, _name, name);
+      _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(this, _name, name);
     }
   }, {
     key: "started",
     get: function get() {
       cov_106po7lq8f().f[7]++;
       cov_106po7lq8f().s[18]++;
-      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _started);
+      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _started);
     }
   }, {
     key: "applicationWorker",
     get: function get() {
       cov_106po7lq8f().f[8]++;
       cov_106po7lq8f().s[19]++;
-      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _workers).foundation;
+      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _workers).foundation;
     }
   }, {
     key: "mapToDataEntityAPI",
@@ -6808,11 +6699,11 @@ var Foundation = function (_EventSystem) {
       var _data = (cov_106po7lq8f().s[21]++, null);
 
       cov_106po7lq8f().s[22]++;
-      _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _models)[entity] = dataEntity;
+      _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _models)[entity] = dataEntity;
       cov_106po7lq8f().s[23]++;
-      _data = _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _models)[entity];
+      _data = _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _models)[entity];
       cov_106po7lq8f().s[24]++;
-      return (0,_utils__WEBPACK_IMPORTED_MODULE_11__.createMethodSignature)(_error, _data);
+      return (0,_utils__WEBPACK_IMPORTED_MODULE_10__.createMethodSignature)(_error, _data);
     }
   }, {
     key: "importDataEntity",
@@ -6829,95 +6720,112 @@ var Foundation = function (_EventSystem) {
     key: "useWorker",
     get: function get() {
       cov_106po7lq8f().f[12]++;
-      cov_106po7lq8f().s[40]++;
-      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _useWorker);
+      cov_106po7lq8f().s[35]++;
+      return _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _useWorker);
     }
   }, {
     key: "setGuidStorage",
     value: function setGuidStorage(guid) {
       cov_106po7lq8f().f[13]++;
-      cov_106po7lq8f().s[41]++;
+      cov_106po7lq8f().s[36]++;
       window.localStorage.setItem('guid', guid);
-      cov_106po7lq8f().s[42]++;
+      cov_106po7lq8f().s[37]++;
       return window.localStorage.getItem('guid');
     }
   }, {
     key: "setupAppGuid",
     value: function setupAppGuid() {
       cov_106po7lq8f().f[14]++;
-      var guidCache = (cov_106po7lq8f().s[43]++, (cov_106po7lq8f().b[11][0]++, window.localStorage.getItem('guid')) || (cov_106po7lq8f().b[11][1]++, false));
-      cov_106po7lq8f().s[44]++;
+      var guidCache = (cov_106po7lq8f().s[38]++, (cov_106po7lq8f().b[11][0]++, window.localStorage.getItem('guid')) || (cov_106po7lq8f().b[11][1]++, false));
+      cov_106po7lq8f().s[39]++;
 
       if (guidCache) {
         cov_106po7lq8f().b[12][0]++;
-        cov_106po7lq8f().s[45]++;
+        cov_106po7lq8f().s[40]++;
 
-        _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(this, _guid, guidCache);
+        _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(this, _guid, guidCache);
       } else {
         cov_106po7lq8f().b[12][1]++;
-        cov_106po7lq8f().s[46]++;
-        this.setGuidStorage(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _guid));
+        cov_106po7lq8f().s[41]++;
+        this.setGuidStorage(_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _guid));
       }
 
-      cov_106po7lq8f().s[47]++;
+      cov_106po7lq8f().s[42]++;
       return window.localStorage.getItem('guid');
     }
   }, {
     key: "start",
     value: function () {
-      var _start = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var _error, _data, vitals;
+      var _start = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _error, _data, mapModels, connection;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 cov_106po7lq8f().f[15]++;
-                _error = (cov_106po7lq8f().s[59]++, null);
-                _data = (cov_106po7lq8f().s[60]++, null);
-                cov_106po7lq8f().s[61]++;
+                _error = (cov_106po7lq8f().s[43]++, null);
+                _data = (cov_106po7lq8f().s[44]++, null);
+                cov_106po7lq8f().s[45]++;
                 _context.prev = 4;
-                cov_106po7lq8f().s[62]++;
-                _context.next = 8;
-                return _classPrivateMethodGet(this, _startVitals, _startVitals2).call(this);
+                cov_106po7lq8f().s[46]++;
+                this.setupAppGuid();
+                mapModels = (cov_106po7lq8f().s[47]++, _classPrivateMethodGet(this, _mapModels, _mapModels2).call(this, _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _schemas)));
+                cov_106po7lq8f().s[48]++;
+                _context.next = 11;
+                return this.localDatabaseTransport.connect();
 
-              case 8:
-                vitals = _context.sent;
-                cov_106po7lq8f().s[63]++;
+              case 11:
+                connection = _context.sent;
+                cov_106po7lq8f().s[49]++;
 
-                _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_10___default()(this, _started, true);
+                if (connection.error) {
+                  cov_106po7lq8f().b[13][0]++;
+                  cov_106po7lq8f().s[50]++;
+                  _error = connection.error;
+                } else {
+                  cov_106po7lq8f().b[13][1]++;
+                  cov_106po7lq8f().s[51]++;
 
-                cov_106po7lq8f().s[64]++;
-                _data = _objectSpread(_objectSpread({}, vitals.data), {}, {
-                  started: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _started)
-                });
-                _context.next = 21;
+                  _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_9___default()(this, _started, true);
+
+                  cov_106po7lq8f().s[52]++;
+                  _data = {
+                    status: {
+                      mapModels: mapModels,
+                      connection: connection
+                    },
+                    started: _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_8___default()(this, _started)
+                  };
+                }
+
+                _context.next = 22;
                 break;
 
-              case 15:
-                _context.prev = 15;
+              case 16:
+                _context.prev = 16;
                 _context.t0 = _context["catch"](4);
-                cov_106po7lq8f().s[65]++;
-                console.error(_context.t0);
-                cov_106po7lq8f().s[66]++;
+                cov_106po7lq8f().s[53]++;
                 _error = _context.t0;
+                cov_106po7lq8f().s[54]++;
+                _data = null;
 
-              case 21:
-                cov_106po7lq8f().s[67]++;
+              case 22:
+                cov_106po7lq8f().s[55]++;
                 this.triggerEvent('foundation:start', {
                   foundation: this,
                   error: _error,
                   data: _data
                 });
-                cov_106po7lq8f().s[68]++;
-                return _context.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_11__.createMethodSignature)(_error, _data));
+                cov_106po7lq8f().s[56]++;
+                return _context.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_10__.createMethodSignature)(_error, _data));
 
-              case 25:
+              case 26:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[4, 15]]);
+        }, _callee, this, [[4, 16]]);
       }));
 
       function start() {
@@ -6931,12 +6839,12 @@ var Foundation = function (_EventSystem) {
     get: function get() {
       cov_106po7lq8f().f[10]++;
       cov_106po7lq8f().s[25]++;
-      return _utils__WEBPACK_IMPORTED_MODULE_11__.Schema;
+      return _utils__WEBPACK_IMPORTED_MODULE_10__.Schema;
     }
   }]);
 
   return Foundation;
-}(_EventSystem__WEBPACK_IMPORTED_MODULE_14__.default);
+}(_EventSystem__WEBPACK_IMPORTED_MODULE_13__.default);
 
 var _mapModels2 = function _mapModels2(schemas) {
   var _error = (cov_106po7lq8f().s[27]++, null);
@@ -6945,103 +6853,26 @@ var _mapModels2 = function _mapModels2(schemas) {
 
   cov_106po7lq8f().s[29]++;
 
-  try {
+  for (var entity in schemas) {
     cov_106po7lq8f().s[30]++;
 
-    for (var entity in schemas) {
-      cov_106po7lq8f().s[31]++;
-
-      if (Object.prototype.hasOwnProperty.call(schemas, entity)) {
-        cov_106po7lq8f().b[10][0]++;
-        var strategy = (cov_106po7lq8f().s[32]++, 'offlineFirst');
-        var schema = (cov_106po7lq8f().s[33]++, schemas[entity]);
-        var dataEntity = (cov_106po7lq8f().s[34]++, new _DataEntity__WEBPACK_IMPORTED_MODULE_12__.default({
-          foundation: this,
-          entity: entity,
-          strategy: strategy,
-          schema: schema
-        }));
-        cov_106po7lq8f().s[35]++;
-        this.mapToDataEntityAPI(entity, dataEntity);
-      } else {
-        cov_106po7lq8f().b[10][1]++;
-      }
+    if (Object.prototype.hasOwnProperty.call(schemas, entity)) {
+      cov_106po7lq8f().b[10][0]++;
+      var strategy = (cov_106po7lq8f().s[31]++, 'offlineFirst');
+      var schema = (cov_106po7lq8f().s[32]++, schemas[entity]);
+      var dataEntity = (cov_106po7lq8f().s[33]++, new _DataEntity__WEBPACK_IMPORTED_MODULE_11__.default({
+        foundation: this,
+        entity: entity,
+        strategy: strategy,
+        schema: schema
+      }));
+      cov_106po7lq8f().s[34]++;
+      this.mapToDataEntityAPI(entity, dataEntity);
+    } else {
+      cov_106po7lq8f().b[10][1]++;
     }
-
-    cov_106po7lq8f().s[36]++;
-    _data = _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _models);
-  } catch (error) {
-    cov_106po7lq8f().s[37]++;
-    console.error(error);
-    cov_106po7lq8f().s[38]++;
-    _error = error;
   }
-
-  cov_106po7lq8f().s[39]++;
-  return (0,_utils__WEBPACK_IMPORTED_MODULE_11__.createMethodSignature)(_error, _data);
 };
-
-var _startVitals2 = function () {
-  var _startVitals3 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2___default()(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-    var _error, _data, mapModels;
-
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _error = (cov_106po7lq8f().s[48]++, null);
-            _data = (cov_106po7lq8f().s[49]++, null);
-            cov_106po7lq8f().s[50]++;
-            _context2.prev = 3;
-            cov_106po7lq8f().s[51]++;
-            this.setupAppGuid();
-            mapModels = (cov_106po7lq8f().s[52]++, _classPrivateMethodGet(this, _mapModels, _mapModels2).call(this, _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_9___default()(this, _schemas)));
-            cov_106po7lq8f().s[53]++;
-            _context2.next = 10;
-            return this.localDatabaseTransport.connect();
-
-          case 10:
-            cov_106po7lq8f().s[54]++;
-            _data = {
-              status: {
-                mapModels: mapModels
-              }
-            };
-            _context2.next = 20;
-            break;
-
-          case 14:
-            _context2.prev = 14;
-            _context2.t0 = _context2["catch"](3);
-            cov_106po7lq8f().s[55]++;
-            console.error(_context2.t0);
-            cov_106po7lq8f().s[56]++;
-            _error = _context2.t0;
-
-          case 20:
-            cov_106po7lq8f().s[57]++;
-            this.triggerEvent('foundation:startVitals', {
-              foundation: this,
-              error: _error,
-              data: _data
-            });
-            cov_106po7lq8f().s[58]++;
-            return _context2.abrupt("return", (0,_utils__WEBPACK_IMPORTED_MODULE_11__.createMethodSignature)(_error, _data));
-
-          case 24:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, this, [[3, 14]]);
-  }));
-
-  function _startVitals2() {
-    return _startVitals3.apply(this, arguments);
-  }
-
-  return _startVitals2;
-}();
 
 
 

@@ -101,29 +101,39 @@ describe('#--- Foundation Class Test Suite', () => {
       index: true
     }
   }
-  before(function (done) {
-    ;(async function () {
-      try {
-        foundation = new Foundation({
-          name,
-          useWorker: true,
-          dataStrategy: 'offlineFirst',
-          schemas: {
-            User: UserSchema,
-            Product: ProductSchema,
-            Order: OrderSchema,
-            Customer: CustomerSchema
-          }
-        })
-        await foundation.start()
-        done()
-      } catch (error) {
-        // console.log('>>>>>>>>>', error)
-        done(error)
+  before(function () {
+    foundation = new Foundation({
+      name,
+      schemas: {
+        User: UserSchema,
+        Product: ProductSchema,
+        Order: OrderSchema,
+        Customer: CustomerSchema
       }
-    })()
+    })
   })
   describe('Check class integrity', async () => {
+    it('Foundation must starts', (done) => {
+      ; (async () => {
+        const { error, data } = await foundation.start()
+        assert.equal(error, null)
+        assert.notEqual(data, null)
+        if (error) {
+          done(error)
+        } else {
+          done()
+        }
+      })()
+    })
+    it('Double starts the Foundation shall to raise an error', (done) => {
+      ; (async () => {
+        const { error, data } = await foundation.start()
+        console.log({ error, data })
+        assert.notEqual(error, null)
+        assert.equal(data, null)
+        done()
+      })()
+    })
     it('Foundation must have a constructor', (done) => {
       assert.equal(Foundation.constructor, Function)
       done()
