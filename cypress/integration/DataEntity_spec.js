@@ -278,7 +278,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         done()
       })()
     })
-    it('Calling Customer.edit() without parameter must returns an error', (done) => {
+    it('Calling Customer.edit() without parameter must returns an  validation error', (done) => {
       ;(async function () {
         let _error = null
         let _data = null
@@ -299,7 +299,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         done()
       })()
     })
-    it('Calling Customer.edit(null) returns an error', (done) => {
+    it('Calling Customer.edit(null) returns an  validation error', (done) => {
       ;(async function () {
         let _error = null
         let _data = null
@@ -316,15 +316,17 @@ describe('#--- DataEntity Class Test Suite', () => {
         }
         assert.notEqual(_error, null)
         assert.equal(_data, null)
+        assert.equal(_error, 'You must pass a valid JSON document as parameter to DataEntity.edit() method')
+        console.log({ _error, _data })
         done()
       })()
     })
-    it('Calling Customer.edit(1, {}) empty document returns an error', (done) => {
+    it('Calling Customer.edit(null, {a: 1}) returns an validation error', (done) => {
       ;(async function () {
         let _error = null
         let _data = null
         try {
-          const { error, data } = await Customer.edit(1, {})
+          const { error, data } = await Customer.edit(null, {a: 1})
           if (error) {
             _error = error
           } else {
@@ -336,6 +338,74 @@ describe('#--- DataEntity Class Test Suite', () => {
         }
         assert.notEqual(_error, null)
         assert.equal(_data, null)
+        assert.equal(_error, 'You must pass a valid primary key value as parameter to DataEntity.edit() method')
+        console.log({ _error, _data })
+        done()
+      })()
+    })
+    it('Calling Customer.edit(1, {a: 1}) empty document returns an validation error', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.edit(1, {a: 1})
+          if (error) {
+            _error = error
+          } else {
+            _data = data
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
+        assert.equal(_error, 'Document must have doc.__id (Integer) when calling DataEntity.edit() method')
+        console.log({ _error, _data })
+        done()
+      })()
+    })
+    it('Calling Customer.edit(1, {__id: 1}) empty document returns an validation error', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.edit(1, {__id: 1})
+          if (error) {
+            _error = error
+          } else {
+            _data = data
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
+        assert.equal(_error, 'Document must have doc._id (ObjectID) when calling DataEntity.edit() method')
+        console.log({ _error, _data })
+        done()
+      })()
+    })
+    it('Calling Customer.edit(1, {__id: 1, _id: "dffgdfgdfg"}) empty document returns an validation error', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        try {
+          const { error, data } = await Customer.edit(1, {__id: 1, _id: 'dffgdfgdfg'})
+          if (error) {
+            _error = error
+          } else {
+            _data = data
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+        }
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
+        // assert.equal(_error, 'Document must have doc._id (ObjectID) when calling DataEntity.edit() method')
+        console.log({ _error, _data })
         done()
       })()
     })
