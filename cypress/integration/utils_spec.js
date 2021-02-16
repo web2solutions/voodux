@@ -1,8 +1,10 @@
 /* global describe it Blob before */
 
-// import agnostic foundation foundation class
-import '../../dist/main.js'
+import voodux from '../../index.js'
 import assert from 'assert'
+const { Foundation, LocalDatabaseTransport, DataEntity, utils } = voodux
+
+
 describe('#--- Utils module Test Suite', () => {
   describe('Method Signatures: utils.createMethodSignature(error: string|object, data: string|object|array|boolean) -> Create default signature method object', () => {
     it('method signatures should have at least 2 data properties', (done) => {

@@ -1,8 +1,9 @@
 /* global describe it Blob before Foundation */
 
-// import agnostic foundation foundation class
-import '../../dist/main.js'
-console.log(window.Foundation)
+import voodux from '../../index.js'
+import assert from 'assert'
+const { Foundation, LocalDatabaseTransport, DataEntity, utils } = voodux
+
 const CustomerSchema = new Foundation.Schema({
   name: {
     type: String,
@@ -83,8 +84,6 @@ const UserSchema = new Foundation.Schema({
     required: true
   }
 })
-
-import assert from 'assert'
 
 describe('#--- Foundation Class Test Suite', () => {
   let name = 'My App'

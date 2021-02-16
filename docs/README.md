@@ -134,53 +134,32 @@ This the Step by Step guide to use VooduX
 ### Importing VooduX into your application
 
 The first step to use VooduX in your project it to import it library.
-#### ES5 require
+#### Require
 
 ```javascript
+  const voodux = require('voodux')
+
   const { 
     Foundation, 
     // LocalDatabaseTransport, 
     // DataEntity, 
     // utils 
-  } = require('voodux/dist/main').default
+  } = voodux
 ```
 
 
 #### ES6 import
 
-We use brand new ES6 features, like privacy on Classes. If you are willing to import our classes into you ES6 project, you must setup the following babel plugins:
-
-["@babel/plugin-transform-runtime"](https://babeljs.io/docs/en/babel-plugin-transform-runtime)
-
-["@babel/plugin-proposal-class-properties"](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
-
-["@babel/plugin-proposal-private-methods"](https://babeljs.io/docs/en/babel-plugin-proposal-private-methods)
-
-
-Not least, you must use at least the `env` preset.
-
-Then your .babelrc file will looks like the following:
-
-```
-  {
-    "presets": [
-      "@babel/preset-env", 
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      "@babel/plugin-transform-runtime", 
-      "@babel/plugin-proposal-class-properties", 
-      "@babel/plugin-proposal-private-methods"
-    ]
-  }
-```
-
-Otherwise you are going to face compilation issues.
-
 In order to import the main library to your project just simply import it:
 
 ```javascript
-  import { Foundation } from 'voodux'
+  import voodux from 'voodux'
+  const { 
+    Foundation, 
+    // LocalDatabaseTransport, 
+    // DataEntity, 
+    // utils 
+  } = voodux
 ```
 
 
@@ -261,7 +240,8 @@ The data schemas are set following the [`Mongoose`](https://mongoosejs.com/docs/
 ) standard to define schemas. It means you are not repeating yourself when writing data schemas because they targets both the `front end` and `back end`. In other words, server and client data are being defined by a single contract.
 
 ```javascript
-import { Foundation } from 'voodux'
+import voodux from 'voodux'
+const { Foundation, LocalDatabaseTransport, DataEntity, utils } = voodux
 
 const CustomerSchema = new Foundation.Schema({
   name: {
@@ -351,8 +331,10 @@ The `foundation:start` event listener must be set before calling `foundation.sta
 ```javascript
   // import React lib
   import React from 'react'
-  // import Foundation lib
-  import { Foundation } from 'voodux'
+  
+  // import voodux
+  import voodux from 'voodux'
+  const { Foundation, LocalDatabaseTransport, DataEntity, utils } = voodux
 
   // setup Data schemas
   const CustomerSchema = new Foundation.Schema({
