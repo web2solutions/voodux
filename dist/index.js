@@ -350,10 +350,10 @@ function last (list, value) {
 
 /***/ }),
 
-/***/ "./index.js":
-/*!******************!*\
-  !*** ./index.js ***!
-  \******************/
+/***/ "./_index.js":
+/*!*******************!*\
+  !*** ./_index.js ***!
+  \*******************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -366,21 +366,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-if (typeof window !== 'undefined') {
-  window.Foundation = _src_Foundation__WEBPACK_IMPORTED_MODULE_0__.default;
-  window.utils = _src_utils__WEBPACK_IMPORTED_MODULE_3__;
-  window.LocalDatabaseTransport = _src_LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_2__.default;
-  window.DataEntity = _src_DataEntity__WEBPACK_IMPORTED_MODULE_1__.default;
-}
-
 exports = exports || {};
-exports["default"] = {
-  Foundation: _src_Foundation__WEBPACK_IMPORTED_MODULE_0__.default,
-  LocalDatabaseTransport: _src_LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_2__.default,
-  DataEntity: _src_DataEntity__WEBPACK_IMPORTED_MODULE_1__.default,
-  utils: _src_utils__WEBPACK_IMPORTED_MODULE_3__
-};
+exports.Foundation = _src_Foundation__WEBPACK_IMPORTED_MODULE_0__.default;
+exports.DataEntity = _src_DataEntity__WEBPACK_IMPORTED_MODULE_1__.default;
+exports.LocalDatabaseTransport = _src_LocalDatabaseTransport__WEBPACK_IMPORTED_MODULE_2__.default;
+exports.utils = _src_utils__WEBPACK_IMPORTED_MODULE_3__;
 
 /***/ }),
 
@@ -7623,7 +7613,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mongoose__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(mongoose__WEBPACK_IMPORTED_MODULE_1__);
 function cov_1q0r7qyu1f() {
   var path = "/Users/admin/apps/voodux/src/utils.js";
-  var hash = "73b497c492f4fb9a729963553ff6d282c3d81743";
+  var hash = "a49040c282156c1315a76b2bcf5e3352ba21aaa0";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
@@ -7761,16 +7751,6 @@ function cov_1q0r7qyu1f() {
       },
       "13": {
         start: {
-          line: 66,
-          column: 6
-        },
-        end: {
-          line: 66,
-          column: 29
-        }
-      },
-      "14": {
-        start: {
           line: 72,
           column: 10
         },
@@ -7779,7 +7759,7 @@ function cov_1q0r7qyu1f() {
           column: 18
         }
       },
-      "15": {
+      "14": {
         start: {
           line: 74,
           column: 6
@@ -7789,7 +7769,7 @@ function cov_1q0r7qyu1f() {
           column: 7
         }
       },
-      "16": {
+      "15": {
         start: {
           line: 75,
           column: 8
@@ -7799,7 +7779,7 @@ function cov_1q0r7qyu1f() {
           column: 16
         }
       },
-      "17": {
+      "16": {
         start: {
           line: 77,
           column: 6
@@ -7809,7 +7789,7 @@ function cov_1q0r7qyu1f() {
           column: 7
         }
       },
-      "18": {
+      "17": {
         start: {
           line: 78,
           column: 8
@@ -7819,7 +7799,7 @@ function cov_1q0r7qyu1f() {
           column: 16
         }
       },
-      "19": {
+      "18": {
         start: {
           line: 80,
           column: 6
@@ -7829,7 +7809,7 @@ function cov_1q0r7qyu1f() {
           column: 7
         }
       },
-      "20": {
+      "19": {
         start: {
           line: 81,
           column: 8
@@ -7839,7 +7819,7 @@ function cov_1q0r7qyu1f() {
           column: 41
         }
       },
-      "21": {
+      "20": {
         start: {
           line: 85,
           column: 6
@@ -7849,7 +7829,7 @@ function cov_1q0r7qyu1f() {
           column: 29
         }
       },
-      "22": {
+      "21": {
         start: {
           line: 88,
           column: 2
@@ -7859,7 +7839,7 @@ function cov_1q0r7qyu1f() {
           column: 69
         }
       },
-      "23": {
+      "22": {
         start: {
           line: 102,
           column: 16
@@ -7869,7 +7849,7 @@ function cov_1q0r7qyu1f() {
           column: 56
         }
       },
-      "24": {
+      "23": {
         start: {
           line: 102,
           column: 49
@@ -7879,7 +7859,7 @@ function cov_1q0r7qyu1f() {
           column: 54
         }
       },
-      "25": {
+      "24": {
         start: {
           line: 103,
           column: 2
@@ -7889,7 +7869,7 @@ function cov_1q0r7qyu1f() {
           column: 14
         }
       },
-      "26": {
+      "25": {
         start: {
           line: 107,
           column: 22
@@ -8458,8 +8438,7 @@ function cov_1q0r7qyu1f() {
       "22": 0,
       "23": 0,
       "24": 0,
-      "25": 0,
-      "26": 0
+      "25": 0
     },
     f: {
       "0": 0,
@@ -8485,7 +8464,7 @@ function cov_1q0r7qyu1f() {
       "11": [0]
     },
     _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash: "73b497c492f4fb9a729963553ff6d282c3d81743"
+    hash: "a49040c282156c1315a76b2bcf5e3352ba21aaa0"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -8554,66 +8533,64 @@ function mongooseToDexieTableString(schema) {
     if (Object.prototype.hasOwnProperty.call(schema.paths, propertyName)) {
       cov_1q0r7qyu1f().b[5][0]++;
       var property = (cov_1q0r7qyu1f().s[12]++, schema.paths[propertyName]);
-      cov_1q0r7qyu1f().s[13]++;
-      console.debug(property);
 
-      var _ref = (cov_1q0r7qyu1f().s[14]++, property),
+      var _ref = (cov_1q0r7qyu1f().s[13]++, property),
           instance = _ref.instance,
           _index = _ref._index,
           options = _ref.options;
 
-      cov_1q0r7qyu1f().s[15]++;
+      cov_1q0r7qyu1f().s[14]++;
 
       if ((cov_1q0r7qyu1f().b[7][0]++, propertyName === '_id') || (cov_1q0r7qyu1f().b[7][1]++, propertyName === '__id')) {
         cov_1q0r7qyu1f().b[6][0]++;
-        cov_1q0r7qyu1f().s[16]++;
+        cov_1q0r7qyu1f().s[15]++;
         continue;
       } else {
         cov_1q0r7qyu1f().b[6][1]++;
       }
 
-      cov_1q0r7qyu1f().s[17]++;
+      cov_1q0r7qyu1f().s[16]++;
 
       if (!_index) {
         cov_1q0r7qyu1f().b[8][0]++;
-        cov_1q0r7qyu1f().s[18]++;
+        cov_1q0r7qyu1f().s[17]++;
         continue;
       } else {
         cov_1q0r7qyu1f().b[8][1]++;
       }
 
-      cov_1q0r7qyu1f().s[19]++;
+      cov_1q0r7qyu1f().s[18]++;
 
       if (instance === 'Array') {
         cov_1q0r7qyu1f().b[9][0]++;
-        cov_1q0r7qyu1f().s[20]++;
+        cov_1q0r7qyu1f().s[19]++;
         propertyName = "*".concat(propertyName);
       } else {
         cov_1q0r7qyu1f().b[9][1]++;
       }
 
-      cov_1q0r7qyu1f().s[21]++;
+      cov_1q0r7qyu1f().s[20]++;
       cols.push(propertyName);
     } else {
       cov_1q0r7qyu1f().b[5][1]++;
     }
   }
 
-  cov_1q0r7qyu1f().s[22]++;
+  cov_1q0r7qyu1f().s[21]++;
   return "++__id,_id".concat(cols.length > 0 ? (cov_1q0r7qyu1f().b[10][0]++, ',' + cols.join(',')) : (cov_1q0r7qyu1f().b[10][1]++, ''));
 }
 function getSearchTokenStream() {
   var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : (cov_1q0r7qyu1f().b[11][0]++, '');
   cov_1q0r7qyu1f().f[5]++;
-  var token = (cov_1q0r7qyu1f().s[23]++, lunr__WEBPACK_IMPORTED_MODULE_0___default().tokenizer(text).map(function (t) {
+  var token = (cov_1q0r7qyu1f().s[22]++, lunr__WEBPACK_IMPORTED_MODULE_0___default().tokenizer(text).map(function (t) {
     cov_1q0r7qyu1f().f[6]++;
-    cov_1q0r7qyu1f().s[24]++;
+    cov_1q0r7qyu1f().s[23]++;
     return t.str;
   }));
-  cov_1q0r7qyu1f().s[25]++;
+  cov_1q0r7qyu1f().s[24]++;
   return token;
 }
-var Schema = (cov_1q0r7qyu1f().s[26]++, (mongoose__WEBPACK_IMPORTED_MODULE_1___default().Schema));
+var Schema = (cov_1q0r7qyu1f().s[25]++, (mongoose__WEBPACK_IMPORTED_MODULE_1___default().Schema));
 
 /***/ }),
 
@@ -20112,8 +20089,8 @@ try {
 /************************************************************************/
 /******/ 	// startup
 /******/ 	// Load entry module
-/******/ 	__webpack_require__("./index.js");
+/******/ 	__webpack_require__("./_index.js");
 /******/ 	// This entry module used 'exports' so it can't be inlined
 /******/ })()
 ;
-//# sourceMappingURL=main.min.js.map
+//# sourceMappingURL=index.js.map

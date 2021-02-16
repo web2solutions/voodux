@@ -1,6 +1,6 @@
 {
   "name": "voodux",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "build": 0,
   "author": {
     "name": "Eduardo Almeida",
@@ -13,7 +13,7 @@
     "url": "https://github.com/web2solutions/voodux.git"
   },
   "license": "MIT",
-  "main": "main.js",
+  "main": "index.js",
   "nyc": {
     "include": ["src/**/*.js"],
     "exclude": ["dist/**/*.*", "dist/main.js"]
