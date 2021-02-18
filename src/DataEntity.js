@@ -230,24 +230,32 @@ const { data, error } = await Customer.add(doc)
     let rawObj = {}
     delete doc.__id
     delete doc._id
+
+    const model = new this.Model(doc, this.#_schema)
+    // console.log('model', model)
+    const invalid = model.validateSync()
+    if (invalid) {
+      return createMethodSignature(invalid, data)
+    }
+    rawObj = toJSON(model)
+    // console.log('add', rawObj)
+    // bug
+    if (typeof rawObj._id === 'undefined' && typeof rawObj.id !== 'undefined') {
+      rawObj._id = rawObj.id
+    }
+
     try {
-      const model = new this.Model(doc, this.#_schema)
-      const invalid = model.validateSync()
-      if (invalid)
-      {
-        return createMethodSignature(invalid, data)
-      }
-      rawObj = toJSON(model)
-      // console.log('add', rawObj)
       const __id = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
           .add({ ...rawObj })
       data = { __id, ...rawObj }
+      // console.log('data', data)
+      // console.log('__id', __id)
     } catch (e) {
       error = e
     }
-    
-    this.#_triggerAddEvents({ data, error, primaryKey: data.__id, rawObj })
+    // console.log({ data, error, rawObj })
+    this.#_triggerAddEvents({ data, error, primaryKey: (typeof data.__id === 'undefined' ? 0 : data.__id), rawObj })
     return createMethodSignature(error, data)
   }
 
@@ -330,6 +338,7 @@ const { data, error } = await Customer.edit(doc.__id, doc)
       }
       rawObj = toJSON(model)
       rawObj.__id = primaryKey
+      // bug
       const response = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
         .put({ ...rawObj })
