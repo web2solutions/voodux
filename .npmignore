@@ -8,7 +8,9 @@ yarn-error.log*
 
 .nyc_output
 coverage/
-cypress/videos
+cypress/video/
+dist/
+docs/
 .env
 
 # Editor directories and files
