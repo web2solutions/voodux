@@ -744,6 +744,19 @@ export default Customers
 
 `Demo documentation:` -> TODO
 
+
+#### React Demo app (Context API && Functional components)
+
+
+<img src="https://i.imgur.com/b29Lsgj.png" width="600" />
+
+[`Demo app`](https://voodux-react-context-api-demo.vercel.app/)
+
+[`Demo project`](https://github.com/web2solutions/voodux-react-context-api-demo)
+
+`Demo documentation:` -> TODO
+
+
 #### React Demo app (Class based components)
 
 <img src="https://i.imgur.com/E1u5g6y.png" width="600" />
