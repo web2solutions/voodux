@@ -772,7 +772,7 @@ export default Customers
 
 #### Demo #1: Vue, Boostrap, Vue Router, VooduX
 
-<img src="https://i.imgur.com/E1u5g6y.png" width="600" />
+<img src="https://i.imgur.com/subrL9r.png" width="600" />
 
 [`Demo app`](https://voodux-vue-simple-demo.vercel.app/)
 
