@@ -770,6 +770,17 @@ export default Customers
 
 ### Vue Demos
 
+#### Demo #1: Vue, Boostrap, Vue Router, VooduX
+
+<img src="https://i.imgur.com/E1u5g6y.png" width="600" />
+
+[`Demo app`](https://voodux-vue-simple-demo.vercel.app/)
+
+[`Demo project`]https://github.com/web2solutions/voodux-vue-simple-demo)
+
+`Demo documentation:` TODO
+
+
 ### DHTMLX demos
 
 
