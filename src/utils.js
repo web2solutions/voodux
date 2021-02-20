@@ -63,7 +63,7 @@ export function mongooseToDexieTableString (schema) {
   for (let propertyName in schema.paths) {
     if (Object.prototype.hasOwnProperty.call(schema.paths, propertyName)) {
       const property = schema.paths[propertyName]
-      console.debug(property)
+      // console.debug(property)
       const {
         instance, // instance is type
         _index, // ,

@@ -1,6 +1,6 @@
 {
   "name": "voodux",
-  "version": "0.0.7",
+  "version": "0.0.11",
   "build": 0,
   "author": {
     "name": "Eduardo Almeida",
@@ -13,18 +13,13 @@
     "url": "https://github.com/web2solutions/voodux.git"
   },
   "license": "MIT",
-  "main": "main.js",
+  "main": "index.js",
   "nyc": {
     "include": ["src/**/*.js"],
     "exclude": ["dist/**/*.*", "dist/main.js"]
   },
   "scripts": {
     "webpack": "webpack",
-    "_test": "npm run lint && mocha --recursive --exit --require @babel/register",
-    "build:tester:foundation": "npx webpack --config webpack.config.js --entry ./src/Foundation.js --output-path ./dist",
-    "build:tester:localtransport": "npx webpack --config webpack.config.js --entry ./src/LocalDatabaseTransport.js --output-path ./dist",
-    "build:tester:utils": "npx webpack --config webpack.config.js --entry ./src/utils.js --output-path ./dit",
-    "build:testers": "npm run build:tester:foundation && npm run build:tester:localtransport && npm run build:tester:utils",
     "test": "npm run build && npm run cy:run",
     "lint": "eslint src --ext .js",
     "eslint-fix": "eslint src/**/**/**/**/**/*.js --fix",

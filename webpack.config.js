@@ -2,16 +2,9 @@ const path = require('path')
 const webpack = require('webpack')
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-module.exports = {
-  entry: {
-    "main": "./index.js",
-    "main.min": "./index.js",
-  },
+
+const comonConf = {
   mode: 'development',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-  },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
@@ -51,3 +44,35 @@ module.exports = {
   },
   devtool: 'source-map'
 }
+
+
+const conf1 = {
+  ...comonConf,
+  entry: {
+    "main": "./_index.js",
+    "main.min": "./_index.js",
+  },
+  output: {
+    path: path.resolve(__dirname, ''),
+    filename: 'index.js',
+  }
+}
+
+const conf2 = {
+  ...comonConf,
+  entry: {
+    "main": "./_index.js",
+    "main.min": "./_index.js",
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js'
+  }
+}
+
+
+
+module.exports = [
+  conf1,
+  conf2
+]

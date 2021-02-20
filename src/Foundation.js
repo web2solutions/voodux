@@ -405,27 +405,22 @@ await Product.add({
   #mapModels(schemas) {
     let _error = null
     let _data = null
-    try {
-      for (const entity in schemas) {
-        if (Object.prototype.hasOwnProperty.call(schemas, entity)) {
-          // console.debug('for (const entity in schemas)', entity)
-          const strategy = 'offlineFirst'
-          const schema = schemas[entity]
-          const dataEntity = new DataEntity({
-            foundation: this,
-            entity,
-            strategy,
-            schema
-          })
-          this.mapToDataEntityAPI(entity, dataEntity)
-        }
+    for (const entity in schemas) {
+      if (Object.prototype.hasOwnProperty.call(schemas, entity)) {
+        // console.debug('for (const entity in schemas)', entity)
+        const strategy = 'offlineFirst'
+        const schema = schemas[entity]
+        const dataEntity = new DataEntity({
+          foundation: this,
+          entity,
+          strategy,
+          schema
+        })
+        this.mapToDataEntityAPI(entity, dataEntity)
       }
-      _data = this.#_models
-    } catch (error) {
-      console.error(error)
-      _error = error
     }
-    return createMethodSignature(_error, _data)
+    // _data = this.#_models
+    // return createMethodSignature(_error, _data)
   }
 
   /**
@@ -537,41 +532,7 @@ await Product.add({
     })
   } */
 
-  /**
-   * @Private
-   * @description Starts foundation stack required items
-   * @return  {object} signature - Default methods signature format { error, data }
-   * @return  {string|object} signature.error - Execution error
-   * @return  {object} signature.data - Foundation data
-   */
-  async #startVitals () {
-    let _error = null
-    let _data = null
-    try {
-      this.setupAppGuid()
-      const mapModels = this.#mapModels(this.#_schemas)
-      
-      await this.localDatabaseTransport.connect()
-      // start database
-      // start all here
-      _data = {
-        status: {
-          mapModels
-        }
-      }
-    } catch (error) {
-      console.error(error)
-      _error = error
-    }
-
-    this.triggerEvent('foundation:startVitals', {
-      foundation: this,
-      error: _error,
-      data: _data
-    })
-
-    return createMethodSignature(_error, _data)
-  }
+  
   /**
    * @async
    * @Method Foundation.start
@@ -584,23 +545,27 @@ await Product.add({
     let _error = null
     let _data = null
     try {
-      const vitals = await this.#startVitals()
-
-      // if (this.useWorker) {
-        // await this.#registerApplicationWorker()
-      // }
-
-      this.#_started = true
+      this.setupAppGuid()
+      const mapModels = this.#mapModels(this.#_schemas)
       
+      const connection = await this.localDatabaseTransport.connect()
 
-      _data = {
-        ...vitals.data,
-        started: this.#_started
-
+      if (connection.error) {
+        _error = connection.error
+      } else {
+        this.#_started = true
+        _data = {
+          status: {
+            mapModels,
+            connection
+          },
+          started: this.#_started
+        }
       }
+      
     } catch (error) {
-      console.error(error)
       _error = error
+      _data = null
     }
 
     this.triggerEvent('foundation:start', {

@@ -1,14 +1,10 @@
 /* global describe it Blob before after */
 
-// import agnostic foundation foundation class
-import {
-  Foundation,
-  LocalDatabaseTransport,
-  DataEntity,
-  utils
-} from '../../dist/main.js'
-
+import voodux from '../../index.js'
 import assert from 'assert'
+const { Foundation, LocalDatabaseTransport, DataEntity, utils } = voodux
+
+
 
 const Schema = Foundation.Schema
 describe('#--- LocalDatabaseTransport Class Test Suite', () => {

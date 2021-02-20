@@ -1,8 +1,9 @@
 /* global describe it Blob before Foundation */
 
-// import agnostic foundation foundation class
-import '../../dist/main.js'
-console.log(window.Foundation)
+import voodux from '../../index.js'
+import assert from 'assert'
+const { Foundation, LocalDatabaseTransport, DataEntity, utils } = voodux
+
 const CustomerSchema = new Foundation.Schema({
   name: {
     type: String,
@@ -84,8 +85,6 @@ const UserSchema = new Foundation.Schema({
   }
 })
 
-import assert from 'assert'
-
 describe('#--- Foundation Class Test Suite', () => {
   let name = 'My App'
   let foundation = null
@@ -101,29 +100,39 @@ describe('#--- Foundation Class Test Suite', () => {
       index: true
     }
   }
-  before(function (done) {
-    ;(async function () {
-      try {
-        foundation = new Foundation({
-          name,
-          useWorker: true,
-          dataStrategy: 'offlineFirst',
-          schemas: {
-            User: UserSchema,
-            Product: ProductSchema,
-            Order: OrderSchema,
-            Customer: CustomerSchema
-          }
-        })
-        await foundation.start()
-        done()
-      } catch (error) {
-        // console.log('>>>>>>>>>', error)
-        done(error)
+  before(function () {
+    foundation = new Foundation({
+      name,
+      schemas: {
+        User: UserSchema,
+        Product: ProductSchema,
+        Order: OrderSchema,
+        Customer: CustomerSchema
       }
-    })()
+    })
   })
   describe('Check class integrity', async () => {
+    it('Foundation must starts', (done) => {
+      ; (async () => {
+        const { error, data } = await foundation.start()
+        assert.equal(error, null)
+        assert.notEqual(data, null)
+        if (error) {
+          done(error)
+        } else {
+          done()
+        }
+      })()
+    })
+    it('Double starts the Foundation shall to raise an error', (done) => {
+      ; (async () => {
+        const { error, data } = await foundation.start()
+        console.log({ error, data })
+        assert.notEqual(error, null)
+        assert.equal(data, null)
+        done()
+      })()
+    })
     it('Foundation must have a constructor', (done) => {
       assert.equal(Foundation.constructor, Function)
       done()
