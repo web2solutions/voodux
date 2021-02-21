@@ -936,26 +936,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.main {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  /* rtl:remove */
-  z-index: 100; /* Behind the navbar */
-  padding: 48px 0 0; /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
-  overflow-y: scroll;
-  height: auto;
-}
-
-.needs-validation {
-  overflow: hidden;
-}
-</style>
-
 ```
 
 
@@ -1017,10 +997,6 @@ export default {
 ### Vanilla JS demos
 
 
-
-## Motivation
-
-[What motivates this](https://github.com/web2solutions/voodux/blob/main/MOTIVATION.md)
 
 ## Links and references
 
