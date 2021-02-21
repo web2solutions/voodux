@@ -747,6 +747,182 @@ const onDeleteDocHook = (Model) => {
 export default onDeleteDocHook
 
 </code></pre>
+<h6>Vue</h6>
+<p>The same React Customer listing component above can be written on Vue.js (2.0) following this approach:</p>
+<pre class="prettyprint source lang-javascript"><code>&lt;template>
+  &lt;main role=&quot;main&quot; class=&quot;col-md-9 ml-sm-auto col-lg-10 px-md-4&quot;>
+    &lt;div
+      class=&quot;d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 bcustomer-bottom&quot;
+    >
+      &lt;h1 class=&quot;h2&quot;>Customers&lt;/h1>
+      &lt;div class=&quot;btn-toolbar mb-2 mb-md-0&quot;>
+        &lt;div class=&quot;btn-group me-2&quot;>
+          &lt;router-link  class=&quot;btn btn-sm btn-outline-secondary&quot; to=&quot;/Customers/add&quot; tag=&quot;button&quot;>
+             Add new Customer
+          &lt;/router-link>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+    &lt;div class=&quot;table-responsive&quot;>
+      &lt;table class=&quot;table table-striped table-sm&quot;>
+        &lt;thead>
+          &lt;tr>
+            &lt;th>Name&lt;/th>
+            &lt;th>E-mail&lt;/th>
+            &lt;th>Address&lt;/th>
+            &lt;th  align=&quot;right&quot;>Cards&lt;/th>
+            &lt;th>-&lt;/th>
+          &lt;/tr>
+        &lt;/thead>
+        &lt;tbody>
+          &lt;tr v-for=&quot;doc in this.documents&quot; :key=&quot;doc.__id&quot;>
+            &lt;td>{{ doc.name }}&lt;/td>
+            &lt;td>{{ doc.email }}&lt;/td>
+            &lt;td>{{ doc.address }}&lt;/td>
+            &lt;td>{{ doc.cards }}&lt;/td>
+            &lt;td>
+              &lt;router-link  class=&quot;primary&quot; :to=&quot;`/Customers/edit/${doc.__id}`&quot;>[edit]&lt;/router-link>
+               | &lt;a color='primary' @click=&quot;handleDeleteCustomer($event, doc.__id)&quot; href='#'>[delete]&lt;/a>
+            &lt;/td>
+          &lt;/tr>
+        &lt;/tbody>
+      &lt;/table>
+    &lt;/div>
+  &lt;/main>
+&lt;/template>
+
+&lt;script>
+/* globals */
+
+import swal from 'sweetalert'
+import moment from 'moment'
+
+const formatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+})
+
+export default {
+  name: 'Customers',
+  components: {},
+  props: {},
+  data: () => ({
+    documents: []
+  }),
+  async mounted () {
+    const { Customer } = this.$foundation.data
+
+    this.onAddDocHandlerListener = Customer.on('add', this.onAddDocHandler)
+    this.onEditDocHandlerListener = Customer.on('edit', this.onEditDocHandler)
+    this.onDeleteDocHandlerListener = Customer.on(
+      'delete',
+      this.onDeleteDocHandler
+    )
+
+    const findCustomers = await Customer.find({})
+    if (findCustomers.error) {
+      return
+    }
+    if (findCustomers.data) {
+      console.log(findCustomers.data)
+      this.$set(this, 'documents', findCustomers.data)
+    }
+  },
+  // eslint-disable-next-line vue/no-deprecated-destroyed-lifecycle
+  beforeDestroy () {
+    const { Customer } = this.$foundation.data
+    Customer.stopListenTo(this.onAddDocHandlerListener)
+    Customer.stopListenTo(this.onEditDocHandlerListener)
+    Customer.stopListenTo(this.onDeleteDocHandlerListener)
+  },
+  methods: {
+    moment () {
+      return moment
+    },
+    swal () {
+      return swal
+    },
+    formatter () {
+      return formatter
+    },
+    onAddDocHandler (eventObj) {
+      const { error, document, foundation, data } = eventObj
+      console.log({ error, document, foundation, data })
+      if (error) {
+        return
+      }
+      this.documents.unshift(data)
+    },
+    onEditDocHandler (eventObj) {
+      const { error, document, foundation, data } = eventObj
+      console.log({ error, document, foundation, data })
+      this.documents.forEach((doc, index) => {
+        if (doc.__id === data.__id) {
+          this.$set(this.documents, index, data)
+        }
+      })
+    },
+    onDeleteDocHandler (eventObj) {
+      const { error, document, foundation, data } = eventObj
+      console.log({ error, document, foundation, data })
+      this.documents.forEach((doc, index) => {
+        if (doc.__id === data.__id) {
+          this.documents.splice(index, 1)
+        }
+      })
+    },
+    async handleDeleteCustomer(e, ___id) {
+      console.log(e, ___id)
+      const { Customer } = this.$foundation.data
+      e.preventDefault()
+      // console.error(___id)
+      swal({
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover this!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true
+      }).then(async (willDelete) => {
+        if (willDelete) {
+          const r = await Customer.delete(___id)
+          // console.error(r)
+          if (r.error) {
+            swal('Database error', e.error.message, 'error')
+            return
+          }
+          swal('Poof! The order has been deleted!', {
+            icon: 'success'
+          })
+        } else {
+          swal('The Customer is safe!')
+        }
+      })
+    }
+  }
+}
+&lt;/script>
+
+&lt;!-- Add &quot;scoped&quot; attribute to limit CSS to this component only -->
+&lt;style scoped>
+.main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /* rtl:remove */
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  overflow-y: scroll;
+  height: auto;
+}
+
+.needs-validation {
+  overflow: hidden;
+}
+&lt;/style>
+
+</code></pre>
 <h2>Application demos</h2>
 <h3>React demos</h3>
 <h4>React Demo app (Functional components)</h4>
@@ -863,7 +1039,7 @@ export default onDeleteDocHook
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-02-21T08:05:59-03:00
+		on 2021-02-21T08:10:59-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
