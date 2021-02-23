@@ -946,8 +946,14 @@ export default {
 ### DHTMLX demos
 
 
-### Vanilla JS demos
+### Vanilla JS demo #1
 
+<p class="codepen" data-height="665" data-theme-id="dark" data-default-tab="js,result" data-user="web2solutions" data-slug-hash="MWbEMrb" style="height: 665px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="VooduX - VanillaJS playground">
+  <span>See the Pen <a href="https://codepen.io/web2solutions/pen/MWbEMrb">
+  VooduX - VanillaJS playground</a> by Eduardo Almeida (<a href="https://codepen.io/web2solutions">@web2solutions</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
 
 
