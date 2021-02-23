@@ -29,7 +29,7 @@ An `Application State Management` abstraction handles `pieces` of data that are 
 
 Not least, `quick data persistence` is not enough. You may need to save your data to different locations, or sync multiple client applications, or even t handle a big amount of data on application startup.
 
-This when VooduX comes in.
+This where VooduX comes in.
 
 
 Let's make a simple comparison to quickly visualize the main difference between traditional React/Vue applications and a VooduX powered application:
