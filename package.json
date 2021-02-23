@@ -1,6 +1,6 @@
 {
   "name": "voodux",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "build": 0,
   "author": {
     "name": "Eduardo Almeida",
@@ -11,6 +11,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/web2solutions/voodux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/web2solutions/voodux/issues"
   },
   "license": "MIT",
   "main": "index.js",
@@ -80,5 +83,5 @@
   "presets": [
     "@babel/preset-env"
   ],
-  "description": "Agnostic Foundation for Web Applications"
+  "description": "VooduX - Agnostic Foundation for Web Applications"
 }

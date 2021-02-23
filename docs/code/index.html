@@ -97,7 +97,42 @@
 <p><a href="https://circleci.com/gh/web2solutions/voodux/tree/main"><img src="https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> | <a href="https://circleci.com/gh/web2solutions/voodux/tree/release"><img src="https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> | <a href="https://circleci.com/gh/web2solutions/voodux/tree/develop"><img src="https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> | <a href="https://codecov.io/gh/web2solutions/voodux"><img src="https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG" alt="codecov"></a> | <a href="https://snyk.io/test/github/web2solutions/voodux"><img src="https://snyk.io/test/github/web2solutions/voodux/badge.svg" alt="Known Vulnerabilities"></a> | <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></p>
 <h1>VooduX</h1>
 <h2>Summary</h2>
-<p>The VooduX's proposal is to cover the common lacks and mistakes in modern web applications development. It heavly opinionate on how to define a strong underlying architecture for the most common types of web softwares which relies mostly in <code>V-*</code> like libraries and frameworks such as <code>Vue</code> and <code>React</code>.</p>
+<p>VooduX is a proposal to cover some common lacks in modern web applications development.</p>
+<p>It heavly opinionate on how to define a strong underlying architecture which relies mostly in <code>V-*</code> like libraries and frameworks such as <code>Vue</code> and <code>React</code>.</p>
+<blockquote>
+<p>One common sense in every engineering field is: <code>There is no single silver bullets for all existing problems</code>.</p>
+<p>There is a giant race over <code>React</code> and <code>Vue</code>. They are likely the <code>V</code> in on a <code>MVC</code> like acronym. And in terms of <code>Project Standards</code>, that is all they care about.</p>
+<p>They usualy try to solve <code>application data</code> issues, but their proposed solutions are mostly focused in the <code>application state</code> rather than the <code>application data</code>. They mainly rely on browser memory to keep chunks of data.</p>
+<p>There is no problem on those solutions, not at least in a <code>project standard</code> perspective, because they ain't necessarily try to solve <code>M</code> related problems .</p>
+<p>By mistake, developers and teams are mostly focusing on the <code>V</code> layer and ignoring a <code>possibly required</code> underlying foundation architecture. Which finally increases the code complexity of those <code>View</code> or <code>Component</code> layers, because they are trying to resolve problems that should not being handled in that domain.</p>
+</blockquote>
+<p><code>State Management</code> libraries are really great. But they don't works as an <code>Application Data Management</code> abstraction suposedly would do. Not sure if this last acronym exists, but I'm reffering to whole application data storage and it access. Simply because the <code>application data size</code> might considerable grows.</p>
+<p>An <code>Application State Management</code> abstraction handles <code>pieces</code> of data that are curenlty being used in the screen at the present moment. But it does not means you could not have another pieces of data being <code>stored or handled</code> in parallel, behind the scenes.</p>
+<p>Not least, <code>quick data persistence</code> is not enough. You may need to save your data to different locations, or sync multiple client applications, or even t handle a big amount of data on application startup.</p>
+<p>This when VooduX comes in.</p>
+<h4>What is VooduX</h4>
+<blockquote>
+<p>VooduX is an underlying <code>agnostic application foundation</code> that easily plugs to your brand new or existing application, built with Vue, React, or whatever. It is a set of tools that makes your data to be persistent and your application to be offline capable since from it initial days with zero configuration and free of any back end implementation.</p>
+</blockquote>
+<p><strong>It actualy provides:</strong></p>
+<ul>
+<li>A model layer based on Mongoose which simply persists data accross multiple targets.</li>
+<li>A proxy like Data API supporting different data transports</li>
+<li>Enforced Data Modeling and Data Entities driven design</li>
+<li>Application session</li>
+<li>100% offline capable applications</li>
+<li>Asynchronous and event driven architecture.</li>
+<li>Support to develop database driven applications with no configuration and no backend dependency.</li>
+</ul>
+<p><strong>Coming soon features:</strong></p>
+<ul>
+<li>Event Sourcing implementation to track and persist data changes</li>
+<li>Trully multi threaded architecture by leveraging web workers. Web applications are originally single threaded applications.</li>
+<li>Realtime Data Sync</li>
+<li>Plugin based Data Transport to give you the freedom to back your web software with any kind of back end technology</li>
+<li>Data Schema generators leveraging OpenAPI speficiations (Swagger) as declarative metadata standard</li>
+<li>CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard</li>
+</ul>
 <h4>What VooduX is not?</h4>
 <ul>
 <li>It does not replace Redux, Mobx, Vuex any any other kind of <code>Application Management</code> abstraction.</li>
@@ -105,12 +140,6 @@
 <li>It does not cares about which <code>project standard</code>'s framework/library you employ. Vue, React, It does not matters.</li>
 <li>It does not cares about the UI framework/library you are employing. The Material UI, Boostrap, Vuetify, Sencha, DHTMLX, Dojo.</li>
 </ul>
-<h4>What is VooduX then?</h4>
-<p>It is good to see teams proud of being <code>TDD driven</code> teams. It is amazing to see team proud of <code>Translating pixel-perfect designs from Figma</code>, it is really are fascinating to be exposed to new and good <code>User Xperiences</code>. Horses flying and 3D rotating on screen, big red error messages on giant rounded number form field when user tries to type a string value inside, are good, but this is the head of the iceberg only.</p>
-<p>In several cases, industries are heavily focusing on specific pieces of the process, under a totaly focused on a <code>Software Engineering</code> field influenced perspective, rather than prior scoping a overall product plan, flavoured on a <code>System Information</code> field perspective.</p>
-<p>Sometimes part of the project process is rock solid, but the final product is lacking in simple things. I saw large financial applications that when opened on multiple browser tabs, and if you add a new data in tab one, all other tabs stays dumb. If I went to another tab, the new data was not there.</p>
-<p>We really love <code>State Management</code> libraries and we use them on daily basis. But we don't agree to the assumption that <code>Application State Management</code> does the same as a <code>Application Data Management</code> abstraction suposedly does. Simply because the <code>application data size</code> might considerable grows.</p>
-<p>We like to think in a scenario where the <code>Application State Management</code> abstraction handles <code>pieces</code> of data that are curenlty being used in the screen at the present moment. But it does not means you should not have another pieces of data being <code>underlying handled by some other manner</code> behind the scenes.</p>
 <p>Let's make a simple comparison to quickly visualize the main difference between traditional React/Vue applications and a VooduX powered application:</p>
 <hr>
 <p><code>This is how a common React/Vue application looks like:</code></p>
@@ -118,6 +147,15 @@
 <hr>
 <p><code>This is how a VooduX powered React/Vue application looks like:</code></p>
 <img src="https://i.imgur.com/FsxIaMl.png" style="max-width: 900px;" />
+<hr>
+<h4>Interactive code example</h4>
+<p>Now let's see an interactive example:</p>
+<p class="codepen" data-height="665" data-theme-id="dark" data-default-tab="js,result" data-user="web2solutions" data-slug-hash="MWbEMrb" style="height: 665px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="VooduX - VanillaJS playground">
+  <span>See the Pen <a href="https://codepen.io/web2solutions/pen/MWbEMrb">
+  VooduX - VanillaJS playground</a> by Eduardo Almeida (<a href="https://codepen.io/web2solutions">@web2solutions</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 <hr>
 <p>Please don't get us wrong. <code>We are not reinventing any wheels</code>. We are just leveraging well stabilished paradigms and methodologies like <code>Entity Relationship</code>, <code>Data Entities</code>, <code>Actors</code>, <code>Objects</code>, <code>RAD</code>, <code>Component Engineering</code>, <code>Messaging Patterns</code>, <code>2-way data flow over an Event Driven Architecture</code>, <code>Data Caching</code> so on and so forth, to delivery agile produced sotware MVPs that scales since from it initial days.</p>
 <p>Supose the <code>server - back end</code> emits a <a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events"><code>Server Event Message</code></a> to connected clients with the following info:</p>
@@ -1017,7 +1055,7 @@ export default {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-02-21T08:42:14-03:00
+		on 2021-02-23T03:38:51-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

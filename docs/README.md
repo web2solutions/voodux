@@ -9,7 +9,49 @@
 
 ## Summary
 
-The VooduX's proposal is to cover the common lacks and mistakes in modern web applications development. It heavly opinionate on how to define a strong underlying architecture for the most common types of web softwares which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
+VooduX is a proposal to cover some common lacks in modern web applications development.
+
+It heavly opinionate on how to define a strong underlying architecture which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
+
+> One common sense in every engineering field is: `There is no single silver bullets for all existing problems`.
+> 
+> There is a giant race over `React` and `Vue`. They are likely the `V` in on a `MVC` like acronym. And in terms of `Project Standards`, that is all they care about.
+> 
+> They usualy try to solve `application data` issues, but their proposed solutions are mostly focused in the `application state` rather than the `application data`. They mainly rely on browser memory to keep chunks of data.
+> 
+> There is no problem on those solutions, not at least in a `project standard` perspective, because they ain't necessarily try to solve `M` related problems .
+> 
+> By mistake, developers and teams are mostly focusing on the `V` layer and ignoring a `possibly required` underlying foundation architecture. Which finally increases the code complexity of those `View` or `Component` layers, because they are trying to resolve problems that should not being handled in that domain.
+
+`State Management` libraries are really great. But they don't works as an `Application Data Management` abstraction suposedly would do. Not sure if this last acronym exists, but I'm reffering to whole application data storage and it access. Simply because the `application data size` might considerable grows.
+
+An `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment. But it does not means you could not have another pieces of data being `stored or handled` in parallel, behind the scenes.
+
+Not least, `quick data persistence` is not enough. You may need to save your data to different locations, or sync multiple client applications, or even t handle a big amount of data on application startup.
+
+This when VooduX comes in.
+#### What is VooduX
+
+> VooduX is an underlying `agnostic application foundation` that easily plugs to your brand new or existing application, built with Vue, React, or whatever. It is a set of tools that makes your data to be persistent and your application to be offline capable since from it initial days with zero configuration and free of any back end implementation.
+
+**It actualy provides:**
+
+- A model layer based on Mongoose which simply persists data accross multiple targets.
+- A proxy like Data API supporting different data transports
+- Enforced Data Modeling and Data Entities driven design
+- Application session
+- 100% offline capable applications
+- Asynchronous and event driven architecture.
+- Support to develop database driven applications with no configuration and no backend dependency.
+
+**Coming soon features:**
+
+- Event Sourcing implementation to track and persist data changes
+- Trully multi threaded architecture by leveraging web workers. Web applications are originally single threaded applications.
+- Realtime Data Sync
+- Plugin based Data Transport to give you the freedom to back your web software with any kind of back end technology
+- Data Schema generators leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
+- CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
 
 #### What VooduX is not?
 
@@ -18,18 +60,7 @@ The VooduX's proposal is to cover the common lacks and mistakes in modern web ap
 - It does not cares about which `project standard`'s framework/library you employ. Vue, React, It does not matters.
 - It does not cares about the UI framework/library you are employing. The Material UI, Boostrap, Vuetify, Sencha, DHTMLX, Dojo.
 
-#### What is VooduX then?
 
-It is good to see teams proud of being `TDD driven` teams. It is amazing to see team proud of `Translating pixel-perfect designs from Figma`, it is really are fascinating to be exposed to new and good `User Xperiences`. Horses flying and 3D rotating on screen, big red error messages on giant rounded number form field when user tries to type a string value inside, are good, but this is the head of the iceberg only.
-
-
-In several cases, industries are heavily focusing on specific pieces of the process, under a totaly focused on a `Software Engineering` field influenced perspective, rather than prior scoping a overall product plan, flavoured on a `System Information` field perspective. 
-
-Sometimes part of the project process is rock solid, but the final product is lacking in simple things. I saw large financial applications that when opened on multiple browser tabs, and if you add a new data in tab one, all other tabs stays dumb. If I went to another tab, the new data was not there.
-
-We really love `State Management` libraries and we use them on daily basis. But we don't agree to the assumption that `Application State Management` does the same as a `Application Data Management` abstraction suposedly does. Simply because the `application data size` might considerable grows.
-
-We like to think in a scenario where the `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment. But it does not means you should not have another pieces of data being `underlying handled by some other manner` behind the scenes.
 
 Let's make a simple comparison to quickly visualize the main difference between traditional React/Vue applications and a VooduX powered application:
 
@@ -48,6 +79,21 @@ Let's make a simple comparison to quickly visualize the main difference between 
 
 
 <img src="https://i.imgur.com/FsxIaMl.png" style="max-width: 900px;" />
+
+---------
+
+#### Interactive code example
+
+Now let's see an interactive example:
+
+<p class="codepen" data-height="665" data-theme-id="dark" data-default-tab="js,result" data-user="web2solutions" data-slug-hash="MWbEMrb" style="height: 665px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="VooduX - VanillaJS playground">
+  <span>See the Pen <a href="https://codepen.io/web2solutions/pen/MWbEMrb">
+  VooduX - VanillaJS playground</a> by Eduardo Almeida (<a href="https://codepen.io/web2solutions">@web2solutions</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+
 
 ---------
 
