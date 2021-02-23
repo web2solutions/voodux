@@ -30,57 +30,23 @@ An `Application State Management` abstraction handles `pieces` of data that are 
 Not least, `quick data persistence` is not enough. You may need to save your data to different locations, or sync multiple client applications, or even t handle a big amount of data on application startup.
 
 This when VooduX comes in.
-#### What is VooduX
-
-> VooduX is an underlying `agnostic application foundation` that easily plugs to your brand new or existing application, built with Vue, React, or whatever. It is a set of tools that makes your data to be persistent and your application to be offline capable since from it initial days with zero configuration and free of any back end implementation.
-
-**It actualy provides:**
-
-- A model layer based on Mongoose which simply persists data accross multiple targets.
-- A proxy like Data API supporting different data transports
-- Enforced Data Modeling and Data Entities driven design
-- Application session
-- 100% offline capable applications
-- Asynchronous and event driven architecture.
-- Support to develop database driven applications with no configuration and no backend dependency.
-
-**Coming soon features:**
-
-- Event Sourcing implementation to track and persist data changes
-- Trully multi threaded architecture by leveraging web workers. Web applications are originally single threaded applications.
-- Realtime Data Sync
-- Plugin based Data Transport to give you the freedom to back your web software with any kind of back end technology
-- Data Schema generators leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
-- CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
-
-#### What VooduX is not?
-
-- It does not replace Redux, Mobx, Vuex any any other kind of `Application Management` abstraction.
-- It does not cares about how you manage your application state.
-- It does not cares about which `project standard`'s framework/library you employ. Vue, React, It does not matters.
-- It does not cares about the UI framework/library you are employing. The Material UI, Boostrap, Vuetify, Sencha, DHTMLX, Dojo.
-
 
 
 Let's make a simple comparison to quickly visualize the main difference between traditional React/Vue applications and a VooduX powered application:
 
----------
+---
 
 `This is how a common React/Vue application looks like:`
 
-
-
 <img src="https://i.imgur.com/acwNgqq.png" style="max-width: 900px;" />
 
-
----------
+---
 
 `This is how a VooduX powered React/Vue application looks like:`
 
-
 <img src="https://i.imgur.com/FsxIaMl.png" style="max-width: 900px;" />
 
----------
+---
 
 #### Interactive code example
 
@@ -93,68 +59,8 @@ Now let's see an interactive example:
 </p>
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
+---
 
-
----------
-
-Please don't get us wrong. `We are not reinventing any wheels`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `2-way data flow over an Event Driven Architecture`, `Data Caching` so on and so forth, to delivery agile produced sotware MVPs that scales since from it initial days.
-
-Supose the `server - back end` emits a [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events) to connected clients with the following info:
-
- ```javascript
-  { 
-    action: 'completed', 
-    entity: 'Order', 
-    id: 24455,
-    customerId: 3443,
-    lineItems: [...[{}]],
-    totalPaid: 5430
-  }
-```
-
-Supose you are currently catching your eyes at the Dashboard page in the screen where you have: `Last Order Listing`, `Sales Chart` and `Total Earns Today` badge. 
-
-Like this: 
-
-<img src="https://i.imgur.com/b29Lsgj.png" width="500" />
-
-
-You now need to update those components based on the received [`Server Event Message`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events).
-
-
-The `Last Order Listing` component displays the name of the customer alongside it address and total paid for that specific order.
-
-In that moment, if you dont have the Customer information inside the `Application State Management` implementation, you need to get it in another place. That is where the `Application Data Management` abstraction resides.
-
-Traditionaly the main applications implementation rely on directly calling an API, or even use things like the browser `localStorage` API, which will fails once it data size and complexity grows.
-
-Going against this implementation model, we intoduce a `proxy like` abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser. 
-
-There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development and validation.
-
-Aditionaly, VooduX abstract some kind of `data transporters` which is used `to send own produced event and data to` and `to consume thirdy party produced event and data from`. Every data change has an associated event object and action, which is not used only for `Event Sourcing`, but also to provide direct `bindings` for `decoupled View components`.
-
-Despite the fact we can now fastly and cheaply request data, we have also a complete database running on front end. The `Application Data Management` abstraction gives you some capabilities such:
-
-- Do not loose data on network disconnections.
-- 100% offline capable applications.
-- Drastically reduce server resources dependency.
-- High performant UI reactivity.
-
-
-VooduX provides a underlying architecture offering resources like:
-
-- Generic `Data Schema` and `Data Model` driven design. Use the Mongoose implementation to define models. Same model can both run on client and server.
-- A proxy like `Data Entity API` supporting different data transports
-- Enforced Entity Relatioship and Data Entities design
-- Application session
-- Realtime Data Sync
-- Plugin based `Data Transport` to give you the freedom to back your web software with any kind of `back end technology`
-- `Trully multi threaded` architecture by leveraging web workers. Web applications are originally single threaded applications.
-- 100% offline capable applications
-- Asynchronous and `event driven` architecture.
-- `Data Schema` generators leveraging the OpenAPI speficiations (Swagger) as declarative metadata standard
-- CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
 
 ## Install
 
@@ -1041,6 +947,112 @@ export default {
 
 
 ### Vanilla JS demos
+
+
+
+
+
+
+
+
+
+
+
+
+## Reasons why I created VooduX
+### What is VooduX
+
+> VooduX is an underlying `agnostic application foundation` that easily plugs to your brand new or existing application, built with Vue, React, or whatever. It is a set of tools that makes your data to be persistent and your application to be offline capable since from it initial days with zero configuration and free of any back end implementation.
+
+**It actualy provides:**
+
+- A model layer based on Mongoose which simply persists data accross multiple targets.
+- A proxy like Data API supporting different data transports
+- Enforced Data Modeling and Data Entities driven design
+- Application session
+- 100% offline capable applications
+- Asynchronous and event driven architecture.
+- Support to develop database driven applications with no configuration and no backend dependency.
+
+**Coming soon features:**
+
+- Event Sourcing implementation to track and persist data changes
+- Trully multi threaded architecture by leveraging web workers. Web applications are originally single threaded applications.
+- Realtime Data Sync
+- Plugin based Data Transport to give you the freedom to back your web software with any kind of back end technology
+- Data Schema generators leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
+- CRUD interfaces generators targeting React, Vue, DHTMLX and jQwidgets and leveraging OpenAPI speficiations (Swagger) as declarative metadata standard
+
+### What VooduX is not?
+
+- It does not replace Redux, Mobx, Vuex any any other kind of `Application Management` abstraction.
+- It does not cares about how you manage your application state.
+- It does not cares about which `project standard`'s framework/library you employ. Vue, React, It does not matters.
+- It does not cares about the UI framework/library you are employing. The Material UI, Boostrap, Vuetify, Sencha, DHTMLX, Dojo.
+
+
+
+### Hypotethical use case on a large online app
+
+Supose the `server - back end` emits a [`Server Event`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events) to connected clients with the following info:
+
+```javascript
+ {
+   action: 'completed',
+   entity: 'Order',
+   id: 24455,
+   customerId: 3443,
+   lineItems: [...[{}]],
+   totalPaid: 5430
+ }
+```
+
+Supose you are currently catching your eyes at the Dashboard page in the screen where you have: `Last Order Listing`, `Sales Chart` and `Total Earns Today` badge.
+
+Like this:
+
+<img src="https://i.imgur.com/b29Lsgj.png" width="500" />
+
+You now need to update those components based on the received [`Server Event`](https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events).
+
+The `Recent Orders` component displays the name of the customer alongside it address and total paid for that specific order.
+
+In that moment, if you don't have the Customer information inside the `Application State Management` layer, you need to get it in another place. That is where the `Application Data Management` abstraction resides.
+
+Traditionaly the main applications implementation rely on directly calling an API, or even use things like the browser `localStorage` API, which will fails once it data size and complexity grows.
+
+_Someday in a job interview, when I mentioned about this above scenario, the techinical leader asked me: "Don't you know graphql?" .. In that specific time, I never had used it in production, but I had all the background to explain why that question was so stupid. But I decided stay dumb and look like an idiot. Please don't think you have graphql features on a `Event Sourcing` implementation. Also, the `Event Sourcing` pattern is something almost required in any large / distributed application._
+
+This is one thing GraphQL claims about:
+
+> Even if a REST API returns only a basic partial, it is still transferring more data, while GraphQL is always aiming for the smallest possible request. In an example, if the client needs a field, they request it, and if the API adds a new field, clients don’t get it, unless it’s being added into the GraphQL query.
+
+The above assumption is totally true, except when you break the "commercial paradigm" and take a hacker persective of what are the resources you have available. And once you add a data layer to your client side, your GraphQL becomes a `white elephant`.
+
+If you implement different data transports rather than only supporting classical HTTP requests, then you can eliminate the need for requests that have `long response body`.
+
+Yes, some `evangelists` don't like paradigm breaks.
+
+### Not  breaking, but enforcing some relativelly recent paradigms
+
+`There is no wheels being reinvented`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `2-way data flow over an Event Driven Architecture`, `Data Caching` so on and so forth, to delivery agile produced `MVPs` that scales since from it initial days.
+
+
+Going against the most traditional development model, we intoduce a `proxy like` abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser.
+
+There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development and validation.
+
+Aditionaly, VooduX abstract some kind of `data transporters` which is used to produce `Client Events` and to consume `Server Events`. Every `event` has an associated snapshot of the data state in that specific portion of time, which is not used only for `Event Sourcing`, but also to provide direct `bindings` for `view components reactivity`.
+
+Despite the fact that `event sourcing` and `server events`, if compared to traditional single pull, long pull or bidirectional HTTP requests, drastically reduces the server side demand, we have also a complete database running on front end.
+
+An `Application Data Management` abstraction gives you some capabilities such:
+
+- Do not loose data on network disconnections.
+- 100% offline capable applications.
+- Drastically reduce server resources dependency.
+- High performant UI reactivity. Local database queries will be faster than the required latency to reach your remote server (latency does not iinclude the time spent until the server returns the reponse)
+
 
 
 
