@@ -16,3 +16,8 @@
 ## Documentation
 
 [`Check out the documentation.`](https://web2solutions.github.io/voodux/code/index.html)
+
+
+## Tests report
+
+[`Check out the last test report.`](https://web2solutions.github.io/voodux/reports/unit-testing/cypress-tests-report.html)
