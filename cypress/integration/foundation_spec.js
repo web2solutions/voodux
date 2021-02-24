@@ -127,7 +127,7 @@ describe('#--- Foundation Class Test Suite', () => {
     it('Double starts the Foundation shall to raise an error', (done) => {
       ; (async () => {
         const { error, data } = await foundation.start()
-        console.log({ error, data })
+        // console.log({ error, data })
         assert.notEqual(error, null)
         assert.equal(data, null)
         done()
@@ -187,7 +187,7 @@ describe('#--- Foundation Class Test Suite', () => {
 
     it('foundation.guid getter must return the application UUID string', (done) => {
       assert.equal(typeof foundation.guid === 'string', true)
-      console.log('xxxxxxxxxx', foundation.guid)
+      // console.log('xxxxxxxxxx', foundation.guid)
       done()
     })
 

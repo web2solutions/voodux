@@ -96,6 +96,30 @@ describe('#--- Utils module Test Suite', () => {
       done()
     })
   })
+  
+
+  describe('genDbName: utils.genDbName(string) -> genDbName', () => {
+    it('genDbName() must return a string', (done) => {
+      const dbName = utils.genDbName()
+      assert.equal(typeof dbName === 'string', true)
+      done()
+    })
+
+    it('genDbName("") must return a string', (done) => {
+      const appName = ''
+      const dbName = utils.genDbName(appName)
+      assert.equal(typeof dbName === 'string', true)
+      done()
+    })
+
+    it('genDbName(My App) must return VooduX_my_app', (done) => {
+      const appName = 'My App'
+      const dbName = utils.genDbName(appName)
+      assert.equal(typeof dbName === 'string', true)
+      assert.equal(dbName, 'VooduX_my_app')
+      done()
+    })
+  })
 
   describe('Mongoose 2 Dexie: utils.mongooseToDexieTableString(schema) -> Mongoose schema conversion to Dexie table config', () => {
     const schema = new utils.Schema({
@@ -107,7 +131,8 @@ describe('#--- Utils module Test Suite', () => {
       username: {
         type: String,
         required: true,
-        index: true
+        index: true,
+        unique: true
       },
       cards: {
         type: [],
@@ -117,9 +142,22 @@ describe('#--- Utils module Test Suite', () => {
       notIndexed: {
         type: String,
         required: true
-      }
+      },
+      first: {
+        type: String,
+        required: true,
+        // index: true
+      },
+      last: {
+        type: String,
+        required: true,
+        // index: true
+      },
     })
+    schema.index({ first: 1, last: -1 }, { unique: true })
+
     const tableConfig = utils.mongooseToDexieTableString(schema)
+    console.log('x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x', tableConfig)
     it('Table config must have __id as Primary Key', (done) => {
       const tableConfigArray = tableConfig.split(',')
       assert.equal(tableConfigArray[0], '++__id')

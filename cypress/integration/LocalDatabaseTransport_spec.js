@@ -107,7 +107,7 @@ describe('#--- LocalDatabaseTransport Class Test Suite', () => {
     it('Double connection shall to raise an error', (done) => {
       ; (async() => {
         const { error, data } = await localDataTransport.connect()
-        console.log({ error, data })
+        // console.log({ error, data })
         assert.equal(error !== null, true)
         assert.equal(data, null)
         done()

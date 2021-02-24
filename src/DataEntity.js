@@ -107,12 +107,21 @@ export default class DataEntity extends EventSystem {
   #_stateChangeStorageName
 
   constructor({
-    foundation = {},
-    entity = null,
+    foundation,
+    entity,
     strategy = 'offline',
-    schema = {}
-  } = {}) {
+    schema
+  }) {
     super()
+    /* if (Object.keys(foundation).length === 0) {
+      throw new Error('foundation is invalid')
+    }
+    if (Object.keys(schema).length === 0) {
+      throw new Error('schema is invalid')
+    }
+    if (entity === null) {
+      throw new Error('entity is invalid')
+    } */
     this.#_entity = entity
     /**
      * @memberof DataEntity
@@ -159,7 +168,7 @@ export default class DataEntity extends EventSystem {
   /**
    * @memberof DataEntity
    * @member {getter} DataEntity.entity
-   * @example console.log(DataEntity.entity)
+   * @example // console.log(DataEntity.entity)
    * @description Gets the entity name which which DataEntity instance is handling out
    * @return {object} this.#_entity
    */
@@ -170,7 +179,7 @@ export default class DataEntity extends EventSystem {
   /**
    * @memberof DataEntity
    * @member {getter} DataEntity.schema
-   * @example console.log(DataEntity.schema)
+   * @example // console.log(DataEntity.schema)
    * @description Gets the data schema related to this Entity Data API
    * @return {object} this.#_schema
    */
@@ -181,7 +190,7 @@ export default class DataEntity extends EventSystem {
   /**
    * @memberof DataEntity
    * @member {getter} DataEntity.strategy
-   * @example console.log(DataEntity.strategy)
+   * @example // console.log(DataEntity.strategy)
    * @description Gets the data strategy currently being used
    * @return {string} this.#_strategy
    */
@@ -219,15 +228,16 @@ const doc = {
 const { data, error } = await Customer.add(doc)
   */
   async add(doc = {}) {
-    if (!(doc instanceof Document)) {
+    // if (!(doc instanceof Document)) {
       // return createMethodSignature('You must pass a valid JSON document as parameter to DataEntity.add() method', null)
-    }
+    // }
     if (Object.keys(doc).length < 1) {
       return createMethodSignature('You must pass a valid JSON document as parameter to DataEntity.add() method', null)
     }
     let data = null
     let error = null
     let rawObj = {}
+    // console.log('doc', doc)
     delete doc.__id
     delete doc._id
 
@@ -252,6 +262,7 @@ const { data, error } = await Customer.add(doc)
       // console.log('data', data)
       // console.log('__id', __id)
     } catch (e) {
+      // console.log('error error ', e)
       error = e
     }
     // console.log({ data, error, rawObj })
@@ -268,7 +279,7 @@ const { data, error } = await Customer.add(doc)
    * @param  {number} eventPayload.primaryKey - The primaryKey value of the added document, default is zero if not provided
    * @param  {object} eventPayload.rawObj - The raw document object provided on dataEntity.add(doc) mehod call. Default is {} if not provided.
   */
-  #_triggerAddEvents({ data = null, error = null, primaryKey = 0, rawObj = {} } = {}) {
+  #_triggerAddEvents({ data, error, primaryKey, rawObj}) {
     const action = 'add'
     this.#_foundation.triggerEvent(`collection:${action}:${this.#_entity.toLowerCase()}`, {
       foundation: this.#_foundation,
@@ -311,9 +322,9 @@ const doc = {
 const { data, error } = await Customer.edit(doc.__id, doc)
    */
   async edit(primaryKey = null, doc = {}) {
-    if (!(doc instanceof Document)) {
+    // if (!(doc instanceof Document)) {
       // return createMethodSignature('You must pass a valid JSON document as parameter to DataEntity.edit() method', null)
-    }
+    // }
     if (Object.keys(doc).length < 1) {
       return createMethodSignature('You must pass a valid JSON document as parameter to DataEntity.edit() method', null)
     }
@@ -369,7 +380,7 @@ const { data, error } = await Customer.edit(doc.__id, doc)
    * @param  {number} eventPayload.primaryKey - The primaryKey value of the edited document, default is zero if not provided
    * @param  {object} eventPayload.rawObj - The raw document object provided on dataEntity.edit(primaryKey, doc) mehod call. Default is {} if not provided.
   */
-  #_triggerEditEvents({ data = null, error = null, primaryKey = 0, rawObj = {} } = {}) {
+  #_triggerEditEvents({ data, error, primaryKey, rawObj }) {
     const action = 'edit'
     this.#_foundation.triggerEvent(
       `collection:${action}:${this.#_entity.toLowerCase()}`,
@@ -432,7 +443,7 @@ const { data, error } = await Customer.edit(doc.__id, doc)
    * @param  {object|string} eventPayload.error - The returned error from database edit request if any, default is null if not provided
    * @param  {number} eventPayload.primaryKey - The primaryKey value of the deleted document, default is zero if not provided
   */
-  #_triggerDeleteEvents({ data = null, error = null, primaryKey = 0 } = {}) {
+  #_triggerDeleteEvents({ data, error, primaryKey }) {
     const action = 'delete'
     this.#_foundation.triggerEvent(
       `collection:${action}:${this.#_entity.toLowerCase()}`,
@@ -631,7 +642,8 @@ const { data, error } = await Customer.edit(doc.__id, doc)
           document: {...originalDocument} 
         })
   */
-  #_sendStateChangeToAllOtherSessions(state = { action: '', data: null, error: null, document: {} }) {
+  #_sendStateChangeToAllOtherSessions(state) {
+    // state { action: '', data: null, error: null, document: {} }
     state.source = {
       sessionId: this.#_foundation.tabId,
       applicationId: this.#_foundation.guid,

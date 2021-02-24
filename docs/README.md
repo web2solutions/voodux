@@ -1070,7 +1070,7 @@ Project related resources:
 
 - [Techinical Reference](https://web2solutions.github.io/voodux/code/index.html)
 - [Project repository](https://github.com/web2solutions/voodux)
-- [Unit tests Report](https://web2solutions.github.io/voodux/reports/unit-testing/index.html)
+- [Unit tests Report](https://web2solutions.github.io/voodux/reports/unit-testing/cypress-tests-report.html)
 - [Report an issue](https://github.com/web2solutions/voodux/issues)
 
 ### Reference
