@@ -1,5 +1,5 @@
 /* global localStorage, navigator, window */
-import { createMethodSignature, uuid, Schema } from './utils'
+import { createMethodSignature, uuid, Schema, genDbName } from './utils'
 import DataEntity from './DataEntity'
 import LocalDatabaseTransport from './LocalDatabaseTransport'
 import EventSystem from './EventSystem'
@@ -179,8 +179,8 @@ export default class Foundation extends EventSystem {
     name = 'My Foundation Name',
     dataStrategy = 'offline',
     useWorker = false,
-    schemas = {}
-  } = {}) {
+    schemas
+  }) {
     super()
     this.#_name = name
     this.#_dataStrategy = dataStrategy
@@ -191,7 +191,9 @@ export default class Foundation extends EventSystem {
     this.#_models = {}
     this.#_useWorker = useWorker || false
     this.#_workers = {}
-    this.localDatabaseTransport = new LocalDatabaseTransport()
+    this.localDatabaseTransport = new LocalDatabaseTransport({
+      dbName: genDbName(name)
+    })
     this.#_tabId = uuid() // assume new Id on every refresh
   }
 
@@ -293,7 +295,7 @@ export default class Foundation extends EventSystem {
    * @param  {string} entity - Data Entity name
    * @param  {dataEntity} dataEntity - An {@link DataEntity} instance
    */
-  mapToDataEntityAPI(entity = '', dataEntity = {}) {
+  mapToDataEntityAPI(entity, dataEntity) {
     let _error = null
     let _data = null
     // if call mapToDataEntityAPI('Product') more than once, it will ovewrite the previous set Product model
@@ -398,7 +400,7 @@ await Product.add({
 })
 
    */
-  importDataEntity({ entity = null, dataEntity = {} }) {
+  importDataEntity({ entity, dataEntity}) {
     this.mapToDataEntityAPI(entity, dataEntity)
   }
 

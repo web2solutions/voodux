@@ -265,6 +265,32 @@ describe('#--- DataEntity Class Test Suite', () => {
         done()
       })()
     })
+    it('Calling Customer.add with missing a required param must returns an error - invalid', (done) => {
+      ;(async function () {
+        let _error = null
+        let _data = null
+        let invalid = false
+        try {
+          const { error, data } = await Customer.add({name: 'test'})
+          if (error) {
+            _error = error
+            invalid = true
+          } else {
+            _data = data
+            invalid = false
+          }
+        } catch (e) {
+          _error = e
+          _data = null
+          invalid = true
+        }
+        // assert.equal(typeof Customer.add, 'function')
+        assert.notEqual(_error, null)
+        assert.equal(_data, null)
+        assert.equal(invalid, true)
+        done()
+      })()
+    })
     it('Calling Customer.edit() without parameter must returns an  validation error', (done) => {
       ;(async function () {
         let _error = null
@@ -304,7 +330,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         assert.notEqual(_error, null)
         assert.equal(_data, null)
         assert.equal(_error, 'You must pass a valid JSON document as parameter to DataEntity.edit() method')
-        console.log({ _error, _data })
+        // console.log({ _error, _data })
         done()
       })()
     })
@@ -326,7 +352,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         assert.notEqual(_error, null)
         assert.equal(_data, null)
         assert.equal(_error, 'You must pass a valid primary key value as parameter to DataEntity.edit() method')
-        console.log({ _error, _data })
+        // console.log({ _error, _data })
         done()
       })()
     })
@@ -348,7 +374,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         assert.notEqual(_error, null)
         assert.equal(_data, null)
         assert.equal(_error, 'Document must have doc.__id (Integer) when calling DataEntity.edit() method')
-        console.log({ _error, _data })
+        // console.log({ _error, _data })
         done()
       })()
     })
@@ -370,7 +396,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         assert.notEqual(_error, null)
         assert.equal(_data, null)
         assert.equal(_error, 'Document must have doc._id (ObjectID) when calling DataEntity.edit() method')
-        console.log({ _error, _data })
+        // console.log({ _error, _data })
         done()
       })()
     })
@@ -392,7 +418,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         assert.notEqual(_error, null)
         assert.equal(_data, null)
         // assert.equal(_error, 'Document must have doc._id (ObjectID) when calling DataEntity.edit() method')
-        console.log({ _error, _data })
+        // console.log({ _error, _data })
         done()
       })()
     })
@@ -1286,7 +1312,7 @@ describe('#--- DataEntity Class Test Suite', () => {
         let _data = null
 
         let listener = Product.on('edit', async (eventObj) => {
-          console.log('---->edit', eventObj)
+          // console.log('---->edit', eventObj)
           const { error, document, foundation, data } = eventObj
           assert.equal(_error, null)
           assert.equal(error, null)
@@ -1310,7 +1336,7 @@ describe('#--- DataEntity Class Test Suite', () => {
           _error = e
           _data = null
         }
-        console.log(_error, _data)
+        // console.log(_error, _data)
       })()
     })
   })

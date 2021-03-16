@@ -429,6 +429,172 @@ Create default signature method object
             
 <hr>
 <dt>
+    <h4 class="name" id=".genDbName"><span class="type-signature">&lt;static> </span>genDbName(appName)</h4>
+    
+    
+    <p class="summary">genDbName
+generates a database name.</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        genDbName
+generates a database name
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>appName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Voodux Application Instance name</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utils.js.html">utils.js</a>,
+				 <a href="utils.js.html#sunlight-1-line-46">line 46</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    dbName / uuid
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id=".getSearchTokenStream"><span class="type-signature">&lt;static> </span>getSearchTokenStream()</h4>
     
     
@@ -488,7 +654,7 @@ generates a lunr search token. See <a href="https://lunrjs.com/guides/searching.
 		<ul class="dummy">
 			<li>
 				<a href="utils.js.html">utils.js</a>,
-				 <a href="utils.js.html#sunlight-1-line-97">line 97</a>
+				 <a href="utils.js.html#sunlight-1-line-163">line 163</a>
 			</li>
 		</ul>
 	</dd>
@@ -607,7 +773,7 @@ Local primary key is integer and auto incremented
 		<ul class="dummy">
 			<li>
 				<a href="utils.js.html">utils.js</a>,
-				 <a href="utils.js.html#sunlight-1-line-61">line 61</a>
+				 <a href="utils.js.html#sunlight-1-line-75">line 75</a>
 			</li>
 		</ul>
 	</dd>
@@ -774,7 +940,7 @@ Local primary key is integer and auto incremented
 		<ul class="dummy">
 			<li>
 				<a href="utils.js.html">utils.js</a>,
-				 <a href="utils.js.html#sunlight-1-line-45">line 45</a>
+				 <a href="utils.js.html#sunlight-1-line-59">line 59</a>
 			</li>
 		</ul>
 	</dd>
@@ -943,6 +1109,195 @@ generates a Universally unique identifier string
     
 </dd>
 
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~getCompoundIndexes"><span class="type-signature">&lt;inner> </span>getCompoundIndexes(notIndexed, schema)</h4>
+    
+    
+    <p class="summary">PRIVATE getCompoundIndexes() - get compound indexes in a schema</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Compound keys are NOT initially indexed on schema property level,<br> 
+then we need to iterate over schema._index[0], which is the arrray containing all indexes including the compounds
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>notIndexed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">name of not indexes columns/properties.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>schema</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">data schema object instance</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="utils.js.html">utils.js</a>,
+				 <a href="utils.js.html#sunlight-1-line-125">line 125</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    compoundIndexes
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">array</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
         </dl>
     
 
@@ -999,7 +1354,7 @@ generates a Universally unique identifier string
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-02-19T02:32:19-03:00
+		on 2021-03-16T18:07:07-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
