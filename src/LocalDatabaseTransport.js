@@ -88,6 +88,10 @@ export default class LocalDatabaseTransport extends dexie {
     }
   }
 
+  get tables() {
+    return this.#_tables
+  }
+
   /**
    * @Method LocalDatabaseTransport.addSchema
    * @description A a Data Schema into the Schema tree
@@ -107,7 +111,8 @@ export default class LocalDatabaseTransport extends dexie {
       localDataTransport.addSchema('User', UserSchema)
    * @return  {object} schema - The schema enty from inside the Schema tree
    */
-  addSchema (schemaName, schema) {
+  addSchema(schemaName, schema) {
+    console.log('local transport addSchema', {schemaName, schema})
     this.#_schemas[schemaName] = schema
     return this.#_schemas[schemaName]
   }

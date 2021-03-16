@@ -3,6 +3,8 @@ import { createMethodSignature, uuid, Schema, genDbName } from './utils'
 import DataEntity from './DataEntity'
 import LocalDatabaseTransport from './LocalDatabaseTransport'
 import EventSystem from './EventSystem'
+import DataJobManager from './DataJobManager'
+
 
 // import workerOnMessage from './events/workerOnMessage'
 
@@ -174,6 +176,7 @@ export default class Foundation extends EventSystem {
   #_useWorker
   #_workers
   #_tabId
+  #_jobMamanager
 
   constructor ({
     name = 'My Foundation Name',
@@ -191,10 +194,17 @@ export default class Foundation extends EventSystem {
     this.#_models = {}
     this.#_useWorker = useWorker || false
     this.#_workers = {}
+    
+    this.#_jobMamanager = new DataJobManager()
+
     this.localDatabaseTransport = new LocalDatabaseTransport({
       dbName: genDbName(name)
     })
     this.#_tabId = uuid() // assume new Id on every refresh
+  }
+
+  get jobManager() {
+    return this.#_jobMamanager
   }
 
   /**
@@ -459,6 +469,13 @@ await Product.add({
     }
     return window.localStorage.getItem('guid')
   }
+
+  startVooduXWebWorker() {
+    console.log(window.location)
+    if (window.location.href.indexOf('cypress') > -1) {
+      return
+    }
+  }
   
   /**
    * @async
@@ -481,10 +498,10 @@ await Product.add({
             navigator.serviceWorker.addEventListener('message', workerOnMessage.bind(self))
             if (reg.installing) {
               self.#_workers['foundation'] = reg.installing
-              self.#_workers['foundation'].postMessage({ cmd: 'getClientId', message: null })
+              self.#_workers['foundation'].postMessage({ action: 'getClientId', message: null })
             } else if (reg.active) {
               self.#_workers['foundation'] = reg.active
-              self.#_workers['foundation'].postMessage({ cmd: 'getClientId', message: null })
+              self.#_workers['foundation'].postMessage({ action: 'getClientId', message: null })
             }
             resolve(createMethodSignature(null, reg))
           })
@@ -519,10 +536,10 @@ await Product.add({
             navigator.serviceWorker.addEventListener('message', workerOnMessage.bind(self))
             if (reg.installing) {
               self.#_workers[name] = reg.installing
-              self.#_workers[name].postMessage({ cmd: 'getClientId', message: null })
+              self.#_workers[name].postMessage({ action: 'getClientId', message: null })
             } else if (reg.active) {
               self.#_workers[name] = reg.active
-              self.#_workers[name].postMessage({ cmd: 'getClientId', message: null })
+              self.#_workers[name].postMessage({ action: 'getClientId', message: null })
             }
             resolve(createMethodSignature(null, reg))
           })
@@ -543,39 +560,52 @@ await Product.add({
    * @return  {string|object} signature.error - Execution error
    * @return  {object} signature.data - Foundation data
    */
-  async start () {
-    let _error = null
-    let _data = null
-    try {
-      this.setupAppGuid()
-      const mapModels = this.#mapModels(this.#_schemas)
-      
-      const connection = await this.localDatabaseTransport.connect()
+  async start() {
+    return new Promise(async(resolve, reject) => {
+      let _error = null
+      let _data = null
+      try {
+        this.setupAppGuid()
+        const mapModels = this.#mapModels(this.#_schemas)
+        const connection = await this.localDatabaseTransport.connect()
+        console.warn('tables tables', this.localDatabaseTransport.tables)
+        this.jobManager.mapSchemas(this.#_schemas)
+        this.jobManager.start()
+        
+        
 
-      if (connection.error) {
-        _error = connection.error
-      } else {
-        this.#_started = true
-        _data = {
-          status: {
-            mapModels,
-            connection
-          },
-          started: this.#_started
+        this.startVooduXWebWorker()
+
+        if (connection.error) {
+          _error = connection.error
+        } else {
+          this.#_started = true
+          _data = {
+            status: {
+              mapModels,
+              connection
+            },
+            started: this.#_started
+          }
         }
+      } catch (error) {
+        console.error('error')
+        _error = error
+        _data = null
       }
-      
-    } catch (error) {
-      _error = error
-      _data = null
-    }
 
-    this.triggerEvent('foundation:start', {
-      foundation: this,
-      error: _error,
-      data: _data
+      
+
+      // todo 
+      // console.warn('STARTED>>>>>>>>>>>', this)
+      setTimeout(() => {
+        this.triggerEvent('foundation:start', {
+          foundation: this,
+          error: _error,
+          data: _data
+        })
+        resolve(createMethodSignature(_error, _data))
+      }, 1000)
     })
-    // console.warn('STARTED>>>>>>>>>>>', this)
-    return createMethodSignature(_error, _data)
   }
 }

@@ -70,9 +70,22 @@ const conf2 = {
   }
 }
 
+const conf3 = {
+  ...comonConf,
+  entry: {
+    "main": "./src/VooduXWebWorker.js",
+    "main.min": "./src/VooduXWebWorker.js",
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'VooduXWebWorker.js'
+  }
+}
+
 
 
 module.exports = [
   conf1,
-  conf2
+  conf2,
+  conf3
 ]

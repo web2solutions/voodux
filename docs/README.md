@@ -11,7 +11,7 @@
 
 VooduX is a proposal to cover some common lacks in modern web applications development.
 
-It heavly opinionate on how to define a strong underlying architecture which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
+It heavily opinionate on how to define a strong underlying architecture which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
 
 > One common sense in every engineering field is: `There is no single silver bullets for all existing problems`.
 > 

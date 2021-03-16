@@ -227,7 +227,7 @@ const doc = {
 }
 const { data, error } = await Customer.add(doc)
   */
-  async add(doc = {}) {
+  async add_(doc = {}) {
     // if (!(doc instanceof Document)) {
       // return createMethodSignature('You must pass a valid JSON document as parameter to DataEntity.add() method', null)
     // }
@@ -255,6 +255,7 @@ const { data, error } = await Customer.add(doc)
     }
 
     try {
+
       const __id = await this.#_foundation.localDatabaseTransport
         .table(this.#_entity)
           .add({ ...rawObj })
@@ -268,6 +269,47 @@ const { data, error } = await Customer.add(doc)
     // console.log({ data, error, rawObj })
     this.#_triggerAddEvents({ data, error, primaryKey: (typeof data.__id === 'undefined' ? 0 : data.__id), rawObj })
     return createMethodSignature(error, data)
+  }
+
+  add(doc = {}) {
+    return new Promise((resolve, reject) => {
+      if (Object.keys(doc).length < 1) {
+        return resolve(createMethodSignature('You must pass a valid JSON document as parameter to DataEntity.add() method', null))
+      }
+      let data = null
+      let error = null
+      let rawObj = {}
+      // console.log('doc', doc)
+      delete doc.__id
+      delete doc._id
+
+      const model = new this.Model(doc, this.#_schema)
+      // console.log('model', model)
+      const invalid = model.validateSync()
+      if (invalid) {
+        return resolve(createMethodSignature(invalid, data))
+      }
+      rawObj = toJSON(model)
+      // console.log('add', rawObj)
+      // bug
+      if (typeof rawObj._id === 'undefined' && typeof rawObj.id !== 'undefined') {
+        rawObj._id = rawObj.id
+      }
+      const job = {
+        action: 'add',
+        entity: this.#_entity,
+        payload: rawObj,
+        source: {
+          sessionId: this.#_foundation.tabId,
+          applicationId: this.#_foundation.guid,
+        },
+        correlationId: uuid(),
+      }
+
+      this.#_foundation.jobManager.enqueueJob(job, resolve)
+
+      
+    })
   }
 
   /**

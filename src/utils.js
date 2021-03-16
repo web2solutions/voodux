@@ -171,3 +171,77 @@ export function getSearchTokenStream(text = '') {
 }
 
 export const Schema = mongoose.Schema
+
+
+export function ArrayObserver (a) {
+  let _this = this
+  this.array = a
+  this.observers = []
+
+  this.Observe = function (notifyCallback) {
+    _this.observers.push(notifyCallback)
+  }
+
+  a.push = function (obj) {
+    let push = Array.prototype.push.apply(a, arguments)
+    for (let i = 0; i < _this.observers.length; i++) {
+      _this.observers[i](obj, 'push')
+    }
+    return push
+  }
+
+  a.pop = function () {
+    let popped = Array.prototype.pop.apply(a, arguments)
+    for (let i = 0; i < _this.observers.length; i++) {
+      _this.observers[i](popped, 'pop')
+    }
+    return popped
+  }
+
+  a.reverse = function () {
+    let result = Array.prototype.reverse.apply(a, arguments)
+    for (let i = 0; i < _this.observers.length; i++) {
+      _this.observers[i](result, 'reverse')
+    }
+    return result
+  }
+
+  a.shift = function () {
+    let deleted_item = Array.prototype.shift.apply(a, arguments)
+    for (let i = 0; i < _this.observers.length; i++) {
+      _this.observers[i](deleted_item, 'shift')
+    }
+    return deleted_item
+  }
+
+  a.sort = function () {
+    let result = Array.prototype.sort.apply(a, arguments)
+    for (let i = 0; i < _this.observers.length; i++) {
+      _this.observers[i](result, 'sort')
+    }
+    return result
+  }
+
+  a.splice = function (i, length, itemsToInsert) {
+    let returnObj = ''
+    if (itemsToInsert) {
+      Array.prototype.slice.call(arguments, 2)
+      returnObj = itemsToInsert
+    } else {
+      returnObj = Array.prototype.splice.apply(a, arguments)
+    }
+    for (let i = 0; i < _this.observers.length; i++) {
+      _this.observers[i](returnObj, 'splice')
+    }
+    return returnObj
+  }
+
+  a.unshift = function () {
+    let new_length = Array.prototype.unshift.apply(a, arguments)
+    for (let i = 0; i < _this.observers.length; i++) {
+      _this.observers[i](new_length, 'unshift')
+    }
+    return arguments
+  }
+}
+
