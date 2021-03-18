@@ -1,0 +1,11 @@
+{
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "docs/reports/unit-testing",
+    "overwrite": false,
+    "reportTitle": "My Custom Title",
+    "showPassed": true,
+    "html": false,
+    "json": true
+  }
+}

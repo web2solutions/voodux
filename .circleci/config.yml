@@ -1,36 +1,21 @@
-version: 2
-jobs:
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1
+workflows:
   build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:11.15.0
-
-
-    working_directory: ~/agnostic-web-foundation
-
-    steps:
-      - checkout
-
-      # Download and cache dependencies
-      #- restore_cache:
-      #    keys:
-      #      - v1-dependencies-{{ checksum "package.json" }}
-      #      # fallback to using the latest cache if no exact match is found
-      #      - v1-dependencies-
-
-  
-      - run:
-          name: Install Application
-          command: npm install
-
-      #- save_cache:
-      #    paths:
-      #      - node_modules
-      #    key: v1-dependencies-{{ checksum "package.json" }}
-
-      
-      - run: npm run build
-
-      # - run: bash <(curl -s https://codecov.io/bash)
-
-      - run: export NODE_ENV=CI && npm run test
+    jobs:
+      # first get the source code and install npm dependencies
+      - cypress/install:
+          # run a custom app build step
+          build: 'npm run build && bash <(curl -s https://codecov.io/bash)'
+      - cypress/run:
+          # make sure app has been installed and built
+          # before running tests across multiple machines
+          # this avoids installing same dependencies 10 times
+          requires:
+            - cypress/install
+          #record: true # record results on Cypress Dashboard
+          #parallel: true # split all specs across machines
+          #parallelism: 4 # use 4 CircleCI machines to finish quickly
+          ##group: 'all tests' # name this group "all tests" on the dashboard
+          # start: 'npm start' # start server before running tests

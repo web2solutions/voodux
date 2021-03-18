@@ -1,9 +1,15 @@
+/* global lunr */
+import lunr from 'lunr'
+import mongoose from 'mongoose'
+// const lunr = require('lunr')
+// console.debug('<>><><><<>><><><><><><><', lunr)
 /**
  * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>
  * @module utils
  * */
 
 /**
+ * createMethodSignature
  * Create default signature method object
  * @function
  * @param {string|object} error - The string or error object if have any
@@ -16,17 +22,8 @@ export const createMethodSignature = (error = null, data = null) => {
   return { error, data }
 }
 
-
 /**
- * generates a Universally unique identifier string - alias to uuid()
- * @function
- * @return  {string} guid / uuid
- */
-export const GUID = () => {
-  return uuid()
-}
-
-/**
+ * uuid
  * generates a Universally unique identifier string
  * @function
  * @return  {string} guid / uuid
@@ -40,12 +37,26 @@ export function uuid () {
 }
 
 /**
+ * genDbName
+ * generates a database name
+ * @function
+ * @param {string} appName - Voodux Application Instance name
+ * @return  {string} dbName / uuid
+ */
+export function genDbName(appName = '') {
+  appName = appName.toLowerCase().replace(/ /g, '_')
+  const dbName = `VooduX_${appName}`
+  return dbName
+}
+
+
+/**
  * toJSON -  stringify and parse an object<br> It uses native JSON internally.
  * @function
  * @param {string|object} obj - Valid JSON object or string
  * @return  {object} new JSON object
  */
-export function toJSON (obj) {
+export function toJSON (obj = '') {
   if (typeof obj === 'string') {
     return JSON.parse(obj)
   }
@@ -57,28 +68,106 @@ export function toJSON (obj) {
  * convert given Mongoose schema to a Dexie Table columns configuration. <br>
  * All columns inside returned configuration are indexed at IndexedDB
  * prepend __id as local primary key and _id for remote primary key
+ * Local primary key is integer and auto incremented
  * @function
  * @return  {string} Dexie table configuration string
  */
-export function mongooseToDexieTableString (schema) {
+export function mongooseToDexieTableString(schema) {
+  // console.log('XXXXXXX mongooseToDexieTableString')
   const cols = []
-  for (const propertyName in schema.paths) {
+  const notIndexed = []
+  for (let propertyName in schema.paths) {
     if (Object.prototype.hasOwnProperty.call(schema.paths, propertyName)) {
       const property = schema.paths[propertyName]
-      const {
-        instance,
-        _index,
-        isRequired
-      } = property
-      // console.debug(propertyName, property)
+      // instance is type
+      // _index can be boolean or object  {unique: true}
+      // options { default, index, required, unique }
+      const { instance,  _index, options: { unique = false }, /* isRequired */ } = property
       if (propertyName === '_id' || propertyName === '__id') {
         continue
       }
       if (!_index) {
+        notIndexed.push(propertyName)
         continue
       }
+      if (instance === 'Array') {
+        propertyName = `*${propertyName}`// * is MultiEntry Index on Dexie
+      }
+      if (unique) {
+        propertyName = `&${propertyName}` // & is unique Index on Dexie
+      }
       cols.push(propertyName)
-    }
+    } // end if has property
+  }// end for
+
+  const compoundIndexes = getCompoundIndexes(notIndexed, schema)
+
+  if (compoundIndexes.length > 0) {
+    // console.log(`++__id,_id,${compoundIndexes.join(',')}${cols.length > 0 ? (',' + cols.join(',')) : ''}`)
+    return `++__id,_id,${compoundIndexes.join(',')}${cols.length > 0 ? (',' + cols.join(',')) : ''}`
+  } else {
+    // console.log(`++__id,_id${cols.length > 0 ? ',' + cols.join(',') : ''}`)
+    return `++__id,_id${cols.length > 0 ? ',' + cols.join(',') : ''}`
   }
-  return `++__id,_id,${cols.join(',')}`
 }
+
+/**
+ * getCompoundIndexes
+ * @summary PRIVATE getCompoundIndexes() - get compound indexes in a schema
+ * @description 
+ * Compound keys are NOT initially indexed on schema property level,<br> 
+ * then we need to iterate over schema._index[0], which is the arrray containing all indexes including the compounds
+ * @function
+ * @param {array} notIndexed - name of not indexes columns/properties.
+ * @param {object} schema - data schema object instance
+ * @return {array} compoundIndexes
+ */
+function getCompoundIndexes(notIndexed, schema) {
+  let compoundIndexes = []
+  const compoundKeys = []
+  // console.error('>>>>>>>>>>>> schema._indexes.length', schema._indexes.length)
+  if (schema._indexes.length === 0) {
+    return compoundIndexes
+  }
+  for (let x = 0; x < notIndexed.length; x++) {
+    const propertyName = notIndexed[x]
+    // check if this property is listed on compoundKeys
+    if (compoundKeys.indexOf(propertyName) > -1) {
+      continue
+    }
+    // console.error('>>>>>>>>>>>>', schema._indexes)
+    const __indexes = schema._indexes[0] // get array of indexes
+    for (let y = 0; y < __indexes.length; y++) {
+      const _index = __indexes[y]
+      const keys = Object.keys(_index)
+      // if property is a key of current _index then it is compound
+      if (keys.indexOf(propertyName) > -1) {
+        compoundIndexes.push(`[${keys[0]}+${keys[1]}]`)
+        keys.forEach(k => (compoundKeys.push(k)))
+        // we already built  the compound index, 
+        // there is no need to continue to iterate over __indexes
+        break 
+      }
+    }
+    // remove keys from notIndexed array if  it is component
+  }
+  return compoundIndexes
+}
+
+/**
+ * getSearchTokenStream
+ * generates a lunr search token. See {@link https://lunrjs.com/guides/searching.html|lunr search}
+ * @function
+ * @return {array} token
+ */
+export function getSearchTokenStream(text = '') {
+  // console.log('xxxxxxxxx')
+  // console.log('xxxxxxxxx', index)
+  // const index = lunr()
+  // return index.pipeline.run(lunr.tokenizer(text))
+  const token = (lunr.tokenizer(text)).map(t => (t.str))
+  return token
+  // return lunr.tokenizer(text)
+}
+
+export const Schema = mongoose.Schema
