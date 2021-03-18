@@ -1,11 +1,14 @@
 [<img src="https://i.imgur.com/a856gth.png" width="400" />](./index.html)
 
-[![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/main) | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/release) | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/develop) | [![codecov](https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG)](https://codecov.io/gh/web2solutions/voodux) | [![Known Vulnerabilities](https://snyk.io/test/github/web2solutions/voodux/badge.svg)](https://snyk.io/test/github/web2solutions/voodux) | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+main [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/main) | release [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/release) | develop [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/develop) | [![codecov](https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG)](https://codecov.io/gh/web2solutions/voodux) | [![Known Vulnerabilities](https://snyk.io/test/github/web2solutions/voodux/badge.svg)](https://snyk.io/test/github/web2solutions/voodux) | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) | [![npm version](https://badge.fury.io/js/voodux.svg)](https://badge.fury.io/js/voodux)
+
 
 
 
 
 # VooduX
+
+Web application `state` on steroids.
 
 ## Summary
 
@@ -13,17 +16,17 @@ VooduX is a proposal to cover some common lacks in modern web applications devel
 
 It heavly opinionate on how to define a strong underlying architecture which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
 
-> One common sense in every engineering field is: `There is no single silver bullets for all existing problems`.
-> 
-> There is a giant race over `React` and `Vue`. They are likely the `V` in on a `MVC` like acronym. And in terms of `Project Standards`, that is all they care about.
-> 
-> They usualy try to solve `application data` issues, but their proposed solutions are mostly focused in the `application state` rather than the `application data`. They mainly rely on browser memory to keep chunks of data.
-> 
-> There is no problem on those solutions, not at least in a `project standard` perspective, because they ain't necessarily try to solve `M` related problems .
-> 
-> By mistake, developers and teams are mostly focusing on the `V` layer and ignoring a `possibly required` underlying foundation architecture. Which finally increases the code complexity of those `View` or `Component` layers, because they are trying to resolve problems that should not being handled in that domain.
+One common sense in every engineering field is: `There is no single silver bullets for all existing problems`.
 
-`State Management` libraries are really great. But they don't works as an `Application Data Management` abstraction suposedly would do. Not sure if this last acronym exists, but I'm reffering to whole application data storage and it access. Simply because the `application data size` might considerable grows.
+There is a giant race over `React` and `Vue`. They are likely the `V` in on a `MVC` like acronym. And in terms of `Project Standards`, that is all they care about.
+ 
+They usualy try to solve `application data` issues, but their proposed solutions are mostly focused in the `application state` rather than the `application data`. They mainly rely on browser memory to keep chunks of data.
+
+There is no problem on those solutions, not at least in a `project standard` perspective, because they ain't necessarily try to solve `M` related problems .
+
+By mistake, developers and teams are mostly focusing on the `V` layer and ignoring a `possibly required` underlying foundation architecture. Which finally increases the code complexity of those `View` or `Component` layers, because they are trying to resolve problems that should not being handled in that domain.
+
+`State Management` libraries are really great. But they don't scales. Simply because the `application data size` might considerable grows.
 
 An `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment. But it does not means you could not have another pieces of data being `stored or handled` in parallel, behind the scenes.
 
