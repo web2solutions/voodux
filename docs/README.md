@@ -948,6 +948,17 @@ export default {
 `Demo documentation:` TODO
 
 
+#### Demo #2: Vue, Vuex, Boostrap, Vue Router, VooduX
+
+<img src="https://i.imgur.com/gGuFnX5.png" width="600" />
+
+[`Demo app`](https://voodux-vue-vuex-demo.vercel.app/)
+
+[`Demo project`](https://github.com/web2solutions/voodux-vue-vuex-demo)
+
+`Demo documentation:` TODO
+
+
 ### DHTMLX demos
 
 
