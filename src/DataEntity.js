@@ -2,7 +2,7 @@
 import EventSystem from './EventSystem'
 // import Dexie from 'dexie'
 import mongoose from 'mongoose'
-import { createMethodSignature, uuid, toJSON } from './utils'
+import { createMethodSignature, toJSON } from './utils'
 
 /**
  * @author Eduardo Perotta de Almeida <web2solucoes@gmail.com>

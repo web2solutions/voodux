@@ -19,7 +19,8 @@ import mongoose from 'mongoose'
  * @return  {object|array|number|string|boolean} signature.data - Execution data
  */
 export const createMethodSignature = (error = null, data = null) => {
-  return { error, data }
+  const response = { error, data }
+  return response
 }
 
 /**
