@@ -11,9 +11,9 @@
 
 # VooduX
 
-> "with bateries included" agnostic scalable "M" layer for React, Vue, ExtJS, DHTMLX and Vanilla.JS
+Web application `state` on steroids. Agile prototype database driven, `serverless` and `conectionless` web application with no efforts. The missing building block for enterprise and modern web applications.
 
-> The missing building block for enterprise and modern web applications
+`This is a work in progress project!`
 
 ```bash
   $ npm install voodux --save

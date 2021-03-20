@@ -14,7 +14,9 @@
 
 # VooduX
 
-Web application `state` on steroids.
+Web application `state` on steroids. Agile prototype database driven, `serverless` and `conectionless` web application with no efforts. The missing building block for enterprise and modern web applications.
+
+`This is a work in progress project!`
 
 ## Summary
 
