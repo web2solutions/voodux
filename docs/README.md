@@ -986,7 +986,7 @@ export default {
 
 
 
-## Reasons why I created VooduX
+## Boring area:
 ### What is VooduX
 
 > VooduX is an underlying `agnostic application foundation` that easily plugs to your brand new or existing application, built with Vue, React, or whatever. It is a set of tools that makes your data to be persistent and your application to be offline capable since from it initial days with zero configuration and free of any back end implementation.
