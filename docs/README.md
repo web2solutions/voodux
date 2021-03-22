@@ -1066,15 +1066,14 @@ There are some frameworks, like Backbone, and some plugins for React and Vue tha
 
 Aditionaly, VooduX abstract some kind of `data transporters` which is used to produce `Client Events` and to consume `Server Events`. Every `event` has an associated snapshot of the data state in that specific portion of time, which is not used only for `Event Sourcing`, but also to provide direct `bindings` for `view components reactivity`.
 
-Despite the fact that `event sourcing` and `server events`, if compared to traditional single pull, long pull or bidirectional HTTP requests, drastically reduces the server side demand, we have also a complete database running on front end.
+Despite the fact that `event sourcing` and `server sent events`, if compared to traditional single pull, long pull or bidirectional HTTP requests, drastically reduces the server side demand, we have also a complete database running on front end.
 
-An `Application Data Management` abstraction gives you some capabilities such:
+Then, the VooduX abstraction gives you some capabilities such:
 
 - Do not loose data on network disconnections.
 - 100% offline capable applications.
 - Drastically reduce server resources dependency.
-- High performant UI reactivity. Local database queries will be faster than the required latency to reach your remote server (latency does not iinclude the time spent until the server returns the reponse)
-
+- High performant UI reactivity. Local database queries will be faster than the required latency to reach your remote server and the additional time taken on server to execute the request and provide a response.
 
 
 
