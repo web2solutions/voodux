@@ -739,8 +739,9 @@ export default onDeleteDocHook
 
 The same React Customer listing component above can be written on Vue.js (2.0) following this approach:
 
+**Customer.vue**
 
-```javascript
+```jsx
 <template>
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <div
@@ -782,8 +783,11 @@ The same React Customer listing component above can be written on Vue.js (2.0) f
     </div>
   </main>
 </template>
+```
 
-<script>
+**Customer.vm.js**
+
+```javascript
 /* globals */
 
 import swal from 'sweetalert'
@@ -892,8 +896,6 @@ export default {
     }
   }
 }
-</script>
-
 ```
 
 
