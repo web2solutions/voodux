@@ -920,29 +920,8 @@ export default {
 <img src="https://i.imgur.com/b29Lsgj.png" width="500" />
 <p>You now need to update those components based on the received <a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Server-sent_events/Using_server-sent_events"><code>Server Event</code></a>.</p>
 <p>The <code>Recent Orders</code> component displays the name of the customer alongside it address and total paid for that specific order.</p>
-<p>In that moment, if you don't have the Customer information inside the <code>Application State Management</code> layer, you need to get it in another place. That is where the <code>Application Data Management</code> abstraction resides.</p>
-<p>Traditionaly the main applications implementation rely on directly calling an API, or even use things like the browser <code>localStorage</code> API, which will fails once it data size and complexity grows.</p>
-<p><em>Someday in a job interview, when I mentioned about this above scenario, the techinical leader asked me: &quot;Don't you know graphql?&quot; .. In that specific time, I never had used it in production, but I had all the background to explain why that question was so stupid. But I decided stay dumb and look like an idiot. Please don't think you have graphql features on a <code>Event Sourcing</code> implementation. Also, the <code>Event Sourcing</code> pattern is something almost required in any large / distributed application.</em></p>
-<p>This is one thing GraphQL claims about:</p>
-<blockquote>
-<p>Even if a REST API returns only a basic partial, it is still transferring more data, while GraphQL is always aiming for the smallest possible request. In an example, if the client needs a field, they request it, and if the API adds a new field, clients don’t get it, unless it’s being added into the GraphQL query.</p>
-</blockquote>
-<p>The above assumption is totally true, except when you break the &quot;commercial paradigm&quot; and take a hacker persective of what are the resources you have available. And once you add a data layer to your client side, your GraphQL becomes a <code>white elephant</code>.</p>
-<p>If you implement different data transports rather than only supporting classical HTTP requests, then you can eliminate the need for requests that have <code>long response body</code>.</p>
-<p>Yes, some <code>evangelists</code> don't like paradigm breaks.</p>
-<h3>Not  breaking, but enforcing some relativelly recent paradigms</h3>
-<p><code>There is no wheels being reinvented</code>. We are just leveraging well stabilished paradigms and methodologies like <code>Entity Relationship</code>, <code>Data Entities</code>, <code>Actors</code>, <code>Objects</code>, <code>RAD</code>, <code>Component Engineering</code>, <code>Messaging Patterns</code>, <code>2-way data flow over an Event Driven Architecture</code>, <code>Data Caching</code> so on and so forth, to delivery agile produced <code>MVPs</code> that scales since from it initial days.</p>
-<p>Going against the most traditional development model, we intoduce a <code>proxy like</code> abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser.</p>
-<p>There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development and validation.</p>
-<p>Aditionaly, VooduX abstract some kind of <code>data transporters</code> which is used to produce <code>Client Events</code> and to consume <code>Server Events</code>. Every <code>event</code> has an associated snapshot of the data state in that specific portion of time, which is not used only for <code>Event Sourcing</code>, but also to provide direct <code>bindings</code> for <code>view components reactivity</code>.</p>
-<p>Despite the fact that <code>event sourcing</code> and <code>server sent events</code>, if compared to traditional single pull, long pull or bidirectional HTTP requests, drastically reduces the server side demand, we have also a complete database running on front end.</p>
-<p>Then, the VooduX abstraction gives you some capabilities such:</p>
-<ul>
-<li>Do not loose data on network disconnections.</li>
-<li>100% offline capable applications.</li>
-<li>Drastically reduce server resources dependency.</li>
-<li>High performant UI reactivity. Local database queries will be faster than the required latency to reach your remote server and the additional time taken on server to execute the request and provide a response.</li>
-</ul>
+<p>In that moment, if you don't have the Customer information inside the <code>Application State Management</code> layer, you need to get it in another place.</p>
+<p>Traditionaly the main applications implementation rely on directly calling an HTTP API, or even use things like the browser <code>localStorage</code> API, which will fails once it data size and complexity grows.</p>
 <h2>Links and references</h2>
 <h3>Useful links</h3>
 <p>Project related resources:</p>
@@ -1032,7 +1011,7 @@ export default {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-03-22T00:40:25-03:00
+		on 2021-03-22T00:42:21-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

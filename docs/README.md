@@ -944,15 +944,6 @@ export default {
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
 
-
-
-
-
-
-
-
-
-
 ## More information:
 ### What is VooduX
 
@@ -1011,44 +1002,9 @@ You now need to update those components based on the received [`Server Event`](h
 
 The `Recent Orders` component displays the name of the customer alongside it address and total paid for that specific order.
 
-In that moment, if you don't have the Customer information inside the `Application State Management` layer, you need to get it in another place. That is where the `Application Data Management` abstraction resides.
+In that moment, if you don't have the Customer information inside the `Application State Management` layer, you need to get it in another place.
 
-
-
-Traditionaly the main applications implementation rely on directly calling an API, or even use things like the browser `localStorage` API, which will fails once it data size and complexity grows.
-
-_Someday in a job interview, when I mentioned about this above scenario, the techinical leader asked me: "Don't you know graphql?" .. In that specific time, I never had used it in production, but I had all the background to explain why that question was so stupid. But I decided stay dumb and look like an idiot. Please don't think you have graphql features on a `Event Sourcing` implementation. Also, the `Event Sourcing` pattern is something almost required in any large / distributed application._
-
-This is one thing GraphQL claims about:
-
-> Even if a REST API returns only a basic partial, it is still transferring more data, while GraphQL is always aiming for the smallest possible request. In an example, if the client needs a field, they request it, and if the API adds a new field, clients don’t get it, unless it’s being added into the GraphQL query.
-
-The above assumption is totally true, except when you break the "commercial paradigm" and take a hacker persective of what are the resources you have available. And once you add a data layer to your client side, your GraphQL becomes a `white elephant`.
-
-If you implement different data transports rather than only supporting classical HTTP requests, then you can eliminate the need for requests that have `long response body`.
-
-Yes, some `evangelists` don't like paradigm breaks.
-
-### Not  breaking, but enforcing some relativelly recent paradigms
-
-`There is no wheels being reinvented`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `2-way data flow over an Event Driven Architecture`, `Data Caching` so on and so forth, to delivery agile produced `MVPs` that scales since from it initial days.
-
-
-Going against the most traditional development model, we intoduce a `proxy like` abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser.
-
-There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development and validation.
-
-Aditionaly, VooduX abstract some kind of `data transporters` which is used to produce `Client Events` and to consume `Server Events`. Every `event` has an associated snapshot of the data state in that specific portion of time, which is not used only for `Event Sourcing`, but also to provide direct `bindings` for `view components reactivity`.
-
-Despite the fact that `event sourcing` and `server sent events`, if compared to traditional single pull, long pull or bidirectional HTTP requests, drastically reduces the server side demand, we have also a complete database running on front end.
-
-Then, the VooduX abstraction gives you some capabilities such:
-
-- Do not loose data on network disconnections.
-- 100% offline capable applications.
-- Drastically reduce server resources dependency.
-- High performant UI reactivity. Local database queries will be faster than the required latency to reach your remote server and the additional time taken on server to execute the request and provide a response.
-
+Traditionaly the main applications implementation rely on directly calling an HTTP API, or even use things like the browser `localStorage` API, which will fails once it data size and complexity grows.
 
 
 ## Links and references
