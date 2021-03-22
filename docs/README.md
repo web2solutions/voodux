@@ -835,7 +835,6 @@ export default {
       })
     },
     async handleDeleteCustomer(e, ___id) {
-      const { Customer } = this.$foundation.data
       e.preventDefault()
       swal({
         title: 'Are you sure?',
@@ -845,6 +844,7 @@ export default {
         dangerMode: true
       }).then(async (willDelete) => {
         if (willDelete) {
+          const { Customer } = this.$foundation.data
           const r = await Customer.delete(___id)
           if (r.error) {
             swal('Database error', e.error.message, 'error')
