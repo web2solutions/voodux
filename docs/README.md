@@ -784,12 +784,6 @@ The same React Customer listing component above can be written on Vue.js (2.0) f
 /* globals */
 
 import swal from 'sweetalert'
-import moment from 'moment'
-
-const formatter = new Intl.NumberFormat('en-US', {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2
-})
 
 export default {
   name: 'Customers',
@@ -825,15 +819,6 @@ export default {
     Customer.stopListenTo(this.onDeleteDocHandlerListener)
   },
   methods: {
-    moment () {
-      return moment
-    },
-    swal () {
-      return swal
-    },
-    formatter () {
-      return formatter
-    },
     onAddDocHandler (eventObj) {
       const { error, document, foundation, data } = eventObj
       console.log({ error, document, foundation, data })
