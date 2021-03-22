@@ -793,17 +793,14 @@ export default {
   }),
   async mounted () {
     const { Customer } = this.$foundation.data
-
     this.onAddDocHandlerListener = Customer.on('add', this.onAddDocHandler)
     this.onEditDocHandlerListener = Customer.on('edit', this.onEditDocHandler)
     this.onDeleteDocHandlerListener = Customer.on('delete', this.onDeleteDocHandler)
-
     const findCustomers = await Customer.find({})
     if (findCustomers.error) {
       return
     }
     if (findCustomers.data) {
-      console.log(findCustomers.data)
       this.$set(this, 'documents', findCustomers.data)
     }
   },
