@@ -437,7 +437,7 @@ const CustomerSchema = new Foundation.Schema({
   )
 
 </code></pre>
-<h4>Hypothetical React <code>Customers Listing</code> component</h4>
+<h4>Hypothetical React <code>Customer Listing</code> component</h4>
 <p>This component does render a list of Customers.</p>
 <p>On the list, every listed customer has associated <code>delete</code> and <code>update</code> links.</p>
 <p>The component has an array of <code>customers</code> as main state property.</p>
@@ -447,7 +447,7 @@ const CustomerSchema = new Foundation.Schema({
 <li>To be able to show the same data in the screen after browser refreshing <code>and do not</code> call the server API asking for those specific piece of data.</li>
 <li>Have a reliable and high performance <code>2-way dataflow</code> model between <code>Application Data Storage and Application State Manager</code>.</li>
 </ul>
-<pre class="prettyprint source lang-javascript"><code>// pages/orders.js
+<pre class="prettyprint source lang-jsx"><code>// pages/Customer.js
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
@@ -519,20 +519,16 @@ export default function Customers () {
     })
   }
 
-
   // whatch for new docs
   useEffect(() => {
     if (newDoc !== null) {
-      console.log('newDoc mudou', newDoc)
       setCustomers([newDoc, ...customers])
-      console.log('customers', customers)
     }
   }, [newDoc]) 
 
   // watch for edited docs
   useEffect(() => {
     if (editedDoc !== null) {
-      console.log('editedDoc mudou', editedDoc)
       const newData = customers.map((customer) => {
         if (customer.__id === editedDoc.__id) {
           return editedDoc
@@ -541,14 +537,12 @@ export default function Customers () {
         }
       })
       setCustomers([...newData])
-      console.log('customers', customers)
     }
   }, [editedDoc])
 
   // watch for deleted docs
   useEffect(() => {
     if (deletedDoc !== null) {
-
       const allCustomers = [...customers]
       for (let x = 0; x &lt; allCustomers.length; x++) {
         const customer = allCustomers[x]
@@ -576,36 +570,36 @@ export default function Customers () {
     }
   }, [customers])
   
-
-
   return (
     &lt;>
       &lt;Grid container spacing={3}>
         &lt;Grid item xs={12}>
           &lt;Paper className={classes.paper}>
-            &lt;Title>Customers&lt;/Title>
+            &lt;Title>Orders&lt;/Title>
             &lt;ButtonGroup color='primary' aria-label='outlined primary button group'>
-              &lt;Button onClick={handleAddCustomer}>Add&lt;/Button>
+              &lt;Button onClick={handleAddOrder}>Add&lt;/Button>
             &lt;/ButtonGroup>
             &lt;Table size='small'>
               &lt;TableHead>
                 &lt;TableRow>
+                  &lt;TableCell>Date&lt;/TableCell>
                   &lt;TableCell>Name&lt;/TableCell>
-                  &lt;TableCell>E-mail&lt;/TableCell>
-                  &lt;TableCell>Address&lt;/TableCell>
-                  &lt;TableCell>Cards&lt;/TableCell>
+                  &lt;TableCell>Ship To&lt;/TableCell>
+                  &lt;TableCell>Payment Method&lt;/TableCell>
+                  &lt;TableCell align='right'>Sale Amount&lt;/TableCell>
                   &lt;TableCell align='right'>actions&lt;/TableCell>
                 &lt;/TableRow>
               &lt;/TableHead>
               &lt;TableBody>
-                {customers.map((customer) => (
-                  &lt;TableRow key={customer.id}>
-                    &lt;TableCell>{customer.name}&lt;/TableCell>
-                    &lt;TableCell>{customer.email}&lt;/TableCell>
-                    &lt;TableCell>{customer.address}&lt;/TableCell>
-                    &lt;TableCell align='right'>{customer.cards.join(' / ')}&lt;/TableCell>
+                {orders.map((order) => (
+                  &lt;TableRow key={order.id}>
+                    &lt;TableCell>{moment(order.date).subtract(6, 'days').calendar()}&lt;/TableCell>
+                    &lt;TableCell>{order.name}&lt;/TableCell>
+                    &lt;TableCell>{order.shipTo}&lt;/TableCell>
+                    &lt;TableCell>{order.paymentMethod}&lt;/TableCell>
+                    &lt;TableCell align='right'>USD {formatter.format(order.amount)}&lt;/TableCell>
                     &lt;TableCell align='right'>
-                      &lt;Link color='primary' to={`/CustomersEdit/${customer.__id}`}>[edit]&lt;/Link> | &lt;a color='primary' href='#' onClick={e => handleDeleteCustomer(e, customer.__id)}>[delete]&lt;/a>
+                      &lt;Link color='primary' to={`/OrdersEdit/${order.__id}`}>[edit]&lt;/Link> | &lt;a color='primary' href='#' style={{ display: 'none' }} onClick={e => handleDeleteOrder(e, order.__id)}>[delete]&lt;/a>
                     &lt;/TableCell>
                   &lt;/TableRow>
                 ))}
@@ -1071,7 +1065,7 @@ export default {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-03-21T23:48:30-03:00
+		on 2021-03-21T23:59:06-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -437,7 +437,7 @@ The `foundation:start` event listener must be set before calling `foundation.sta
 
 
 
-#### Hypothetical React `Customers Listing` component
+#### Hypothetical React `Customer Listing` component
 
 This component does render a list of Customers.
 
@@ -454,8 +454,8 @@ The `dirty magic` begins when the requirement list starting asking for things li
 
 
 
-```javascript
-// pages/orders.js
+```jsx
+// pages/Customer.js
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
@@ -527,20 +527,16 @@ export default function Customers () {
     })
   }
 
-
   // whatch for new docs
   useEffect(() => {
     if (newDoc !== null) {
-      console.log('newDoc mudou', newDoc)
       setCustomers([newDoc, ...customers])
-      console.log('customers', customers)
     }
   }, [newDoc]) 
 
   // watch for edited docs
   useEffect(() => {
     if (editedDoc !== null) {
-      console.log('editedDoc mudou', editedDoc)
       const newData = customers.map((customer) => {
         if (customer.__id === editedDoc.__id) {
           return editedDoc
@@ -549,14 +545,12 @@ export default function Customers () {
         }
       })
       setCustomers([...newData])
-      console.log('customers', customers)
     }
   }, [editedDoc])
 
   // watch for deleted docs
   useEffect(() => {
     if (deletedDoc !== null) {
-
       const allCustomers = [...customers]
       for (let x = 0; x < allCustomers.length; x++) {
         const customer = allCustomers[x]
@@ -584,36 +578,36 @@ export default function Customers () {
     }
   }, [customers])
   
-
-
   return (
     <>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Title>Customers</Title>
+            <Title>Orders</Title>
             <ButtonGroup color='primary' aria-label='outlined primary button group'>
-              <Button onClick={handleAddCustomer}>Add</Button>
+              <Button onClick={handleAddOrder}>Add</Button>
             </ButtonGroup>
             <Table size='small'>
               <TableHead>
                 <TableRow>
+                  <TableCell>Date</TableCell>
                   <TableCell>Name</TableCell>
-                  <TableCell>E-mail</TableCell>
-                  <TableCell>Address</TableCell>
-                  <TableCell>Cards</TableCell>
+                  <TableCell>Ship To</TableCell>
+                  <TableCell>Payment Method</TableCell>
+                  <TableCell align='right'>Sale Amount</TableCell>
                   <TableCell align='right'>actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {customers.map((customer) => (
-                  <TableRow key={customer.id}>
-                    <TableCell>{customer.name}</TableCell>
-                    <TableCell>{customer.email}</TableCell>
-                    <TableCell>{customer.address}</TableCell>
-                    <TableCell align='right'>{customer.cards.join(' / ')}</TableCell>
+                {orders.map((order) => (
+                  <TableRow key={order.id}>
+                    <TableCell>{moment(order.date).subtract(6, 'days').calendar()}</TableCell>
+                    <TableCell>{order.name}</TableCell>
+                    <TableCell>{order.shipTo}</TableCell>
+                    <TableCell>{order.paymentMethod}</TableCell>
+                    <TableCell align='right'>USD {formatter.format(order.amount)}</TableCell>
                     <TableCell align='right'>
-                      <Link color='primary' to={`/CustomersEdit/${customer.__id}`}>[edit]</Link> | <a color='primary' href='#' onClick={e => handleDeleteCustomer(e, customer.__id)}>[delete]</a>
+                      <Link color='primary' to={`/OrdersEdit/${order.__id}`}>[edit]</Link> | <a color='primary' href='#' style={{ display: 'none' }} onClick={e => handleDeleteOrder(e, order.__id)}>[delete]</a>
                     </TableCell>
                   </TableRow>
                 ))}
