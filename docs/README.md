@@ -454,7 +454,7 @@ The `dirty magic` begins when the requirement list starting asking for things li
 
 
 
-```jsx
+```javascript
 // pages/Customer.js
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
@@ -465,24 +465,17 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-// import Link from '@material-ui/core/Link'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import useStyles from './useStyles'
-
 import swal from 'sweetalert'
-
 import FoundationContext from '../FoundationContext'
-
-
 import Title from './Title'
 
 // import custom hooks
 import onAddDocHook from './hooks/onAddDocHook'
 import onEditDocHook from './hooks/onEditDocHook'
 import onDeleteDocHook from './hooks/onDeleteDocHook'
-
-
 
 export default function Customers () {
   const [customers, setCustomers] = useState([])
@@ -741,7 +734,7 @@ The same React Customer listing component above can be written on Vue.js (2.0) f
 
 **Customer.vue**
 
-```jsx
+```html
 <template>
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <div
