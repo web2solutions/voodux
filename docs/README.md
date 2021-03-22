@@ -781,7 +781,6 @@ The same React Customer listing component above can be written on Vue.js (2.0) f
 **Customer.vm.js**
 
 ```javascript
-/* globals */
 
 import swal from 'sweetalert'
 
@@ -797,10 +796,7 @@ export default {
 
     this.onAddDocHandlerListener = Customer.on('add', this.onAddDocHandler)
     this.onEditDocHandlerListener = Customer.on('edit', this.onEditDocHandler)
-    this.onDeleteDocHandlerListener = Customer.on(
-      'delete',
-      this.onDeleteDocHandler
-    )
+    this.onDeleteDocHandlerListener = Customer.on('delete', this.onDeleteDocHandler)
 
     const findCustomers = await Customer.find({})
     if (findCustomers.error) {
@@ -811,7 +807,6 @@ export default {
       this.$set(this, 'documents', findCustomers.data)
     }
   },
-  // eslint-disable-next-line vue/no-deprecated-destroyed-lifecycle
   beforeDestroy () {
     const { Customer } = this.$foundation.data
     Customer.stopListenTo(this.onAddDocHandlerListener)
@@ -821,7 +816,6 @@ export default {
   methods: {
     onAddDocHandler (eventObj) {
       const { error, document, foundation, data } = eventObj
-      console.log({ error, document, foundation, data })
       if (error) {
         return
       }
@@ -829,7 +823,6 @@ export default {
     },
     onEditDocHandler (eventObj) {
       const { error, document, foundation, data } = eventObj
-      console.log({ error, document, foundation, data })
       this.documents.forEach((doc, index) => {
         if (doc.__id === data.__id) {
           this.$set(this.documents, index, data)
@@ -838,7 +831,6 @@ export default {
     },
     onDeleteDocHandler (eventObj) {
       const { error, document, foundation, data } = eventObj
-      console.log({ error, document, foundation, data })
       this.documents.forEach((doc, index) => {
         if (doc.__id === data.__id) {
           this.documents.splice(index, 1)
@@ -846,10 +838,8 @@ export default {
       })
     },
     async handleDeleteCustomer(e, ___id) {
-      console.log(e, ___id)
       const { Customer } = this.$foundation.data
       e.preventDefault()
-      // console.error(___id)
       swal({
         title: 'Are you sure?',
         text: 'Once deleted, you will not be able to recover this!',
@@ -859,7 +849,6 @@ export default {
       }).then(async (willDelete) => {
         if (willDelete) {
           const r = await Customer.delete(___id)
-          // console.error(r)
           if (r.error) {
             swal('Database error', e.error.message, 'error')
             return
