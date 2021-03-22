@@ -1,33 +1,54 @@
 [<img src="https://i.imgur.com/a856gth.png" width="400" />](./index.html)
 
-[![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/main) | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/release) | [![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/develop) | [![codecov](https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG)](https://codecov.io/gh/web2solutions/voodux) | [![Known Vulnerabilities](https://snyk.io/test/github/web2solutions/voodux/badge.svg)](https://snyk.io/test/github/web2solutions/voodux) | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/main.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/main) main branch
+
+[![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/release.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/release) release branch
+
+[![CircleCI](https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3)](https://circleci.com/gh/web2solutions/voodux/tree/develop) develop branch
+
+[![codecov](https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG)](https://codecov.io/gh/web2solutions/voodux) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8b2d036998b8445bb92cf90221c50e1b)](https://www.codacy.com/gh/web2solutions/voodux/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=web2solutions/voodux&amp;utm_campaign=Badge_Grade)  [![Inline docs](http://inch-ci.org/github/web2solutions/voodux.svg?branch=main)](http://inch-ci.org/github/web2solutions/voodux)  [![Known Vulnerabilities](https://snyk.io/test/github/web2solutions/voodux/badge.svg)](https://snyk.io/test/github/web2solutions/voodux) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![npm version](https://badge.fury.io/js/voodux.svg)](https://badge.fury.io/js/voodux)
+
 
 
 
 
 # VooduX
 
+Web application `state` on steroids. Agile prototype database driven, `serverless` and `connectionless` web application with no efforts. The missing building block for enterprise and modern web applications.
+
+`This is a work in progress project!`
+
 ## Summary
 
 VooduX is a proposal to cover some common lacks in modern web applications development.
 
-It heavily opinionate on how to define a strong underlying architecture which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
+It heavly opinionate on how to define a strong underlying architecture which relies mostly in `V-*` like libraries and frameworks such as `Vue` and `React`.
 
-> One common sense in every engineering field is: `There is no single silver bullets for all existing problems`.
-> 
-> There is a giant race over `React` and `Vue`. They are likely the `V` in on a `MVC` like acronym. And in terms of `Project Standards`, that is all they care about.
-> 
-> They usualy try to solve `application data` issues, but their proposed solutions are mostly focused in the `application state` rather than the `application data`. They mainly rely on browser memory to keep chunks of data.
-> 
-> There is no problem on those solutions, not at least in a `project standard` perspective, because they ain't necessarily try to solve `M` related problems .
-> 
-> By mistake, developers and teams are mostly focusing on the `V` layer and ignoring a `possibly required` underlying foundation architecture. Which finally increases the code complexity of those `View` or `Component` layers, because they are trying to resolve problems that should not being handled in that domain.
+One common sense in every engineering field is: `There is no single silver bullets for all existing problems`.
 
-`State Management` libraries are really great. But they don't works as an `Application Data Management` abstraction suposedly would do. Not sure if this last acronym exists, but I'm reffering to whole application data storage and it access. Simply because the `application data size` might considerable grows.
+There is a giant demand for `React` and `Vue`. They are likely the `V` in on a `MVC` like acronym. And in terms of `Project Standards`, that is all they care about.
+ 
+They usualy try to solve `application data` issues, by implementing an `application state` management solution.
 
-An `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment. But it does not means you could not have another pieces of data being `stored or handled` in parallel, behind the scenes.
+There are no problem on those solutions, not at least in a `project standard` perspective, because they ain't necessarily try to solve problems like `working offline`, `data persistence` or `scaling to a bigger data scenario`. And they shouldn't do.
 
-Not least, `quick data persistence` is not enough. You may need to save your data to different locations, or sync multiple client applications, or even t handle a big amount of data on application startup.
+`State Management` libraries are really great. But they don't scales. Simply because the `application data size` might considerable grows and they rely on browser memory to keep the data.
+
+An `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment.
+
+There are cases where you can count on a back end to build `human friendly data`, like displaying a `customer name` instead a `customer id`.
+
+On back end side, you can user several different techniques to build that information:
+
+- use `SQL` and fetch multiple tables
+- On mongoose you can use `populate`
+- GraphQL
+- Data denormalization
+- severeal others ...
+
+Rather relying on back end and paying a price for this, a client side data layer can esily be to used retrieve the `customer name` in above example, reducing network traffic, server computation and latency to display the data to end user.
+
+Not least, `quick data persistence` is not enough. You may need to save your data to different locations, or sync multiple client applications, or even handle a big amount of data on application startup.
 
 This where VooduX comes in.
 
@@ -114,13 +135,6 @@ In order to import the main library to your project just simply import it:
   } = voodux
 ```
 
-
-#### Browser directly usage
-
-```html
-  <script type="text/javascript" src="voodux/dist/main.min.js"></script>
-```
-
 #### React and Vue Project Structure 
 
 This is how a hypotethical React or Vue project structure looks like. This example is assuming the fact that your application have 4 pages:
@@ -140,6 +154,7 @@ This is how a hypotethical React or Vue project structure looks like. This examp
 ├── test                          -> Test suites goes here
 ├── src
 │   ├── components
+│   │   ├── hooks                 -> VooduX hooks
 │   │   ├── customers
 │   │   │   ├── CustomersAdd.js   -> Add form
 │   │   │   ├── CustomersEdit.js  -> Edit form
@@ -425,7 +440,7 @@ The `foundation:start` event listener must be set before calling `foundation.sta
 
 
 
-#### Hypothetical React `Customers Listing` component
+#### Hypothetical React `Customer Listing` component
 
 This component does render a list of Customers.
 
@@ -443,7 +458,7 @@ The `dirty magic` begins when the requirement list starting asking for things li
 
 
 ```javascript
-// pages/orders.js
+// components/customers/index.js
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
@@ -453,24 +468,17 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-// import Link from '@material-ui/core/Link'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import useStyles from './useStyles'
-
 import swal from 'sweetalert'
-
 import FoundationContext from '../FoundationContext'
-
-
 import Title from './Title'
 
 // import custom hooks
 import onAddDocHook from './hooks/onAddDocHook'
 import onEditDocHook from './hooks/onEditDocHook'
 import onDeleteDocHook from './hooks/onDeleteDocHook'
-
-
 
 export default function Customers () {
   const [customers, setCustomers] = useState([])
@@ -515,20 +523,16 @@ export default function Customers () {
     })
   }
 
-
   // whatch for new docs
   useEffect(() => {
     if (newDoc !== null) {
-      console.log('newDoc mudou', newDoc)
       setCustomers([newDoc, ...customers])
-      console.log('customers', customers)
     }
   }, [newDoc]) 
 
   // watch for edited docs
   useEffect(() => {
     if (editedDoc !== null) {
-      console.log('editedDoc mudou', editedDoc)
       const newData = customers.map((customer) => {
         if (customer.__id === editedDoc.__id) {
           return editedDoc
@@ -537,14 +541,12 @@ export default function Customers () {
         }
       })
       setCustomers([...newData])
-      console.log('customers', customers)
     }
   }, [editedDoc])
 
   // watch for deleted docs
   useEffect(() => {
     if (deletedDoc !== null) {
-
       const allCustomers = [...customers]
       for (let x = 0; x < allCustomers.length; x++) {
         const customer = allCustomers[x]
@@ -572,36 +574,36 @@ export default function Customers () {
     }
   }, [customers])
   
-
-
   return (
     <>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Title>Customers</Title>
+            <Title>Orders</Title>
             <ButtonGroup color='primary' aria-label='outlined primary button group'>
-              <Button onClick={handleAddCustomer}>Add</Button>
+              <Button onClick={handleAddOrder}>Add</Button>
             </ButtonGroup>
             <Table size='small'>
               <TableHead>
                 <TableRow>
+                  <TableCell>Date</TableCell>
                   <TableCell>Name</TableCell>
-                  <TableCell>E-mail</TableCell>
-                  <TableCell>Address</TableCell>
-                  <TableCell>Cards</TableCell>
+                  <TableCell>Ship To</TableCell>
+                  <TableCell>Payment Method</TableCell>
+                  <TableCell align='right'>Sale Amount</TableCell>
                   <TableCell align='right'>actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {customers.map((customer) => (
-                  <TableRow key={customer.id}>
-                    <TableCell>{customer.name}</TableCell>
-                    <TableCell>{customer.email}</TableCell>
-                    <TableCell>{customer.address}</TableCell>
-                    <TableCell align='right'>{customer.cards.join(' / ')}</TableCell>
+                {orders.map((order) => (
+                  <TableRow key={order.id}>
+                    <TableCell>{moment(order.date).subtract(6, 'days').calendar()}</TableCell>
+                    <TableCell>{order.name}</TableCell>
+                    <TableCell>{order.shipTo}</TableCell>
+                    <TableCell>{order.paymentMethod}</TableCell>
+                    <TableCell align='right'>USD {formatter.format(order.amount)}</TableCell>
                     <TableCell align='right'>
-                      <Link color='primary' to={`/CustomersEdit/${customer.__id}`}>[edit]</Link> | <a color='primary' href='#' onClick={e => handleDeleteCustomer(e, customer.__id)}>[delete]</a>
+                      <Link color='primary' to={`/OrdersEdit/${order.__id}`}>[edit]</Link> | <a color='primary' href='#' style={{ display: 'none' }} onClick={e => handleDeleteOrder(e, order.__id)}>[delete]</a>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -621,7 +623,7 @@ export default function Customers () {
 `onAddDocHook`
 
 ```javascript
-// onAddDocHook.js
+// components/hooks/onAddDocHook.js
 
 import React from 'react'
 
@@ -660,7 +662,7 @@ export default onAddDocHook
 `onEditDocHook`
 
 ```javascript
-// onEditDocHook.js
+// components/hooks/onEditDocHook.js
 import React from 'react'
 
 const onEditDocHook = (Model) => {
@@ -697,7 +699,7 @@ export default onEditDocHook
 `onDeleteDocHook`
 
 ```javascript
-// onDeleteDocHook.js
+// components/hooks/onDeleteDocHook.js
 import React from 'react'
 const onDeleteDocHook = (Model) => {
   const [deletedDoc, deletedDocSet] = React.useState(null)
@@ -733,8 +735,9 @@ export default onDeleteDocHook
 
 The same React Customer listing component above can be written on Vue.js (2.0) following this approach:
 
+**Customer.vue**
 
-```javascript
+```xml
 <template>
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <div
@@ -776,17 +779,13 @@ The same React Customer listing component above can be written on Vue.js (2.0) f
     </div>
   </main>
 </template>
+```
 
-<script>
-/* globals */
+**Customer.vm.js**
+
+```javascript
 
 import swal from 'sweetalert'
-import moment from 'moment'
-
-const formatter = new Intl.NumberFormat('en-US', {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2
-})
 
 export default {
   name: 'Customers',
@@ -797,24 +796,17 @@ export default {
   }),
   async mounted () {
     const { Customer } = this.$foundation.data
-
     this.onAddDocHandlerListener = Customer.on('add', this.onAddDocHandler)
     this.onEditDocHandlerListener = Customer.on('edit', this.onEditDocHandler)
-    this.onDeleteDocHandlerListener = Customer.on(
-      'delete',
-      this.onDeleteDocHandler
-    )
-
+    this.onDeleteDocHandlerListener = Customer.on('delete', this.onDeleteDocHandler)
     const findCustomers = await Customer.find({})
     if (findCustomers.error) {
       return
     }
     if (findCustomers.data) {
-      console.log(findCustomers.data)
       this.$set(this, 'documents', findCustomers.data)
     }
   },
-  // eslint-disable-next-line vue/no-deprecated-destroyed-lifecycle
   beforeDestroy () {
     const { Customer } = this.$foundation.data
     Customer.stopListenTo(this.onAddDocHandlerListener)
@@ -822,18 +814,8 @@ export default {
     Customer.stopListenTo(this.onDeleteDocHandlerListener)
   },
   methods: {
-    moment () {
-      return moment
-    },
-    swal () {
-      return swal
-    },
-    formatter () {
-      return formatter
-    },
     onAddDocHandler (eventObj) {
       const { error, document, foundation, data } = eventObj
-      console.log({ error, document, foundation, data })
       if (error) {
         return
       }
@@ -841,7 +823,6 @@ export default {
     },
     onEditDocHandler (eventObj) {
       const { error, document, foundation, data } = eventObj
-      console.log({ error, document, foundation, data })
       this.documents.forEach((doc, index) => {
         if (doc.__id === data.__id) {
           this.$set(this.documents, index, data)
@@ -850,7 +831,6 @@ export default {
     },
     onDeleteDocHandler (eventObj) {
       const { error, document, foundation, data } = eventObj
-      console.log({ error, document, foundation, data })
       this.documents.forEach((doc, index) => {
         if (doc.__id === data.__id) {
           this.documents.splice(index, 1)
@@ -858,10 +838,7 @@ export default {
       })
     },
     async handleDeleteCustomer(e, ___id) {
-      console.log(e, ___id)
-      const { Customer } = this.$foundation.data
       e.preventDefault()
-      // console.error(___id)
       swal({
         title: 'Are you sure?',
         text: 'Once deleted, you will not be able to recover this!',
@@ -870,8 +847,8 @@ export default {
         dangerMode: true
       }).then(async (willDelete) => {
         if (willDelete) {
+          const { Customer } = this.$foundation.data
           const r = await Customer.delete(___id)
-          // console.error(r)
           if (r.error) {
             swal('Database error', e.error.message, 'error')
             return
@@ -886,8 +863,6 @@ export default {
     }
   }
 }
-</script>
-
 ```
 
 
@@ -943,7 +918,20 @@ export default {
 `Demo documentation:` TODO
 
 
+#### Demo #2: Vue, Vuex, Boostrap, Vue Router, VooduX
+
+<img src="https://i.imgur.com/gGuFnX5.png" width="600" />
+
+[`Demo app`](https://voodux-vue-vuex-demo.vercel.app/)
+
+[`Demo project`](https://github.com/web2solutions/voodux-vue-vuex-demo)
+
+`Demo documentation:` TODO
+
+
 ### DHTMLX demos
+
+***TODO***
 
 
 ### Vanilla JS demo #1
@@ -956,16 +944,7 @@ export default {
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-## Reasons why I created VooduX
+## More information:
 ### What is VooduX
 
 > VooduX is an underlying `agnostic application foundation` that easily plugs to your brand new or existing application, built with Vue, React, or whatever. It is a set of tools that makes your data to be persistent and your application to be offline capable since from it initial days with zero configuration and free of any back end implementation.
@@ -1023,43 +1002,9 @@ You now need to update those components based on the received [`Server Event`](h
 
 The `Recent Orders` component displays the name of the customer alongside it address and total paid for that specific order.
 
-In that moment, if you don't have the Customer information inside the `Application State Management` layer, you need to get it in another place. That is where the `Application Data Management` abstraction resides.
+In that moment, if you don't have the Customer information inside the `Application State Management` layer, you need to get it in another place.
 
-Traditionaly the main applications implementation rely on directly calling an API, or even use things like the browser `localStorage` API, which will fails once it data size and complexity grows.
-
-_Someday in a job interview, when I mentioned about this above scenario, the techinical leader asked me: "Don't you know graphql?" .. In that specific time, I never had used it in production, but I had all the background to explain why that question was so stupid. But I decided stay dumb and look like an idiot. Please don't think you have graphql features on a `Event Sourcing` implementation. Also, the `Event Sourcing` pattern is something almost required in any large / distributed application._
-
-This is one thing GraphQL claims about:
-
-> Even if a REST API returns only a basic partial, it is still transferring more data, while GraphQL is always aiming for the smallest possible request. In an example, if the client needs a field, they request it, and if the API adds a new field, clients don’t get it, unless it’s being added into the GraphQL query.
-
-The above assumption is totally true, except when you break the "commercial paradigm" and take a hacker persective of what are the resources you have available. And once you add a data layer to your client side, your GraphQL becomes a `white elephant`.
-
-If you implement different data transports rather than only supporting classical HTTP requests, then you can eliminate the need for requests that have `long response body`.
-
-Yes, some `evangelists` don't like paradigm breaks.
-
-### Not  breaking, but enforcing some relativelly recent paradigms
-
-`There is no wheels being reinvented`. We are just leveraging well stabilished paradigms and methodologies like `Entity Relationship`, `Data Entities`, `Actors`, `Objects`, `RAD`, `Component Engineering`, `Messaging Patterns`, `2-way data flow over an Event Driven Architecture`, `Data Caching` so on and so forth, to delivery agile produced `MVPs` that scales since from it initial days.
-
-
-Going against the most traditional development model, we intoduce a `proxy like` abstraction relying on IndexedDB as local (front end) database, which is a NoSQL database shipped with every modern browser.
-
-There are some frameworks, like Backbone, and some plugins for React and Vue that aims to use IndexedDb as database, but they are dumb and lazy in terms of data design driven development and validation.
-
-Aditionaly, VooduX abstract some kind of `data transporters` which is used to produce `Client Events` and to consume `Server Events`. Every `event` has an associated snapshot of the data state in that specific portion of time, which is not used only for `Event Sourcing`, but also to provide direct `bindings` for `view components reactivity`.
-
-Despite the fact that `event sourcing` and `server events`, if compared to traditional single pull, long pull or bidirectional HTTP requests, drastically reduces the server side demand, we have also a complete database running on front end.
-
-An `Application Data Management` abstraction gives you some capabilities such:
-
-- Do not loose data on network disconnections.
-- 100% offline capable applications.
-- Drastically reduce server resources dependency.
-- High performant UI reactivity. Local database queries will be faster than the required latency to reach your remote server (latency does not iinclude the time spent until the server returns the reponse)
-
-
+Traditionaly the main applications implementation rely on directly calling an HTTP API, or even use things like the browser `localStorage` API, which will fails once it data size and complexity grows.
 
 
 ## Links and references
