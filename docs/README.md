@@ -154,6 +154,7 @@ This is how a hypotethical React or Vue project structure looks like. This examp
 ├── test                          -> Test suites goes here
 ├── src
 │   ├── components
+│   │   ├── hooks                 -> VooduX hooks
 │   │   ├── customers
 │   │   │   ├── CustomersAdd.js   -> Add form
 │   │   │   ├── CustomersEdit.js  -> Edit form
@@ -457,7 +458,7 @@ The `dirty magic` begins when the requirement list starting asking for things li
 
 
 ```javascript
-// pages/Customer.js
+// components/customers/index.js
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
@@ -622,7 +623,7 @@ export default function Customers () {
 `onAddDocHook`
 
 ```javascript
-// onAddDocHook.js
+// components/hooks/onAddDocHook.js
 
 import React from 'react'
 
@@ -661,7 +662,7 @@ export default onAddDocHook
 `onEditDocHook`
 
 ```javascript
-// onEditDocHook.js
+// components/hooks/onEditDocHook.js
 import React from 'react'
 
 const onEditDocHook = (Model) => {
@@ -698,7 +699,7 @@ export default onEditDocHook
 `onDeleteDocHook`
 
 ```javascript
-// onDeleteDocHook.js
+// components/hooks/onDeleteDocHook.js
 import React from 'react'
 const onDeleteDocHook = (Model) => {
   const [deletedDoc, deletedDocSet] = React.useState(null)
@@ -952,7 +953,7 @@ export default {
 
 
 
-## Boring area:
+## More information:
 ### What is VooduX
 
 > VooduX is an underlying `agnostic application foundation` that easily plugs to your brand new or existing application, built with Vue, React, or whatever. It is a set of tools that makes your data to be persistent and your application to be offline capable since from it initial days with zero configuration and free of any back end implementation.
