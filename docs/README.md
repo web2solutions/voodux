@@ -43,6 +43,8 @@ On back end side, you can user several different techniques to build that inform
 - use `SQL` and fetch multiple tables
 - On mongoose you can use `populate`
 - GraphQL
+- Data denormalization
+- severeal others ...
 
 Rather relying on back end and paying a price for this, a client side data layer can esily be to used retrieve the `customer name` in above example, reducing network traffic, server computation and latency to display the data to end user.
 
