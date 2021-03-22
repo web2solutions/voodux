@@ -14,7 +14,7 @@
 
 # VooduX
 
-Web application `state` on steroids. Agile prototype database driven, `serverless` and `conectionless` web application with no efforts. The missing building block for enterprise and modern web applications.
+Web application `state` on steroids. Agile prototype database driven, `serverless` and `connectionless` web application with no efforts. The missing building block for enterprise and modern web applications.
 
 `This is a work in progress project!`
 
@@ -26,19 +26,27 @@ It heavly opinionate on how to define a strong underlying architecture which rel
 
 One common sense in every engineering field is: `There is no single silver bullets for all existing problems`.
 
-There is a giant race over `React` and `Vue`. They are likely the `V` in on a `MVC` like acronym. And in terms of `Project Standards`, that is all they care about.
+There is a giant demand for `React` and `Vue`. They are likely the `V` in on a `MVC` like acronym. And in terms of `Project Standards`, that is all they care about.
  
-They usualy try to solve `application data` issues, but their proposed solutions are mostly focused in the `application state` rather than the `application data`. They mainly rely on browser memory to keep chunks of data.
+They usualy try to solve `application data` issues, by implementing an `application state` management solution.
 
-There is no problem on those solutions, not at least in a `project standard` perspective, because they ain't necessarily try to solve `M` related problems .
+There are no problem on those solutions, not at least in a `project standard` perspective, because they ain't necessarily try to solve problems like `working offline`, `data persistence` or `scaling to a bigger data scenario`. And they shouldn't do.
 
-By mistake, developers and teams are mostly focusing on the `V` layer and ignoring a `possibly required` underlying foundation architecture. Which finally increases the code complexity of those `View` or `Component` layers, because they are trying to resolve problems that should not being handled in that domain.
+`State Management` libraries are really great. But they don't scales. Simply because the `application data size` might considerable grows and they rely on browser memory to keep the data.
 
-`State Management` libraries are really great. But they don't scales. Simply because the `application data size` might considerable grows.
+An `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment.
 
-An `Application State Management` abstraction handles `pieces` of data that are curenlty being used in the screen at the present moment. But it does not means you could not have another pieces of data being `stored or handled` in parallel, behind the scenes.
+There are cases where you can count on a back end to build `human friendly data`, like displaying a `customer name` instead a `customer id`.
 
-Not least, `quick data persistence` is not enough. You may need to save your data to different locations, or sync multiple client applications, or even t handle a big amount of data on application startup.
+On back end side, you can user several different techniques to build that information:
+
+- use `SQL` and fetch multiple tables
+- On mongoose you can use `populate`
+- GraphQL
+
+Rather relying on back end and paying a price for this, a client side data layer can esily be to used retrieve the `customer name` in above example, reducing network traffic, server computation and latency to display the data to end user.
+
+Not least, `quick data persistence` is not enough. You may need to save your data to different locations, or sync multiple client applications, or even handle a big amount of data on application startup.
 
 This where VooduX comes in.
 
@@ -123,13 +131,6 @@ In order to import the main library to your project just simply import it:
     // DataEntity, 
     // utils 
   } = voodux
-```
-
-
-#### Browser directly usage
-
-```html
-  <script type="text/javascript" src="voodux/dist/main.min.js"></script>
 ```
 
 #### React and Vue Project Structure 
@@ -1046,6 +1047,8 @@ You now need to update those components based on the received [`Server Event`](h
 The `Recent Orders` component displays the name of the customer alongside it address and total paid for that specific order.
 
 In that moment, if you don't have the Customer information inside the `Application State Management` layer, you need to get it in another place. That is where the `Application Data Management` abstraction resides.
+
+
 
 Traditionaly the main applications implementation rely on directly calling an API, or even use things like the browser `localStorage` API, which will fails once it data size and complexity grows.
 

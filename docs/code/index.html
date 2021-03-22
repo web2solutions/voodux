@@ -99,19 +99,26 @@
 <p><a href="https://circleci.com/gh/web2solutions/voodux/tree/develop"><img src="https://circleci.com/gh/web2solutions/voodux/tree/develop.svg?style=svg&amp;circle-token=9d237bc24e3336b97f53ab9626f8a2ceb6f230b3" alt="CircleCI"></a> develop branch</p>
 <p><a href="https://codecov.io/gh/web2solutions/voodux"><img src="https://codecov.io/gh/web2solutions/voodux/branch/main/graph/badge.svg?token=3zGpnoRLdG" alt="codecov"></a> <a href="https://www.codacy.com/gh/web2solutions/voodux/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=web2solutions/voodux&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/8b2d036998b8445bb92cf90221c50e1b" alt="Codacy Badge"></a>  <a href="http://inch-ci.org/github/web2solutions/voodux"><img src="http://inch-ci.org/github/web2solutions/voodux.svg?branch=main" alt="Inline docs"></a>  <a href="https://snyk.io/test/github/web2solutions/voodux"><img src="https://snyk.io/test/github/web2solutions/voodux/badge.svg" alt="Known Vulnerabilities"></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a> <a href="https://badge.fury.io/js/voodux"><img src="https://badge.fury.io/js/voodux.svg" alt="npm version"></a></p>
 <h1>VooduX</h1>
-<p>Web application <code>state</code> on steroids. Agile prototype database driven, <code>serverless</code> and <code>conectionless</code> web application with no efforts. The missing building block for enterprise and modern web applications.</p>
+<p>Web application <code>state</code> on steroids. Agile prototype database driven, <code>serverless</code> and <code>connectionless</code> web application with no efforts. The missing building block for enterprise and modern web applications.</p>
 <p><code>This is a work in progress project!</code></p>
 <h2>Summary</h2>
 <p>VooduX is a proposal to cover some common lacks in modern web applications development.</p>
 <p>It heavly opinionate on how to define a strong underlying architecture which relies mostly in <code>V-*</code> like libraries and frameworks such as <code>Vue</code> and <code>React</code>.</p>
 <p>One common sense in every engineering field is: <code>There is no single silver bullets for all existing problems</code>.</p>
-<p>There is a giant race over <code>React</code> and <code>Vue</code>. They are likely the <code>V</code> in on a <code>MVC</code> like acronym. And in terms of <code>Project Standards</code>, that is all they care about.</p>
-<p>They usualy try to solve <code>application data</code> issues, but their proposed solutions are mostly focused in the <code>application state</code> rather than the <code>application data</code>. They mainly rely on browser memory to keep chunks of data.</p>
-<p>There is no problem on those solutions, not at least in a <code>project standard</code> perspective, because they ain't necessarily try to solve <code>M</code> related problems .</p>
-<p>By mistake, developers and teams are mostly focusing on the <code>V</code> layer and ignoring a <code>possibly required</code> underlying foundation architecture. Which finally increases the code complexity of those <code>View</code> or <code>Component</code> layers, because they are trying to resolve problems that should not being handled in that domain.</p>
-<p><code>State Management</code> libraries are really great. But they don't scales. Simply because the <code>application data size</code> might considerable grows.</p>
-<p>An <code>Application State Management</code> abstraction handles <code>pieces</code> of data that are curenlty being used in the screen at the present moment. But it does not means you could not have another pieces of data being <code>stored or handled</code> in parallel, behind the scenes.</p>
-<p>Not least, <code>quick data persistence</code> is not enough. You may need to save your data to different locations, or sync multiple client applications, or even t handle a big amount of data on application startup.</p>
+<p>There is a giant demand for <code>React</code> and <code>Vue</code>. They are likely the <code>V</code> in on a <code>MVC</code> like acronym. And in terms of <code>Project Standards</code>, that is all they care about.</p>
+<p>They usualy try to solve <code>application data</code> issues, by implementing an <code>application state</code> management solution.</p>
+<p>There are no problem on those solutions, not at least in a <code>project standard</code> perspective, because they ain't necessarily try to solve problems like <code>working offline</code>, <code>data persistence</code> or <code>scaling to a bigger data scenario</code>. And they shouldn't do.</p>
+<p><code>State Management</code> libraries are really great. But they don't scales. Simply because the <code>application data size</code> might considerable grows and they rely on browser memory to keep the data.</p>
+<p>An <code>Application State Management</code> abstraction handles <code>pieces</code> of data that are curenlty being used in the screen at the present moment.</p>
+<p>There are cases where you can count on a back end to build <code>human friendly data</code>, like displaying a <code>customer name</code> instead a <code>customer id</code>.</p>
+<p>On back end side, you can user several different techniques to build that information:</p>
+<ul>
+<li>use <code>SQL</code> and fetch multiple tables</li>
+<li>On mongoose you can use <code>populate</code></li>
+<li>GraphQL</li>
+</ul>
+<p>Rather relying on back end and paying a price for this, a client side data layer can esily be to used retrieve the <code>customer name</code> in above example, reducing network traffic, server computation and latency to display the data to end user.</p>
+<p>Not least, <code>quick data persistence</code> is not enough. You may need to save your data to different locations, or sync multiple client applications, or even handle a big amount of data on application startup.</p>
 <p>This where VooduX comes in.</p>
 <p>Let's make a simple comparison to quickly visualize the main difference between traditional React/Vue applications and a VooduX powered application:</p>
 <hr>
@@ -162,9 +169,6 @@
     // DataEntity, 
     // utils 
   } = voodux
-</code></pre>
-<h4>Browser directly usage</h4>
-<pre class="prettyprint source lang-html"><code>  &lt;script type=&quot;text/javascript&quot; src=&quot;voodux/dist/main.min.js&quot;>&lt;/script>
 </code></pre>
 <h4>React and Vue Project Structure</h4>
 <p>This is how a hypotethical React or Vue project structure looks like. This example is assuming the fact that your application have 4 pages:</p>
@@ -1067,7 +1071,7 @@ export default {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a>
 	
-		on 2021-03-20T13:46:41-03:00
+		on 2021-03-21T23:48:30-03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
