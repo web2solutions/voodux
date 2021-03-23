@@ -5,11 +5,6 @@ const webpack = require('webpack')
 
 const comonConf = {
   mode: 'development',
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 5490
-  },
   /* optimization: {
     minimize: true,
     minimizer: [new UglifyJsPlugin({
@@ -60,6 +55,11 @@ const conf1 = {
 
 const conf2 = {
   ...comonConf,
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 5490
+  },
   entry: {
     "main": "./_index.js",
     "main.min": "./_index.js",
