@@ -1053,3 +1053,15 @@ Knowledge base:
 10. Workbox -> https://developers.google.com/web/tools/workbox/guides/get-started
 
 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B3MYKP6TTJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B3MYKP6TTJ');
+</script>
+
+
