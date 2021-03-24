@@ -39,7 +39,18 @@ export default class VooduXWorker {
   request (job) {
     this.#_worker.postMessage({ cmd: 'job', job })
   }
-  setSchemas({schemas}) {
+  setSchemas({ schemas }) {
+    console.log(schemas)
+    let rawSchemas = {}
+    for (let [key, value] of Object.entries(schemas)) {
+      console.log(value.obj)
+      if (value.obj.name) {
+        console.warn(value.obj.name.type.name)
+      }
+      rawSchemas[key] = value.obj
+    }
+    rawSchemas = JSON.parse(JSON.stringify(rawSchemas))
+    console.log(rawSchemas)
     this.#_worker.postMessage({ cmd: 'setSchemas', schemas })
   }
   startLocalTransport() {

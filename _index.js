@@ -12,10 +12,14 @@ if (typeof window !== 'undefined') {
   window.utils = utils
 }
 
-exports = exports || {}
-exports.Foundation = Foundation
-exports.DataEntity = DataEntity
-exports.LocalDatabaseTransport = LocalDatabaseTransport
-exports.utils = utils
+if (typeof exports !== 'undefined') {
+  exports = exports || {}
+  exports.Foundation = Foundation
+  exports.DataEntity = DataEntity
+  exports.LocalDatabaseTransport = LocalDatabaseTransport
+  exports.utils = utils
+}
+
+
 
 

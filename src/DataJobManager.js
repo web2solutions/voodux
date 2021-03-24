@@ -5,11 +5,12 @@ export default class DataJobManager {
   #_queue
   #_resolvers
   #_schemas
+  #_workers
   constructor() {
     this.#_queue = []
     this.#_resolvers = {}
     this.#_schemas = {}
-    this.vooduxWebWorker = null
+    this.#_workers = {}
     let ao = new ArrayObserver(this.#_queue)
     ao.Observe((request, method) => {
       if (method === 'push') {
@@ -25,6 +26,16 @@ export default class DataJobManager {
       }
     })
   }
+  get vooduxWebWorker() {
+    // implement load balacing here
+    return this.#_workers.voodux_data_01
+  }
+  
+  set vooduxWebWorker(worker) {
+    // possibility to have multiple workers
+    this.#_workers['voodux_data_01'] = worker
+  }
+
   workerMessageHandler (e) {
     const response = e.data
     const { cmd, data, job } = response
@@ -68,9 +79,9 @@ export default class DataJobManager {
       this.workerMessageHandler.bind(this),
       false
     )
-    this.vooduxWebWorker.setSchemas({
+    /* this.vooduxWebWorker.setSchemas({
       schemas: this.#_schemas
-    })
+    }) */
     this.vooduxWebWorker.startLocalTransport()
   }
   addData (request) {
@@ -99,7 +110,7 @@ export default class DataJobManager {
   }
 
   unqueue (job) {
-    this.#_queue.push(job)
+    this.#_queue.pop(job)
   }
   runJob (obj) {
     const job = { ...obj }

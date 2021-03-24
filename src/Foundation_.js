@@ -1,7 +1,7 @@
 /* global localStorage, navigator, window */
 import { createMethodSignature, uuid, Schema, genDbName } from './utils'
 import DataEntity from './DataEntity'
-// import LocalDatabaseTransport from './LocalDatabaseTransport'
+import LocalDatabaseTransport from './LocalDatabaseTransport'
 import EventSystem from './EventSystem'
 import DataJobManager from './DataJobManager'
 
@@ -197,9 +197,9 @@ export default class Foundation extends EventSystem {
     
     this.#_jobMamanager = new DataJobManager()
 
-    /* this.localDatabaseTransport = new LocalDatabaseTransport({
+    this.localDatabaseTransport = new LocalDatabaseTransport({
       dbName: genDbName(name)
-    })*/
+    })
     this.#_tabId = uuid() // assume new Id on every refresh
   }
 
@@ -469,6 +469,13 @@ await Product.add({
     }
     return window.localStorage.getItem('guid')
   }
+
+  startVooduXWebWorker() {
+    console.log(window.location)
+    if (window.location.href.indexOf('cypress') > -1) {
+      return
+    }
+  }
   
   /**
    * @async
@@ -560,24 +567,27 @@ await Product.add({
       try {
         this.setupAppGuid()
         const mapModels = this.#mapModels(this.#_schemas)
-        // const connection = await this.localDatabaseTransport.connect()
-        // console.log(connection)
+        const connection = await this.localDatabaseTransport.connect()
+        console.log(connection)
+        console.warn('tables tables', this.localDatabaseTransport.tables)
+        // this.jobManager.mapSchemas(this.#_schemas)
+        // this.jobManager.start()
         
-        this.jobManager.mapSchemas(this.#_schemas)
-        this.jobManager.start()
+        
 
-        /* if (connection.error) {
+        // this.startVooduXWebWorker()
+
+        if (connection.error) {
           _error = connection.error
         } else {
-          
-        }*/
-        this.#_started = true
-        _data = {
-          status: {
-            mapModels // ,
-            // connection
-          },
-          started: this.#_started
+          this.#_started = true
+          _data = {
+            status: {
+              mapModels,
+              connection
+            },
+            started: this.#_started
+          }
         }
       } catch (error) {
         console.error('error')

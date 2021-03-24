@@ -5,8 +5,9 @@
 // import dexie from 'dexie'
 import LocalDatabaseTransport from './LocalDatabaseTransport'
 import { genDbName } from './utils'
+import schemas from './_schemas'
 
-let schemas = {} // {entity, schema}
+// let schemas = {} // {entity, schema}
 
 let localDatabaseTransport = null
 const startLocalTransport = async () => {
@@ -14,8 +15,13 @@ const startLocalTransport = async () => {
     dbName: genDbName('WorkerDB')
   })
   console.log('>>>>>> schemas', schemas)
-  schemas.forEach(s => (localDatabaseTransport.addSchema(s.entity, s.schema)))
-  const connection = await this.localDatabaseTransport.connect()
+  for (let [entity, schema] of Object.entries(schemas)) {
+    console.log(entity, schema)
+    localDatabaseTransport.addSchema(entity, schema)
+  }
+  
+  const connection = await localDatabaseTransport.connect()
+  console.warn('tables tables', localDatabaseTransport.tables)
   console.warn('connection', connection)
 }
 
@@ -35,7 +41,7 @@ const executeJob = (request) => {
 
 const setSchemas = (request) => {
   console.warn('WORKER>>>>>>>>> setSchemas request', request)
-  const receivedSchemas = { ...request.schemas }
+  /* const receivedSchemas = { ...request.schemas }
   const entities = Object.keys(receivedSchemas)
   entities.forEach(entity => {
     const schema = receivedSchemas[entity]
@@ -43,7 +49,7 @@ const setSchemas = (request) => {
       entity,
       schema
     })
-  })
+  }) */
   console.log('schemas', schemas)
 }
 

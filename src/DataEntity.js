@@ -160,7 +160,7 @@ export default class DataEntity extends EventSystem {
     }
     this.#_stateChangeStorageName = `__$tabEntityStateChange_${this.#_entity}`
     
-    this.#_foundation.localDatabaseTransport.addSchema(this.#_entity, this.#_schema)
+    // this.#_foundation.localDatabaseTransport.addSchema(this.#_entity, this.#_schema)
     
     this.#_listenToAllOtherSessionsStateChanges()
   }
