@@ -87,7 +87,7 @@
     "dexie-mongoify": "^1.3.0",
     "lunr": "^2.3.9",
     "mochawesome-merge": "^4.2.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "mongoose": "^5.12.4"
   },
   "presets": [
