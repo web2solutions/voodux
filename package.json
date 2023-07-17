@@ -88,7 +88,7 @@
     "lunr": "^2.3.9",
     "mochawesome-merge": "^4.2.0",
     "moment": "^2.29.1",
-    "mongoose": "^5.12.4"
+    "mongoose": "^5.13.20"
   },
   "presets": [
     "@babel/preset-env"
